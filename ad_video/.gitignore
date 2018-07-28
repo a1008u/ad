@@ -1,0 +1,12 @@
+/capture/*
+/coverage/*
+/dist/*
+/e2e/dist/*
+/e2e/report/*
+yarn.lock
+
+/.idea
+/library
+/node_modules
+
+/ad_video.iml
