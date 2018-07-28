@@ -10,3 +10,4 @@ yarn.lock
 /node_modules
 
 /ad_video.iml
+/package-lock.json
