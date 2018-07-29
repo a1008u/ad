@@ -4,8 +4,11 @@
   "description": "how to mk ad with video",
   "main": "index.js",
   "scripts": {
-    "build-dev": "webpack --config ./webpack.config.development.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-partnerdev": "webpack --config ./webpack.config.partner_dev.js",
+    "build-marchantdev": "webpack --config ./webpack.config.marchant_dev.js",
+    "build-redirectdev": "webpack --config ./webpack.config.redirect_dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint -c tslint.json --exclude **/*.d.ts --exclude ./node_modules --project . --fix ./src/**/*.ts --fix ./src/ts/*/*.ts"
   },
   "keywords": [
     "ad",

@@ -1,11 +1,11 @@
 module.exports = {
 
     entry: {
-        "ts":'./src/ts/main.ts'
+        "ts":`./src/marchant/ts/main.ts`
     },
 
     output: {
-        filename: "./js/[name]_bundle.js"
+        filename: "./marchant/js/atv_marchant_min.js"
     },
     mode: 'development'
     ,
@@ -25,4 +25,4 @@ module.exports = {
         ]
     }
 
-}
+};
