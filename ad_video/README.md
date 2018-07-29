@@ -5,6 +5,10 @@
     export PATH=$PATH:./node_modules/.bin 
     npm run build-dev // 開発環境用
     docker-compose up --build
+    
+    // express
+    npm run build-serverdev
+    node dist/server/js/app.js
     ``` 
   - 本番用
     ```$npm
@@ -35,6 +39,8 @@
     npm install --save-dev karma-sourcemap-loader
     npm install --save-dev karma-jasmine-html-reporter karma-mocha-reporter karma-spec-reporter
     npm install --save-dev tslint prettier tslint-plugin-prettier tslint-config-prettier tslint-config-standard
+    npm install --save-dev express webpack-node-externals
+    npm install --save-dev @types/express
     ```
  
 - test用のコマンド
