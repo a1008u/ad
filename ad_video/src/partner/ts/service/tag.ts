@@ -1,47 +1,52 @@
 export namespace tag {
+  /**
+   * aTagの生成
+   * @param {string} rk
+   * @returns {HTMLAnchorElement}
+   */
+  export const mkAtag = (rk: string): HTMLAnchorElement => {
+    const aTag: HTMLAnchorElement = document.createElement('a');
+    aTag.href = `click?rk=${rk}`;
+    aTag.target = '_blank';
+    return aTag;
+  };
 
-    /**
-     * aTagの生成
-     * @param {string} rk
-     * @returns {HTMLAnchorElement}
-     */
-    export const mkAtag = (rk: string): HTMLAnchorElement => {
-        const aTag: HTMLAnchorElement = document.createElement('a');
-        aTag.href = `click?rk=${rk}`;
-        aTag.target = '_blank';
-        return aTag;
-    };
+  /**
+   * videoタグの生成
+   * @param {HTMLScriptElement} script
+   * @param {string} rk
+   * @returns {HTMLVideoElement}
+   */
+  export const mkVideoTag = (
+    script: HTMLScriptElement,
+    rk: string
+  ): HTMLVideoElement => {
+    const videoTag: HTMLVideoElement = document.createElement('video');
+    videoTag.height = parseInt(script.getAttribute('data-atv-height'));
+    videoTag.width = parseInt(script.getAttribute('data-atv-width'));
+    videoTag.src = script.getAttribute('data-atv-src');
+    videoTag.muted = true;
+    videoTag.loop = true;
+    videoTag.setAttribute('playsinline', 'playsinline');
+    videoTag.setAttribute('data-atv-video', rk);
+    return videoTag;
+  };
 
-    /**
-     * videoタグの生成
-     * @param {HTMLScriptElement} script
-     * @param {string} rk
-     * @returns {HTMLVideoElement}
-     */
-    export const mkVideoTag = (script: HTMLScriptElement, rk: string): HTMLVideoElement =>  {
-        const videoTag: HTMLVideoElement = document.createElement('video');
-        videoTag.height = parseInt(script.getAttribute('data-atv-height'));
-        videoTag.width = parseInt(script.getAttribute('data-atv-width'));
-        videoTag.src = script.getAttribute('data-atv-src');
-        videoTag.muted = true;
-        videoTag.loop = true;
-        videoTag.setAttribute('playsinline', 'playsinline');
-        videoTag.setAttribute('data-atv-video', rk);
-        return videoTag;
-    };
-
-    /**
-     * iframe用のタグ
-     * @param {HTMLVideoElement} videoTag
-     * @returns {HTMLIFrameElement}
-     */
-    export const mkTrackingTag = (videoTag : HTMLVideoElement): HTMLIFrameElement => {
-        let ifr: HTMLIFrameElement = document.createElement('iframe');
-        ifr.src = '../../redirect/html/fm.html?rk=' + videoTag.getAttribute('data-atv-video');
-        ifr.style.display = 'none';
-        ifr.width = "0";
-        ifr.height = "0";
-        return ifr;
-    };
-
+  /**
+   * iframe用のタグ
+   * @param {HTMLVideoElement} videoTag
+   * @returns {HTMLIFrameElement}
+   */
+  export const mkTrackingTag = (
+    videoTag: HTMLVideoElement
+  ): HTMLIFrameElement => {
+    let ifr: HTMLIFrameElement = document.createElement('iframe');
+    ifr.src =
+      '../../redirect/html/fm.html?rk=' +
+      videoTag.getAttribute('data-atv-video');
+    ifr.style.display = 'none';
+    ifr.width = '0';
+    ifr.height = '0';
+    return ifr;
+  };
 }

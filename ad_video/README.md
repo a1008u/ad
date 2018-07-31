@@ -31,6 +31,7 @@
     ```
  - その他のインストール
     ```$npm
+    npm install --save-dev axios rxjs @rxjs/rx
     npm install --save-dev webpack webpack-cli ts-loader
     npm install --save-dev jasmin jasmine-core @types/jasmine
     
