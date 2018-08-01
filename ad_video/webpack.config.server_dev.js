@@ -4,7 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = {
 
     entry: {
-        "ts":`./src/server/ts/app.ts`
+        "ts":`./src/server/ts/main.ts`
     },
 
     output: {

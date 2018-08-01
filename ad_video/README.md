@@ -42,6 +42,9 @@
     npm install --save-dev tslint prettier tslint-plugin-prettier tslint-config-prettier tslint-config-standard
     npm install --save-dev express webpack-node-externals
     npm install --save-dev @types/express
+    npm install --save-dev body-parser morgan
+    npm install --save cors
+    npm install --save-dev @types/cors
     ```
  
 - test用のコマンド

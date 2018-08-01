@@ -7,17 +7,17 @@ let params: string[] = query.split('&');
 for (let param of params) {
   console.log('起動します＋＋＋＋＋＋＋＋＋');
 
-  // Rx.from(axios.default.get('https://jsonplaceholder.typicode.com/todos/1'))
-  //   .subscribe(
-  //     resdata => console.log(resdata..data)
-  //     , err => console.log(err)
-  //   );
-
-    Rx.from(axios.default.post('http://10.10.5.32:8081/at/m/sreport_for_api.do?pass_key=68e48c0cd10659a16756f0c99bd6752c&from_year=2012&from_month=08&from_day=01&to_year=2012&to_month=08&to_day=31&summary_type=0&mid=459665&response_type=1&priceCutFlag=1'))
+  Rx.from(axios.default.get('https://jsonplaceholder.typicode.com/todos/1'))
     .subscribe(
       resdata => console.log(resdata.data)
       , err => console.log(err)
     );
+
+    Rx.from(axios.default.get('https://jsonplaceholder.typicode.com/todos/1'))
+        .subscribe(
+            resdata => console.log(resdata.data)
+            , err => console.log(err)
+        );
 
   let p = param.indexOf('=');
   if (p >= 0) {
@@ -31,11 +31,11 @@ for (let param of params) {
           if (xhr.status === 200) {
             let jx = JSON.parse(xhr.responseText);
             console.log(jx);
-            // location.replace(jx.url);
+            location.replace(jx.url);
           }
         }
       };
-      xhr.open('GET', '/clickx?rk=' + rk, true);
+      xhr.open('GET', 'http://localhost:3000/click_part1?rk=' + rk, true);
       xhr.send(null);
       break;
     }

@@ -29,15 +29,26 @@
 // module.exports = app;
 
 import * as Express from 'express';
+class App {
 
-const app = Express();
+    public app: Express.Application;
 
-app.get('/', (req: Express.Request, res: Express.Response) =>
-  res.send('Hello world.')
-);
+    constructor() {
+        this.app = Express();
+        // this.config();
+    }
 
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
-});
+    // private config(): void{
+    //     // support application/json type post data
+    //     this.app.use(bodyParser.json());
+    //
+    //     //support application/x-www-form-urlencoded post data
+    //     this.app.use(bodyParser.urlencoded({ extended: false }));
+    // }
 
-export default app;
+}
+
+export default new App().app;
+
+
+
