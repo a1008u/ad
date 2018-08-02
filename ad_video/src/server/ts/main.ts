@@ -24,13 +24,14 @@ const ROOT = '/';
 // app.use(Express.static('dist/server/js/statics'));
 app.use(Express.static(path.join('dist/server/js/statics')));
 app.use(logger('dev'));
-app.use((req: Express.Request, res: Express.Response, next: any) =>{
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+app.use(cors());
+// app.use((req: Express.Request, res: Express.Response, next: any) =>{
+//     // res.header("Access-Control-Allow-Credentials", "true");
+//     res.header("Access-Control-Allow-Origin", "*");
+//     // res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 
 app.get(ROOT, (req: Express.Request, res: Express.Response) =>{
@@ -43,13 +44,13 @@ app.get(ROOT, (req: Express.Request, res: Express.Response) =>{
 
 app.get('/click_part1', (req: Express.Request, res: Express.Response) => {
 
-    app.use((req: Express.Request, res: Express.Response, next: any) =>{
-        res.setHeader("Access-Control-Allow-Credentials", "true");
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE");
-        res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        next();
-    });
+    // app.use((req: Express.Request, res: Express.Response, next: any) =>{
+    //     // res.setHeader("Access-Control-Allow-Credentials", "true");
+    //     res.setHeader("Access-Control-Allow-Origin", "*");
+    //     // res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE");
+    //     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    //     next();
+    // });
 
     if (req.query.rk) {
         res.redirect("/next.html?rk="+ req.query.rk);
@@ -61,7 +62,7 @@ app.get('/click_part1', (req: Express.Request, res: Express.Response) => {
 
 app.get('/click_part2', (req: Express.Request, res: Express.Response) => {
     if (req.query.rk) {
-        res.json({url: "../../marchant/html/next.html?rk="+ req.query.rk});
+        res.json({url: "/next.html?rk="+ req.query.rk});
     } else {
         res.json({});
     }
