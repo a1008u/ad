@@ -5,7 +5,7 @@ module.exports = {
     },
 
     output: {
-        filename: "./partner/js/atv_min.js"
+        filename: "./server/statics/partner/js/atv_min.js"
     },
     mode: 'development'
     ,

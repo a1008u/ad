@@ -5,7 +5,7 @@ module.exports = {
     },
 
     output: {
-        filename: "./marchant/js/atv_marchant_min.js"
+        filename: "./server/statics/marchant/js/atv_marchant_min.js"
     },
     mode: 'development'
     ,

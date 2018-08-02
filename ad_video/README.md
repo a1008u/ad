@@ -45,6 +45,7 @@
     npm install --save-dev body-parser morgan
     npm install --save cors
     npm install --save-dev @types/cors
+    npm i --save-dev npm-run-all rimraf cpx
     ```
  
 - test用のコマンド

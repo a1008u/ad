@@ -1,43 +1,36 @@
 import * as Rx from 'rxjs';
 import * as axios from 'axios';
 
-let query: string = location.search.substring(1);
-let params: string[] = query.split('&');
+let querys: string[] = location.search.substring(1).split('&');
+// for (let query of querys) {
+//   console.log('起動します＋＋＋＋＋＋＋＋＋');
+//
+//   // ie,edge -> imgタグ生成
+//   // firefox chrome -> rx + axiosで通信
+//   // safari -> 何もしない
+//
+//   let p = query.indexOf('=');
+//   if (p >= 0) {
+//       if (query.substring(0, p) === 'rk') {
+//           let rk: string = decodeURIComponent(query.substring(p + 1));
+//
+//           Rx.from(axios.default.get('http://localhost:3000/click_part2?rk=' + rk))
+//             .subscribe(
+//                 resdata => location.replace(resdata.data.url)
+//                 , err => console.log(err)
+//             );
+//       }
+//   }
+// }
 
-for (let param of params) {
-  console.log('起動します＋＋＋＋＋＋＋＋＋');
-
-  Rx.from(axios.default.get('https://jsonplaceholder.typicode.com/todos/1'))
-    .subscribe(
-      resdata => console.log(resdata.data)
-      , err => console.log(err)
-    );
-
-    Rx.from(axios.default.get('https://jsonplaceholder.typicode.com/todos/1'))
+console.log('起動します＋＋＋＋＋＋＋＋＋');
+location.search.substring(1).split('&')
+    .filter(query => query.includes('rk'))
+    .forEach(query => {
+      let [_ , rkValue]: string[] = query.split('=');
+      Rx.from(axios.default.get(`http://localhost:3000/click_part2?rk=${rkValue}`))
         .subscribe(
-            resdata => console.log(resdata.data)
+            resdata => location.replace(resdata.data.url)
             , err => console.log(err)
         );
-
-  let p = param.indexOf('=');
-  if (p >= 0) {
-    if (param.substring(0, p) == 'rk') {
-      let rk: string = decodeURIComponent(param.substring(p + 1));
-
-      // RXに変換
-      let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            let jx = JSON.parse(xhr.responseText);
-            console.log(jx);
-            location.replace(jx.url);
-          }
-        }
-      };
-      xhr.open('GET', 'http://localhost:3000/click_part1?rk=' + rk, true);
-      xhr.send(null);
-      break;
-    }
-  }
-}
+    });

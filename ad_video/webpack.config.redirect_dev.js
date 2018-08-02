@@ -5,7 +5,7 @@ module.exports = {
     },
 
     output: {
-        filename: "./redirect/js/atv_redirect_min.js"
+        filename: "./server/statics/redirect/js/atv_redirect_min.js"
     },
     mode: 'development'
     ,

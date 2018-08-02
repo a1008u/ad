@@ -1,40 +1,17 @@
-// const express = require('express');
-// const path = require('path');
-// const logger = require('morgan');
-// const app = express();
-//
-// app.use(logger('dev'));
-// app.use(express.static(path.join(__dirname, 'statics')));
-//
-// app.get('/click', function(req, res) {
-//     if (req.query.rk) {
-//         res.redirect("/next.html?rk="+ req.query.rk);
-//     } else {
-//         res.redirect("/next.html");
-//     }
-//     res.end();
-//
-// });
-//
-// app.get('/clickx', function(req, res) {
-//     if (req.query.rk) {
-//         res.json({url: "/next.html?rk="+ req.query.rk});
-//     } else {
-//         res.json({});
-//     }
-//     res.end();
-// });
-//
-// app.listen(3000, () => console.log('videoads'));
-// module.exports = app;
-
 import * as Express from 'express';
+import * as path from "path";
+import * as logger from 'morgan';
+import * as cors from "cors";
+
 class App {
 
     public app: Express.Application;
 
     constructor() {
         this.app = Express();
+        this.app.use(Express.static(path.join('dist/server/statics')));
+        this.app.use(logger('dev'));
+        this.app.use(cors());
         // this.config();
     }
 
