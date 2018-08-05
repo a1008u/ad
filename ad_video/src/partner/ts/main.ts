@@ -1,5 +1,5 @@
 import { videoEvent } from './service/videoEvent';
-import { tag } from './service/tag';
+import { tag } from '../../service/tag';
 import { viewstatus } from './service/viewstatus';
 
 namespace advideo {

@@ -49,4 +49,14 @@ export namespace tag {
     ifr.height = '0';
     return ifr;
   };
+
+
+  export const mkImageTag = (): HTMLImageElement => {
+      let imgTag: HTMLImageElement = document.createElement('img');
+      imgTag.src = '';
+      imgTag.alt = 'test';
+      imgTag.width = 0;
+      imgTag.height = 0;
+      return imgTag;
+  }
 }

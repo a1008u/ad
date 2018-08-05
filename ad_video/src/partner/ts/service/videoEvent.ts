@@ -1,4 +1,4 @@
-import { tag } from './tag';
+import { tag } from '../../../service/tag';
 import { viewstatus } from './viewstatus';
 
 export namespace videoEvent {
