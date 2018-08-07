@@ -1,7 +1,11 @@
 import * as Rx from 'rxjs';
 import * as axios from 'axios';
-import {browser} from "../../service/browser";
-import {tag} from "../../service/tag";
+import { browser } from '../../service/browser';
+import { tag } from '../../service/tag';
+import { cookies } from './cookies';
+
+// tslint:disable-next-line:no-var-requires
+require('es6-promise').polyfill();
 
 // let querys: string[] = location.search.substring(1).split('&');
 // for (let query of querys) {
@@ -25,38 +29,52 @@ import {tag} from "../../service/tag";
 //   }
 // }
 
+const setEvent = (): void => {
+  window.addEventListener('load', () => {
+    let cookieValue = cookies.getCookie('test');
+
+    if (cookieValue !== null) {
+      window.location.replace(cookieValue);
+    } else {
+      console.log(`cookieValueは${cookieValue}です。`)
+    }
+  });
+};
+
 console.log('起動します＋＋＋＋＋＋＋＋＋');
 
 let ua: string = browser.ck(window.navigator.userAgent.toLowerCase());
-if('ie' === ua || 'edge' === ua) {
-    // imgタグ生成
-    let imgTag: HTMLImageElement = tag.mkImageTag();
+if ('ie' === ua || 'edge' === ua) {
+  // imgタグ生成
+  let src:string = 'http://10.10.15.61:3000/getImage';
+  let imgTag: HTMLImageElement = tag.mkImageTag(src);
 
-    // イベント追加
+  // イベント追加
+  setEvent();
 
-    // imgを設定 TODO:（設定箇所を確認）
-    let scripts = document.getElementsByTagName('script');
-    scripts[0]
-        .parentNode
-        .insertBefore(imgTag, scripts[0]);
+  // imgを設定 TODO:（設定箇所を確認）
+  let scripts = document.getElementsByTagName('script');
+  scripts[0].parentNode.insertBefore(imgTag, scripts[0]);
 }
 
-if('safari' === ua || 'firefox' === ua || 'chrome' === ua || 'opera' || ua) {
-    location.search.substring(1)
-        .split('&')
-        .filter(query => query.substring(0, 3) === 'rk=')
-        .forEach(query => {
-            let [rkKey , rkValue]: string[] = query.split('=');
-            Rx.from(axios.default.get(`http://localhost:3000/click_part2?${rkKey}=${rkValue}`))
-                .subscribe(
-                    resdata => location.replace(resdata.data.url)
-                    , err => console.log(err)
-                );
-        });
+if ('safari' === ua || 'firefox' === ua || 'chrome' === ua || 'opera' || ua) {
+  location.search
+    .substring(1)
+    .split('&')
+    .filter(query => query.substring(0, 3) === 'rk=')
+    .forEach(query => {
+      let [rkKey, rkValue]: string[] = query.split('=');
+      Rx.from(
+        axios.default.get(
+          `http://10.10.15.61:3000/click_part2?${rkKey}=${rkValue}`
+        )
+      ).subscribe(
+        resdata => window.location.replace(resdata.data.url),
+        err => console.log(err)
+      );
+    });
 }
 
-
-if('safari_itp' === ua || 'unknown' === ua) {
-    // 処理なし
+if ('safari_itp' === ua || 'unknown' === ua) {
+  // 処理なし
 }
-

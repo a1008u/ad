@@ -50,13 +50,12 @@ export namespace tag {
     return ifr;
   };
 
-
-  export const mkImageTag = (): HTMLImageElement => {
-      let imgTag: HTMLImageElement = document.createElement('img');
-      imgTag.src = '';
-      imgTag.alt = 'test';
-      imgTag.width = 0;
-      imgTag.height = 0;
-      return imgTag;
-  }
+  export const mkImageTag = (src: string): HTMLImageElement => {
+    let imgTag: HTMLImageElement = document.createElement('img');
+    imgTag.src = src;
+    imgTag.alt = 'test';
+    imgTag.width = 0;
+    imgTag.height = 0;
+    return imgTag;
+  };
 }
