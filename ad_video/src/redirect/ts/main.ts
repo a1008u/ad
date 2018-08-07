@@ -4,30 +4,9 @@ import { browser } from '../../service/browser';
 import { tag } from '../../service/tag';
 import { cookies } from './cookies';
 
+// IEでPromiseを利用する為に利用
 // tslint:disable-next-line:no-var-requires
 require('es6-promise').polyfill();
-
-// let querys: string[] = location.search.substring(1).split('&');
-// for (let query of querys) {
-//   console.log('起動します＋＋＋＋＋＋＋＋＋');
-//
-//   // ie,edge -> imgタグ生成
-//   // firefox chrome -> rx + axiosで通信
-//   // safari -> 何もしない
-//
-//   let p = query.indexOf('=');
-//   if (p >= 0) {
-//       if (query.substring(0, p) === 'rk') {
-//           let rk: string = decodeURIComponent(query.substring(p + 1));
-//
-//           Rx.from(axios.default.get('http://localhost:3000/click_part2?rk=' + rk))
-//             .subscribe(
-//                 resdata => location.replace(resdata.data.url)
-//                 , err => console.log(err)
-//             );
-//       }
-//   }
-// }
 
 const setEvent = (): void => {
   window.addEventListener('load', () => {
@@ -43,17 +22,15 @@ const setEvent = (): void => {
 
 console.log('起動します＋＋＋＋＋＋＋＋＋');
 
-let ua: string = browser.ck(window.navigator.userAgent.toLowerCase());
+const domain: string = 'http://10.10.15.61:3000';
+const ua: string = browser.ck(window.navigator.userAgent.toLowerCase());
 if ('ie' === ua || 'edge' === ua) {
-  // imgタグ生成
-  let src:string = 'http://10.10.15.61:3000/getImage';
-  let imgTag: HTMLImageElement = tag.mkImageTag(src);
-
   // イベント追加
   setEvent();
 
-  // imgを設定 TODO:（設定箇所を確認）
-  let scripts = document.getElementsByTagName('script');
+  // imgを作成 + 設定
+  const imgTag: HTMLImageElement = tag.mkImageTag(`${domain}/getImage`);
+  const scripts = document.getElementsByTagName('script');
   scripts[0].parentNode.insertBefore(imgTag, scripts[0]);
 }
 
@@ -63,18 +40,16 @@ if ('safari' === ua || 'firefox' === ua || 'chrome' === ua || 'opera' || ua) {
     .split('&')
     .filter(query => query.substring(0, 3) === 'rk=')
     .forEach(query => {
-      let [rkKey, rkValue]: string[] = query.split('=');
-      Rx.from(
-        axios.default.get(
-          `http://10.10.15.61:3000/click_part2?${rkKey}=${rkValue}`
-        )
-      ).subscribe(
+      const [rkKey, rkValue]: string[] = query.split('=');
+      Rx.from(axios.default.get(`${domain}/click_part2?${rkKey}=${rkValue}`))
+        .subscribe(
         resdata => window.location.replace(resdata.data.url),
         err => console.log(err)
-      );
+         );
     });
 }
 
+// 多分partner側で確認すると思う。。。
 if ('safari_itp' === ua || 'unknown' === ua) {
   // 処理なし
 }

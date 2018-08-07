@@ -31,7 +31,7 @@ export namespace viewstatus {
   };
 
   /**
-   *
+   * 動画表示状態判定
    * @param {HTMLVideoElement} videoTag
    * @returns {boolean}
    */

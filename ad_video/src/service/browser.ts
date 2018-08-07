@@ -21,17 +21,19 @@ export namespace browser {
     } else if (ua.indexOf('edge') !== -1) {
       console.log('Edgeをお使いですね');
       return 'edge';
-    } else if (ua.indexOf('chrome') !== -1) {
+    } else if (ua.indexOf('chrome') !== -1 && (ua.indexOf('macintosh') === -1 || ua.indexOf('iphone') === -1 || ua.indexOf('ipad') === -1) ) {
       console.log('Google Chromeをお使いですね');
       return 'chrome';
-    } else if (ua.indexOf('safari') !== -1) {
+    } else if (ua.indexOf('safari') !== -1 &&  (ua.indexOf('macintosh') !== -1 || ua.indexOf('iphone') !== -1 || ua.indexOf('ipad') !== -1)) {
       let iosVersion = ua.match(/os (\d{2})_/);
       if (iosVersion !== null && +iosVersion[1] >= 11) {
+        console.log('Safari_itpをお使いですね');
         return 'safari_itp';
       }
 
       let macVersion = ua.match(/mac os x 10_(\d{2})/);
       if (macVersion !== null && +macVersion[1] >= 13) {
+          console.log('Safari_itpをお使いですね');
         return 'safari_itp';
       }
 

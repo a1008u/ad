@@ -38,20 +38,22 @@ export namespace videoEvent {
    * イベント処理
    * @param {HTMLVideoElement} videoTag
    * @param {HTMLAnchorElement} aTag
+   * @param {number} limitTime
    */
   export const setEvent = (
     videoTag: HTMLVideoElement,
-    aTag: HTMLAnchorElement
+    aTag: HTMLAnchorElement,
+    limitTime: number = 10000
   ) => {
     let count = 0;
     let cntEvt;
 
     // viewthrough
     videoTag.addEventListener('play', () => {
-      if (count < 10000) {
+      if (count < limitTime) {
         cntEvt = window.setInterval(() => {
           count += 250;
-          if (count > 10000) {
+          if (count > limitTime) {
             window.clearInterval(cntEvt);
             let iframeTag: HTMLIFrameElement = tag.mkTrackingTag(videoTag);
             videoTag.parentNode.insertBefore(iframeTag, videoTag);

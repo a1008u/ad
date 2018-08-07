@@ -3,16 +3,8 @@ import { tag } from '../../service/tag';
 import { viewstatus } from './service/viewstatus';
 
 namespace advideo {
-  export let mkvideo = (): void => {
-    let scripts = document.getElementsByTagName('script');
 
-    for (let num in scripts) {
-      let script: HTMLScriptElement = scripts[num];
-      let rk: string = script.getAttribute('data-atv-rk');
-      if (!rk) {
-        continue;
-      }
-
+  const mkTag = (rk: string, script: HTMLScriptElement): void => {
       // タグ生成
       const aTag: HTMLAnchorElement = tag.mkAtag(rk);
       const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk);
@@ -25,14 +17,30 @@ namespace advideo {
       script.parentNode.insertBefore(aTag, script);
       script.removeAttribute('data-atv-rk');
       if (viewstatus.ckViewStatus(videoTag)) {
-        videoTag.play();
+          videoTag.play();
       }
-      break;
-    }
+  };
+
+  export let mkvideo = (): void => {
+      let scripts = document.getElementsByTagName('script');
+      for (let num in scripts) {
+        const script: HTMLScriptElement = scripts[num];
+        const rk: string = script.getAttribute('data-atv-rk');
+        if (!rk) {
+          continue;
+        }
+
+        mkTag(rk, script);
+        break;
+      }
   };
 }
 
 // 即時実行
 ((window, _) => {
+
+  // ブラウザ判定
+
+  // viewthrough
   advideo.mkvideo();
 })(window);
