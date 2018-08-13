@@ -1,0 +1,84 @@
+<!doctype html>
+<html amp lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hello, AMPs</title>
+
+    <!-- 記載側が非AMPページなら下記を記載 -->
+    <link rel="amphtml" href="https://www.example.com/url/to/amp/document.html">
+
+    <!-- 記載側がAMPページなら下記を記載 -->
+    <link rel="canonical" href="https://www.example.com/url/to/full/document.html">
+    <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
+
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "Open-source framework for publishing content",
+        "datePublished": "2015-10-07T12:02:41Z",
+        "image": [
+            "logo.jpg"
+        ]
+    }
+    </script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+    <!-- AMP JSライブラリをインクルード -->
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    <style amp-custom>
+        /* any custom style goes here */
+        body {
+            background-color: white;
+        }
+        amp-img {
+            background-color: olivedrab;
+            border: 1px solid black;
+        }
+    </style>
+
+    <script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script>
+    <script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
+
+</head>
+
+<body>
+    <h1>Welcome to the mobile web</h1>
+    <amp-img src="welcome.jpg"
+             alt="Welcome"
+             height="272"
+             width="375"
+             layout="responsive"></amp-img>
+
+    <amp-video width="480"
+               height="270"
+               src="http://localhost:5000/video/ba1.mp4"
+               poster="/img/itest.png"
+               layout="responsive"
+               controls
+               autoplay>
+        <div fallback>
+            <p>Your browser doesn't support HTML5 video.</p>
+        </div>
+        <source type="video/mp4" src="http://localhost:5000/video/ba1.mp4">
+    </amp-video>
+
+    <amp-twitter width="375"
+                 height="472"
+                 layout="responsive"
+                 data-tweetid="638793490521001985">
+    </amp-twitter>
+
+    <amp-twitter width="390"
+                 height="330"
+                 layout="responsive"
+                 data-momentid="1018806709412876288">
+    </amp-twitter>
+
+
+</body>
+
+</html>

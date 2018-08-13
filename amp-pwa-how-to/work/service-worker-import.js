@@ -1,0 +1,1 @@
+toolbox.precache(['/index.html']);

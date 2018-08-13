@@ -1,0 +1,23 @@
+<!-- JavaScriptファイルを使用してAMPキャッシュからService Workerをインストールすることができません。
+これを可能にするには、amp-install-serviceworkerコンポーネントに含まれるdata-iframe-srcという追加属性を利用して、
+そのURLをiframeとして読み込む必要があります。  -->
+<!doctype html>
+<html>
+<head>
+    <title>installing service worker</title>
+    <script type="text/javascript">
+        var swsource = "/service-worker.js";
+        if("serviceWorker" in navigator) {
+            navigator.serviceWorker.register(swsource)
+                .then(function(reg){
+                    console.log('SW scope: ', reg.scope);
+                })
+                .catch(function(err) {
+                    console.log('SW registration failed: ', err);
+                });
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
