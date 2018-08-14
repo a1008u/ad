@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+
+</head>
+<body>
+    <style>
+        :host(.card) {
+            border: 1px solid black;
+        }
+    </style>
+
+    <div class="host">Hello, world!</div>
+    <br />
+
+    <div class="host2">
+        <span slot="user-name">古都こと</span>
+    </div>
+    <br />
+    
+    <div class="host3"></div>
+
+    <script>
+        const host = document.querySelector('.host');
+        const root = host.attachShadow({mode: 'open'});
+
+        root.textContent = 'Hello, shadow world!';
+    </script>
+
+    <script>
+        // Shadow Rootを作成する
+        const host2 = document.querySelector('.host2');
+        const root2 = host2.attachShadow({mode: 'open'});
+
+        // slot要素を作成する
+        const slot2 = document.createElement('slot');
+        slot2.name = 'user-name';
+
+        // slot要素をShadow Rootに追加する
+        root2.textContent = 'My name is ';
+        root2.appendChild(slot2);
+    </script>
+
+    <script>
+        // Shadow Rootを作成する
+        const host3 = document.querySelector('.host3');
+        const root3 = host3.attachShadow({mode: 'open'});
+
+        // span要素を作成する
+        const span3 = document.createElement('span');
+        span3.classList.add('shadow-span');
+        span3.textContent = 'Hello, shadow world!';
+
+        // style要素を作成する
+        const style3 = document.createElement('style');
+        style3.textContent = '.shadow-span { color: red; }';
+
+        // Shadow Rootに追加する
+        root3.appendChild(style3);
+        root3.appendChild(span3);
+    </script>
+</body>
+</html>
