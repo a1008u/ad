@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Title</title>
+
+    <template>
+        <div class="big">Template used: <span>0</span></div>
+        <script>alert('Thanks!')</script>
+    </template>
+
+</head>
+<body>
+
+<button onclick="useIt()">Use me</button>
+<div id="container"></div>
+
+<script>
+    function useIt() {
+        let content = document.querySelector('template').content;
+        // Update something in the template DOM.
+        let span = content.querySelector('span');
+        span.textContent = parseInt(span.textContent) + 1;
+        document
+            .querySelector('#container')
+            .appendChild(document.importNode(content, true));
+    }
+</script>
+
+</body>
+</html>

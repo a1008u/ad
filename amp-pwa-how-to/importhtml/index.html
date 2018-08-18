@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<link rel="import" href="warnings.html">-->
+    <link rel="import" href="template.html">
+</head>
+    <title>Title</title>
+</head>
+<body>
+
+<div id="container"></div>
+
+    <script>
+        // import で <template> をクローンする
+        const template = document
+            .querySelector('link[rel="import"]')
+            .import
+            .querySelector('template');
+        const clone = document.importNode(template.content, true);
+
+        document.querySelector('#container').appendChild(clone);
+    </script>
+
+    <!-- waringのサンプル -->
+    <script>
+
+        // var importDoc = document.currentScript.ownerDocument;
+        // var styles = importDoc.querySelector('link[rel="import"]');
+        // const content2 = styles.import;
+        //
+        // let el = content2.querySelector('.warning');
+        // console.log(el);
+        // document.body.appendChild(el.cloneNode(true));
+
+
+        // const link = document.querySelector('link[rel="import"]');
+        // const content = link.import;
+        //
+        // // warning.html のドキュメントから DOM を取得
+        // let el = content.querySelector('.warning2');
+        // document
+        //     .body
+        //     .appendChild(el.cloneNode(true));
+    </script>
+
+</body>
+</html>

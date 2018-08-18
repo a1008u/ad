@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- ブラウザの幅、高さを単位にする -->
+    <meta name="viewport" content="width=device-width, initial- scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body class="element-bg">
+
+    <div id="top" class="sticky">
+        <h1>TTTTTTTTTTTTTTTop</h1>
+    </div>
+
+    <div class="text">hello world</div>
+
+    <div class="color">woooo</div>
+
+    <div class="box">yeah</div>
+
+    <br />
+    <div class="box2">sss</div>
+    <br />
+    <button id="btn2">クリック</button>
+
+
+    <p class="text2">今日は晴れていますが、夕方から稲光を伴う非常に強い雨が振りますので、洗濯物は部屋干しにしましょう。
+    もし外に干す場合は、午前中までです。また、帰宅時には風も出てきますので交通機関の情報を逐一確認してください。</p>
+
+
+    <a href="http://sample.com/" class="link">クリック・タップを無効化</a>
+
+
+    <div class="parent">
+        <div class="child">1</div>
+        <div class="child">2</div>
+        <div class="child">3</div>
+        <div class="child">4</div>
+    </div>
+
+    <ul class="parent2">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    <footer ><a href="#top" >ページTopへ</a></footer>
+
+    <script>
+        const rootStyles = getComputedStyle(document.documentElement);
+
+        console.log(rootStyles);
+        console.log(rootStyles.getPropertyValue('--size').trim());
+
+        document.getElementById('btn2').addEventListener(
+            'click',
+            () => {
+                const box2 = document.querySelector('.box2');
+                box2.style.setProperty('--size', rootStyles.getPropertyValue('--size').trim() * 20);
+            },
+            false
+        );
+
+    </script>
+</body>
+</html>

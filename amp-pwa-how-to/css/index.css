@@ -1,0 +1,117 @@
+/* グローバル変数 */
+:root {
+    --font-size: 200px;
+    --size: 10vw;
+    --bkcolor:#1976D2;
+}
+
+/* メディアクエリ用のグローバル変数 */
+@media screen and (min-width: 768px) {
+    :root {
+        --size: 1000px;
+    }
+}
+
+.text {
+    font-size: var(--font-size);
+}
+
+.color {
+    /* ローカル変数(ローカル変数>グローバル変数) */
+    --color: green;
+    color: var(--color, blue);
+    font-size: 1rem;
+}
+
+.box {
+    width: calc(var(--size)*2);
+    height: var(--size);
+    background-color: #673AB7;
+}
+
+.box2 {
+    width: var(--size, 30px);
+    height: var(--size, 30px);
+    background-color: red;
+}
+
+#top {
+    background-color: var(--bkcolor, darkblue);
+}
+
+html {
+    /* アンカーリンクをスムーススクロールにする */
+    scroll-behavior: smooth;
+}
+
+/* クリック、タップイベントを無効化 */
+.link {
+    pointer-events: none;
+}
+
+
+.text2 {
+
+    /* テキストを段組(マルチカラム)にする */
+    columns: 2;
+
+    /* 単語の途中で改行させる */
+    overflow-wrap: break-spaces;
+
+    /* 自動で文字のカーニング(文字間の調整)を行う */
+    font-feature-settings: "palt";
+
+    /*　改行(\n)や半角スペースがブラウザでそのまま表示されるようになり、且つ自動で行が折 り返されます */
+    white-space: pre-wrap;
+
+    /* コピーの無効化 */
+    user-select: none;
+    touch-callout: none;
+}
+
+.parent {
+    display: flex;
+}
+
+.parent2 {
+    display: grid;
+    /* li同士に8px隙間をあける */
+    grid-gap: 8px;
+    /* 3カラムに指定。 liの最小幅0、最大幅はあるだけ広げる */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+
+/* 条件分岐 */
+.wrapper {
+    background-image: url("http://sample.com/assets/images/bg.png");
+}
+
+@supports (background-blend-mode: hue) {
+    .wrapper {
+        background-image:
+            linear-gradient(lightblue 0%, pink 100%)
+            , linear-gradient(to right, pink 30%, white 100%)
+            , url("http://sample.com/assets/images/bg.png");
+
+        background-blend-mode: hue;
+    }
+}
+
+
+@supports (background-blend-mode: hue) {
+    .element-bg {
+        background-image:
+            linear-gradient(lightblue 0%, pink 100%)
+            , linear-gradient(to right, pink 30%, white 100%)
+            , url("https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png");
+
+        /*  背景色と背景画像をブレンドする */
+        background-blend-mode: soft-light;
+    }
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+}
