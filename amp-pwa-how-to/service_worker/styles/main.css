@@ -1,0 +1,7 @@
+:root {
+    --strColor : red;
+}
+
+.mark {
+    color: var(--strColor);
+}

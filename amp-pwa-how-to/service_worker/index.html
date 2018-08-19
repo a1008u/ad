@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="mark">test</div>
+
+<script>
+
+
+    // service workerの利用確認
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () =>  {
+        navigator.serviceWorker.register('./sw.js')
+          .then(registration => {console.log('ServiceWorker registration successful with scope: ', registration.scope);})
+          .catch(err => {console.log('ServiceWorker registration failed: ', err);});
+      });
+    }
+</script>
+
+</body>
+</html>

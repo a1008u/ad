@@ -1,0 +1,45 @@
+:host(.twitter-card) {
+    display: flex;
+    border: 1px solid rgb(200, 200, 200);
+    color: rgb(80, 80, 80);
+}
+
+.twitter-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10em;
+    height: 10em;
+    padding: 1em;
+}
+
+.twitter-icon ::slotted(img) {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border: 3px solid rgb(200, 200, 200);
+}
+
+.twitter-profile {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.twitter-info {
+    flex: 1;
+}
+
+.twitter-name::slotted(*) {
+    font-size: 2em;
+}
+
+.follow-button {
+    background-color: rgb(85, 172, 238);
+    border: none;
+    color: white;
+    font-size: 1em;
+    padding: 0.5em 1em;
+    width: 100%;
+}

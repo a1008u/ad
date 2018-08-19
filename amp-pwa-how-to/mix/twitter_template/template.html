@@ -1,0 +1,18 @@
+<template id="twitter-card-template">
+    <!-- style -->
+    <link rel="stylesheet" href="twitter_template/template.css" type="text/css">
+
+    <!-- contents -->
+    <div class="twitter-icon">
+        <slot name="icon"></slot>
+    </div>
+    <div class="twitter-profile">
+        <div class="twitter-info">
+            <div><slot name="name"></slot></div>
+            <div>@<slot name="id" class="twitter-id"></slot></div>
+        </div>
+        <a class="twitter-link"><button class="follow-button">Twitterでフォローする</button></a>
+    </div>
+
+    <script type="text/javascript" src="twitter_template/template.js"></script>
+</template>

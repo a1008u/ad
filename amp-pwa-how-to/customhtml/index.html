@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <template id="sdtemplate">
+        <style>
+            p { color: orange; }
+        </style>
+        <p>I'm in Shadow DOM. My markup was stamped from a &lt;template&gt;.</p>
+    </template>
+
+
+</head>
+<body>
+
+
+<script>
+    // let MegaButton = document.registerElement('mega-button', {
+    //     prototype: Object.create(HTMLButtonElement.prototype),
+    //     extends: 'button'
+    // });
+    // document.body.appendChild(new MegaButton());
+    //
+    // MegaButton.addEventListener('click', (e)=>{
+    //     console.log('yeeeah');
+    //     alert('thanks') ;
+    // });
+
+
+    // var XFoo = document.registerElement('x-foo');
+    // document.body.appendChild(new XFoo());
+
+    // xFoo.addEventListener('click', function(e) {
+    //     alert('Thanks!');
+    // });
+
+    // markupの拡張 -----------------------------------------------------------------------
+    const XFooProto = Object.create(HTMLElement.prototype);
+    XFooProto.createdCallback = function() {
+        this.innerHTML = "<b>I'm an x-foo-with-markup!</b><br />";
+    };
+
+    const XFoo = document.registerElement('x-foo-with-markup', {prototype: XFooProto});
+    document.body.appendChild(new XFoo());
+
+    // shadow domとの連携 -----------------------------------------------------------------
+    const XFooProto1 = Object.create(HTMLElement.prototype);
+    XFooProto1.createdCallback = function() {
+        // 1. shadow root を要素に追加
+        var shadow = this.createShadowRoot();
+
+        // 2. それをマークアップで埋める
+        shadow.innerHTML = "<b>I'm in the element's Shadow DOM!</b>";
+    };
+    const XFoo1 = document.registerElement('x-foo-shadowdom', {prototype: XFooProto1});
+    document.body.appendChild(new XFoo1());
+
+    // html templateとの連携 -----------------------------------------------------------------
+    const proto = Object.create(HTMLElement.prototype, {
+        createdCallback: {
+            value: function() {
+                let t = document.querySelector('#sdtemplate');
+                let clone = document.importNode(t.content, true);
+                this.createShadowRoot().appendChild(clone);
+            }
+        }
+    });
+    const proto1 = document.registerElement('x-foo-from-template', {prototype: proto});
+    document.body.appendChild(new proto1());
+
+</script>
+</body>
+</html>
