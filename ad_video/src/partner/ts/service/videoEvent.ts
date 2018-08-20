@@ -19,20 +19,20 @@ export namespace videoEvent {
   };
 
   // 表示確認
-  const whenVisible = (videoTag: HTMLVideoElement, videoPlay, videoPause) => {
-    const listener = (): void => {
-      if (viewstatus.ckViewStatus(videoTag)) {
-        videoPlay();
-      } else {
-        videoPause();
-      }
-    };
+  // const whenVisible = (videoTag: HTMLVideoElement, videoPlay, videoPause) => {
+  //   const listener = (): void => {
+  //     if (viewstatus.ckViewStatus(videoTag)) {
+  //       videoPlay(videoTag);
+  //     } else {
+  //       videoPause(videoTag);
+  //     }
+  //   };
 
-    if (!videoTag) {
-      return;
-    }
-    debounce(window, 'scroll', listener, 250);
-  };
+  //   if (!videoTag) {
+  //     return;
+  //   }
+  //   debounce(window, 'scroll', listener, 250);
+  // };
 
   /**
    * イベント処理
@@ -75,18 +75,18 @@ export namespace videoEvent {
       aTag.href += '&p=' + videoTag.currentTime;
     });
 
-    whenVisible(
-      videoTag,
-      () => {
-        if (videoTag.paused) {
-          videoTag.play();
-        }
-      },
-      () => {
-        if (!videoTag.paused) {
-          videoTag.pause();
-        }
-      }
-    );
+    // whenVisible(
+    //   videoTag,
+    //   videoTag => {
+    //     if (videoTag.paused) {
+    //       videoTag.play();
+    //     }
+    //   },
+    //   videoTag => {
+    //     if (!videoTag.paused) {
+    //       videoTag.pause();
+    //     }
+    //   }
+    // );
   };
 }

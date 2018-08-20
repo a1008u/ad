@@ -29,6 +29,7 @@ export namespace tag {
     videoTag.loop = true;
     videoTag.setAttribute('playsinline', 'playsinline');
     videoTag.setAttribute('data-atv-video', rk);
+    videoTag.setAttribute("data-emergence", "hidden");
     return videoTag;
   };
 
