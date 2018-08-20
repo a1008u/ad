@@ -22,7 +22,7 @@ const setEvent = (): void => {
 
 console.log('起動します＋＋＋＋＋＋＋＋＋');
 
-const domain: string = 'http://10.10.15.61:3000';
+const domain: string = 'http://192.168.1.6:3000';
 const ua: string = browser.ck(window.navigator.userAgent.toLowerCase());
 if ('ie' === ua || 'edge' === ua) {
   // イベント追加

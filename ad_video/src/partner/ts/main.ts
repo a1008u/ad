@@ -1,19 +1,18 @@
 import { videoEvent } from './service/videoEvent';
 import { tag } from '../../service/tag';
-import { viewstatus } from './service/viewstatus';
 import * as emergence from '../../../node_modules/emergence.js/src/emergence';
 
 
 namespace advideo {
 
-  const mkTag = (rk: string, script: HTMLScriptElement): void => {
+  const mkElement = (rk: string, script: HTMLScriptElement, limitTime: number): void => {
       // タグ生成
       const aTag: HTMLAnchorElement = tag.mkAtag(rk);
       const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk);
       aTag.appendChild(videoTag);
 
       // イベント登録
-      videoEvent.setEvent(videoTag, aTag);
+      videoEvent.setEvent(videoTag, aTag, limitTime);
 
       // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
       script.parentNode.insertBefore(aTag, script);
@@ -21,8 +20,12 @@ namespace advideo {
       
   };
 
-  export let mkvideo = (): void => {
-      let scripts: NodeListOf<HTMLScriptElement> = document.getElementsByTagName('script');
+    /**
+     * メイン機能
+     * @param limitTime
+     */
+  export let exec = (limitTime: number): void => {
+      const scripts: NodeListOf<HTMLScriptElement> = document.getElementsByTagName('script');
       for (let num in scripts) {
         const script: HTMLScriptElement = scripts[num];
         const rk: string = script.getAttribute('data-atv-rk');
@@ -30,7 +33,7 @@ namespace advideo {
           continue;
         }
 
-        mkTag(rk, script);
+        mkElement(rk, script, limitTime);
         break;
       }
   };
@@ -66,6 +69,7 @@ namespace advideo {
 
   // ブラウザ判定
 
-  // viewthrough
-  advideo.mkvideo();
+  // limitTimeはDBから取得する
+  let limitTime: number = 1000;
+  advideo.exec(limitTime);
 })(window);
