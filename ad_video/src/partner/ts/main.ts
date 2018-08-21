@@ -2,46 +2,47 @@ import { videoEvent } from './service/videoEvent';
 import { tag } from '../../service/tag';
 import * as emergence from '../../../node_modules/emergence.js/src/emergence';
 
-
 namespace advideo {
+  const mkElement = (
+    rk: string,
+    script: HTMLScriptElement,
+    limitTime: number
+  ): void => {
+    // タグ生成
+    const aTag: HTMLAnchorElement = tag.mkAtag(rk);
+    const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk);
+    aTag.appendChild(videoTag);
 
-  const mkElement = (rk: string, script: HTMLScriptElement, limitTime: number): void => {
-      // タグ生成
-      const aTag: HTMLAnchorElement = tag.mkAtag(rk);
-      const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk);
-      aTag.appendChild(videoTag);
+    // イベント登録
+    videoEvent.setEvent(videoTag, aTag, limitTime);
 
-      // イベント登録
-      videoEvent.setEvent(videoTag, aTag, limitTime);
-
-      // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
-      script.parentNode.insertBefore(aTag, script);
-      script.removeAttribute('data-atv-rk');
-      
+    // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
+    script.parentNode.insertBefore(aTag, script);
+    script.removeAttribute('data-atv-rk');
   };
 
-    /**
-     * メイン機能
-     * @param limitTime
-     */
+  /**
+   * メイン機能
+   * @param limitTime
+   */
   export let exec = (limitTime: number): void => {
-      const scripts: NodeListOf<HTMLScriptElement> = document.getElementsByTagName('script');
-      for (let num in scripts) {
-        const script: HTMLScriptElement = scripts[num];
-        const rk: string = script.getAttribute('data-atv-rk');
-        if (!rk) {
-          continue;
-        }
-
-        mkElement(rk, script, limitTime);
-        break;
+    // tslint:disable-next-line:prettier
+    const scripts: NodeListOf<HTMLScriptElement> = document.getElementsByTagName('script');
+    for (let num in scripts) {
+      const script: HTMLScriptElement = scripts[num];
+      const rk: string = script.getAttribute('data-atv-rk');
+      if (!rk) {
+        continue;
       }
+
+      mkElement(rk, script, limitTime);
+      break;
+    }
   };
 }
 
 // 即時実行
 ((window, _) => {
-
   // 動画自動実行用library
   emergence.init({
     container: window,

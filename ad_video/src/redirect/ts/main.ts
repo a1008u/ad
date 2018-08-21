@@ -15,7 +15,7 @@ const setEvent = (): void => {
     if (cookieValue !== null) {
       window.location.replace(cookieValue);
     } else {
-      console.log(`cookieValueは${cookieValue}です。`)
+      console.log(`cookieValueは${cookieValue}です。`);
     }
   });
 };
@@ -41,11 +41,12 @@ if ('safari' === ua || 'firefox' === ua || 'chrome' === ua || 'opera' || ua) {
     .filter(query => query.substring(0, 3) === 'rk=')
     .forEach(query => {
       const [rkKey, rkValue]: string[] = query.split('=');
-      Rx.from(axios.default.get(`${domain}/click_part2?${rkKey}=${rkValue}`))
-        .subscribe(
+      Rx.from(
+        axios.default.get(`${domain}/click_part2?${rkKey}=${rkValue}`)
+      ).subscribe(
         resdata => window.location.replace(resdata.data.url),
         err => console.log(err)
-         );
+      );
     });
 }
 

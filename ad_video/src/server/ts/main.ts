@@ -34,14 +34,15 @@ app.get('/click_part2', (req: Express.Request, res: Express.Response) => {
 
 app.get('/getImage', (req: Express.Request, res: Express.Response) => {
   if (req.query.rk) {
-    res.cookie('test', '/marchant/html/next.html?rk=' + req.query.rk, {maxAge: 60000});
-    fs.readFile('ts.jpg',(err, data)=>{
-        res.set('Content-Type', 'image/jpeg');
-        res.send(data);
-    })
-
+    res.cookie('test', '/marchant/html/next.html?rk=' + req.query.rk, {
+      maxAge: 60000,
+    });
+    fs.readFile('ts.jpg', (_, data) => {
+      res.set('Content-Type', 'image/jpeg');
+      res.send(data);
+    });
   } else {
-    res.cookie('test', '/marchant/html/next.html', {maxAge: 60000});
+    res.cookie('test', '/marchant/html/next.html', { maxAge: 60000 });
   }
 });
 

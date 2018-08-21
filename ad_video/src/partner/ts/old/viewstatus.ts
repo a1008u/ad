@@ -1,6 +1,3 @@
-import { dimension } from '../model/dimension';
-import { position } from '../model/position';
-
 /**
  * viewthrowの判定処理
  */
