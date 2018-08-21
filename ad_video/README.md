@@ -36,6 +36,7 @@
     npm install --save-dev webpack webpack-cli ts-loader
     npm install --save-dev jasmin jasmine-core @types/jasmine
     npm install --save-dev emergence.js
+    npm install --save-dev platform @types/platform
     
     npm install --save-dev karma karma-cli karma-coverage karma-typescript karma-webpack karma-jasmine
     npm install --save-dev karma-chrome-launcher  karma-edge-launcher karma-firefox-launcher karma-ie-launcher karma-safari-launcher
