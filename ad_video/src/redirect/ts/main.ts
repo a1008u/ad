@@ -20,42 +20,58 @@ const setEvent = (cookieKey: string = 'test'): void => {
   });
 };
 
-const exec = (browser: string) => {
-    const domain: string = 'http://192.168.1.6:3000';
-    if ('ie' === browser || 'edge' === browser) {
-
-        // イベント追加
-        setEvent();
-
-        // imgを作成 + 設定
-        const imgTag: HTMLImageElement = tag.mkImageTag(`${domain}/getImage`);
-        const scripts = document.getElementsByTagName('script');
-        scripts[0].parentNode.insertBefore(imgTag, scripts[0]);
-    }
-
-    if ('safari' === browser || 'firefox' === browser || 'chrome' === browser || 'opera' === browser) {
-        location.search
-            .substring(1)
-            .split('&')
-            .filter(query => query.substring(0, 3) === 'rk=')
-            .forEach(query => {
-                const [rkKey, rkValue]: string[] = query.split('=');
-                Rx.from(
-                    axios.default.get(`${domain}/click_part2?${rkKey}=${rkValue}`)
-                ).subscribe(
-                    resdata => window.location.replace(resdata.data.url),
-                    err => console.log(err)
-                );
-            });
-    }
-
-    // 多分partner側で確認すると思う。。。
-    if ('itp_safari' === browser || 'unknown' === browser) {
-        // 処理なし
-    }
+const doCookie = (domain: string) => {
+  // イベント追加
+  setEvent();
+  // imgを作成 + 設定
+  const imgTag: HTMLImageElement = tag.mkImageTag(`${domain}/getImage`);
+  const scripts = document.getElementsByTagName('script');
+  scripts[0].parentNode.insertBefore(imgTag, scripts[0]);
 };
 
-(()=>{
-    console.log('起動します＋＋＋＋＋＋＋＋＋');
-    exec(browser.ck());
+const doJson = (domain: string) => {
+  location.search
+    .substring(1)
+    .split('&')
+    .filter(query => query.substring(0, 3) === 'rk=')
+    .forEach(query => {
+      const [rkKey, rkValue]: string[] = query.split('=');
+      Rx.from(
+        axios.default.get(`${domain}/click_part2?${rkKey}=${rkValue}`)
+      ).subscribe(
+        resdata => window.location.replace(resdata.data.url),
+        err => console.log(err)
+      );
+    });
+};
+
+const browsers: Browser = {
+  ie: (domain: string) => {
+    doCookie(domain);
+  },
+  edge: (domain: string) => {
+    doCookie(domain);
+  },
+  chrome: (domain: string) => {
+    doJson(domain);
+  },
+  firefox: (domain: string) => {
+    doJson(domain);
+  },
+  opera: (domain: string) => {
+    doJson(domain);
+  },
+  safari: (domain: string) => {
+    doJson(domain);
+  },
+  // tslint:disable-next-line:no-empty
+  itp_safari: (domain: string) => {},
+  // tslint:disable-next-line:no-empty
+  unknown: (domain: string) => {},
+};
+
+(() => {
+  console.log('起動します＋＋＋＋＋＋＋＋＋');
+  const domain: string = 'http://192.168.1.6:3000';
+  browsers[browser.ck()](domain);
 })();
