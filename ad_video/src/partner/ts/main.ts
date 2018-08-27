@@ -10,11 +10,15 @@ namespace advideo {
   ): void => {
     // タグ生成
     const aTag: HTMLAnchorElement = tag.mkAtag(rk);
-    const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk);
+    const viewLoop: boolean = script.getAttribute('data-atv-loop')? true: false;
+    const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk, viewLoop);
     aTag.appendChild(videoTag);
 
     // イベント登録
-    videoEvent.setEvent(videoTag, aTag, limitTime);
+    const viewthrowUse: string = script.getAttribute('data-atv-viewthrow-flag');
+    if (viewthrowUse) {
+      videoEvent.setEvent(videoTag, aTag, limitTime);
+    }
 
     // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
     script.parentNode.insertBefore(aTag, script);

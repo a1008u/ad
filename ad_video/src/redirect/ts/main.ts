@@ -20,6 +20,8 @@ const setEvent = (cookieKey: string = 'test'): void => {
   });
 };
 
+// p -> h -> is -> Lp
+
 const doCookie = (domain: string) => {
   // イベント追加
   setEvent();
@@ -28,6 +30,8 @@ const doCookie = (domain: string) => {
   const scripts = document.getElementsByTagName('script');
   scripts[0].parentNode.insertBefore(imgTag, scripts[0]);
 };
+
+// V3
 
 const doJson = (domain: string) => {
   location.search
@@ -70,8 +74,15 @@ const browsers: Browser = {
   unknown: (domain: string) => {},
 };
 
+/**
+ * iframeでの役割
+ * 1.hへのアクセス
+ * 2.
+ * 3.
+ */
 (() => {
   console.log('起動します＋＋＋＋＋＋＋＋＋');
+  console.log(`document.hiddenの結果：：${document.hidden}`);
   const domain: string = 'http://192.168.1.6:3000';
   browsers[browser.ck()](domain);
 })();
