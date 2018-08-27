@@ -24,6 +24,7 @@ export namespace videoEvent {
             window.clearInterval(cntEvt);
             let iframeTag: HTMLIFrameElement = tag.mkTrackingTag(videoTag);
             videoTag.parentNode.insertBefore(iframeTag, videoTag);
+
           }
         }, 250);
       }
@@ -42,4 +43,28 @@ export namespace videoEvent {
       aTag.href += '&p=' + videoTag.currentTime;
     });
   };
+
+  export const setEventLoad = (videoTag: HTMLVideoElement, aElementText: string = 'テスト') => {
+
+    videoTag.addEventListener('ended', () => {
+
+      const aElement : HTMLAnchorElement = document.createElement('a');
+      aElement.textContent = aElementText;
+      aElement.href = 'https://www.google.com/';
+      aElement.classList.add('__a');
+
+      const pElement : HTMLParagraphElement = document.createElement('p');
+
+      const divElement : HTMLDivElement = document.createElement('div');
+        divElement.classList.add('__button');
+      pElement.appendChild(aElement);
+      divElement.appendChild(pElement);
+        videoTag.classList.add('__video');
+      videoTag.parentElement.classList.add('__aparent');
+        videoTag.parentNode.insertBefore(divElement,videoTag);
+        console.log('div生成');
+
+    })
+
+  }
 }

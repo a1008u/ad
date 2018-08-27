@@ -10,7 +10,7 @@ namespace advideo {
   ): void => {
     // タグ生成
     const aTag: HTMLAnchorElement = tag.mkAtag(rk);
-    const viewLoop: boolean = script.getAttribute('data-atv-loop')? true: false;
+    const viewLoop: boolean = !!script.getAttribute('data-atv-loop');
     const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk, viewLoop);
     aTag.appendChild(videoTag);
 
@@ -18,6 +18,8 @@ namespace advideo {
     const viewthrowUse: string = script.getAttribute('data-atv-viewthrow-flag');
     if (viewthrowUse) {
       videoEvent.setEvent(videoTag, aTag, limitTime);
+    } else {
+      videoEvent.setEventLoad(videoTag);
     }
 
     // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
@@ -58,7 +60,7 @@ namespace advideo {
     offsetRight: 0,
     offsetBottom: 0,
     offsetLeft: 0,
-    callback: (element, state) => {
+    callback: (element: HTMLVideoElement, state) => {
       if (state === 'visible') {
         console.log('Element is visible.');
         element.play();
