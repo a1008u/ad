@@ -10,17 +10,35 @@ namespace advideo {
   ): void => {
     // タグ生成
     const aTag: HTMLAnchorElement = tag.mkAtag(rk);
-    const viewLoop: boolean = !!script.getAttribute('data-atv-loop');
-    const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk, viewLoop);
-    aTag.appendChild(videoTag);
 
     // イベント登録
     const viewthrowUse: string = script.getAttribute('data-atv-viewthrow-flag');
+    const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk, viewthrowUse? true: false);
+    aTag.appendChild(videoTag);
     if (viewthrowUse) {
       videoEvent.setEvent(videoTag, aTag, limitTime);
     } else {
+
+      // スタイルシートの読み込み
+      let load_css = (src) => {
+        let head = document.getElementsByTagName('head')[0];
+        let link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        link.href = src;
+        link.classList.add('__videocss');
+        head.insertBefore(link, head.firstChild);
+      };
+
+      let cssElements = document.getElementsByClassName('__videocss');
+      if (cssElements.length === 0) {
+        load_css('../css/index.css');
+      }
+
       videoEvent.setEventLoad(videoTag);
     }
+
+    
 
     // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
     script.parentNode.insertBefore(aTag, script);
@@ -62,8 +80,12 @@ namespace advideo {
     offsetLeft: 0,
     callback: (element: HTMLVideoElement, state) => {
       if (state === 'visible') {
-        console.log('Element is visible.');
-        element.play();
+        if(element.getAttribute('__end') !== undefined && element.getAttribute('__end') === 'true') {
+          console.log('起動しない');
+        } else {
+          console.log('Element is visible.');
+          element.play();
+        }
       } else if (state === 'reset') {
         console.log('Element is hidden with reset.');
         element.pause();

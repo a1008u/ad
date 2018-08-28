@@ -31,6 +31,12 @@ export namespace tag {
     videoTag.setAttribute('playsinline', 'playsinline');
     videoTag.setAttribute('data-atv-video', rk);
     videoTag.setAttribute("data-emergence", "hidden");
+
+    let cssType: string = script.getAttribute('test-s');
+    if (cssType) {
+      videoTag.setAttribute('test-css-type', cssType);
+    }
+
     return videoTag;
   };
 

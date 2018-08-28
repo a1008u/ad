@@ -1,27 +1,27 @@
 .__aparent {
     position: relative;
+    display: block;
 }
 
-.__video {
+/* .__video {
     filter: grayscale(100%);
-}
+} */
 
 .__button {
     position: absolute;
-    top: -150px;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
     z-index: 2;
-    display: block;
-    width: 250px;
+    width: 50%;
     height: 70px;
     line-height: 70px;
     color: #FFF;
     text-decoration: none;
     text-align: center;
-    background-color: #f39800;
+    background-color: black;
     border-radius: 5px;
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
@@ -29,4 +29,5 @@
 
 .__a{
     text-decoration: none;
+    color: white;
 }

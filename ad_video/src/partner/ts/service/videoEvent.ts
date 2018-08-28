@@ -47,24 +47,40 @@ export namespace videoEvent {
   export const setEventLoad = (videoTag: HTMLVideoElement, aElementText: string = 'テスト') => {
 
     videoTag.addEventListener('ended', () => {
-
-      const aElement : HTMLAnchorElement = document.createElement('a');
+      const aElement: HTMLAnchorElement = document.createElement('a');
       aElement.textContent = aElementText;
       aElement.href = 'https://www.google.com/';
       aElement.classList.add('__a');
 
-      const pElement : HTMLParagraphElement = document.createElement('p');
-
-      const divElement : HTMLDivElement = document.createElement('div');
-        divElement.classList.add('__button');
-      pElement.appendChild(aElement);
-      divElement.appendChild(pElement);
-        videoTag.classList.add('__video');
+      const divElement: HTMLDivElement = document.createElement('div');
+      divElement.classList.add('__button');
+      divElement.appendChild(aElement);
+      videoTag.classList.add('__video');
+      videoTag.setAttribute('__end', 'true');
       videoTag.parentElement.classList.add('__aparent');
-        videoTag.parentNode.insertBefore(divElement,videoTag);
-        console.log('div生成');
+      let typeCss: string = videoTag.getAttribute('test-css-type');
 
-    })
+      switch(typeCss) {
+        case '1':
+          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          videoTag.setAttribute("style", `filter: grayscale(100%);`);
+          break;
+        case '2':
+          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          videoTag.setAttribute("style", `filter: blur(5px);`);
+          break;
+        case '3':
+          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          videoTag.setAttribute("style", `filter: opacity(40%);`);
+          break;
+        case '4':
+          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          divElement.setAttribute("style", `width:100%; height:100%; opacity:0.5;`);
+          break;
+      }
 
-  }
+      videoTag.parentNode.insertBefore(divElement, videoTag);
+      console.log('div生成');
+    });
+  };
 }
