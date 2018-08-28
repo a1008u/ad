@@ -14,9 +14,20 @@ namespace advideo {
     // イベント登録
     const viewthrowUse: string = script.getAttribute('data-atv-viewthrow-flag');
     const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk, viewthrowUse? true: false);
-    aTag.appendChild(videoTag);
+
     if (viewthrowUse) {
-      videoEvent.setEvent(videoTag, aTag, limitTime);
+
+        // if(true)の条件はあくまで、サンプルのため本番では削除する
+        if (script.getAttribute('data-atv-not-anchor')) {
+            videoEvent.setEventForTest(videoTag, limitTime);
+            script.parentNode.insertBefore(videoTag, script);
+        } else {
+            aTag.appendChild(videoTag);
+            videoEvent.setEvent(videoTag, aTag, limitTime);
+            // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
+            script.parentNode.insertBefore(aTag, script);
+        }
+
     } else {
 
       // スタイルシートの読み込み
@@ -30,18 +41,17 @@ namespace advideo {
         head.insertBefore(link, head.firstChild);
       };
 
+      aTag.appendChild(videoTag);
       let cssElements = document.getElementsByClassName('__videocss');
       if (cssElements.length === 0) {
         load_css('../css/index.css');
       }
 
       videoEvent.setEventLoad(videoTag);
+        // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
+        script.parentNode.insertBefore(aTag, script);
     }
 
-    
-
-    // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
-    script.parentNode.insertBefore(aTag, script);
     script.removeAttribute('data-atv-rk');
   };
 
