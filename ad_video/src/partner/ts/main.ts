@@ -12,21 +12,23 @@ namespace advideo {
     const aTag: HTMLAnchorElement = tag.mkAtag(rk);
 
     // イベント登録
-    const viewthrowUse: string = script.getAttribute('data-atv-viewthrow-flag');
-    const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk, viewthrowUse? true: false);
+    const viewthroughUse: string = script.getAttribute('data-atv-viewthrough-flag');
+    const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk, viewthroughUse? true: false);
 
-    if (viewthrowUse) {
+    if (viewthroughUse) {
+      // if(true)の条件はあくまで、サンプルのため本番では削除する
 
-        // if(true)の条件はあくまで、サンプルのため本番では削除する
-        if (script.getAttribute('data-atv-not-anchor')) {
-            videoEvent.setEventForTest(videoTag, limitTime);
-            script.parentNode.insertBefore(videoTag, script);
-        } else {
-            aTag.appendChild(videoTag);
-            videoEvent.setEvent(videoTag, aTag, limitTime);
-            // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
-            script.parentNode.insertBefore(aTag, script);
-        }
+      limitTime = Number(script.getAttribute('data-atv-viewthrough-time'));
+
+      if (script.getAttribute('data-atv-not-anchor')) {
+        videoEvent.setEventForTest(videoTag, limitTime);
+        script.parentNode.insertBefore(videoTag, script);
+      } else {
+        aTag.appendChild(videoTag);
+        videoEvent.setEvent(videoTag, aTag, limitTime);
+        // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
+        script.parentNode.insertBefore(aTag, script);
+      }
 
     } else {
 
@@ -93,8 +95,14 @@ namespace advideo {
         if(element.getAttribute('__end') !== undefined && element.getAttribute('__end') === 'true') {
           console.log('起動しない');
         } else {
-          console.log('Element is visible.');
-          element.play();
+          let playMode: string = element.getAttribute('playxxx');
+          if (playMode === 'pause') {
+            console.log('Element is visible1.');
+            element.pause();
+          } else {
+            console.log('Element is visible2.');
+            element.play();
+          }
         }
       } else if (state === 'reset') {
         console.log('Element is hidden with reset.');

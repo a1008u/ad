@@ -17,7 +17,7 @@
     z-index: 2;
     width: 50%;
     height: 70px;
-    line-height: 70px;
+    /* line-height: 70px; */
     color: #FFF;
     text-decoration: none;
     text-align: center;
@@ -30,4 +30,37 @@
 .__a{
     text-decoration: none;
     color: white;
+}
+
+/* .___a:before {
+    display: block;
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    height: 70px;
+    background: #FFF;
+}
+
+.___a:after {
+    display: block;
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    height: 70px;
+    background: #FFF;
+} */
+
+.___a:hover{
+    background-color: aqua;
+    color: crimson;
 }
