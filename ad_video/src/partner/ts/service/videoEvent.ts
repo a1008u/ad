@@ -113,76 +113,80 @@ export namespace videoEvent {
 
       switch(typeCss) {
         case '1':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          //videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
           divElement.setAttribute("style", `line-height:70px;`); 
           videoTag.setAttribute("style", `filter: grayscale(100%);`);
           break;
         case '2':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          //videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
           divElement.setAttribute("style", `line-height:70px;`); 
           videoTag.setAttribute("style", `filter: blur(5px);`);
           break;
         case '3':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          //videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
           divElement.setAttribute("style", `line-height:70px;`); 
           videoTag.setAttribute("style", `filter: opacity(40%);`);
           break;
         case '4':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
-          divElement.setAttribute("style", `width:100%; height:100%; opacity:0.5; line-height:200px`);
+          //videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          divElement.setAttribute("style", `width:100%; height:100%; opacity:0.7; line-height:200px`);
           aElement.classList.add('___a');
           break;
         case '5':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          //videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
           divElement.setAttribute("style", `width:50%; height:100px;`); 
           videoTag.setAttribute("style", `filter: grayscale(100%);`);
           aElement.textContent = '動画クリエイティブで表示させる文言を確認します。（２８文字）';
           break;
         case '6':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          //videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
           divElement.setAttribute("style", `width:50%; height:100px;`);
           videoTag.setAttribute("style", `filter: blur(5px);`);
           aElement.textContent =  '動画クリエイティブで、表示させる文言を確認しました。（３０文字）';
           break;
         case '7':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          //videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
           divElement.setAttribute("style", `width:50%; height:100px;`);
           videoTag.setAttribute("style", `filter: opacity(40%);`);
           aElement.textContent = '動画クリエイティブで、表示させる文言を確認しました。動画クリエイティブで、表示させる文言を確認しました。（５４文字）';
           break;
         case '8':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
-          divElement.setAttribute("style", `width:100%; height:100%; opacity:0.5; line-height:200px`);
+          //videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          divElement.setAttribute("style", `width:100%; height:100%; background-color: rgba(0, 0, 0, 0.7); padding: 10%;`);
           aElement.classList.add('___a');
           aElement.textContent = '表示させる文言を確認します。（２０文字）';
           break;
         case '9':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
-          divElement.setAttribute("style", `width:100%; height:100%; opacity:0.5; line-height:20px; display:table;`);
-          aElement.setAttribute("style", `display:table-cell; vertical-align:middle;`);
+          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px;`);
+          // divElement.setAttribute("style", `width:100%; height:100%; opacity:0.7; line-height:20px; display:table;`);
+          // aElement.setAttribute("style", `display:table-cell; vertical-align:middle;`);
+          divElement.setAttribute("style", `width:100%; height:100%; background-color: rgba(0, 0, 0, 0.7); padding: 10%;`);
           aElement.classList.add('___a');
           aElement.textContent = '動画クリエイティブで表示させる文言を確認します。（２８文字）';
           break;  
         case '10':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
-          divElement.setAttribute("style", `width:100%; height:100%; opacity:0.5; line-height:20px; display:table;`);
-          aElement.setAttribute("style", `display:table-cell; vertical-align:middle;`);
+          //videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          // divElement.setAttribute("style", `width:100%; height:100%; opacity:0.7; line-height:20px; display:table;`);
+          // aElement.setAttribute("style", `display:table-cell; vertical-align:middle;`);
+
+          divElement.setAttribute("style", `width:100%; height:100%; background-color: rgba(0, 0, 0, 0.7); padding: 10%;`);
           aElement.classList.add('___a');
           aElement.textContent =  '動画クリエイティブで、表示させる文言を確認しました。（３０文字）';
           break;  
         case '11':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
-          divElement.setAttribute("style", `width:100%; height:100%; opacity:0.5; line-height:20px; display:table;`);
-          aElement.setAttribute("style", `display:table-cell; vertical-align:middle;`);
+          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px;`);
+          // divElement.setAttribute("style", `width:100%; height:100%; opacity:0.7; line-height:20px; display:table;`);
+          // aElement.setAttribute("style", `display:table-cell; vertical-align:middle;`);
+          divElement.setAttribute("style", `width:100%; height:100%; background-color: rgba(0, 0, 0, 0.7); padding: 10%;`);
           aElement.classList.add('___a');
           aElement.textContent = '動画クリエイティブで、表示させる文言を確認しました。動画クリエイティブで、表示させる文言を確認しました。（５４文字）';
           break;  
         case '12':
-          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
-          divElement.setAttribute("style", `width:100%; height:100%; opacity:0.5; line-height:200px;`);
+          //videoTag.parentElement.setAttribute("style", `width:${String(videoTag.width)}px; height:${String(videoTag.height)}px;`);
+          divElement.setAttribute("style", `width:100%; height:100%; background-color: rgba(0, 0, 0, 0.7); padding: 10%;`);
           aElement.classList.add('___a');
           aElement.textContent = '表示させる文言を確認します。（２０文字）';
-          break;  
+          break;
       }
 
       videoTag.parentNode.insertBefore(divElement, videoTag);

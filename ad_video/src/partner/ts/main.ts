@@ -24,7 +24,9 @@ namespace advideo {
         videoEvent.setEventForTest(videoTag, limitTime);
         script.parentNode.insertBefore(videoTag, script);
       } else {
-        aTag.appendChild(videoTag);
+        const ddivElement: HTMLDivElement = document.createElement('div');
+        ddivElement.appendChild(videoTag);
+        aTag.appendChild(ddivElement);
         videoEvent.setEvent(videoTag, aTag, limitTime);
         // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
         script.parentNode.insertBefore(aTag, script);
@@ -43,15 +45,19 @@ namespace advideo {
         head.insertBefore(link, head.firstChild);
       };
 
+      const ddivElement: HTMLDivElement = document.createElement('div');
+      // ddivElement.appendChild(videoTag);
+      // aTag.appendChild(ddivElement);
       aTag.appendChild(videoTag);
+      ddivElement.appendChild(aTag);
       let cssElements = document.getElementsByClassName('__videocss');
       if (cssElements.length === 0) {
         load_css('../css/index.css');
       }
 
       videoEvent.setEventLoad(videoTag);
-        // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
-        script.parentNode.insertBefore(aTag, script);
+      // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
+      script.parentNode.insertBefore(ddivElement, script);
     }
 
     script.removeAttribute('data-atv-rk');

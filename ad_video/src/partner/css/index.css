@@ -30,9 +30,10 @@
 .__a{
     text-decoration: none;
     color: white;
+    font-weight: bolder;
 }
 
-/* .___a:before {
+.___a:before {
     display: block;
     content:"";
     position: absolute;
@@ -58,7 +59,7 @@
     width: 50%;
     height: 70px;
     background: #FFF;
-} */
+} 
 
 .___a:hover{
     background-color: aqua;
