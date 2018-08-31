@@ -46,6 +46,7 @@ namespace advideo {
       };
 
       const ddivElement: HTMLDivElement = document.createElement('div');
+      ddivElement.setAttribute('id','___videostop');
       // ddivElement.appendChild(videoTag);
       // aTag.appendChild(ddivElement);
       aTag.appendChild(videoTag);
