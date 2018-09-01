@@ -37,11 +37,20 @@ export namespace videoEvent {
       }
     });
 
+    videoTag.addEventListener('mouseover',() => {
+        videoTag.classList.add('___videostop');
+        videoTag.parentElement.classList.add('__aparent');
+        const divElement_fil: HTMLDivElement = document.createElement('div');
+        divElement_fil.classList.add('__filter');
+        videoTag.parentElement.appendChild(divElement_fil);
+    });
+
     // videoタグ（aタグ）をクリックされた場合
     videoTag.parentNode.addEventListener('click', () => {
       videoTag.pause();
       aTag.href += '&p=' + videoTag.currentTime;
     });
+
   };
 
     export const setEventForTest = (
@@ -63,7 +72,7 @@ export namespace videoEvent {
 
                         const divElement: HTMLDivElement = document.createElement('div');
                         divElement.textContent = 'viewthroughをしました'
-                        videoTag.parentNode.insertBefore(divElement, videoTag);
+                        videoTag.parentNode.parentNode.insertBefore(divElement, videoTag.parentElement);
 
                     }
                 }, 250);
@@ -78,16 +87,70 @@ export namespace videoEvent {
         });
 
       videoTag.setAttribute('playxxx','play');
-      videoTag.addEventListener('click', () => {
-        console.log('クリックを検知');
-        let playMode: string = videoTag.getAttribute('playxxx');
-        if(playMode === null || playMode === 'undefined'|| playMode === 'pause') {
-          videoTag.play();
-          videoTag.setAttribute('playxxx','play');
-        } else {
-          videoTag.pause();
-          videoTag.setAttribute('playxxx','pause');
-        }
+      // videoTag.addEventListener('click', () => {
+      //   console.log('クリックを検知');
+      //   let playMode: string = videoTag.getAttribute('playxxx');
+      //   if(playMode === null || playMode === 'undefined'|| playMode === 'pause') {
+      //     videoTag.play();
+      //     videoTag.setAttribute('playxxx','play');
+      //   } else {
+      //     videoTag.pause();
+      //     videoTag.setAttribute('playxxx','pause');
+      //   }
+      // });
+
+      videoTag.addEventListener('mouseover',() => {
+
+          let fillter_off: string = videoTag.getAttribute('___filter');
+          if(fillter_off=== 'off') {
+              videoTag.removeAttribute('___filter');
+          } else {
+
+              videoTag.classList.add('___videostop');
+              videoTag.parentElement.classList.add('__aparent');
+              const divElement_fil: HTMLDivElement = document.createElement('div');
+              divElement_fil.classList.add('__filter');
+              divElement_fil.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px; padding: 25%;`);
+              // divElement_fil.setAttribute('id','___filterid');
+
+              const divElement_play: HTMLDivElement = document.createElement('div');
+              let playMode: string = videoTag.getAttribute('playxxx');
+              if(playMode === null || playMode === 'undefined'|| playMode === 'pause') {
+                  divElement_play.textContent = '再生';
+              } else {
+                  divElement_play.textContent = '停止';
+              }
+              divElement_fil.appendChild(divElement_play);
+              videoTag.parentElement.appendChild(divElement_fil);
+
+              divElement_fil.addEventListener('mouseout',() => {
+                  console.log('del');
+                  videoTag.removeAttribute('___videostop');
+                  videoTag.parentElement.removeAttribute('__aparent');
+                  videoTag.parentElement.removeChild(divElement_fil);
+              });
+
+              divElement_play.addEventListener('click',() => {
+                  console.log('クリックを検知');
+                  let playMode: string = videoTag.getAttribute('playxxx');
+                  if(playMode === null || playMode === 'undefined'|| playMode === 'pause') {
+                      videoTag.play();
+                      videoTag.setAttribute('playxxx','play');
+                  } else {
+                      videoTag.pause();
+                      videoTag.setAttribute('playxxx','pause');
+                  }
+
+                  // TODO あとで共通化
+                  console.log('del');
+                  videoTag.removeAttribute('___videostop');
+                  videoTag.setAttribute('___filter','off');
+                  videoTag.parentElement.removeAttribute('__aparent');
+                  videoTag.parentElement.removeChild(divElement_fil);
+              })
+
+          }
+
       });
 
     };
@@ -106,7 +169,6 @@ export namespace videoEvent {
         videoTag.removeAttribute('__end');
         videoTag.play();
       });
-
       const divElement_1: HTMLDivElement = document.createElement('div');
       divElement_1.classList.add('__link');
       divElement_1.appendChild(divElement_fil);
@@ -121,7 +183,7 @@ export namespace videoEvent {
 
       const divElement: HTMLDivElement = document.createElement('div');
       divElement.classList.add('__button');
-      // divElement.appendChild(aElement);
+
       divElement.appendChild(divElement_1);
       divElement.appendChild(divElement_2);
 
@@ -135,7 +197,7 @@ export namespace videoEvent {
 
       switch(typeCss) {
         case '9':
-        targeElement.setAttribute("style", `position: relative;width:${String(videoTag.clientWidth)}px;`);
+          targeElement.setAttribute("style", `position: relative;width:${String(videoTag.clientWidth)}px;`);
           videoTag.parentElement.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px;`);
           divElement.setAttribute("style", `width:100%; height:100%; background-color: rgba(0, 0, 0, 0.7); padding: 10%;`);
           divElement_fil.classList.add('___a');
@@ -145,7 +207,7 @@ export namespace videoEvent {
           break;
 
         case '10':
-        targeElement.setAttribute("style", `position: relative;width:${String(videoTag.clientWidth)}px;`);
+          targeElement.setAttribute("style", `position: relative;width:${String(videoTag.clientWidth)}px;`);
           videoTag.parentElement.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px;`);
           divElement.setAttribute("style", `width:100%; height:100%; background-color: rgba(0, 0, 0, 0.7); padding: 10%;`);
           divElement_fil.classList.add('___a');
@@ -165,14 +227,14 @@ export namespace videoEvent {
           break;
 
         case '12':
-        targeElement.setAttribute("style", `position: relative;width:${String(videoTag.clientWidth)}px;`);
-        videoTag.parentElement.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px;`);
-        divElement.setAttribute("style", `width:100%; height:100%; background-color: rgba(0, 0, 0, 0.7); padding: 10%;`);
-        divElement_fil.classList.add('___a');
-        divElement_fil.textContent = '再生';
-        aElement2.classList.add('___a');
-        aElement2.textContent = '詳細を知りたい方はこちらへどうぞ（２２文字）';
-        break;
+          targeElement.setAttribute("style", `position: relative;width:${String(videoTag.clientWidth)}px;`);
+          videoTag.parentElement.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px;`);
+          divElement.setAttribute("style", `width:100%; height:100%; background-color: rgba(0, 0, 0, 0.7); padding: 10%;`);
+          divElement_fil.classList.add('___a');
+          divElement_fil.textContent = '再生';
+          aElement2.classList.add('___a');
+          aElement2.textContent = '詳細を知りたい方はこちらへどうぞ（２２文字）';
+          break;
       }
       targeElement.appendChild(divElement);
       console.log('div生成');

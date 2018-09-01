@@ -3,9 +3,21 @@
     display: block;
 }
 
-/* .__video {
-    filter: grayscale(100%);
-} */
+.__filter{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    color: #FFF;
+    text-decoration: none;
+    text-align: center;
+    background-color: black;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    opacity: 0.3;
+}
 
 .__button {
     position: absolute;
@@ -17,7 +29,6 @@
     z-index: 2;
     width: 50%;
     height: 70px;
-    /* line-height: 70px; */
     color: #FFF;
     text-decoration: none;
     text-align: center;
@@ -32,61 +43,6 @@
     color: white;
     font-weight: bolder;
 }
-
-/* .___a:before {
-    display: block;
-    content:"";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 50%;
-    height: 70px;
-    background: #FFF;
-}
-
-.___a:after {
-    display: block;
-    content:"";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 50%;
-    height: 70px;
-    background: #FFF;
-}  */
-
-/* .___a:before {
-    display: block;
-    content:"";
-    position: absolute;
-    top: 40px;
-    left: 30%;
-    right: 0;
-    bottom: 0;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    background: #FFF;
-}
-
-.___a:after {
-    display: block;
-    content:"";
-    position: absolute;
-    top: 45px;
-    left: 30%;
-    width: 0px;
-    height: 0px;
-    border: 10px solid transparent;
-    border-left: 15px solid #ffb4b4;
-    margin-left: -5px;
-}  */
 
 .___a:hover{
     background-color: aqua;

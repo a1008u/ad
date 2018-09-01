@@ -21,8 +21,10 @@ namespace advideo {
       limitTime = Number(script.getAttribute('data-atv-viewthrough-time'));
 
       if (script.getAttribute('data-atv-not-anchor')) {
+        const ddivElement: HTMLDivElement = document.createElement('div');
+        ddivElement.appendChild(videoTag);
         videoEvent.setEventForTest(videoTag, limitTime);
-        script.parentNode.insertBefore(videoTag, script);
+        script.parentNode.insertBefore(ddivElement, script);
       } else {
         const ddivElement: HTMLDivElement = document.createElement('div');
         ddivElement.appendChild(videoTag);
@@ -47,8 +49,6 @@ namespace advideo {
 
       const ddivElement: HTMLDivElement = document.createElement('div');
       ddivElement.setAttribute('id','___videostop');
-      // ddivElement.appendChild(videoTag);
-      // aTag.appendChild(ddivElement);
       aTag.appendChild(videoTag);
       ddivElement.appendChild(aTag);
       let cssElements = document.getElementsByClassName('__videocss');
