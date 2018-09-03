@@ -53,8 +53,8 @@ export namespace videoEvent {
 
   /**
    * viewthrowの動き
-   * @param videoTag 
-   * @param limitTime 
+   * @param videoTag
+   * @param limitTime
    */
   export const setEventForTest = (
     videoTag: HTMLVideoElement,
@@ -63,174 +63,175 @@ export namespace videoEvent {
     let count = 0;
     let cntEvt;
 
-        // viewthrough
-        videoTag.addEventListener('play', () => {
-            if (count < limitTime) {
-                cntEvt = window.setInterval(() => {
-                    count += 250;
-                    if (count > limitTime) {
-                        window.clearInterval(cntEvt);
-                        let iframeTag: HTMLIFrameElement = tag.mkTrackingTag(videoTag);
-                        videoTag.parentNode.insertBefore(iframeTag, videoTag);
+    // viewthrough
+    videoTag.addEventListener('play', () => {
+      if (count < limitTime) {
+        cntEvt = window.setInterval(() => {
+          count += 250;
+          if (count > limitTime) {
+            window.clearInterval(cntEvt);
+            let iframeTag: HTMLIFrameElement = tag.mkTrackingTag(videoTag);
+            videoTag.parentNode.insertBefore(iframeTag, videoTag);
 
-                        const divElement: HTMLDivElement = document.createElement('div');
-                        divElement.textContent = 'viewthroughをしました';
-                        videoTag.parentNode.parentNode.insertBefore(divElement, videoTag.parentElement);
-
-                    }
-                }, 250);
-            }
-        });
-
-        // viewthrough(pauseの場合は、繰り返し動作を止める)
-        videoTag.addEventListener('pause', () => {
-            if (cntEvt) {
-                window.clearInterval(cntEvt);
-            }
-        });
-
-      videoTag.addEventListener('mouseover',() => {
-
-          let fillter_off: string = videoTag.getAttribute('___filter');
-          if(fillter_off === 'off') {
-              videoTag.removeAttribute('___filter');
-          } else {
-              videoTag.classList.add('___videostop');
-              videoTag.parentElement.classList.add('__aparent');
-              const divElement_fil: HTMLDivElement = document.createElement('div');
-              divElement_fil.classList.add('__filter');
-              divElement_fil.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px; padding: 12%; cursor:pointer`);
-
-              const imgElement_play: HTMLObjectElement = document.createElement('object');
-              imgElement_play.setAttribute('id','___obj');
-              let playMode: string = videoTag.getAttribute('playxxx');
-
-              if(playMode === 'pause') {
-                  // imgElement_play.textContent = '再生';
-                  imgElement_play.setAttribute('type','image/svg+xml');
-                  imgElement_play.setAttribute('data','../svg/play-circle-solid.svg');
-                  imgElement_play.setAttribute("style", `width:${String(videoTag.clientWidth/2)}px; height:${String(videoTag.clientHeight/2)}px; pointer-events: none;`);
-                  imgElement_play.setAttribute('___text','play');
-              } else {
-                  // imgElement_play.textContent = '停止';
-                  imgElement_play.setAttribute('type','image/svg+xml');
-                  imgElement_play.setAttribute('data','../svg/pause-circle-solid.svg');
-                  imgElement_play.setAttribute("style", `width:${String(videoTag.clientWidth/2)}px; height:${String(videoTag.clientHeight/2)}px; pointer-events: none;`);
-                  imgElement_play.setAttribute('___text','pause');
-              }
-              divElement_fil.appendChild(imgElement_play);
-              videoTag.parentElement.appendChild(divElement_fil);
-
-              let cleanUp = () =>{
-                  console.log('del');
-                  videoTag.removeAttribute('___videostop');
-                  videoTag.parentElement.removeAttribute('__aparent');
-                  videoTag.parentElement.removeChild(divElement_fil);
-              };
-              setTimeout(cleanUp, 1000);
-
-              divElement_fil.addEventListener('click',() => {
-                  console.log('クリックを検知');
-                  let playMode: string = videoTag.getAttribute('playxxx');
-                  if(playMode === 'pause') {
-                      videoTag.play();
-                      videoTag.setAttribute('playxxx','play');
-                  } else {
-                      videoTag.pause();
-                      videoTag.setAttribute('playxxx','pause');
-                  }
-
-                  // TODO あとで共通化
-                  console.log('del');
-                  videoTag.removeAttribute('___videostop');
-                  videoTag.setAttribute('___filter','off');
-                  videoTag.parentElement.removeAttribute('__aparent');
-                  videoTag.parentElement.removeChild(divElement_fil);
-              })
-
+            // 使用決定用に一旦表示（実際は削除します）
+            const divElement: HTMLDivElement = document.createElement('div');
+            divElement.textContent = 'viewthroughをしました';
+            videoTag.parentNode.parentNode.insertBefore(divElement, videoTag.parentElement);
           }
-
-      });
-
-
-      videoTag.addEventListener('touchstart',() => {
-
-        let fillter_off: string = videoTag.getAttribute('___filter');
-        if(fillter_off === 'off') {
-            videoTag.removeAttribute('___filter');
-        } else {
-            videoTag.classList.add('___videostop');
-            videoTag.parentElement.classList.add('__aparent');
-            const divElement_fil: HTMLDivElement = document.createElement('div');
-            divElement_fil.classList.add('__filter');
-            divElement_fil.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px; padding: 12%; cursor:pointer`);
-
-            const imgElement_play: HTMLObjectElement = document.createElement('object');
-            imgElement_play.setAttribute('id','___obj');
-            let playMode: string = videoTag.getAttribute('playxxx');
-
-            if(playMode === 'pause') {
-                // imgElement_play.textContent = '再生';
-                imgElement_play.setAttribute('type','image/svg+xml');
-                imgElement_play.setAttribute('data','../svg/play-circle-solid.svg');
-                imgElement_play.setAttribute("style", `width:${String(videoTag.clientWidth/2)}px; height:${String(videoTag.clientHeight/2)}px; pointer-events: none;`);
-                imgElement_play.setAttribute('___text','play');
-            } else {
-                // imgElement_play.textContent = '停止';
-                imgElement_play.setAttribute('type','image/svg+xml');
-                imgElement_play.setAttribute('data','../svg/pause-circle-solid.svg');
-                imgElement_play.setAttribute("style", `width:${String(videoTag.clientWidth/2)}px; height:${String(videoTag.clientHeight/2)}px; pointer-events: none;`);
-                imgElement_play.setAttribute('___text','pause');
-            }
-            divElement_fil.appendChild(imgElement_play);
-            videoTag.parentElement.appendChild(divElement_fil);
-
-            let cleanUp = () =>{
-                console.log('del');
-                videoTag.removeAttribute('___videostop');
-                videoTag.parentElement.removeAttribute('__aparent');
-                videoTag.parentElement.removeChild(divElement_fil);
-            };
-            setTimeout(cleanUp, 1000);
-
-            divElement_fil.addEventListener('touchstart',() => {
-                console.log('クリックを検知');
-                let playMode: string = videoTag.getAttribute('playxxx');
-                if(playMode === 'pause') {
-                    videoTag.play();
-                    videoTag.setAttribute('playxxx','play');
-                } else {
-                    videoTag.pause();
-                    videoTag.setAttribute('playxxx','pause');
-                }
-
-                // TODO あとで共通化
-                console.log('del');
-                videoTag.removeAttribute('___videostop');
-                videoTag.setAttribute('___filter','off');
-                videoTag.parentElement.removeAttribute('__aparent');
-                videoTag.parentElement.removeChild(divElement_fil);
-            })
-
-            window.addEventListener('orientationchange', () => {
-              if(divElement_fil) {
-                videoTag.removeAttribute('___videostop');
-                videoTag.setAttribute('___filter','off');
-                videoTag.parentElement.removeAttribute('__aparent');
-                videoTag.parentElement.removeChild(divElement_fil);
-              }
-
-              if(playMode === 'pause') {
-                videoTag.play();
-                videoTag.setAttribute('playxxx','play');
-                videoTag.removeAttribute('___videostop');
-              } 
-            });
-        }
-
+        }, 250);
+      }
     });
 
-    };
+    // 要検討：viewthrough(pauseの場合は、繰り返し動作を止める)
+    videoTag.addEventListener('pause', () => {
+      if (cntEvt) {
+        window.clearInterval(cntEvt);
+      }
+    });
+
+    /**
+     * PCブラウザ用のイベントリスナー
+     */
+    videoTag.addEventListener('mouseover', () => {
+
+      let fillter_off: string = videoTag.getAttribute('___filter');
+      if (fillter_off === 'off') {
+        videoTag.removeAttribute('___filter');
+      } else {
+
+        videoTag.classList.add('___videostop');
+        videoTag.parentElement.classList.add('__aparent');
+        const divElement_fil: HTMLDivElement = document.createElement('div');
+        divElement_fil.classList.add('__filter');
+        divElement_fil.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px; padding: 12%; cursor:pointer`);
+
+        const imgElement_play: HTMLObjectElement = document.createElement('object');
+        imgElement_play.setAttribute('id', '___obj');
+        let playMode: string = videoTag.getAttribute('playxxx');
+        if (playMode === 'pause') {
+          // imgElement_play.textContent = '再生';
+          imgElement_play.setAttribute('type','image/svg+xml');
+          imgElement_play.setAttribute('data','../svg/play-circle-solid.svg');
+          imgElement_play.setAttribute("style", `width:${String(videoTag.clientWidth/2)}px; height:${String(videoTag.clientHeight/2)}px; pointer-events: none;`);
+          imgElement_play.setAttribute('___text','play');
+        } else {
+            // imgElement_play.textContent = '停止';
+            imgElement_play.setAttribute('type','image/svg+xml');
+            imgElement_play.setAttribute('data','../svg/pause-circle-solid.svg');
+            imgElement_play.setAttribute("style", `width:${String(videoTag.clientWidth/2)}px; height:${String(videoTag.clientHeight/2)}px; pointer-events: none;`);
+            imgElement_play.setAttribute('___text','pause');
+        }
+
+        divElement_fil.appendChild(imgElement_play);
+        videoTag.parentElement.appendChild(divElement_fil);
+
+        let cleanUp = () => {
+          // console.log('del');
+          videoTag.removeAttribute('___videostop');
+          videoTag.parentElement.removeAttribute('__aparent');
+          videoTag.parentElement.removeChild(divElement_fil);
+        };
+        setTimeout(cleanUp, 1000);
+
+        divElement_fil.addEventListener('click', () => {
+          console.log('クリックを検知');
+          let playMode: string = videoTag.getAttribute('playxxx');
+          if (playMode === 'pause') {
+            videoTag.play();
+            videoTag.setAttribute('playxxx', 'play');
+          } else {
+            videoTag.pause();
+            videoTag.setAttribute('playxxx', 'pause');
+          }
+
+          // TODO あとで共通化
+          console.log('del');
+          videoTag.removeAttribute('___videostop');
+          videoTag.setAttribute('___filter', 'off');
+          videoTag.parentElement.removeAttribute('__aparent');
+          videoTag.parentElement.removeChild(divElement_fil);
+        });
+      }
+    });
+
+    /**
+     * スマホブラウザ用
+     */
+    videoTag.addEventListener('touchstart', () => {
+      let fillter_off: string = videoTag.getAttribute('___filter');
+      if (fillter_off === 'off') {
+        videoTag.removeAttribute('___filter');
+      } else {
+        videoTag.classList.add('___videostop');
+        videoTag.parentElement.classList.add('__aparent');
+        const divElement_fil: HTMLDivElement = document.createElement('div');
+        divElement_fil.classList.add('__filter');
+        divElement_fil.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px; padding: 12%; cursor:pointer`);
+
+        const imgElement_play: HTMLObjectElement = document.createElement('object');
+        imgElement_play.setAttribute('id','___obj');
+        let playMode: string = videoTag.getAttribute('playxxx');
+
+        if(playMode === 'pause') {
+          // imgElement_play.textContent = '再生';
+          imgElement_play.setAttribute('type','image/svg+xml');
+          imgElement_play.setAttribute('data','../svg/play-circle-solid.svg');
+          imgElement_play.setAttribute("style", `width:${String(videoTag.clientWidth/2)}px; height:${String(videoTag.clientHeight/2)}px; pointer-events: none;`);
+          imgElement_play.setAttribute('___text','play');
+        } else {
+          // imgElement_play.textContent = '停止';
+          imgElement_play.setAttribute('type','image/svg+xml');
+          imgElement_play.setAttribute('data','../svg/pause-circle-solid.svg');
+          imgElement_play.setAttribute("style", `width:${String(videoTag.clientWidth/2)}px; height:${String(videoTag.clientHeight/2)}px; pointer-events: none;`);
+          imgElement_play.setAttribute('___text','pause');
+        }
+        divElement_fil.appendChild(imgElement_play);
+        videoTag.parentElement.appendChild(divElement_fil);
+
+        let cleanUp = () => {
+          console.log('del');
+          videoTag.removeAttribute('___videostop');
+          videoTag.parentElement.removeAttribute('__aparent');
+          videoTag.parentElement.removeChild(divElement_fil);
+        };
+        setTimeout(cleanUp, 1000);
+
+        divElement_fil.addEventListener('touchstart', () => {
+          console.log('クリックを検知');
+          let playMode: string = videoTag.getAttribute('playxxx');
+          if (playMode === 'pause') {
+            videoTag.play();
+            videoTag.setAttribute('playxxx', 'play');
+          } else {
+            videoTag.pause();
+            videoTag.setAttribute('playxxx', 'pause');
+          }
+
+          // TODO あとで共通化
+          console.log('del');
+          videoTag.removeAttribute('___videostop');
+          videoTag.setAttribute('___filter','off');
+          videoTag.parentElement.removeAttribute('__aparent');
+          videoTag.parentElement.removeChild(divElement_fil);
+        });
+
+        window.addEventListener('orientationchange', () => {
+          if (divElement_fil) {
+            videoTag.removeAttribute('___videostop');
+            videoTag.setAttribute('___filter','off');
+            videoTag.parentElement.removeAttribute('__aparent');
+            videoTag.parentElement.removeChild(divElement_fil);
+          }
+
+          if (playMode === 'pause') {
+            videoTag.play();
+            videoTag.setAttribute('playxxx','play');
+            videoTag.removeAttribute('___videostop');
+          }
+        });
+      }
+    });
+  };
 
     /**
      *
@@ -361,27 +362,4 @@ export namespace videoEvent {
       console.log('div生成');
     });
   };
-
-  // 削除
-  export let ckOreientation = () => {
-
-    // 正面かどうか判定
-    // let isReverse = false;
-
-    // if(navigator.userAgent.indexOf('Android') > 0) {
-    //   // Androidなら正面設定を確認
-    //   let oritentation = screen.orientation || screen.mozOrientation || screen.msOrientation;
-    // }
-
-    window.addEventListener('orientationchange', () => {
-      let target = document.getElementById('__this');
-      if (window.orientation === 0) {
-        target.textContent = '縦縦縦縦縦縦縦縦';
-      } else {
-        target.textContent = 'ヨコヨコ横ヨコヨコ';
-      }
-    })
-
-
-  }
 }
