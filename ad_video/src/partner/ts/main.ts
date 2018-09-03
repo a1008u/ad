@@ -28,6 +28,7 @@ namespace advideo {
       } else {
         const ddivElement: HTMLDivElement = document.createElement('div');
         ddivElement.appendChild(videoTag);
+        videoTag
         aTag.appendChild(ddivElement);
         videoEvent.setEvent(videoTag, aTag, limitTime);
         // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
