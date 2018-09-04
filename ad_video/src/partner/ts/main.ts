@@ -2,6 +2,8 @@ import { videoEvent } from './service/videoEvent';
 import { tag } from '../../service/tag';
 import * as emergence from '../../../node_modules/emergence.js/src/emergence';
 import { EventVideo } from './service/EventVideo';
+import {EventNotViewThrough} from './service/EventNotViewThrough';
+import {EventViewThrough} from "./service/EventViewThrough";
 
 namespace advideo {
   const mkElement = (
@@ -24,15 +26,23 @@ namespace advideo {
       if (script.getAttribute('data-atv-not-anchor')) {
         const ddivElement: HTMLDivElement = document.createElement('div');
         ddivElement.appendChild(videoTag);
+
         // videoEvent.setEventForTest(videoTag, limitTime);
         EventVideo.setEventForViewthrogh(videoTag, limitTime);
+        EventViewThrough.setEventViewThroughPC(videoTag);
+        EventViewThrough.setEventViewThroughSmartPhone(videoTag);
+
         script.parentNode.insertBefore(ddivElement, script);
       } else {
         // 多分こっちは消す
         const ddivElement: HTMLDivElement = document.createElement('div');
         ddivElement.appendChild(videoTag);
         aTag.appendChild(ddivElement);
-        videoEvent.setEvent(videoTag, aTag, limitTime);
+
+        // videoEvent.setEvent(videoTag, aTag, limitTime);
+        EventVideo.setEventForViewthroghAboutA(videoTag, aTag, limitTime);
+        EventNotViewThrough.setEventLoad(videoTag, 'this is the test');
+
         // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
         script.parentNode.insertBefore(aTag, script);
       }
@@ -57,7 +67,9 @@ namespace advideo {
         load_css('../css/index.css');
       }
 
-      videoEvent.setEventLoad(videoTag);
+      // videoEvent.setEventLoad(videoTag);
+      EventNotViewThrough.setEventLoad(videoTag);
+
       // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
       script.parentNode.insertBefore(ddivElement, script);
     }
