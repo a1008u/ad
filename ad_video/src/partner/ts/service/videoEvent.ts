@@ -25,7 +25,6 @@ export namespace videoEvent {
             window.clearInterval(cntEvt);
             let iframeTag: HTMLIFrameElement = tag.mkTrackingTag(videoTag);
             videoTag.parentNode.insertBefore(iframeTag, videoTag);
-
           }
         }, 250);
       }
@@ -35,7 +34,6 @@ export namespace videoEvent {
       console.log('play ---------------------');
       videoTag.play();
     });
-
 
     // viewthrough(pauseの場合は、繰り返し動作を止める)
     videoTag.addEventListener('pause', () => {

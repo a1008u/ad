@@ -1,6 +1,7 @@
 import { videoEvent } from './service/videoEvent';
 import { tag } from '../../service/tag';
 import * as emergence from '../../../node_modules/emergence.js/src/emergence';
+import { EventVideo } from './service/EventVideo';
 
 namespace advideo {
   const mkElement = (
@@ -15,34 +16,33 @@ namespace advideo {
     const viewthroughUse: string = script.getAttribute('data-atv-viewthrough-flag');
     const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk, viewthroughUse? true: false);
 
+    // viewthroughを利用するかしないかで、処理を分ける
     if (viewthroughUse) {
-      // if(true)の条件はあくまで、サンプルのため本番では削除する
-
       limitTime = Number(script.getAttribute('data-atv-viewthrough-time'));
 
+      // videoタグにアンカーを設置するかしないか決める（あくまで、サンプルのため本番ではこの分岐はなくなる）
       if (script.getAttribute('data-atv-not-anchor')) {
         const ddivElement: HTMLDivElement = document.createElement('div');
         ddivElement.appendChild(videoTag);
-        videoEvent.setEventForTest(videoTag, limitTime);
+        // videoEvent.setEventForTest(videoTag, limitTime);
+        EventVideo.setEventForViewthrogh(videoTag, limitTime);
         script.parentNode.insertBefore(ddivElement, script);
       } else {
+        // 多分こっちは消す
         const ddivElement: HTMLDivElement = document.createElement('div');
         ddivElement.appendChild(videoTag);
-        videoTag
         aTag.appendChild(ddivElement);
         videoEvent.setEvent(videoTag, aTag, limitTime);
         // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
         script.parentNode.insertBefore(aTag, script);
       }
-
     } else {
-
       // スタイルシートの読み込み
-      let load_css = (src) => {
+      let load_css = (src: string) => {
         let head = document.getElementsByTagName('head')[0];
         let link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.type = "text/css";
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
         link.href = src;
         link.classList.add('__videocss');
         head.insertBefore(link, head.firstChild);
@@ -87,6 +87,7 @@ namespace advideo {
 
 // 即時実行
 ((window, _) => {
+
   // 動画自動実行用library
   emergence.init({
     container: window,
