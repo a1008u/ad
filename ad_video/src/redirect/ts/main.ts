@@ -71,7 +71,7 @@ const browsers: Browser = {
   // tslint:disable-next-line:no-empty
   itp_safari: (domain: string) => {},
   // tslint:disable-next-line:no-empty
-  unknown: (domain: string) => {},
+  unknown: (domain: string) => {}
 };
 
 /**

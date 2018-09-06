@@ -29,7 +29,6 @@ export namespace EventViewThrough {
 
   let cleanUp = (videoElement: HTMLVideoElement, divElementFilter: HTMLDivElement) => {
     console.log('del_EventViewThrough');
-    // videoElement.removeAttribute('___videostop');
     videoElement.parentElement.removeAttribute('__aparent');
     videoElement.parentElement.removeChild(divElementFilter);
   };
@@ -56,12 +55,10 @@ export namespace EventViewThrough {
     } else {
       videoPause(videoElement);
     }
-
     deleteFilter(videoElement, divElementFilter);
   };
 
   let execfil = (videoTag: HTMLVideoElement, playMode: string, divElementFilter: HTMLDivElement) =>  {
-    // videoTag.classList.add('___videostop');
     videoTag.parentElement.classList.add('__aparent');
 
     // filterの設定
@@ -89,8 +86,6 @@ export namespace EventViewThrough {
           .firstElementChild
           .firstElementChild
           .setAttribute("style", `width:${String(videoTag.clientWidth / 2)}px; height:${String(videoTag.clientHeight / 2)}px; pointer-events: none;`);
-        // let svgTag = document.getElementById(filterId);
-        // svgTag.setAttribute("style", `width:${String(videoTag.clientWidth / 2)}px; height:${String(videoTag.clientHeight / 2)}px; pointer-events: none;`);
       })
       .catch(err => console.log(err));
 
@@ -103,7 +98,6 @@ export namespace EventViewThrough {
   export const setEventViewThroughPC = (videoElement: HTMLVideoElement) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'mouseover');
     video$
-      //.pipe(filter(ev => ev.target.getAttribute('___filter') === null))
       .subscribe(ev => {
         const videoElement: HTMLVideoElement = ev.target;
         const divElementFilter: HTMLDivElement = document.createElement('div');
@@ -122,9 +116,6 @@ export namespace EventViewThrough {
         });
       });
 
-    // video$
-    //   .pipe(filter(ev => ev.target.getAttribute('___filter') === 'off'))
-    //   .subscribe(ev => ev.target.removeAttribute('___filter'));
   };
 
   /**
@@ -155,7 +146,6 @@ export namespace EventViewThrough {
 
         if (playMode === 'pause') {
           videoPlay(videoElement);
-          // videoElement.removeAttribute('___videostop');
         }
       });
     });
