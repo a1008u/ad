@@ -71,26 +71,30 @@ export namespace EventViewThrough {
     const objectElement: HTMLObjectElement = document.createElement('object');
     objectElement.setAttribute('id', '___obj');
 
-      const svgFilePath: string = playMode === 'pause' ? '../svg/play-circle-solid.svg': '../svg/pause-circle-solid.svg';
-      const __text: string = playMode === 'pause' ? 'play': 'pause';
-      const filterId: string = playMode === 'pause' ? '___play': '___pause';
+    const svgFilePath: string = playMode === 'pause' ? '../svg/play-circle-solid.svg': '../svg/pause-circle-solid.svg';
+    const __text: string = playMode === 'pause' ? 'play': 'pause';
+    const filterId: string = playMode === 'pause' ? '___play': '___pause';
 
-      axios.default
-          .get(svgFilePath)
-          .then(resdata => {
-              let svg: string = resdata.data;
-              objectElement.innerHTML = svg;
-              objectElement.setAttribute("style", `width:${String(videoTag.clientWidth / 2)}px; height:${String(videoTag.clientHeight / 2)}px; pointer-events: none;`);
-              objectElement.setAttribute('___text', __text);
+    axios.default
+      .get(svgFilePath)
+      .then(resdata => {
+        let svg: string = resdata.data;
+        objectElement.innerHTML = svg;
+        objectElement.setAttribute("style", `width:${String(videoTag.clientWidth / 2)}px; height:${String(videoTag.clientHeight / 2)}px; pointer-events: none;`);
+        objectElement.setAttribute('___text', __text);
 
-              divElementFilter.appendChild(objectElement);
+        divElementFilter.appendChild(objectElement);
 
-              let svgTag = document.getElementById(filterId);
-              svgTag.setAttribute("style", `width:${String(videoTag.clientWidth / 2)}px; height:${String(videoTag.clientHeight / 2)}px; pointer-events: none;`);
-          })
-          .catch(err => console.log(err));
+        divElementFilter
+          .firstElementChild
+          .firstElementChild
+          .setAttribute("style", `width:${String(videoTag.clientWidth / 2)}px; height:${String(videoTag.clientHeight / 2)}px; pointer-events: none;`);
+        // let svgTag = document.getElementById(filterId);
+        // svgTag.setAttribute("style", `width:${String(videoTag.clientWidth / 2)}px; height:${String(videoTag.clientHeight / 2)}px; pointer-events: none;`);
+      })
+      .catch(err => console.log(err));
 
-      videoTag.parentElement.appendChild(divElementFilter);
+    videoTag.parentElement.appendChild(divElementFilter);
   };
 
   /**
@@ -99,7 +103,7 @@ export namespace EventViewThrough {
   export const setEventViewThroughPC = (videoElement: HTMLVideoElement) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'mouseover');
     video$
-      .pipe(filter(ev => ev.target.getAttribute('___filter') === null))
+      //.pipe(filter(ev => ev.target.getAttribute('___filter') === null))
       .subscribe(ev => {
         const videoElement: HTMLVideoElement = ev.target;
         const divElementFilter: HTMLDivElement = document.createElement('div');
@@ -118,9 +122,9 @@ export namespace EventViewThrough {
         });
       });
 
-    video$
-      .pipe(filter(ev => ev.target.getAttribute('___filter') === 'off'))
-      .subscribe(ev => ev.target.removeAttribute('___filter'));
+    // video$
+    //   .pipe(filter(ev => ev.target.getAttribute('___filter') === 'off'))
+    //   .subscribe(ev => ev.target.removeAttribute('___filter'));
   };
 
   /**
@@ -129,39 +133,38 @@ export namespace EventViewThrough {
   export const setEventViewThroughSmartPhone = (videoElement) => {
 
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'touchstart');
-      video$
-        .subscribe(ev => {
-          const videoElement: HTMLVideoElement = ev.target;
-          const divElementFilter: HTMLDivElement = document.createElement('div');
-          let playMode: string = ev.target.getAttribute('playxxx');
+    video$.subscribe(ev => {
+      const videoElement: HTMLVideoElement = ev.target;
+      const divElementFilter: HTMLDivElement = document.createElement('div');
+      let playMode: string = ev.target.getAttribute('playxxx');
 
-          execfil(videoElement, playMode, divElementFilter);
+      execfil(videoElement, playMode, divElementFilter);
 
-          const divFilterOut$: Rx.Observable<any> = Rx.fromEvent(divElementFilter, 'touchend');
-          divFilterOut$.subscribe(ev => {
-            ev.stopPropagation();
-            deleteMethod(videoElement, playMode, ev.target);
-          });
+      const divFilterOut$: Rx.Observable<any> = Rx.fromEvent(divElementFilter, 'touchend');
+      divFilterOut$.subscribe(ev => {
+        ev.stopPropagation();
+        deleteMethod(videoElement, playMode, ev.target);
+      });
 
-          // スマホの傾き検知用
-          const window$: Rx.Observable<any> = Rx.fromEvent(window, 'orientationchange');
-          window$.subscribe(ev => {
-            if (divElementFilter) {
-              deleteFilter(videoElement, divElementFilter);
-            }
+      // スマホの傾き検知用
+      const window$: Rx.Observable<any> = Rx.fromEvent(window, 'orientationchange');
+      window$.subscribe(ev => {
+        if (divElementFilter) {
+          deleteFilter(videoElement, divElementFilter);
+        }
 
-            if (playMode === 'pause') {
-              videoPlay(videoElement);
-              // videoElement.removeAttribute('___videostop');
-            }
-          });
-        });
+        if (playMode === 'pause') {
+          videoPlay(videoElement);
+          // videoElement.removeAttribute('___videostop');
+        }
+      });
+    });
 
-      // video$
-      //   .pipe(filter(ev => ev.target.getAttribute('___filter') === 'off'))
-      //   .subscribe(ev => {
-      //       document.getElementById('__idd').innerText += '___filterを___filter';
-      //       ev.target.removeAttribute('___filter')
-      //   });
+    video$
+      .pipe(filter(ev => ev.target.getAttribute('___filter') === 'off'))
+      .subscribe(ev => {
+        document.getElementById('__idd').innerText += '___filterを___filter';
+        ev.target.removeAttribute('___filter')
+      });
   };
 }

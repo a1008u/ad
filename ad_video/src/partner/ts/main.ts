@@ -29,9 +29,9 @@ namespace advideo {
 
         // videoEvent.setEventForTest(videoTag, limitTime);
         EventVideo.setEventForViewthrogh(videoTag, limitTime);
-        EventViewThrough.setEventViewThroughPC(videoTag);
+        //EventViewThrough.setEventViewThroughPC(videoTag);
         EventViewThrough.setEventViewThroughSmartPhone(videoTag);
-          videoTag.play();
+        videoTag.play();
 
         script.parentNode.insertBefore(ddivElement, script);
       } else {
@@ -43,7 +43,7 @@ namespace advideo {
         // videoEvent.setEvent(videoTag, aTag, limitTime);
         EventVideo.setEventForViewthroghAboutA(videoTag, aTag, limitTime);
         EventNotViewThrough.setEventLoad(videoTag, 'this is the test');
-          videoTag.play();
+        videoTag.play();
 
         // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
         script.parentNode.insertBefore(aTag, script);
@@ -71,7 +71,7 @@ namespace advideo {
 
       // videoEvent.setEventLoad(videoTag);
       EventNotViewThrough.setEventLoad(videoTag);
-        videoTag.play();
+      videoTag.play();
 
       // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
       script.parentNode.insertBefore(ddivElement, script);

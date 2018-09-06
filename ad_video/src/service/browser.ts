@@ -17,7 +17,6 @@ export namespace browser {
    * @returns {boolean}
    */
   export let ck = (): string => {
-
     const browser: string = (() => {
       const browserName: string = Platform.name.toLowerCase();
       if (browserName === "ie") return browserName;
@@ -37,7 +36,7 @@ export namespace browser {
 
       let macVersion = Platform.os.version.toLowerCase().match(/10.(\d{2})/);
       if (macVersion !== null && +macVersion[1] >= 13) {
-          return 'itp_safari';
+        return 'itp_safari';
       }
       return browser;
     }
