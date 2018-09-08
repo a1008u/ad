@@ -26,25 +26,25 @@ const os: OS = {
 };
 
 namespace advideo {
-  const mkElement = (
-    rk: string,
-    script: HTMLScriptElement,
-    limitTime: number
-  ): void => {
-    // タグ生成
-    const aElement: HTMLAnchorElement = tag.mkAtag(rk);
 
-    // イベント登録
-    const viewthroughUse: string = script.getAttribute('data-atv-viewthrough-flag');
-    const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk, viewthroughUse? true: false);
-    const divElement: HTMLDivElement = document.createElement('div');
-    divElement.classList.add('__div');
+  // スタイルシートの読み込み
+  const load_css = (src: string) => {
+    let head = document.getElementsByTagName('head')[0];
+    let link = document.createElement("link");
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = src;
+    link.classList.add('__videocss');
+    head.insertBefore(link, head.firstChild);
+  };
 
+  // textareaの作成
+  const mkTextArea = () => {
     const divTextElement: HTMLDivElement = document.createElement('div');
     divTextElement.classList.add('__divTextElement');
 
     const divTextLeftElement: HTMLDivElement = document.createElement('div');
-    divTextLeftElement.textContent = '＿＿＿＿＿詳細サンプル詳細サンプル詳細サンプル詳細サンプル詳細サンプル詳細サンプル＿＿＿＿＿';
+    divTextLeftElement.textContent = 'あいうえおかきくけこさしすせそたちつてと';
     divTextLeftElement.classList.add('__divTextLeftElement');
 
     const divRightElement: HTMLDivElement = document.createElement('div');
@@ -57,44 +57,39 @@ namespace advideo {
     divRightElement.appendChild(divTextRightElement);
     divTextElement.appendChild(divTextLeftElement);
     divTextElement.appendChild(divRightElement);
+    return divTextElement;
+  };
+
+  const mkElement = (
+    rk: string,
+    script: HTMLScriptElement,
+    limitTime: number　= 1000
+  ): void => {
+    // イベント登録
+    const viewthroughUse: string = script.getAttribute('data-atv-viewthrough-flag');
+    const videoElement: HTMLVideoElement = tag.mkVideoTag(script, rk, viewthroughUse? true: false);
+    const mainDivElement: HTMLDivElement = document.createElement('div');
+
+    load_css('../css/index.css');
+
+    mainDivElement.appendChild(videoElement);
+    videoElement.play();
 
     // viewthroughを利用するかしないかで、処理を分ける
     if (viewthroughUse) {
-      limitTime = Number(script.getAttribute('data-atv-viewthrough-time'));
-
-      divElement.appendChild(videoTag);
-      EventVideo.setEventForViewthrogh(videoTag, limitTime);
-      os[oschecker.isolate()](videoTag);
-      videoTag.play();
-
+      EventVideo.setEventForViewthrogh(videoElement, limitTime);
     } else {
-      // スタイルシートの読み込み
-      let load_css = (src: string) => {
-        let head = document.getElementsByTagName('head')[0];
-        let link = document.createElement("link");
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = src;
-        link.classList.add('__videocss');
-        head.insertBefore(link, head.firstChild);
-      };
-
-      divElement.setAttribute('id','___videostop');
-      aElement.appendChild(videoTag);
-      divElement.appendChild(aElement);
-      let cssElements = document.getElementsByClassName('__videocss');
-      if (cssElements.length === 0) {
-        load_css('../css/index.css');
-      }
-
-      EventNotViewThrough.setEventLoad(videoTag);
-      videoTag.play();
-
+      EventNotViewThrough.setEventLoad(videoElement);
+      mainDivElement.classList.add('__mainDivShadow');
+      const divTextElement = mkTextArea();
+      mainDivElement.appendChild(divTextElement);
+      mainDivElement.setAttribute('id','___videostop');
     }
 
     // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
-    divElement.appendChild(divTextElement);
-    script.parentNode.insertBefore(divElement, script);
+    os[oschecker.isolate()](videoElement);
+    script.parentNode.insertBefore(mainDivElement, script);
+    mainDivElement.setAttribute("style", `width:${script.getAttribute('data-atv-width')}px; z-index:30;`);
     script.removeAttribute('data-atv-rk');
   };
 
@@ -102,7 +97,7 @@ namespace advideo {
    * メイン機能
    * @param limitTime
    */
-  export let exec = (limitTime: number): void => {
+  export let exec = (): void => {
     const scripts: NodeListOf<HTMLScriptElement> = document.getElementsByTagName('script');
     for (let num in scripts) {
       const script: HTMLScriptElement = scripts[num];
@@ -111,6 +106,7 @@ namespace advideo {
         continue;
       }
 
+      let limitTime: number =  Number(script.getAttribute('data-atv-viewthrough-time'));
       mkElement(rk, script, limitTime);
       break;
     }
@@ -158,6 +154,5 @@ namespace advideo {
   // ブラウザ判定
 
   // limitTimeはDBから取得する
-  let limitTime: number = 1000;
-  advideo.exec(limitTime);
+  advideo.exec();
 })(window);

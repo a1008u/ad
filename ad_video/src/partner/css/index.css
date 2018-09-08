@@ -1,4 +1,4 @@
-.__div {
+.__mainDivShadow {
     /*border-radius: 6px;*/
     align-items: stretch;
     box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
@@ -23,25 +23,6 @@
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }
-
-/*.__button {*/
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    /*right: 0;*/
-    /*bottom: 0;*/
-    /*margin: auto;*/
-    /*z-index: 2;*/
-    /*width: 50%;*/
-    /*height: 70px;*/
-    /*color: #FFF;*/
-    /*text-decoration: none;*/
-    /*text-align: center;*/
-    /*background-color: black;*/
-    /*border-radius: 5px;*/
-    /*-webkit-transition: all 0.5s;*/
-    /*transition: all 0.5s;*/
-/*}*/
 
 .___a2 {
     display: table-cell;
@@ -83,7 +64,7 @@
     cursor: pointer;
 }
 .__play{
-    display: table;
+    /*display: table;*/
     height: 50%;
     width: 100%;
     padding: 5%;
@@ -121,12 +102,14 @@
     display: inline-block;
     margin: 0 auto;
     padding: 7px 20px;
-    border-radius: 25px;
+    border: solid 2px rgba(169, 169, 169, 1);
+    border-radius: 10px;
     text-decoration: none;
-    color: #FFF;
-    background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
-    background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+    color: black;
     transition: .4s;
     cursor: pointer;
+}
+.__button2:hover {
+    background: rgba(169, 169, 169, 0.4);
 }
 /* ---------------------- */

@@ -23,14 +23,15 @@ export namespace tag {
     loop: boolean = true
   ): HTMLVideoElement => {
     const videoTag: HTMLVideoElement = document.createElement('video');
-    videoTag.height = parseInt(script.getAttribute('data-atv-height'));
-    videoTag.width = parseInt(script.getAttribute('data-atv-width'));
+    // videoTag.height = parseInt(script.getAttribute('data-atv-height'));
+    // videoTag.width = parseInt(script.getAttribute('data-atv-width'));
     videoTag.src = script.getAttribute('data-atv-src');
     videoTag.muted = true;
     videoTag.loop = loop;
     videoTag.setAttribute('playsinline', 'playsinline');
     videoTag.setAttribute('data-atv-video', rk);
     videoTag.setAttribute("data-emergence", "hidden");
+    videoTag.setAttribute('style','cursor:pointer;');
 
     let cssType: string = script.getAttribute('test-s');
     if (cssType) {
