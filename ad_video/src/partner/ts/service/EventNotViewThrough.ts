@@ -13,7 +13,6 @@ export namespace EventNotViewThrough {
    * @param videoTag
    */
   export const setEventLoad = (videoElement: HTMLVideoElement) => {
-
     const deleteFilter = (ev: any) => {
       let targeFilterElement: HTMLElement = ev.target;
       targeFilterElement.parentElement.removeChild(targeFilterElement);

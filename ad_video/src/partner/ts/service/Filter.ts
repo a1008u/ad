@@ -1,4 +1,5 @@
-import * as axios from "axios";
+import axios from 'axios';
+import { EventResize } from "./EventResize";
 
 export namespace Filter{
 
@@ -40,7 +41,7 @@ export namespace Filter{
 
     // filterの設定
     divElementFilter.classList.add('__filter');
-    divElementFilter.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px; padding: 14%; cursor:pointer; z-index:30;`);
+    divElementFilter.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px; padding: ${String(videoTag.clientHeight/4)}px; cursor:pointer; z-index:30; box-sizing:border-box;`);
 
     const objectElement: HTMLObjectElement = document.createElement('object');
     objectElement.setAttribute('id', '___obj');
@@ -48,7 +49,7 @@ export namespace Filter{
     const svgFilePath: string = playMode === 'pause' ? '../svg/play-circle-solid.svg': '../svg/pause-circle-solid.svg';
     const __text: string = playMode === 'pause' ? 'play': 'pause';
 
-    axios.default
+    axios
       .get(svgFilePath)
       .then(resdata => {
         const svg: string = resdata.data;
@@ -64,5 +65,8 @@ export namespace Filter{
       .catch(err => console.log(err));
 
     mainDivElement.appendChild(divElementFilter);
+
+
+    EventResize.setEvent(videoTag, divElementFilter);
   };
 }

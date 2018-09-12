@@ -1,28 +1,29 @@
-
 import { tag } from '../../service/tag';
 import * as emergence from '../../../node_modules/emergence.js/src/emergence';
 import { EventVideo } from './service/EventVideo';
 import {EventNotViewThrough} from './service/EventNotViewThrough';
 import {EventViewThrough} from "./service/EventViewThrough";
 import {oschecker} from "../../service/oschecker";
+import axios from 'axios';
+
 
 const os: OS = {
-    ios: (videoTag: HTMLVideoElement) => {
-        console.log('smart phoneと判定');
-        EventViewThrough.setEventViewThroughSmartPhone(videoTag);
-    },
-    android: (videoTag: HTMLVideoElement) => {
-        console.log('smart phoneと判定');
-        EventViewThrough.setEventViewThroughPC(videoTag);
-    },
-    windowsphone: (videoTag: HTMLVideoElement) => {
-        console.log('smart phoneと判定');
-      EventViewThrough.setEventViewThroughPC(videoTag);
-    },
-    pc: (videoTag: HTMLVideoElement) => {
-        console.log('pcと判定');
-        EventViewThrough.setEventViewThroughPC(videoTag);
-    }
+  ios: (videoTag: HTMLVideoElement) => {
+    console.log('smart phoneと判定');
+    EventViewThrough.setEventViewThroughSmartPhone(videoTag);
+  },
+  android: (videoTag: HTMLVideoElement) => {
+    console.log('smart phoneと判定');
+    EventViewThrough.setEventViewThroughPC(videoTag);
+  },
+  windowsphone: (videoTag: HTMLVideoElement) => {
+    console.log('smart phoneと判定');
+    EventViewThrough.setEventViewThroughPC(videoTag);
+  },
+  pc: (videoTag: HTMLVideoElement) => {
+    console.log('pcと判定');
+    EventViewThrough.setEventViewThroughPC(videoTag);
+  },
 };
 
 namespace advideo {
@@ -39,19 +40,20 @@ namespace advideo {
   };
 
   // textareaの作成
-  const mkTextArea = () => {
+  const mkTextArea = (atvJson: Jsontype) => {
     const divTextElement: HTMLDivElement = document.createElement('div');
     divTextElement.classList.add('__divTextElement');
 
     const divTextLeftElement: HTMLDivElement = document.createElement('div');
-    divTextLeftElement.textContent = 'あいうえおかきくけこさしすせそたちつてと';
+
+    divTextLeftElement.textContent = atvJson.BANNER_TEXT;
     divTextLeftElement.classList.add('__divTextLeftElement');
 
     const divRightElement: HTMLDivElement = document.createElement('div');
     divRightElement.classList.add('__divTextRightElement');
 
     const divTextRightElement: HTMLDivElement = document.createElement('div');
-    divTextRightElement.textContent = 'インストール';
+    divTextRightElement.textContent = atvJson.VIDEOAD_BTN_TEXT;
     divTextRightElement.classList.add('__button2');
 
     divRightElement.appendChild(divTextRightElement);
@@ -62,35 +64,35 @@ namespace advideo {
 
   const mkElement = (
     rk: string,
-    script: HTMLScriptElement,
-    limitTime: number　= 1000
+    atvJson: Jsontype,
+    script: HTMLScriptElement
   ): void => {
     // イベント登録
-    const viewthroughUse: string = script.getAttribute('data-atv-viewthrough-flag');
-    const videoElement: HTMLVideoElement = tag.mkVideoTag(script, rk, viewthroughUse? true: false);
+    const limitTime: number = Number(atvJson.VIDEOAD_VT_SECOND) * 1000;
     const mainDivElement: HTMLDivElement = document.createElement('div');
 
     load_css('../css/index.css');
 
-    mainDivElement.appendChild(videoElement);
-    videoElement.play();
-
     // viewthroughを利用するかしないかで、処理を分ける
-    if (viewthroughUse) {
+    let videoElement: HTMLVideoElement;
+    if (limitTime > 0) {
+      videoElement = tag.mkVideoTag(atvJson, rk, true);
+      mainDivElement.appendChild(videoElement);
       EventVideo.setEventForViewthrogh(videoElement, limitTime);
     } else {
+      videoElement = tag.mkVideoTag(atvJson, rk, false);
+      mainDivElement.appendChild(videoElement);
       EventNotViewThrough.setEventLoad(videoElement);
       mainDivElement.classList.add('__mainDivShadow');
-      const divTextElement = mkTextArea();
+      const divTextElement = mkTextArea(atvJson);
       mainDivElement.appendChild(divTextElement);
-      mainDivElement.setAttribute('id','___videostop');
+      mainDivElement.setAttribute('id', '___videostop');
     }
 
     // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
     os[oschecker.isolate()](videoElement);
     script.parentNode.insertBefore(mainDivElement, script);
-    mainDivElement.setAttribute("style", `width:${script.getAttribute('data-atv-width')}px; z-index:30;`);
-    script.removeAttribute('data-atv-rk');
+    mainDivElement.setAttribute("style", `width:${atvJson.WIDTH}px; z-index:30;`);
   };
 
   /**
@@ -101,13 +103,24 @@ namespace advideo {
     const scripts: NodeListOf<HTMLScriptElement> = document.getElementsByTagName('script');
     for (let num in scripts) {
       const script: HTMLScriptElement = scripts[num];
-      const rk: string = script.getAttribute('data-atv-rk');
-      if (!rk) {
+      const rkValue: string = script.getAttribute('data-atv-rk');
+      script.removeAttribute('data-atv-rk');
+      if (!rkValue) {
         continue;
       }
 
-      let limitTime: number =  Number(script.getAttribute('data-atv-viewthrough-time'));
-      mkElement(rk, script, limitTime);
+      // ブラウザ判定
+      let atvJson: Jsontype;
+      const domain: string = 'http://10.10.15.89:3000';
+
+      axios
+        .get(`${domain}/atvjson?atvrk=${rkValue}`)
+        .then(resdata => {
+          atvJson = resdata.data;
+          console.log(atvJson);
+          mkElement(rkValue, atvJson, script);
+        })
+        .catch(err => console.log(err));
       break;
     }
   };
@@ -150,8 +163,6 @@ namespace advideo {
       }
     },
   });
-
-  // ブラウザ判定
 
   // limitTimeはDBから取得する
   advideo.exec();

@@ -91,6 +91,7 @@
 
 .__divTextLeftElement
 , .__divTextRightElement {
+    box-sizing:border-box;
     width: 50%;
     /*height: 100px;*/
     padding: 5px;
