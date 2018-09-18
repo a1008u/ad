@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { EventResize } from "./EventResize";
 
-export namespace Filter{
-
+export namespace Filter {
   export let cleanUp = (videoElement: HTMLVideoElement, divElementFilter: HTMLDivElement) => {
     console.log('del_EventViewThrough');
     const mainDivElement:HTMLElement = videoElement.parentElement;
@@ -65,7 +64,6 @@ export namespace Filter{
       .catch(err => console.log(err));
 
     mainDivElement.appendChild(divElementFilter);
-
 
     EventResize.setEvent(videoTag, divElementFilter);
   };

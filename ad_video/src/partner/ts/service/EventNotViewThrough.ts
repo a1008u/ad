@@ -21,7 +21,6 @@ export namespace EventNotViewThrough {
     };
 
     videoElement.addEventListener('ended', () => {
-
       const divElementFilter: HTMLDivElement = document.createElement('div');
       Filter.execfil(videoElement, 'pause', divElementFilter);
       videoElement.setAttribute('__end','true');

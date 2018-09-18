@@ -20,8 +20,7 @@ const setEvent = (cookieKey: string = 'test'): void => {
   });
 };
 
-// p -> h -> is -> Lp
-
+// IE p -> h -> is -> Lp
 const doCookie = (domain: string) => {
   // イベント追加
   setEvent();
@@ -31,8 +30,7 @@ const doCookie = (domain: string) => {
   scripts[0].parentNode.insertBefore(imgTag, scripts[0]);
 };
 
-// V3
-
+// chrome V3
 const doJson = (domain: string) => {
   location.search
     .substring(1)
@@ -43,8 +41,12 @@ const doJson = (domain: string) => {
       Rx.from(
         axios.default.get(`${domain}/click_part2?${rkKey}=${rkValue}`)
       ).subscribe(
-        resdata => window.location.replace(resdata.data.url),
-        err => console.log(err)
+        resdata => {
+          // iframe作成
+          
+          window.location.replace(resdata.data.url);
+          // setCookieをする
+        }, err => console.log(err)
       );
     });
 };
