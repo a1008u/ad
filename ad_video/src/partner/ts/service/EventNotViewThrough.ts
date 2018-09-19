@@ -3,12 +3,6 @@ import {Filter} from "./Filter";
 
 export namespace EventNotViewThrough {
   /**
-   * <div class='__aparent'>
-   *  <div class='__button'>
-   *     <div class='__play'></div>
-   *  </div>
-   *  <video class='__video' __end='true'></video>
-   * </div>
    *
    * @param videoTag
    */

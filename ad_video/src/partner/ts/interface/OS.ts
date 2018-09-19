@@ -6,7 +6,7 @@ interface OS {
 }
 
 
-interface OS2 {
+interface OSFontsize {
     ios: (divTextLeftElement, divTextRightElement) => void;
     android: (vdivTextLeftElement, divTextRightElement) => void;
     windowsphone:  (divTextLeftElement, divTextRightElement) => void;
