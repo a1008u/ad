@@ -20,7 +20,7 @@ namespace advideo {
       }
 
       // ブラウザ判定
-      const domain: string = 'http://10.10.15.89:3000';
+      const domain: string = 'http://10.10.15.36:3000';
       axios
         .get(`${domain}/atvjson?atvrk=${rkValue}`)
         .then(resdata => resdata.data)

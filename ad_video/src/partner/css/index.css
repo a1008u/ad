@@ -87,6 +87,7 @@
 .__divTextElement {
     overflow:auto;
     padding: 10px;
+    font-family: 'Hiragino Kaku', 'Gothic Pro', 'Meiryo', 'Lucida','Grande', 'Verdana','MS PGothic','sans-serif'
 }
 
 .__divTextLeftElement
@@ -111,6 +112,10 @@
     cursor: pointer;
 }
 .__button2:hover {
+    background: rgba(169, 169, 169, 0.4);
+}
+
+.__button2:active {
     background: rgba(169, 169, 169, 0.4);
 }
 /* ---------------------- */

@@ -24,7 +24,9 @@ export namespace ElementFactory {
     return `<div class="__divTextElement">
               <div class="__divTextLeftElement" style="font-size:${leftSize}">${atvJson.BANNER_TEXT}</div>
                 <div class="__divTextRightElement">
-                <div class="__button2" style="font-size:${rightSize}">${atvJson.VIDEOAD_BTN_TEXT}</div>
+                <a href="https://www.google.co.jp/">
+                  <div class="__button2" style="font-size:${rightSize}">${atvJson.VIDEOAD_BTN_TEXT}</div>
+                </a>
               </div>
             </div>`;
   };

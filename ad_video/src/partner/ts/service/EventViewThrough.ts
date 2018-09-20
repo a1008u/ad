@@ -74,11 +74,11 @@ export namespace EventViewThrough {
 
       const divFilterOut$: Rx.Observable<any> = Rx.fromEvent($divElementFilter, 'touchend');
       divFilterOut$.subscribe(ev => {
-        ev.stopPropagation();
+        // ev.stopPropagation();
         Filter.deleteMethod($videoElement, playMode, ev.target);
       });
 
-      // スマホの傾き検知用
+      // スマホの傾き検知用（フィルター削除と動画再生を行う）
       const window$: Rx.Observable<any> = Rx.fromEvent(window, 'orientationchange');
       window$.subscribe(ev => {
         if ($divElementFilter) {
@@ -94,8 +94,8 @@ export namespace EventViewThrough {
     video$
       .pipe(filter(ev => ev.target.getAttribute('___filter') === 'off'))
       .subscribe(ev => {
-        // document.getElementById('__idd').innerText += '___filterを___filter';
-        ev.target.removeAttribute('___filter');
+        let $divFilter = ev.target;
+        $divFilter.removeAttribute('___filter');
       });
   };
 }

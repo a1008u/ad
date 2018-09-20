@@ -83,10 +83,10 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
       case '010011a8':
         return new Jsontype(
           '../mp4/ba8.mp4',
-          'MARVEL ー INFINITY WAR ー ',
+          'MARVEL - INFINITY WAR -',
           'https://www.google.com',
+          '180',
           '360',
-          '640',
           '0',
           '全容を今すぐ確認');
       case '010011a9':
@@ -123,6 +123,114 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'https://www.google.com',
           '180',
           '360',
+          '0',
+          'インストール');
+      case '010011a1_pc':
+        return new Jsontype(
+          '../mp4/ba1.mp4',
+          'ここは表示しません',
+          'https://www.google.com',
+          '360',
+          '640',
+          '10',
+          'ここは表示しません');
+      case '010011a2_pc':
+        return new Jsontype(
+          '../mp4/ba2.mp4',
+          'ここは表示しません',
+          'https://www.google.com',
+          '360',
+          '640',
+          '10',
+          'ここは表示しません');
+      case '010011a3_pc':
+        return new Jsontype(
+          '../mp4/ba3.mp4',
+          'ここは表示しません',
+          'https://www.google.com',
+          '360',
+          '640',
+          '10',
+          'ここは表示しません');
+      case '010011a4_pc':
+        return new Jsontype(
+          '../mp4/ba5.mp4',
+          'ここは表示しません',
+          'https://www.google.com',
+          '360',
+          '640',
+          '10',
+          'ここは表示しません');
+      case '010011a5_pc':
+        return new Jsontype(
+          '../mp4/ba5.mp4',
+          'ここは表示しません',
+          'https://www.google.com',
+          '360',
+          '640',
+          '10',
+          'ここは表示しません');
+      case '010011a6_pc':
+        return new Jsontype(
+          '../mp4/ba6.mp4',
+          'ここは表示しません',
+          'https://www.google.com',
+          '360',
+          '640',
+          '10',
+          'ここは表示しません');
+      case '010011a7_pc':
+        return new Jsontype(
+          '../mp4/ba7.mp4',
+          'ここは表示しません',
+          'https://www.google.com',
+          '360',
+          '640',
+          '8',
+          'ここは表示しません');
+      case '010011a8_pc':
+        return new Jsontype(
+          '../mp4/ba8.mp4',
+          'MARVEL - INFINITY WAR -',
+          'https://www.google.com',
+          '360',
+          '640',
+          '0',
+          '全容を今すぐ確認');
+      case '010011a9_pc':
+        return new Jsontype(
+          '../mp4/ba9.mp4',
+          'FF零式　- OP特典　- ',
+          'https://www.google.com',
+          '360',
+          '640',
+          '0',
+          'インストール');
+      case '010011a10_pc':
+        return new Jsontype(
+          '../mp4/ba10.mp4',
+          'FF零式　- OP特典　- ',
+          'https://www.google.com',
+          '360',
+        '640',
+          '0',
+          '詳細はこちら');
+      case '010011a11_pc':
+        return new Jsontype(
+          '../mp4/ba11.mp4',
+          'KH2.8　- OP特典　- ',
+          'https://www.google.com',
+          '360',
+        '640',
+          '0',
+          '詳細はこちら');
+      case '010011a12_pc':
+        return new Jsontype(
+          '../mp4/ba12.mp4',
+          'KH3　- 主題歌「誓い」　- ',
+          'https://www.google.com',
+          '360',
+          '640',
           '0',
           'インストール');
     }
