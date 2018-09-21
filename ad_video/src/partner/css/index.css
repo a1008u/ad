@@ -100,8 +100,17 @@
     text-align: center;
 }
 
-.__button2 {
-    display: inline-block;
+.__divTextRightElement > a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    tap-highlight-color: rgba(0, 0, 0, 0);
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.__atv_button {
+    display: inline-block; */
     margin: 0 auto;
     padding: 7px 20px;
     border: solid 2px rgba(169, 169, 169, 1);
@@ -110,12 +119,14 @@
     color: black;
     transition: .4s;
     cursor: pointer;
+
 }
-.__button2:hover {
+.__atv_button:hover {
     background: rgba(169, 169, 169, 0.4);
 }
 
-.__button2:active {
+.__atv_button:active {
     background: rgba(169, 169, 169, 0.4);
 }
 /* ---------------------- */
+

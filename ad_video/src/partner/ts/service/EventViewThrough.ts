@@ -4,36 +4,37 @@ import { Filter } from './Filter';
 import { tag } from '../../../service/tag';
 
 export namespace EventViewThrough {
-  export const setEventLoad = (videoTag: HTMLVideoElement, limitTime: number = 10000) => {
-    let count = 0;
-    let cntEvt;
+  export const setEventLoad = (videoTag: HTMLVideoElement, limitTime: number = 10000, $scriptElement) => {
+    if (!$scriptElement.getAttribute('atv-mode')) {
+      let count = 0;
+      let cntEvt;
+      // viewthrough
+      videoTag.addEventListener('play', () => {
+        if (count < limitTime) {
+          cntEvt = window.setInterval(() => {
+            count += 250;
+            if (count > limitTime) {
+              window.clearInterval(cntEvt);
+              let iframeTag: HTMLIFrameElement = tag.mkTrackingTag(videoTag);
+              videoTag.parentNode.insertBefore(iframeTag, videoTag);
 
-    // viewthrough
-    videoTag.addEventListener('play', () => {
-      if (count < limitTime) {
-        cntEvt = window.setInterval(() => {
-          count += 250;
-          if (count > limitTime) {
-            window.clearInterval(cntEvt);
-            let iframeTag: HTMLIFrameElement = tag.mkTrackingTag(videoTag);
-            videoTag.parentNode.insertBefore(iframeTag, videoTag);
+              // 使用決定用に一旦表示（実際は削除します） -----------------------------------------
+              const divElement: HTMLDivElement = document.createElement('div');
+              divElement.textContent = 'viewthroughをしました';
+              videoTag.parentNode.parentNode.insertBefore(divElement, videoTag.parentElement);
+              // ----------------------------------------------------------------------------
+            }
+          }, 250);
+        }
+      });
 
-            // 使用決定用に一旦表示（実際は削除します） -----------------------------------------
-            const divElement: HTMLDivElement = document.createElement('div');
-            divElement.textContent = 'viewthroughをしました';
-            videoTag.parentNode.parentNode.insertBefore(divElement, videoTag.parentElement);
-            // ----------------------------------------------------------------------------
-          }
-        }, 250);
-      }
-    });
-
-    // 要検討：viewthrough(pauseの場合は、繰り返し動作を止める)
-    videoTag.addEventListener('pause', () => {
-      if (cntEvt) {
-        window.clearInterval(cntEvt);
-      }
-    });
+      // 要検討：viewthrough(pauseの場合は、繰り返し動作を止める)
+      videoTag.addEventListener('pause', () => {
+        if (cntEvt) {
+          window.clearInterval(cntEvt);
+        }
+      });
+    }
   };
 
   /**

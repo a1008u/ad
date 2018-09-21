@@ -8,11 +8,11 @@ export namespace ViewThroughFactory {
     },
     android: (videoTag: HTMLVideoElement) => {
       console.log('smart phoneと判定');
-      EventViewThrough.setEventViewThroughPC(videoTag);
+      EventViewThrough.setEventViewThroughSmartPhone(videoTag);
     },
     windowsphone: (videoTag: HTMLVideoElement) => {
       console.log('smart phoneと判定');
-      EventViewThrough.setEventViewThroughPC(videoTag);
+      EventViewThrough.setEventViewThroughSmartPhone(videoTag);
     },
     pc: (videoTag: HTMLVideoElement) => {
       console.log('pcと判定');
