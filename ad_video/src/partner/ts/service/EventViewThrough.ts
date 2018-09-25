@@ -44,10 +44,12 @@ export namespace EventViewThrough {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'mouseover');
     video$.subscribe(ev => {
       const $videoElement: HTMLVideoElement = ev.target;
-      const $divElementFilter: HTMLDivElement = document.createElement('div');
       let playMode: string = $videoElement.getAttribute('playxxx');
+      let $divElementFilter = Filter.execfil($videoElement, playMode);
 
-      Filter.execfil($videoElement, playMode, $divElementFilter);
+      const mainDivElement: HTMLElement = $videoElement.parentElement;
+      mainDivElement.classList.add('__aparent');
+      mainDivElement.appendChild($divElementFilter);
 
       const divFilter$: Rx.Observable<any> = Rx.fromEvent($divElementFilter, 'click');
       divFilter$.subscribe(ev => {
@@ -68,10 +70,12 @@ export namespace EventViewThrough {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'touchstart');
     video$.subscribe(ev => {
       const $videoElement: HTMLVideoElement = ev.target;
-      const $divElementFilter: HTMLDivElement = document.createElement('div');
       let playMode: string = ev.target.getAttribute('playxxx');
+      let $divElementFilter = Filter.execfil($videoElement, playMode);
 
-      Filter.execfil($videoElement, playMode, $divElementFilter);
+      const mainDivElement: HTMLElement = $videoElement.parentElement;
+      mainDivElement.classList.add('__aparent');
+      mainDivElement.appendChild($divElementFilter);
 
       const divFilterOut$: Rx.Observable<any> = Rx.fromEvent($divElementFilter, 'touchend');
       divFilterOut$.subscribe(ev => {

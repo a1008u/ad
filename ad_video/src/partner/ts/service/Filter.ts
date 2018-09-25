@@ -33,11 +33,12 @@ export namespace Filter {
     deleteFilter(videoElement, divElementFilter);
   };
 
-  export let execfil = (videoTag: HTMLVideoElement, playMode: string, divElementFilter: HTMLDivElement) =>  {
-    const mainDivElement: HTMLElement = videoTag.parentElement;
-    mainDivElement.classList.add('__aparent');
+  //export let execfil = (videoTag: HTMLVideoElement, playMode: string, divElementFilter: HTMLDivElement) =>  {
+
+  export let execfil = (videoTag: HTMLVideoElement, playMode: string) => {
 
     // filterの設定
+    const divElementFilter: HTMLDivElement = document.createElement('div');
     divElementFilter.classList.add('__filter');
     divElementFilter.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px; padding: ${String(videoTag.clientHeight/4)}px; cursor:pointer; z-index:30; box-sizing:border-box;`);
 
@@ -58,7 +59,11 @@ export namespace Filter {
       })
       .catch(err => console.log(err));
 
-    mainDivElement.appendChild(divElementFilter);
+    // const mainDivElement: HTMLElement = videoTag.parentElement;
+    // mainDivElement.classList.add('__aparent');
+    // mainDivElement.appendChild(divElementFilter);
     EventResize.setEvent(videoTag, divElementFilter);
+
+    return divElementFilter;
   };
 }

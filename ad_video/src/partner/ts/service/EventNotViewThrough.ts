@@ -15,9 +15,13 @@ export namespace EventNotViewThrough {
     };
 
     videoElement.addEventListener('ended', () => {
-      const divElementFilter: HTMLDivElement = document.createElement('div');
-      Filter.execfil(videoElement, 'pause', divElementFilter);
-      videoElement.setAttribute('__end','true');
+
+      let divElementFilter = Filter.execfil(videoElement, 'pause');
+      const mainDivElement: HTMLElement = videoElement.parentElement;
+      mainDivElement.classList.add('__aparent');
+      mainDivElement.appendChild(divElementFilter);
+
+      videoElement.setAttribute('__end', 'true');
 
       const filter$: Rx.Observable<any> = Rx.fromEvent(divElementFilter, 'click');
       filter$.subscribe(ev => {

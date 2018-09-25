@@ -5,7 +5,7 @@ import { ElementFactory } from './service/Factory/ElementFactory';
 namespace advideo {
   // スタイルシートの読み込み
   export const loadCss = (src: string) => {
-    if(!document.getElementById('__atv_videocss')){
+    if (!document.getElementById('__atv_videocss')) {
       let head = document.getElementsByTagName('head')[0];
       let link = document.createElement('link');
       link.rel = 'stylesheet';
@@ -25,7 +25,7 @@ namespace advideo {
       // スクリプトタグにrkが存在しない場合は、次の「data-atv-rk」を確認する
       const rkValue: string = scriptElement.getAttribute('data-atv-rk');
       if (rkValue) {
-        const domain: string = 'http://10.10.15.36:3000';
+        const domain: string = 'http://10.10.15.56:3000';
         scriptElement.removeAttribute('data-atv-rk');
         axios
           .get(`${domain}/atvjson?atvrk=${rkValue}`)
