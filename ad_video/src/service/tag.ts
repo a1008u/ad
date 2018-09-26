@@ -1,3 +1,5 @@
+import { jsontype, Jsontype } from "./jsontype";
+
 export namespace tag {
   /**
    * aTagの生成
@@ -18,24 +20,28 @@ export namespace tag {
    * @returns {HTMLVideoElement}
    */
   export const mkVideoTag = (
-    script: HTMLScriptElement,
+    atvJson: Jsontype,
     rk: string,
     loop: boolean = true
   ): HTMLVideoElement => {
     const videoTag: HTMLVideoElement = document.createElement('video');
-    videoTag.height = parseInt(script.getAttribute('data-atv-height'));
-    videoTag.width = parseInt(script.getAttribute('data-atv-width'));
-    videoTag.src = script.getAttribute('data-atv-src');
+    // videoTag.height = parseInt(script.getAttribute('data-atv-height'));
+    // videoTag.width = parseInt(script.getAttribute('data-atv-width'));
+    videoTag.src = atvJson.IMAGE_URL;
+    videoTag.width = Number(atvJson.WIDTH);
+    //videoTag.height = Number(atvJson.HEIGHT);
     videoTag.muted = true;
     videoTag.loop = loop;
     videoTag.setAttribute('playsinline', 'playsinline');
     videoTag.setAttribute('data-atv-video', rk);
     videoTag.setAttribute("data-emergence", "hidden");
+    // videoTag.setAttribute('style', `width:${script.getAttribute('data-atv-width')}px; cursor:pointer;`);
+    videoTag.setAttribute('style', `cursor:pointer;`);
 
-    let cssType: string = script.getAttribute('test-s');
-    if (cssType) {
-      videoTag.setAttribute('test-css-type', cssType);
-    }
+    // let cssType: string = script.getAttribute('test-s');
+    // if (cssType) {
+    //   videoTag.setAttribute('test-css-type', cssType);
+    // }
 
     return videoTag;
   };

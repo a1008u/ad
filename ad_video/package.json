@@ -10,7 +10,7 @@
     "build-marchantdev": "webpack --config ./webpack.config.marchant_dev.js",
     "build:redirectdev": "webpack --config ./webpack.config.redirect_dev.js",
     "build:serverdev": "webpack --config ./webpack.config.server_dev.js",
-    "cpx:file": "cpx \"./src/**/**/*.{html,css,mp4}\" ./dist/server/statics",
+    "cpx:file": "cpx \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tslint -c tslint.json --exclude **/*.d.ts --exclude ./node_modules --project . --fix ./src/**/ts/*.ts --fix ./src/**/ts/**/*.ts --fix ./src/ts/*/*.ts --fix ./src/server/ts/*.ts"
   },

@@ -1,79 +1,41 @@
-import { videoEvent } from './service/videoEvent';
-import { tag } from '../../service/tag';
 import * as emergence from '../../../node_modules/emergence.js/src/emergence';
+import axios from 'axios';
+import { ElementFactory } from './service/Factory/ElementFactory';
 
 namespace advideo {
-  const mkElement = (
-    rk: string,
-    script: HTMLScriptElement,
-    limitTime: number
-  ): void => {
-    // タグ生成
-    const aTag: HTMLAnchorElement = tag.mkAtag(rk);
-
-    // イベント登録
-    const viewthroughUse: string = script.getAttribute('data-atv-viewthrough-flag');
-    const videoTag: HTMLVideoElement = tag.mkVideoTag(script, rk, viewthroughUse? true: false);
-
-    if (viewthroughUse) {
-      // if(true)の条件はあくまで、サンプルのため本番では削除する
-
-      limitTime = Number(script.getAttribute('data-atv-viewthrough-time'));
-
-      if (script.getAttribute('data-atv-not-anchor')) {
-        videoEvent.setEventForTest(videoTag, limitTime);
-        script.parentNode.insertBefore(videoTag, script);
-      } else {
-        aTag.appendChild(videoTag);
-        videoEvent.setEvent(videoTag, aTag, limitTime);
-        // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
-        script.parentNode.insertBefore(aTag, script);
-      }
-
-    } else {
-
-      // スタイルシートの読み込み
-      let load_css = (src) => {
-        let head = document.getElementsByTagName('head')[0];
-        let link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.type = "text/css";
-        link.href = src;
-        link.classList.add('__videocss');
-        head.insertBefore(link, head.firstChild);
-      };
-
-      aTag.appendChild(videoTag);
-      let cssElements = document.getElementsByClassName('__videocss');
-      if (cssElements.length === 0) {
-        load_css('../css/index.css');
-      }
-
-      videoEvent.setEventLoad(videoTag);
-        // メイン処理(タグ設定 + スクリプトのrk削除 + 表示画像の起動)
-        script.parentNode.insertBefore(aTag, script);
+  // スタイルシートの読み込み
+  export const loadCss = (src: string) => {
+    if (!document.getElementById('__atv_videocss')) {
+      let head = document.getElementsByTagName('head')[0];
+      let link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = src;
+      link.setAttribute('id', '__atv_videocss');
+      head.insertBefore(link, head.firstChild);
     }
-
-    script.removeAttribute('data-atv-rk');
   };
 
   /**
    * メイン機能
-   * @param limitTime
+   * @param viewThroughTime
    */
-  export let exec = (limitTime: number): void => {
-    // tslint:disable-next-line:prettier
-    const scripts: NodeListOf<HTMLScriptElement> = document.getElementsByTagName('script');
-    for (let num in scripts) {
-      const script: HTMLScriptElement = scripts[num];
-      const rk: string = script.getAttribute('data-atv-rk');
-      if (!rk) {
-        continue;
-      }
+  export const exec = (): void => {
+    [].forEach.call(document.getElementsByTagName('script'), scriptElement => {
+      // スクリプトタグにrkが存在しない場合は、次の「data-atv-rk」を確認する
+      const rkValue: string = scriptElement.getAttribute('data-atv-rk');
+      if (rkValue) {
+        const domain: string = 'http://10.10.15.81:3000';
 
-      mkElement(rk, script, limitTime);
-      break;
-    }
+        // const domain: string = 'http://actr-test.intra.accesstrade.net/video';
+        scriptElement.removeAttribute('data-atv-rk');
+        axios
+          .get(`${domain}/atvjson?atvrk=${rkValue}`)
+          .then(resdata => resdata.data)
+          .then(atvJson => ElementFactory.mkElement(rkValue, atvJson, scriptElement))
+          .catch(err => console.log(err));
+      }
+    });
   };
 }
 
@@ -93,30 +55,24 @@ namespace advideo {
     callback: (element: HTMLVideoElement, state) => {
       if (state === 'visible') {
         if(element.getAttribute('__end') !== undefined && element.getAttribute('__end') === 'true') {
-          console.log('起動しない');
+          // 何も処理しない
         } else {
           let playMode: string = element.getAttribute('playxxx');
           if (playMode === 'pause') {
-            console.log('Element is visible1.');
             element.pause();
           } else {
-            console.log('Element is visible2.');
             element.play();
           }
         }
       } else if (state === 'reset') {
-        console.log('Element is hidden with reset.');
         element.pause();
       } else if (state === 'noreset') {
-        console.log('Element is hidden with NO reset.');
         element.pause();
       }
     },
   });
 
-  // ブラウザ判定
-
-  // limitTimeはDBから取得する
-  let limitTime: number = 1000;
-  advideo.exec(limitTime);
+  // viewThroughTimeはDBから取得する
+  advideo.loadCss('../css/index.css');
+  advideo.exec();
 })(window);
