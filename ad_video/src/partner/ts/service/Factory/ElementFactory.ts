@@ -9,8 +9,23 @@ import { ViewThroughFactory } from "./ViewThroughFactory";
 export namespace ElementFactory {
   // AdAreaの作成
   const mkAdArea = (atvJson: Jsontype, $scriptElement: HTMLScriptElement): string => {
-    let [leftSize, rightSize]: [string, string] = osFontSize.getSize[oschecker.isolate()]();
-    const hrefValue: string = ($scriptElement.getAttribute('atv-mode')) ? '#!' : atvJson.HREF_URL;
+    // let [leftSize, rightSize]: [string, string] = osFontSize.getSize[oschecker.isolate()]();
+    // const hrefValue: string = ($scriptElement.getAttribute('atv-mode')) ? '#!' : atvJson.HREF_URL;
+
+    let leftSize: string;
+    let rightSize: string;
+    let hrefValue: string;
+    if ($scriptElement.getAttribute('atv-mode') === 'pc') {
+      [leftSize, rightSize] = ['28px', '24px'];
+      hrefValue = '#!';
+    } else if ($scriptElement.getAttribute('atv-mode') === 'sp') {
+      [leftSize, rightSize] = ['16px', '12px'];
+      hrefValue = '#!';
+    } else {
+      [leftSize, rightSize] = osFontSize.getSize[oschecker.isolate()]();
+      hrefValue = atvJson.HREF_URL;
+    }
+
     return `<div class="__divTextElement">
               <div class="__divTextLeftElement" style="font-size:${leftSize}">${atvJson.BANNER_TEXT}</div>
               <div class="__divTextRightElement">

@@ -33,8 +33,6 @@ export namespace Filter {
     deleteFilter(videoElement, divElementFilter);
   };
 
-  //export let execfil = (videoTag: HTMLVideoElement, playMode: string, divElementFilter: HTMLDivElement) =>  {
-
   export let execfil = (videoTag: HTMLVideoElement, playMode: string) => {
 
     // filterの設定
@@ -59,9 +57,6 @@ export namespace Filter {
       })
       .catch(err => console.log(err));
 
-    // const mainDivElement: HTMLElement = videoTag.parentElement;
-    // mainDivElement.classList.add('__aparent');
-    // mainDivElement.appendChild(divElementFilter);
     EventResize.setEvent(videoTag, divElementFilter);
 
     return divElementFilter;

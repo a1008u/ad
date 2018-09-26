@@ -25,7 +25,9 @@ namespace advideo {
       // スクリプトタグにrkが存在しない場合は、次の「data-atv-rk」を確認する
       const rkValue: string = scriptElement.getAttribute('data-atv-rk');
       if (rkValue) {
-        const domain: string = 'http://10.10.15.56:3000';
+        const domain: string = 'http://10.10.15.81:3000';
+
+        // const domain: string = 'http://actr-test.intra.accesstrade.net/video';
         scriptElement.removeAttribute('data-atv-rk');
         axios
           .get(`${domain}/atvjson?atvrk=${rkValue}`)
