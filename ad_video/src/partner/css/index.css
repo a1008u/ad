@@ -1,9 +1,15 @@
+body {
+    overflow: hidden;
+    margin: 0;
+    background-color: transparent;
+}
+
 .__mainDivShadow {
     /*border-radius: 6px;*/
     align-items: stretch;
     box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
 }
-.__aparent {
+.atvMain {
     position: relative;
     display: block;
 }

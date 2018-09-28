@@ -4,7 +4,7 @@ import { EventResize } from "./EventResize";
 export namespace Filter {
   export let cleanUp = (videoElement: HTMLVideoElement, divElementFilter: HTMLDivElement) => {
     const mainDivElement:HTMLElement = videoElement.parentElement;
-    mainDivElement.removeAttribute('__aparent');
+    mainDivElement.removeAttribute('atvMain');
     mainDivElement.removeChild(divElementFilter);
   };
 
@@ -40,7 +40,7 @@ export namespace Filter {
     divElementFilter.classList.add('__filter');
     divElementFilter.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px; padding: ${String(videoTag.clientHeight/4)}px; cursor:pointer; z-index:30; box-sizing:border-box;`);
 
-    const svgFilePath: string = playMode === 'pause' ? '../svg/play-circle-solid.svg': '../svg/pause-circle-solid.svg';
+    const svgFilePath: string = playMode === 'pause' ? '../../svg/play-circle-solid.svg': '../../svg/pause-circle-solid.svg';
     const mode: string = playMode === 'pause' ? 'play': 'pause';
     axios
       .get(svgFilePath)

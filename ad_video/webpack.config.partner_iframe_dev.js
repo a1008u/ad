@@ -1,11 +1,11 @@
 module.exports = {
 
     entry: {
-        "ts":'./src/partner/ts/main.ts'
+        "ts":'./src/partner/ts/iframe/main.ts'
     },
 
     output: {
-        filename: "./server/statics/partner/js/atv_min.js"
+        filename: "./server/statics/partner/js/iframe/atv_min.js"
     },
     mode: 'development'
     ,
@@ -25,4 +25,5 @@ module.exports = {
         ]
     },
     devtool:"source-map"
+
 };

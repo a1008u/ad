@@ -25,25 +25,25 @@ export namespace tag {
     loop: boolean = true
   ): HTMLVideoElement => {
     const videoTag: HTMLVideoElement = document.createElement('video');
-    // videoTag.height = parseInt(script.getAttribute('data-atv-height'));
-    // videoTag.width = parseInt(script.getAttribute('data-atv-width'));
     videoTag.src = atvJson.IMAGE_URL;
     videoTag.width = Number(atvJson.WIDTH);
-    //videoTag.height = Number(atvJson.HEIGHT);
     videoTag.muted = true;
     videoTag.loop = loop;
     videoTag.setAttribute('playsinline', 'playsinline');
     videoTag.setAttribute('data-atv-video', rk);
     videoTag.setAttribute("data-emergence", "hidden");
-    // videoTag.setAttribute('style', `width:${script.getAttribute('data-atv-width')}px; cursor:pointer;`);
     videoTag.setAttribute('style', `cursor:pointer;`);
 
-    // let cssType: string = script.getAttribute('test-s');
-    // if (cssType) {
-    //   videoTag.setAttribute('test-css-type', cssType);
-    // }
-
     return videoTag;
+  };
+
+  export const mkVideoElement = (atvJson: Jsontype, loop: string) => {
+    const $videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
+    $videoElement.setAttribute('src', atvJson.IMAGE_URL);
+    $videoElement.setAttribute('width', atvJson.WIDTH);
+    $videoElement.setAttribute('loop', loop);
+    $videoElement.setAttribute('data-atv-video', atvJson.ATV_RK);
+    return $videoElement;
   };
 
   /**
@@ -51,16 +51,29 @@ export namespace tag {
    * @param {HTMLVideoElement} videoTag
    * @returns {HTMLIFrameElement}
    */
-  export const mkTrackingTag = (
-    videoTag: HTMLVideoElement
+  export const mkIframeElement = (
+    src: string
+    , width: string
+    , height: string
   ): HTMLIFrameElement => {
     let ifr: HTMLIFrameElement = document.createElement('iframe');
-    ifr.src =
-      '../../redirect/html/fm.html?rk=' +
-      videoTag.getAttribute('data-atv-video');
-    ifr.style.display = 'none';
-    ifr.width = '0';
-    ifr.height = '0';
+    ifr.src = src;
+    ifr.width = width;
+    ifr.height = height;
+    ifr.name='iframe';
+    ifr.setAttribute("data-emergence", "hidden");
+    ifr.setAttribute('class', '__mainDivShadow ');
+    return ifr;
+  };
+
+  export const mkIframeElementForTracking = (
+    src: string
+    , width: string
+    , height: string
+    , display: string
+  ): HTMLIFrameElement => {
+    const ifr: HTMLIFrameElement = mkIframeElement(src, width, height);
+    ifr.style.display = display;
     return ifr;
   };
 

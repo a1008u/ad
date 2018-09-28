@@ -16,6 +16,8 @@ export class Jsontype {
   WIDTH: string;
   VIDEOAD_VT_SECOND: string;
   VIDEOAD_BTN_TEXT: string;
+  ATV_RK: string;
+  ATV_MODE: string;
 
   constructor(IMAGE_URL,BANNER_TEXT,HREF_URL,HEIGHT,WIDTH,VIDEOAD_VT_SECOND,VIDEOAD_BTN_TEXT) {
     this.BANNER_TEXT = BANNER_TEXT;
@@ -25,5 +27,7 @@ export class Jsontype {
     this.VIDEOAD_VT_SECOND = VIDEOAD_VT_SECOND;
     this.WIDTH = WIDTH;
     this.HEIGHT = HEIGHT;
+    this.ATV_RK = '';
+    this.ATV_MODE = '';
   }
 }
