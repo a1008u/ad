@@ -24,7 +24,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'ここは表示しません',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '10',
           'ここは表示しません');
       case '010011a2':
@@ -33,7 +33,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'ここは表示しません',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '20',
           'ここは表示しません');
       case '010011a3':
@@ -42,7 +42,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'ここは表示しません',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '5',
           'ここは表示しません');
       case '010011a4':
@@ -51,7 +51,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'ここは表示しません',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '8',
           'ここは表示しません');
       case '010011a5':
@@ -60,7 +60,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'ここは表示しません',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '8',
           'ここは表示しません');
       case '010011a6':
@@ -69,7 +69,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'ここは表示しません',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '8',
           'ここは表示しません');
       case '010011a7':
@@ -78,7 +78,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'ここは表示しません',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '8',
           'ここは表示しません');
       case '010011a8':
@@ -87,7 +87,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'MARVEL - INFINITY WAR -',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '0',
           '全容を今すぐ確認');
       case '010011a9':
@@ -96,7 +96,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'FF零式　- OP特典　- ',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '0',
           'インストール');
       case '010011a10':
@@ -105,7 +105,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'FF零式　- OP特典　- ',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '0',
           '詳細はこちら');
       case '010011a11':
@@ -114,7 +114,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'KH2.8　- OP特典　- ',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '0',
           '詳細はこちら');
       case '010011a12':
@@ -123,7 +123,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'KH3　- 主題歌「誓い」　- ',
           'https://www.google.com',
           '180',
-          '360',
+          '320',
           '0',
           'インストール');
       case '010011a1_pc':

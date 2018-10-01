@@ -62,6 +62,7 @@ export namespace tag {
     ifr.src = src;
     ifr.width = width;
     ifr.height = height;
+    ifr.setAttribute('frameborder', '0');
     ifr.name='iframe';
     ifr.setAttribute("data-emergence", "hidden");
     ifr.setAttribute('style', 'align-items: stretch; box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);');

@@ -128,7 +128,7 @@ body {
 .__atv_button {
     display: inline-block; */
     margin: 0 auto;
-    padding: 7px 20px;
+    padding: 7px 10px;
     border: solid 2px rgba(169, 169, 169, 1);
     border-radius: 10px;
     text-decoration: none;
@@ -146,3 +146,20 @@ body {
 }
 /* ---------------------- */
 
+
+.___ani {
+    float:left;
+    width:50px;
+    height:40px;
+    animation-name: 'anime';
+    animation-duration: 3s;
+    animation-timing-function: ease;
+    animation-delay:0;
+    animation-iteration-count: infinite;
+    animation-direction:alternate;
+}
+
+@keyframes 'anime' {
+    0% {    opacity:1;  }
+    100% {  opacity:0;  }
+}
