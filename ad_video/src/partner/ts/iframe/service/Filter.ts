@@ -24,7 +24,7 @@ export namespace Filter {
   };
 
   export let deleteMethod = (videoElement, playMode, divElementFilter) => {
-    console.log('クリックを検知');
+    console.log('playModeは【 '+playMode+' 】');
     if (playMode === 'pause') {
       videoPlay(videoElement);
     } else {
@@ -57,6 +57,7 @@ export namespace Filter {
       })
       .catch(err => console.log(err));
 
+    // リサイズしたら動くようにする
     EventResize.setEvent(videoTag, divElementFilter);
 
     return divElementFilter;

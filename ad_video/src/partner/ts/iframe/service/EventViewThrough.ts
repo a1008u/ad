@@ -153,7 +153,7 @@ export namespace EventViewThrough {
       let $divElementFilter = Filter.execfil($videoElement, playMode);
 
       const mainDivElement: HTMLElement = $videoElement.parentElement;
-      mainDivElement.classList.add('__aparent');
+      // mainDivElement.classList.add('__aparent');
       mainDivElement.appendChild($divElementFilter);
 
       const divFilter$: Rx.Observable<any> = Rx.fromEvent($divElementFilter, 'click');
@@ -179,13 +179,14 @@ export namespace EventViewThrough {
       let $divElementFilter = Filter.execfil($videoElement, playMode);
 
       const mainDivElement: HTMLElement = $videoElement.parentElement;
-      mainDivElement.classList.add('__aparent');
+      // mainDivElement.classList.add('__aparent');
       mainDivElement.appendChild($divElementFilter);
 
       const divFilterOut$: Rx.Observable<any> = Rx.fromEvent($divElementFilter, 'touchend');
       divFilterOut$.subscribe(ev => {
         // ev.stopPropagation();
         Filter.deleteMethod($videoElement, playMode, ev.target);
+        console.log("touchend")
       });
 
       // スマホの傾き検知用（フィルター削除と動画再生を行う）
@@ -201,11 +202,11 @@ export namespace EventViewThrough {
       });
     });
 
-    video$
-      .pipe(filter(ev => ev.target.getAttribute('___filter') === 'off'))
-      .subscribe(ev => {
-        let $divFilter = ev.target;
-        $divFilter.removeAttribute('___filter');
-      });
+    // video$
+    //   .pipe(filter(ev => ev.target.getAttribute('___filter') === 'off'))
+    //   .subscribe(ev => {
+    //     let $divFilter = ev.target;
+    //     $divFilter.removeAttribute('___filter');
+    //   });
   };
 }

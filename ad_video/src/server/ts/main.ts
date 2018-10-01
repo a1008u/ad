@@ -43,7 +43,8 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'https://www.google.com',
           '180',
           '360',
-          '5','ここは表示しません');
+          '5',
+          'ここは表示しません');
       case '010011a4':
         return new Jsontype(
           '../../mp4/ba4.mp4',
@@ -221,7 +222,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
           'KH2.8　- OP特典　- ',
           'https://www.google.com',
           '360',
-        '640',
+          '640',
           '0',
           '詳細はこちら');
       case '010011a12_pc':

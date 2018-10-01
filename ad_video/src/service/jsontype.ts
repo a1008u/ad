@@ -18,6 +18,7 @@ export class Jsontype {
   VIDEOAD_BTN_TEXT: string;
   ATV_RK: string;
   ATV_MODE: string;
+  ADAREA_HEIGHT: string;
 
   constructor(IMAGE_URL,BANNER_TEXT,HREF_URL,HEIGHT,WIDTH,VIDEOAD_VT_SECOND,VIDEOAD_BTN_TEXT) {
     this.BANNER_TEXT = BANNER_TEXT;
@@ -29,5 +30,6 @@ export class Jsontype {
     this.HEIGHT = HEIGHT;
     this.ATV_RK = '';
     this.ATV_MODE = '';
+    this.ADAREA_HEIGHT = '';
   }
 }

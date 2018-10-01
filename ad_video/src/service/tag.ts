@@ -27,6 +27,7 @@ export namespace tag {
     const videoTag: HTMLVideoElement = document.createElement('video');
     videoTag.src = atvJson.IMAGE_URL;
     videoTag.width = Number(atvJson.WIDTH);
+    // videoTag.height = Number(atvJson.HEIGHT);
     videoTag.muted = true;
     videoTag.loop = loop;
     videoTag.setAttribute('playsinline', 'playsinline');
@@ -41,6 +42,7 @@ export namespace tag {
     const $videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
     $videoElement.setAttribute('src', atvJson.IMAGE_URL);
     $videoElement.setAttribute('width', atvJson.WIDTH);
+    // $videoElement.setAttribute('height', atvJson.HEIGHT);
     $videoElement.setAttribute('loop', loop);
     $videoElement.setAttribute('data-atv-video', atvJson.ATV_RK);
     return $videoElement;
@@ -62,7 +64,7 @@ export namespace tag {
     ifr.height = height;
     ifr.name='iframe';
     ifr.setAttribute("data-emergence", "hidden");
-    ifr.setAttribute('class', '__mainDivShadow ');
+    ifr.setAttribute('style', 'align-items: stretch; box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);');
     return ifr;
   };
 

@@ -115,10 +115,12 @@ export namespace ElementFactory {
       hrefValue = atvJson.HREF_URL;
     }
 
-    return `<div class="__divTextElement">
-              <div class="__divTextLeftElement" style="font-size:${leftSize}">${atvJson.BANNER_TEXT}</div>
+    return `<div class="__divTextElement" style="height:${atvJson.ADAREA_HEIGHT}px">
+              <div class="__divTextLeftElement" style="font-size:${leftSize}">
+                <span class="__atv_text">${atvJson.BANNER_TEXT}</span>
+              </div>
               <div class="__divTextRightElement">
-                <a href="${hrefValue}/">
+                <a class="__atv_text" href="${hrefValue}/">
                   <span class="__atv_button" ontouchstart="" style="font-size:${rightSize}">${atvJson.VIDEOAD_BTN_TEXT}</>
                 </a>
               </div>
@@ -174,6 +176,7 @@ export namespace ElementFactory {
     ViewThroughFactory.osEvent[oschecker.isolate()](videoElement);
 
     window.addEventListener('message', (event) => {
+      console.log("kidou-----")
 
       if (event.data === 'pause') {
         videoElement.pause();
