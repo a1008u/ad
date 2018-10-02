@@ -157,9 +157,72 @@ body {
     animation-delay:0;
     animation-iteration-count: 1;
     animation-direction:alternate;
+
+    -moz-animation-name: 'anime';
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: ease;
+    -moz-animation-delay:0;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-direction:alternate;
+
+    -webkit-animation-name: 'anime';
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-delay:0;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction:alternate;
+
+    -o-animation-name: 'anime';
+    -o-animation-duration: 1s;
+    -o-animation-timing-function: ease;
+    -o-animation-delay:0;
+    -o-animation-iteration-count: 1;
+    -o-animation-direction:alternate;
+
+    -ms-animation-name: 'anime';
+    -ms-animation-duration: 1s;
+    -ms-animation-timing-function: ease;
+    -ms-animation-delay:0;
+    -ms-animation-iteration-count: 1;
+    -ms-animation-direction:alternate;
 }
 
 @keyframes 'anime' {
     0% {    opacity:1;  }
+    25% {  opacity:0.75;  }
+    50% {  opacity:0.5;  }
+    75% {  opacity:0.25;  }
+    100% {  opacity:0;  }
+}
+
+@-moz-keyframes 'anime' {
+    0% {    opacity:1;  }
+    25% {  opacity:0.75;  }
+    50% {  opacity:0.5;  }
+    75% {  opacity:0.25;  }
+    100% {  opacity:0;  }
+}
+
+@-webkit-keyframes 'anime' {
+    0% {    opacity:1;  }
+    25% {  opacity:0.75;  }
+    50% {  opacity:0.5;  }
+    75% {  opacity:0.25;  }
+    100% {  opacity:0;  }
+}
+
+@-o-keyframes 'anime' {
+    0% {    opacity:1;  }
+    25% {  opacity:0.75;  }
+    50% {  opacity:0.5;  }
+    75% {  opacity:0.25;  }
+    100% {  opacity:0;  }
+}
+
+@-ms-keyframes 'anime' {
+    0% {    opacity:1;  }
+    25% {  opacity:0.75;  }
+    50% {  opacity:0.5;  }
+    75% {  opacity:0.25;  }
     100% {  opacity:0;  }
 }
