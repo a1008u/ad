@@ -152,10 +152,10 @@ body {
     width:50px;
     height:40px;
     animation-name: 'anime';
-    animation-duration: 3s;
+    animation-duration: 1s;
     animation-timing-function: ease;
     animation-delay:0;
-    animation-iteration-count: infinite;
+    animation-iteration-count: 1;
     animation-direction:alternate;
 }
 

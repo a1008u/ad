@@ -188,83 +188,90 @@ export namespace EventViewThrough {
    */
   export const setEventViewThroughSmartPhone = (videoElement: HTMLVideoElement) => {
 
-    // const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'click');
-    // video$.subscribe(ev => {
-    //   const $videoElement: HTMLVideoElement = ev.target;
-    //   let playMode: string = $videoElement.getAttribute('playxxx');
-    
-    //   let mode = $videoElement.getAttribute('playxxx');
-    //   if(mode === "pause") {
-    //     $videoElement.play();
-    //     videoElement.setAttribute('playxxx', 'play');
-    //   } else if(mode === "play")  {
-    //     videoElement.pause();
-    //     videoElement.setAttribute('playxxx', 'pause');
-    //   } else {
-    //     $videoElement.play();
-    //     videoElement.setAttribute('playxxx', 'play');
-    //   }
-
-    //   exc2($videoElement, playMode);
-
-    //   // const divFilter$: Rx.Observable<any> = Rx.fromEvent($divElementFilter, 'transitionend');
-    //   // divFilter$.subscribe(ev => {
-    //   //   Filter.deleteMethod($videoElement, playMode, ev.target);
-    //   // });
-    // });
-
-    // async function exc2($videoElement: HTMLVideoElement, playMode: string) {
-    //   let $divElementFilter: HTMLDivElement = await Filter.execfil($videoElement, playMode);
-    //   const mainDivElement: HTMLElement = $videoElement.parentElement;
-    //   mainDivElement.appendChild($divElementFilter);
-    // }
-
-    const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'touchstart');
+    const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'click');
     video$.subscribe(ev => {
       const $videoElement: HTMLVideoElement = ev.target;
-      let playMode: string = ev.target.getAttribute('playxxx');
-      let $divElementFilter = Filter.execfil($videoElement, playMode);
+      let playMode: string = $videoElement.getAttribute('playxxx');
 
-      const mainDivElement: HTMLElement = $videoElement.parentElement;
-      $divElementFilter.then($$e =>
-        mainDivElement.appendChild($$e)
-      )
-      // mainDivElement.appendChild($divElementFilter);
+      let mode = $videoElement.getAttribute('playxxx');
+      if(mode === "pause") {
+        $videoElement.play();
+        videoElement.setAttribute('playxxx', 'play');
+      } else if(mode === "play")  {
+        videoElement.pause();
+        videoElement.setAttribute('playxxx', 'pause');
+      } else {
+        videoElement.pause();
+        videoElement.setAttribute('playxxx', 'pause');
+      }
 
-      $divElementFilter.then($$e => {
-        const divFilterOut$: Rx.Observable<any> = Rx.fromEvent($$e, 'touchend');
-        divFilterOut$.subscribe(ev => {
-          Filter.deleteMethod($videoElement, playMode, ev.target);
-          console.log("touchend")
-        });
-      });
-      // const divFilterOut$: Rx.Observable<any> = Rx.fromEvent($divElementFilter, 'touchend');
-      // divFilterOut$.subscribe(ev => {
-      //   Filter.deleteMethod($videoElement, playMode, ev.target);
-      //   console.log("touchend")
-      // });
+      exc2($videoElement, playMode);
 
-      // スマホの傾き検知用（フィルター削除と動画再生を行う）
-      const window$: Rx.Observable<any> = Rx.fromEvent(window, 'orientationchange');
-      window$.subscribe(ev => {
-        if ($divElementFilter) {
-          $divElementFilter.then( $$e =>
-            Filter.deleteFilter($videoElement, $$e)
-          );
-          // Filter.deleteFilter($videoElement, $divElementFilter);
-        }
 
-        if (playMode === 'pause') {
-          Filter.videoPlay($videoElement);
-        }
+      const divFilter$: Rx.Observable<any> = Rx.fromEvent(document.getElementById('__pause'), 'animationend');
+      divFilter$.subscribe(ev => {
+        Filter.deleteMethod($videoElement, playMode, ev.target);
       });
     });
 
-    video$
-      .pipe(filter(ev => ev.target.getAttribute('___filter') === 'off'))
-      .subscribe(ev => {
-        let $divFilter = ev.target;
-        $divFilter.removeAttribute('___filter');
+    async function exc2($videoElement: HTMLVideoElement, playMode: string) {
+      let $divElementFilter: HTMLDivElement = await Filter.execfil($videoElement, playMode);
+      const mainDivElement: HTMLElement = $videoElement.parentElement;
+      mainDivElement.appendChild($divElementFilter);
+
+      const divFilter$: Rx.Observable<any> = Rx.fromEvent($divElementFilter, 'animationend');
+      divFilter$.subscribe(ev => {
+        Filter.deleteMethod($videoElement, playMode, ev.target);
       });
+    }
   };
+
+  //   const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'touchstart');
+  //   video$.subscribe(ev => {
+  //     const $videoElement: HTMLVideoElement = ev.target;
+  //     let playMode: string = ev.target.getAttribute('playxxx');
+  //     let $divElementFilter = Filter.execfil($videoElement, playMode);
+
+  //     const mainDivElement: HTMLElement = $videoElement.parentElement;
+  //     $divElementFilter.then($$e =>
+  //       mainDivElement.appendChild($$e)
+  //     )
+  //     // mainDivElement.appendChild($divElementFilter);
+
+  //     $divElementFilter.then($$e => {
+  //       const divFilterOut$: Rx.Observable<any> = Rx.fromEvent($$e, 'touchend');
+  //       divFilterOut$.subscribe(ev => {
+  //         Filter.deleteMethod($videoElement, playMode, ev.target);
+  //         console.log("touchend")
+  //       });
+  //     });
+  //     // const divFilterOut$: Rx.Observable<any> = Rx.fromEvent($divElementFilter, 'touchend');
+  //     // divFilterOut$.subscribe(ev => {
+  //     //   Filter.deleteMethod($videoElement, playMode, ev.target);
+  //     //   console.log("touchend")
+  //     // });
+
+  //     // スマホの傾き検知用（フィルター削除と動画再生を行う）
+  //     const window$: Rx.Observable<any> = Rx.fromEvent(window, 'orientationchange');
+  //     window$.subscribe(ev => {
+  //       if ($divElementFilter) {
+  //         $divElementFilter.then( $$e =>
+  //           Filter.deleteFilter($videoElement, $$e)
+  //         );
+  //         // Filter.deleteFilter($videoElement, $divElementFilter);
+  //       }
+
+  //       if (playMode === 'pause') {
+  //         Filter.videoPlay($videoElement);
+  //       }
+  //     });
+  //   });
+
+  //   video$
+  //     .pipe(filter(ev => ev.target.getAttribute('___filter') === 'off'))
+  //     .subscribe(ev => {
+  //       let $divFilter = ev.target;
+  //       $divFilter.removeAttribute('___filter');
+  //     });
+  // };
 }

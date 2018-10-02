@@ -56,36 +56,9 @@ export namespace Filter {
       })
       .catch(err => console.log(err));
 
+      // リサイズしたら動くようにする
+      // EventResize.setEvent(videoTag, divElementFilter);
+
     return divElementFilter;
-
-    // export let execfil=(videoTag: HTMLVideoElement, playMode: string)=>{
-
-    // filterの設定
-    // const divElementFilter: HTMLDivElement = document.createElement('div');
-    // divElementFilter.classList.add('__filter');
-    // divElementFilter.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px; padding: ${String(videoTag.clientHeight/4)}px; cursor:pointer; z-index:30; box-sizing:border-box;`);
-
-    // const svgFilePath: string = playMode === 'pause' ? '../../svg/play-circle-solid.svg': '../../svg/pause-circle-solid.svg';
-    // const mode: string = playMode === 'pause' ? 'play': 'pause';
-    // axios
-    //   .get(svgFilePath)
-    //   .then(resdata => resdata.data)
-    //   .then(svg => {
-    //     const objectElement: HTMLObjectElement = document.createElement('object');
-    //     objectElement.setAttribute('id', '___obj');
-    //     objectElement.innerHTML = svg;
-    //     objectElement.setAttribute("style", `width:${String(videoTag.clientWidth / 2)}px; height:${String(videoTag.clientHeight / 2)}px; pointer-events: none;`);
-    //     objectElement.setAttribute('___text', mode);
-    //     divElementFilter.appendChild(objectElement);
-    //     divElementFilter.classList.add('___ani');
-    //     const svgElement = divElementFilter.firstElementChild.firstElementChild;
-    //     svgElement.setAttribute("style", `width:${String(videoTag.clientWidth / 2)}px; height:${String(videoTag.clientHeight / 2)}px; pointer-events: none;`);
-    //   })
-    //   .catch(err => console.log(err));
-
-    // // リサイズしたら動くようにする
-    // EventResize.setEvent(videoTag, divElementFilter);
-
-    // return divElementFilter;
-  };
+  }
 }
