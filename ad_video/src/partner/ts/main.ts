@@ -66,8 +66,8 @@ async function getJson(domain: string, rkValue: string): Promise<Jsontype> {
 }
 
 async function mkIframe(scriptElement: HTMLScriptElement, rkValue: string, atvMode: string) {
-  // const domain: string = 'http://10.10.15.49:3000';
-  const domain: string = 'http://192.168.1.6:3000';
+  const domain: string = 'http://10.10.15.52:3000';
+  // const domain: string = 'http://192.168.1.6:3000';
   const infoJson: Jsontype = await getJson(domain, rkValue);
 
   infoJson.ATV_RK = rkValue;

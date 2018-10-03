@@ -14,9 +14,8 @@ export namespace EventNotViewThrough {
       videoElement.play();
     };
 
-    videoElement.removeAttribute('loop');
     videoElement.addEventListener('ended', () => {
-      Filter.execfil2(videoElement, 'pause').then(divElementFilter => {
+      Filter.execFilnotAnimation(videoElement, 'pause').then(divElementFilter => {
         const mainDivElement: HTMLElement = videoElement.parentElement;
         mainDivElement.classList.add('__aparent');
         mainDivElement.appendChild(divElementFilter);

@@ -7,8 +7,8 @@ import { Jsontype } from '../../../../../service/jsontype';
 import { tag } from '../../../../../service/tag';
 
 export namespace ElementFactory {
-  // AdAreaの作成
-  const mkAdArea = (atvJson: Jsontype): string => {
+
+  const getAdAreaValue = (atvJson: Jsontype) => {
     let leftSize: string;
     let rightSize: string;
     let hrefValue: string;
@@ -20,15 +20,20 @@ export namespace ElementFactory {
       hrefValue = '#!';
     } else {
       [leftSize, rightSize] = osFontSize.getSize[oschecker.isolate()]();
-      hrefValue = atvJson.HREF_URL;
+      hrefValue = `${atvJson.HREF_URL}?rk=${atvJson.ATV_RK}`;
     }
+    return { leftSize, hrefValue, rightSize };
+  };
 
+  // AdAreaの作成
+  const mkAdArea = (atvJson: Jsontype): string => {
+    let { leftSize, hrefValue, rightSize }: { leftSize: string; hrefValue: string; rightSize: string; } = getAdAreaValue(atvJson);
     return `<div class="__divTextElement" style="height:${atvJson.ADAREA_HEIGHT}px">
               <div class="__divTextLeftElement" style="font-size:${leftSize}">
                 <span class="__atv_text">${atvJson.BANNER_TEXT}</span>
               </div>
               <div class="__divTextRightElement">
-                <a class="__atv_text" href="${hrefValue}/">
+                <a class="__atv_text" href="${hrefValue}" target="_blank" /">
                   <span class="__atv_button" ontouchstart="" style="font-size:${rightSize}">${atvJson.VIDEOAD_BTN_TEXT}</>
                 </a>
               </div>
@@ -36,16 +41,16 @@ export namespace ElementFactory {
   };
 
   const mkViewThroughVideoElement = (mainDivElement: HTMLDivElement, atvJson: Jsontype, loop: string) :HTMLVideoElement => {
-
     const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson, loop);
     mainDivElement.appendChild($videoElement);
-    // EventViewThrough.setEventLoad($videoElement, Number(atvJson.VIDEOAD_VT_SECOND) * 1000, $scriptElement);
+    EventViewThrough.setEventLoad($videoElement, atvJson, $scriptElement);
     return $videoElement;
   };
 
   const mkNormalVideoElement = (mainDivElement: HTMLDivElement, atvJson: Jsontype, loop: string) :HTMLVideoElement => {
 
     const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson, loop);
+    $videoElement.removeAttribute('loop');
     mainDivElement.appendChild($videoElement);
     EventNotViewThrough.setEventLoad($videoElement);
     mainDivElement.classList.add('__mainDivShadow');
@@ -53,8 +58,6 @@ export namespace ElementFactory {
     // 広告エリアを作成
     const adAreaDiv: string = mkAdArea(atvJson);
     mainDivElement.insertAdjacentHTML('beforeend', adAreaDiv);
-    // mainDivElement.setAttribute('id', '___videostop');
-
     return $videoElement;
   };
 
@@ -84,9 +87,8 @@ export namespace ElementFactory {
     let videoElement: HTMLVideoElement = mkVideoElement($mainDivElement, atvJson);
     ViewThroughFactory.osEvent[oschecker.isolate()](videoElement);
 
+    // 動画が表示されているか判定処理
     window.addEventListener('message', (event) => {
-      console.log("kidou-----")
-
       if (event.data === 'pause') {
         videoElement.pause();
       } else {

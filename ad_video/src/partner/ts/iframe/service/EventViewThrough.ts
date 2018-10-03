@@ -2,19 +2,21 @@ import * as Rx from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Filter } from './Filter';
 import { tag } from '../../../../service/tag';
+import { Jsontype } from '../../../../service/jsontype';
 
 export namespace EventViewThrough {
-  export const setEventLoad = (videoTag: HTMLElement, limitTime: number = 10000, $scriptElement) => {
+  export const setEventLoad = (videoTag: HTMLElement, atvJson: Jsontype, $scriptElement) => {
     if (!$scriptElement.getAttribute('atv-mode')) {
       let count = 0;
       let cntEvt;
-      // viewthrough
+      let limitTime: number = Number(atvJson.VIDEOAD_VT_SECOND) * 1000;
       videoTag.addEventListener('play', () => {
         if (count < limitTime) {
           cntEvt = window.setInterval(() => {
             count += 250;
             if (count > limitTime) {
               window.clearInterval(cntEvt);
+              // const url: string = `.${atvJson.HREF_URL}?rk=${videoTag.getAttribute('data-atv-video')}`;
               const url: string = `../../redirect/html/fm.html?rk=${videoTag.getAttribute('data-atv-video')}`;
               let iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
               videoTag.parentNode.insertBefore(iframeTag, videoTag);
@@ -38,21 +40,21 @@ export namespace EventViewThrough {
     }
   };
 
-  async function exc2($videoElement: HTMLVideoElement, playMode: string, videoElement: HTMLVideoElement) {
+  async function showFilter($videoElement: HTMLVideoElement, playMode: string) {
 
     let mode = $videoElement.getAttribute('playxxx');
     if(mode === "pause") {
       $videoElement.play();
-      videoElement.setAttribute('playxxx', 'play');
+      $videoElement.setAttribute('playxxx', 'play');
     } else if(mode === "play")  {
-      videoElement.pause();
-      videoElement.setAttribute('playxxx', 'pause');
+      $videoElement.pause();
+      $videoElement.setAttribute('playxxx', 'pause');
     } else {
-      videoElement.pause();
-      videoElement.setAttribute('playxxx', 'pause');
+      $videoElement.pause();
+      $videoElement.setAttribute('playxxx', 'pause');
     }
 
-    let $divElementFilter: HTMLDivElement = await Filter.execfil($videoElement, playMode);
+    let $divElementFilter: HTMLDivElement = await Filter.execFil($videoElement, playMode);
     const mainDivElement: HTMLElement = $videoElement.parentElement;
     mainDivElement.appendChild($divElementFilter);
 
@@ -63,26 +65,26 @@ export namespace EventViewThrough {
   }
 
   /**
-   * PCブラウザ用のイベントリスナー
+   * PCブラウザ用 イベントリスナー
    */
   export const setEventViewThroughPC = (videoElement: HTMLVideoElement) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'click');
     video$.subscribe(ev => {
       const $videoElement: HTMLVideoElement = ev.target;
       let playMode: string = $videoElement.getAttribute('playxxx');
-      exc2($videoElement, playMode, $videoElement);
+      showFilter($videoElement, playMode);
     });
   };
 
   /**
-   * スマホブラウザ用
+   * スマホブラウザ用 イベントリスナー
    */
   export const setEventViewThroughSmartPhone = (videoElement: HTMLVideoElement) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'touchstart');
     video$.subscribe(ev => {
       const $videoElement: HTMLVideoElement = ev.target;
       let playMode: string = $videoElement.getAttribute('playxxx');
-      exc2($videoElement, playMode, $videoElement);
+      showFilter($videoElement, playMode);
     });
   };
 }

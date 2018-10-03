@@ -83,7 +83,6 @@ const browsers: Browser = {
  * 3.
  */
 (() => {
-  console.log('起動します＋＋＋＋＋＋＋＋＋');
   console.log(`document.hiddenの結果：：${document.hidden}`);
   const domain: string = 'http://192.168.1.6:3000';
   browsers[browser.ck()](domain);

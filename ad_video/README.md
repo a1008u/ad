@@ -50,6 +50,7 @@
     npm install --save cors
     npm install --save-dev @types/cors
     npm i --save-dev npm-run-all rimraf cpx
+    npm i --save-dev style-loader css-loader
     ```
  
 - test用のコマンド

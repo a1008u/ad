@@ -16,7 +16,7 @@ export class Jsontype {
   WIDTH: string;
   VIDEOAD_VT_SECOND: string;
   VIDEOAD_BTN_TEXT: string;
-  ATV_RK: string;
+  ATV_RK: string; /* いらないかも */
   ATV_MODE: string;
   ADAREA_HEIGHT: string;
 

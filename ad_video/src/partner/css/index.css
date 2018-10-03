@@ -4,13 +4,6 @@ body {
     background-color: transparent;
 }
 
-/* .__mainDivShadow {
-    border-radius: 6px;
-    align-items: stretch;
-    box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
-}
-*/
-
 .atvMain {
     /* position: relative;
     display: block; */
@@ -123,6 +116,8 @@ body {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    tap-highlight-color: rgba(0,0,0,0);
 }
 
 .__atv_button {
@@ -187,7 +182,8 @@ body {
     -ms-animation-direction:alternate;
 }
 
-@keyframes 'anime' {
+@keyframes 'anime'
+@-moz-keyframes 'anime' {
     0% {    opacity:1;  }
     25% {  opacity:0.75;  }
     50% {  opacity:0.5;  }
