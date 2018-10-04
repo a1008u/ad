@@ -43,23 +43,3 @@ export namespace browser {
     return browser;
   };
 }
-
-// interface Browser {
-//     ie:() => string
-//     ,edge:() => string
-//     ,chrome:() => string
-//     ,firefox:() => string
-//     ,opera:() => string
-//     ,safari:() => string
-// }
-//
-// const browser: Browser = {
-//     ie:() => {return 'ie'}
-//     ,edge:() => {return 'edge'}
-//     ,chrome:() => {return 'chrome'}
-//     ,firefox:() => {return 'firefox'}
-//     ,opera:() => {return 'opera'}
-//     ,safari:() => {return 'safari'}
-// };
-//
-//

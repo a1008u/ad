@@ -12,41 +12,66 @@ export namespace ElementFactory {
     let leftSize: string;
     let rightSize: string;
     let hrefValue: string;
+    let target: string;
+    let btnPaddingUpDown: string;
+    let btnPaddingLeftRight: string;
     if (atvJson.ATV_MODE === 'pc') {
-      [leftSize, rightSize] = ['28px', '24px'];
+      [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = ['28px', '24px', '10px', '20px'];
       hrefValue = '#!';
+      target = ``;
     } else if (atvJson.ATV_MODE === 'sp') {
-      [leftSize, rightSize] = ['16px', '12px'];
+      [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = ['16px', '12px', '5px', '10px'];
       hrefValue = '#!';
+      target = ``;
     } else {
-      [leftSize, rightSize] = osFontSize.getSize[oschecker.isolate()]();
+      [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = osFontSize.getSize[oschecker.isolate()]();
       hrefValue = `${atvJson.HREF_URL}?rk=${atvJson.ATV_RK}`;
+      target = `target="_blank"`;
     }
-    return { leftSize, hrefValue, rightSize };
+    return { leftSize, hrefValue, rightSize, target, btnPaddingUpDown, btnPaddingLeftRight};
   };
 
   // AdAreaの作成
   const mkAdArea = (atvJson: Jsontype): string => {
-    let { leftSize, hrefValue, rightSize }: { leftSize: string; hrefValue: string; rightSize: string; } = getAdAreaValue(atvJson);
+    let { leftSize, hrefValue, rightSize, target, btnPaddingUpDown, btnPaddingLeftRight}: { leftSize: string; hrefValue: string; rightSize: string; target: string; btnPaddingUpDown: string; btnPaddingLeftRight: string;} = getAdAreaValue(atvJson);
     return `<div class="__divTextElement" style="height:${atvJson.ADAREA_HEIGHT}px">
               <div class="__divTextLeftElement" style="font-size:${leftSize}">
                 <span class="__atv_text">${atvJson.BANNER_TEXT}</span>
               </div>
               <div class="__divTextRightElement">
-                <a class="__atv_text" href="${hrefValue}" target="_blank" /">
-                  <span class="__atv_button" ontouchstart="" style="font-size:${rightSize}">${atvJson.VIDEOAD_BTN_TEXT}</>
+                <a class="__atv_text" href="${hrefValue}" ${target} /">
+                  <span class="__atv_button" ontouchstart="" style="font-size:${rightSize}; padding:${btnPaddingUpDown} ${btnPaddingLeftRight}">${atvJson.VIDEOAD_BTN_TEXT}</>
                 </a>
               </div>
             </div>`;
   };
 
+  /**
+   * viewThrough有りでvideoElementを作成
+   * @param mainDivElement 
+   * @param atvJson 
+   * @param loop 
+   */
   const mkViewThroughVideoElement = (mainDivElement: HTMLDivElement, atvJson: Jsontype, loop: string) :HTMLVideoElement => {
     const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson, loop);
     mainDivElement.appendChild($videoElement);
-    EventViewThrough.setEventLoad($videoElement, atvJson, $scriptElement);
+
+    console.log(atvJson.ATV_MODE);
+    if (atvJson.ATV_MODE !== '') {
+      // プレビュー用として返す
+      return $videoElement;
+    }
+
+    EventViewThrough.setEventLoad($videoElement, atvJson);
     return $videoElement;
   };
 
+  /**
+   * viewThrough無しでvideoElementを作成
+   * @param mainDivElement 
+   * @param atvJson 
+   * @param loop 
+   */
   const mkNormalVideoElement = (mainDivElement: HTMLDivElement, atvJson: Jsontype, loop: string) :HTMLVideoElement => {
 
     const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson, loop);

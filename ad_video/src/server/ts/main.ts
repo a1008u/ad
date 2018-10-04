@@ -15,6 +15,9 @@ app.get(ROOT, (req: Express.Request, res: Express.Response) => {
   res.send('Hello world.');
 });
 
+/**
+ * 1回目のxhr用のAPI
+ */
 app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
   let mkJson = (rk: string) => {
     switch (rk) {
@@ -243,6 +246,30 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
   res.end();
 });
 
+/**
+ * 2回目のxhr用のAPI
+ */
+app.get('/rr', (req: Express.Request, res: Express.Response) => {
+  const rk: string = req.query.rk;
+  console.log('rkは[' + rk + ']');
+
+  const json = {'key': 'HelloWorld1'};
+  res.json(json);
+  res.end();
+});
+
+/**
+ * 3回目のxhr用のAPI
+ */
+app.get('/issp', (req: Express.Request, res: Express.Response) => {
+  const query: string = req.query.rk;
+  console.log('rkは[' + query + ']');
+
+  const json = {'key': 'HelloWorld2'};
+  res.json(json);
+  res.end();
+});
+
 app.get('/click_part1', (req: Express.Request, res: Express.Response) => {
   if (req.query.rk) {
     res.redirect('/next.html?rk=' + req.query.rk);
@@ -253,6 +280,7 @@ app.get('/click_part1', (req: Express.Request, res: Express.Response) => {
 });
 
 app.get('/click_part2', (req: Express.Request, res: Express.Response) => {
+  console.log('/marchant/html/next.html?rk=' + req.query.rk);
   if (req.query.rk) {
     res.json({ url: '/marchant/html/next.html?rk=' + req.query.rk });
   } else {

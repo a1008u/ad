@@ -58,6 +58,11 @@ async function mainexec(scriptElement: any, rkValue: string, window: Window) {
   });
 }
 
+/**
+ * 1回目のxhr送信（動画広告表示用のJSON取得）
+ * @param domain 
+ * @param rkValue 
+ */
 async function getJson(domain: string, rkValue: string): Promise<Jsontype> {
   return axios
     .get(`${domain}/atvjson?atvrk=${rkValue}`)
@@ -72,11 +77,11 @@ async function mkIframe(scriptElement: HTMLScriptElement, rkValue: string, atvMo
 
   infoJson.ATV_RK = rkValue;
   infoJson.ATV_MODE = (atvMode)? atvMode : '';
-  infoJson.ADAREA_HEIGHT = (infoJson.VIDEOAD_VT_SECOND !== '0') 
+  infoJson.ADAREA_HEIGHT = (infoJson.VIDEOAD_VT_SECOND !== '0')
                   ? '0'
                   : (infoJson.HEIGHT === '360') ? '100'
                                                  : '50';
-  let ifWidth :number = Number(infoJson.HEIGHT) + Number(infoJson.ADAREA_HEIGHT);
+  let ifWidth: number = Number(infoJson.HEIGHT) + Number(infoJson.ADAREA_HEIGHT);
 
   const url: string = `./iframe/ad.html?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
   // const url: string = `./iframe/ad.html`;
