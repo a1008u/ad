@@ -1,11 +1,11 @@
 module.exports = {
 
     entry: {
-        "ts":`./src/redirect/ts/main.ts`
+        "ts":`./src/redirect/send_m/ts/main.ts`
     },
 
     output: {
-        filename: "./server/statics/redirect/js/atv_redirect_min.js"
+        filename: "./server/statics/redirect/send_m/js/atv_redirect_min.js"
     },
     mode: 'development'
     ,
