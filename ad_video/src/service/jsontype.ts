@@ -4,30 +4,32 @@ export interface jsontype {
   HREF_URL: string;
   HEIGHT: string;
   WIDTH: string;
-  VIDEOAD_VT_SECOND: string;
+  videoad_vt_second: string;
   VIDEOAD_BTN_TEXT: string;
 }
 
 export class Jsontype {
-  IMAGE_URL: string;
-  BANNER_TEXT: string;
-  HREF_URL: string;
-  HEIGHT: string;
-  WIDTH: string;
-  VIDEOAD_VT_SECOND: string;
-  VIDEOAD_BTN_TEXT: string;
-  ATV_RK: string; /* いらないかも */
+  image_url: string;
+  banner_text: string;
+  href_url: string;
+  height: string;
+  width: string;
+  videoad_vt_second: string;
+  video_btn_text: string;
+  rk: string;
+  ATV_RK: string;
   ATV_MODE: string;
   ADAREA_HEIGHT: string;
 
-  constructor(IMAGE_URL,BANNER_TEXT,HREF_URL,HEIGHT,WIDTH,VIDEOAD_VT_SECOND,VIDEOAD_BTN_TEXT) {
-    this.BANNER_TEXT = BANNER_TEXT;
-    this.IMAGE_URL = IMAGE_URL;
-    this.HREF_URL = HREF_URL;
-    this.VIDEOAD_BTN_TEXT = VIDEOAD_BTN_TEXT;
-    this.VIDEOAD_VT_SECOND = VIDEOAD_VT_SECOND;
-    this.WIDTH = WIDTH;
-    this.HEIGHT = HEIGHT;
+  constructor(image_url, banner_text, href_url, height, width, video_btn_text, videoad_vt_second) {
+    this.banner_text = banner_text;
+    this.image_url = image_url;
+    this.href_url = href_url;
+    this.video_btn_text = video_btn_text;
+    this.videoad_vt_second = videoad_vt_second;
+    this.width = width;
+    this.height = height;
+    this.rk = '';
     this.ATV_RK = '';
     this.ATV_MODE = '';
     this.ADAREA_HEIGHT = '';

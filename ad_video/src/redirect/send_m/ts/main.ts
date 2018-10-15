@@ -93,7 +93,7 @@ const browsers: Browser = {
  */
 (() => {
   console.log(`document.hiddenの結果：：${document.hidden}`);
-  const domain: string = 'http://10.10.15.52:3000';
+  const domain: string = 'http://10.10.15.44:3000';
 
   // isspへアクセス
   console.log('=== send_m start === ');

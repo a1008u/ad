@@ -15,17 +15,17 @@ export namespace ElementFactory {
     let target: string;
     let btnPaddingUpDown: string;
     let btnPaddingLeftRight: string;
-    if (atvJson.ATV_MODE === 'pc') {
+    if (atvJson.ATV_MODE === 'previewPcAdarea') {
       [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = ['28px', '24px', '10px', '20px'];
       hrefValue = '#!';
       target = ``;
-    } else if (atvJson.ATV_MODE === 'sp') {
+    } else if (atvJson.ATV_MODE === 'previewSpAdarea') {
       [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = ['16px', '12px', '5px', '10px'];
       hrefValue = '#!';
       target = ``;
     } else {
       [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = osFontSize.getSize[oschecker.isolate()]();
-      hrefValue = `${atvJson.HREF_URL}?rk=${atvJson.ATV_RK}`;
+      hrefValue = atvJson.href_url;
       target = `target="_blank"`;
     }
     return { leftSize, hrefValue, rightSize, target, btnPaddingUpDown, btnPaddingLeftRight};
@@ -36,11 +36,11 @@ export namespace ElementFactory {
     let { leftSize, hrefValue, rightSize, target, btnPaddingUpDown, btnPaddingLeftRight}: { leftSize: string; hrefValue: string; rightSize: string; target: string; btnPaddingUpDown: string; btnPaddingLeftRight: string;} = getAdAreaValue(atvJson);
     return `<div class="__divTextElement" style="height:${atvJson.ADAREA_HEIGHT}px">
               <div class="__divTextLeftElement" style="font-size:${leftSize}">
-                <span class="__atv_text">${atvJson.BANNER_TEXT}</span>
+                <span class="__atv_text">${atvJson.banner_text}</span>
               </div>
               <div class="__divTextRightElement">
                 <a class="__atv_text" href="${hrefValue}" ${target} /">
-                  <span class="__atv_button" ontouchstart="" style="font-size:${rightSize}; padding:${btnPaddingUpDown} ${btnPaddingLeftRight}">${atvJson.VIDEOAD_BTN_TEXT}</>
+                  <span class="__atv_button" ontouchstart="" style="font-size:${rightSize}; padding:${btnPaddingUpDown} ${btnPaddingLeftRight}">${atvJson.video_btn_text}</>
                 </a>
               </div>
             </div>`;
@@ -93,7 +93,7 @@ export namespace ElementFactory {
    * @param mainDivElement
    */
   const mkVideoElement = (mainDivElement: HTMLDivElement, atvJson: Jsontype): HTMLVideoElement => {
-    if (atvJson.VIDEOAD_VT_SECOND !== '0') {
+    if (atvJson.videoad_vt_second !== '0') {
       return mkViewThroughVideoElement(mainDivElement, atvJson, 'true');
     } else {
       return mkNormalVideoElement(mainDivElement, atvJson, 'false');
@@ -107,7 +107,7 @@ export namespace ElementFactory {
   export const mkElement = (atvJson: Jsontype): void => {
     // 動画広告の枠（横の長さ）を指定
     const $mainDivElement: HTMLDivElement = document.querySelector('#atvMain');
-    $mainDivElement.setAttribute("style", `width:${atvJson.WIDTH}px; z-index:30;`);
+    $mainDivElement.setAttribute("style", `width:${atvJson.width}px; z-index:30;`);
 
     let videoElement: HTMLVideoElement = mkVideoElement($mainDivElement, atvJson);
     ViewThroughFactory.osEvent[oschecker.isolate()](videoElement);

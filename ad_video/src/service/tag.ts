@@ -25,8 +25,8 @@ export namespace tag {
     loop: boolean = true
   ): HTMLVideoElement => {
     const videoTag: HTMLVideoElement = document.createElement('video');
-    videoTag.src = atvJson.IMAGE_URL;
-    videoTag.width = Number(atvJson.WIDTH);
+    videoTag.src = atvJson.image_url;
+    videoTag.width = Number(atvJson.width);
     // videoTag.height = Number(atvJson.HEIGHT);
     videoTag.muted = true;
     videoTag.loop = loop;
@@ -40,8 +40,8 @@ export namespace tag {
 
   export const mkVideoElement = (atvJson: Jsontype, loop: string) => {
     const $videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
-    $videoElement.setAttribute('src', atvJson.IMAGE_URL);
-    $videoElement.setAttribute('width', atvJson.WIDTH);
+    $videoElement.setAttribute('src', atvJson.image_url);
+    $videoElement.setAttribute('width', atvJson.width);
     // $videoElement.setAttribute('height', atvJson.HEIGHT);
     $videoElement.setAttribute('loop', loop);
     $videoElement.setAttribute('data-atv-video', atvJson.ATV_RK);
