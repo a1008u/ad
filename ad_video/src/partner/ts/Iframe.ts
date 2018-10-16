@@ -18,10 +18,10 @@ export class Iframe {
   async mainExec(scriptElement: any, rkValue: string, window: Window, atvMock: string) {
 
     if (atvMock) {
-      // モック
+      // モックサーバ
       await this.mkIframe(scriptElement, rkValue, this.mkIframeViaMockServer);
     } else {
-      // モック以外
+      // モックサーバ以外
       await this.mkIframe(scriptElement, rkValue, this.mkIframeViaServer);
     }
 
@@ -58,7 +58,7 @@ export class Iframe {
    */
   async mkIframe(scriptElement: HTMLScriptElement, rkValue: string, mk: (domain: string, scriptElement: HTMLScriptElement, rkValue: string) => Promise<Jsontype>) {
 
-    const domain: string = 'http://10.10.15.44:3000';
+    const domain: string = 'http://10.10.15.30:3000';
     // const domain: string = 'http://192.168.1.6:3000';
 
     const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
@@ -227,19 +227,6 @@ export async function getJson2(domain: string, rkValue: string): Promise<Jsontyp
     .then(resdata => resdata.data)
     .catch(err => console.log(err));
 }
-
-// /**
-//  * 1回目のxhr送信（動画広告表示用のJSON取得）
-//  * @param domain 
-//  * @param rkValue 
-//  */
-// export async function getJson(domain: string, rkValue: string): Promise<Jsontype> {
-//   return axios
-//     .get(`${domain}/atvjson?atvrk=${rkValue}`)
-//     .then(resdata => resdata.data)
-//     .catch(err => console.log(err));
-// }
-
 
 /**
  * rkが内容のpreview
