@@ -30,11 +30,16 @@ async function exec() {
  * 2回目のxhr送信（アクセスログ設定 + isへ飛ばす際のJSON取得）
  */
 async function getJson(): Promise<any> {
-  const domain: string = 'http://10.10.15.44:3000';
-  let rkValue: string = location.search.substring(1);
+  
+  let valueList: string = location.search.substring(1);
+  let [rkValue, atvExec] = valueList.split('&');
+
+  const domain: string = (atvExec === 'intra') ? 'http://10.10.15.44:3000' : '';
 
   return axios
     .get(`${domain}/rr?${rkValue}`)
     .then(resdata => resdata.data)
     .catch(err => console.log(err));
 }
+
+// http://10.10.15.30:3000/redirect/send_m/html/fm.html?rk=

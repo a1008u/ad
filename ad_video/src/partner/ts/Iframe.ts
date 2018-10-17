@@ -15,14 +15,20 @@ export class Iframe {
    * @param rkValue 
    * @param window 
    */
-  async mainExec(scriptElement: any, rkValue: string, window: Window, atvMock: string) {
+  async mainExec(scriptElement: any, rkValue: string, window: Window, atvExec: string) {
 
-    if (atvMock) {
+    if (atvExec === 'mock') {
       // モックサーバ
-      await this.mkIframe(scriptElement, rkValue, this.mkIframeViaMockServer);
+      const domain = 'http://10.10.15.30:3000';
+      await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaMockServer);
+    } else if (atvExec === 'intra') {
+      // intra(テスト環境)
+      const domain = 'https://h.intra.accesstrade.net';
+      await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaServer);
     } else {
-      // モックサーバ以外
-      await this.mkIframe(scriptElement, rkValue, this.mkIframeViaServer);
+      // 本番環境（現状は仮）
+      const domain = 'https://h.intra.accesstrade.net';
+      await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaMockServer);
     }
 
     // 動画自動実行用library
@@ -35,15 +41,23 @@ export class Iframe {
    * @param rkValue 
    * @param window 
    */
-  async mainExecPreview(scriptElement: any, rkValue: string, window: Window, atvMock: string) {
+  async mainExecPreview(scriptElement: any, rkValue: string, window: Window, atvExec: string) {
 
-    if (atvMock && rkValue) {
-      await this.mkIframe(scriptElement, rkValue, this.mkIframePreViaMockServer);
-    } else if (rkValue) {
-      await this.mkIframe(scriptElement, rkValue, this.mkIframePreViaServer);
-    } else {
+    if (!rkValue) {
       // nodeの属性を利用するため、mock用の記載は不要
-      await this.mkIframe(scriptElement, rkValue, this.mkIframePreViaNode);
+      const domain = '';
+      await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaNode);
+    } else {
+      if (atvExec === 'intra') {
+        const domain = 'https://h.intra.accesstrade.net';
+        await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaServer);
+      } else if (atvExec === 'mock') {
+        const domain = 'http://10.10.15.30:3000';
+        await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaMockServer);
+      } else {
+        const domain = 'https://h.intra.accesstrade.net';
+        await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaNode);
+      }
     }
 
     // 動画自動実行用library
@@ -56,16 +70,17 @@ export class Iframe {
    * @param rkValue 
    * @param mk 
    */
-  async mkIframe(scriptElement: HTMLScriptElement, rkValue: string, mk: (domain: string, scriptElement: HTMLScriptElement, rkValue: string) => Promise<Jsontype>) {
-
-    const domain: string = 'http://10.10.15.30:3000';
-    // const domain: string = 'http://192.168.1.6:3000';
+  async mkIframe(domain: string, scriptElement: HTMLScriptElement, rkValue: string, mk: (domain: string, scriptElement: HTMLScriptElement, rkValue: string) => Promise<Jsontype>) {
 
     const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
+    infoJson.ATV_IMP_DOMAIN = domain;
+    infoJson.ATV_VIDEO_DOMAIN = domain;
+    const domainT = 'http://10.10.15.30:3000';
 
     // iframe生成
     let iframeHight: number = Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
-    const url: string = `./iframe/ad.html?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
+    const url: string = `${domainT}/partner/html/iframe/ad.html?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
+    // const url: string = `${domainT}/partner/html/iframe/ad.html?atvJson=2`;
     let iframeElement: HTMLIFrameElement = tag.mkIframeElement(url, infoJson.width, String(iframeHight));
     scriptElement.parentNode.insertBefore(iframeElement, scriptElement);
   }
@@ -77,7 +92,6 @@ export class Iframe {
    * @param rkValue 
    */
   async mkIframeViaServer(domain: string, scriptElement: HTMLScriptElement, rkValue: string) {
-    domain = 'https://h.intra.accesstrade.net';
     const infoJson: Jsontype = await getJson2(domain, rkValue);
 
     // 追加要素
@@ -123,7 +137,6 @@ export class Iframe {
    * @param rkValue 
    */
   async mkIframePreViaServer(domain: string, scriptElement: HTMLScriptElement, rkValue: string) {
-    domain = 'https://h.intra.accesstrade.net';
     let infoJson: Jsontype = await getJson2(domain, rkValue);
     console.log(infoJson);
 

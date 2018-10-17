@@ -20,6 +20,8 @@ export class Jsontype {
   ATV_RK: string;
   ATV_MODE: string;
   ADAREA_HEIGHT: string;
+  ATV_VIDEO_DOMAIN: string;
+  ATV_IMP_DOMAIN: string;
 
   constructor(image_url, banner_text, href_url, height, width, video_btn_text, videoad_vt_second) {
     this.banner_text = banner_text;
@@ -33,5 +35,7 @@ export class Jsontype {
     this.ATV_RK = '';
     this.ATV_MODE = '';
     this.ADAREA_HEIGHT = '';
+    this.ATV_VIDEO_DOMAIN = '';
+    this.ATV_IMP_DOMAIN = '';
   }
 }

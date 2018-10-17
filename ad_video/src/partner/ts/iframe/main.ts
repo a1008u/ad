@@ -5,6 +5,7 @@ import { Jsontype } from '../../../service/jsontype';
 ((window, _) => {
   // url取得のクエリチェック
   let query: string = location.search.substring(1);
+  console.log(query);
   let [key, value]: string[] = query.split('=');
 
   // videoタグ表示処理を行う

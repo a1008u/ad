@@ -8,18 +8,21 @@ import { Iframe } from './Iframe';
     // スクリプトタグにrkが存在しない場合は、次の「data-atv-rk」を確認する
     const rkValue: string = scriptElement.getAttribute('data-atv-rk');
     const atvMode: string = scriptElement.getAttribute('data-atv-mode');
-    const atvMock: string = scriptElement.getAttribute('data-atv-mock');
-    scriptElement.removeAttribute('data-atv-rk');
-    scriptElement.removeAttribute('data-atv-mode');
-    scriptElement.removeAttribute('data-atv-mock');
+    const atvExec: string = scriptElement.getAttribute('data-atv-exec');
 
-    const iframe = new Iframe();
-    if (atvMode) {
-      // プレビュー用
-      iframe.mainExecPreview(scriptElement, rkValue, window, atvMock);
-    } else if (rkValue) {
-      // 非プレビュー用
-      iframe.mainExec(scriptElement, rkValue, window, atvMock);
+    if (rkValue || atvMode) {
+      scriptElement.removeAttribute('data-atv-rk');
+      scriptElement.removeAttribute('data-atv-mode');
+      scriptElement.removeAttribute('data-atv-exec');
+
+      const iframe = new Iframe();
+      if (atvMode) {
+        // プレビュー用
+        iframe.mainExecPreview(scriptElement, rkValue, window, atvExec);
+      } else if (rkValue) {
+        // 非プレビュー用
+        iframe.mainExec(scriptElement, rkValue, window, atvExec);
+      }
     }
   });
 })(window);

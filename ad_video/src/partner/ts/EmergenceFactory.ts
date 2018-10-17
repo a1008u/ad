@@ -26,16 +26,14 @@ export const emergenceInit = (window: Window) => {
           element.setAttribute('advE', 'true');
           element.contentWindow.postMessage("playOrPause", '*');
         }
-      }
-      else if (state === 'reset') {
+      } else if (state === 'reset') {
         // element.pause();
         let ca = element.getAttribute('advE');
         if (ca) {
           element.removeAttribute('advE');
           element.contentWindow.postMessage("pause", '*');
         }
-      }
-      else if (state === 'noreset') {
+      } else if (state === 'noreset') {
         // element.pause();
         let ca = element.getAttribute('advE');
         if (ca) {
