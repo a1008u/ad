@@ -19,7 +19,8 @@ export class Iframe {
 
     if (atvExec === 'mock') {
       // モックサーバ
-      const domain = 'http://10.10.15.30:3000';
+      // const domain = 'http://10.10.15.30:3000';
+      const domain = 'https://localhost:3000';
       await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaMockServer);
     } else if (atvExec === 'intra') {
       // intra(テスト環境)
@@ -52,7 +53,8 @@ export class Iframe {
         const domain = 'https://h.intra.accesstrade.net';
         await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaServer);
       } else if (atvExec === 'mock') {
-        const domain = 'http://10.10.15.30:3000';
+        const domain = 'https://localhost:3000';
+        // const domain = 'http://10.10.15.30:3000';
         await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaMockServer);
       } else {
         const domain = 'https://h.intra.accesstrade.net';
@@ -75,14 +77,16 @@ export class Iframe {
     const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
     infoJson.ATV_IMP_DOMAIN = domain;
     infoJson.ATV_VIDEO_DOMAIN = domain;
-    const domainT = 'http://10.10.15.30:3000';
+    const domainT = 'https://localhost:3000';
 
     // iframe生成
     let iframeHight: number = Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
     const url: string = `${domainT}/partner/html/iframe/ad.html?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
-    // const url: string = `${domainT}/partner/html/iframe/ad.html?atvJson=2`;
     let iframeElement: HTMLIFrameElement = tag.mkIframeElement(url, infoJson.width, String(iframeHight));
     scriptElement.parentNode.insertBefore(iframeElement, scriptElement);
+    //window.location.replace(url);
+    // iframeElement.contentDocument.location.replace(`${domainT}/partner/html/iframe/ad.html`);
+    iframeElement.contentDocument.location.replace(url);
   }
 
   /**

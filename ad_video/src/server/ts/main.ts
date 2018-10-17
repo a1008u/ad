@@ -4,6 +4,8 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { jsontype, Jsontype } from '../../service/jsontype';
 
+import * as https from 'https';
+
 // POSTパラメータをJSONで取得するにはbody-parserを使う。
 
 const PORT = 3000;
@@ -303,6 +305,32 @@ app.get('/getImage', (req: Express.Request, res: Express.Response) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log('atv++++++Example app listening on port 3000!');
+// app.listen(PORT, () => {
+//   console.log('atv++++++Example app listening on port 3000!');
+// });
+
+const options = { 
+  key : fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
+};
+
+// サーバを起動する
+// https.createServer(options, (req, res) => {
+//   console.log('リクエストを受信');
+//   // レスポンスの設定
+//   res.writeHead(200);
+//   res.end('Hello World');
+// }).listen(PORT);
+
+let server = https.createServer(options, app);
+
+// ルート設定
+app.get('/', (req, res) => {
+  res.writeHead(200);
+  console.log(path.join(__dirname, 'statics'));
+  console.log(req.baseUrl);
+  res.end("Hello World.");
 });
+
+// イベント待機
+server.listen(3000);
