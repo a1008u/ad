@@ -4,15 +4,6 @@ import { Jsontype } from '../../../service/jsontype';
 
 ((window, _) => {
 
-
-  let j:HTMLElement = window.parent.document.getElementById("bttt");
-  console.log('---------');
-  console.log(JSON.parse(decodeURIComponent(j.getAttribute('data'))));
-  console.log('---------');
-
-
-
-
   // url取得のクエリチェック
   let query: string = location.search.substring(1);
   console.log(query);

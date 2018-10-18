@@ -15,20 +15,16 @@ export class Iframe {
    * @param rkValue 
    * @param window 
    */
-  async mainExec(scriptElement: any, rkValue: string, window: Window, atvExec: string) {
+  async mainExec(scriptElement: any, rkValue: string, window: Window, atvMock: string) {
 
-    if (atvExec === 'mock') {
+    if (atvMock) {
       // モックサーバ
       // const domain = 'http://10.10.15.30:3000';
       const domain = 'https://localhost:3000';
       await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaMockServer);
-    } else if (atvExec === 'intra') {
-      // intra(テスト環境)
-      const domain = 'https://h.intra.accesstrade.net';
-      await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaServer);
-    } else {
+    } else  {
       // 本番環境（現状は仮）
-      const domain = 'https://h.intra.accesstrade.net';
+      const domain = 'https://h.accesstrade.net';
       await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaMockServer);
     }
 
@@ -42,22 +38,19 @@ export class Iframe {
    * @param rkValue 
    * @param window 
    */
-  async mainExecPreview(scriptElement: any, rkValue: string, window: Window, atvExec: string) {
+  async mainExecPreview(scriptElement: any, rkValue: string, window: Window, atvMock: string) {
 
     if (!rkValue) {
       // nodeの属性を利用するため、mock用の記載は不要
       const domain = '';
       await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaNode);
     } else {
-      if (atvExec === 'intra') {
-        const domain = 'https://h.intra.accesstrade.net';
-        await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaServer);
-      } else if (atvExec === 'mock') {
+      if (atvMock) {
         const domain = 'https://localhost:3000';
         // const domain = 'http://10.10.15.30:3000';
         await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaMockServer);
       } else {
-        const domain = 'https://h.intra.accesstrade.net';
+        const domain = 'https://h.accesstrade.net';
         await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaNode);
       }
     }
@@ -84,9 +77,11 @@ export class Iframe {
     const url: string = `${domainT}/partner/html/iframe/ad.html?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
     let iframeElement: HTMLIFrameElement = tag.mkIframeElement(url, infoJson.width, String(iframeHight));
     scriptElement.parentNode.insertBefore(iframeElement, scriptElement);
-    //window.location.replace(url);
+
+    // TODO:消すよ
+    // window.location.replace(url);
     // iframeElement.contentDocument.location.replace(`${domainT}/partner/html/iframe/ad.html`);
-    iframeElement.contentDocument.location.replace(url);
+    // iframeElement.contentDocument.location.replace(url);
   }
 
   /**

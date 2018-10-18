@@ -8,7 +8,7 @@
         "name": "Launch Chrome against localhost, with sourcemaps", 
         "type": "chrome",
         "request": "launch",
-        "url": "http://localhost:3000/partner/html/index_pc_main.html", 
+        "url": "https://localhost:3000/partner/html/index_pc_main.html", 
         "sourceMaps": true, 
         "webRoot": "${workspaceRoot}", 
         "diagnosticLogging": true, 
