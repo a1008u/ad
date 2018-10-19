@@ -17,6 +17,19 @@ app.get(ROOT, (req: Express.Request, res: Express.Response) => {
   res.send('Hello world.');
 });
 
+
+/**
+ * 0回目のxhr用のAPI imp用
+ */
+app.get('/imp', (req: Express.Request, res: Express.Response) => {
+  const query: string = req.query.rk;
+  console.log('rkは[' + query + ']');
+
+  const json = {'key': 'okImp'};
+  res.json(json);
+  res.end();
+});
+
 /**
  * 1回目のxhr用のAPI
  */
@@ -314,13 +327,6 @@ const options = {
   cert: fs.readFileSync('cert.pem'),
 };
 
-// サーバを起動する
-// https.createServer(options, (req, res) => {
-//   console.log('リクエストを受信');
-//   // レスポンスの設定
-//   res.writeHead(200);
-//   res.end('Hello World');
-// }).listen(PORT);
 
 let server = https.createServer(options, app);
 

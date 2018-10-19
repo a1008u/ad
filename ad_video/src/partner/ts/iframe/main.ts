@@ -12,7 +12,7 @@ import { Jsontype } from '../../../service/jsontype';
   // videoタグ表示処理を行う
   if (key === 'atvJson') {
     let json: Jsontype = JSON.parse(decodeURIComponent(value));
-    console.log(json);
+    console.table(json);
     ElementFactory.mkElement(json);
   }
 })(window);

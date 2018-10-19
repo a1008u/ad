@@ -4,8 +4,9 @@ export interface jsontype {
   HREF_URL: string;
   HEIGHT: string;
   WIDTH: string;
-  videoad_vt_second: string;
+  VIDEOAD_VT_SECOND: string;
   VIDEOAD_BTN_TEXT: string;
+  RK: string;
 }
 
 export class Jsontype {
@@ -20,10 +21,10 @@ export class Jsontype {
   ATV_RK: string;
   ATV_MODE: string;
   ADAREA_HEIGHT: string;
-  ATV_VIDEO_DOMAIN: string;
   ATV_IMP_DOMAIN: string;
+  ATV_CLICK_DOMAIN: string;
 
-  constructor(image_url, banner_text, href_url, height, width, video_btn_text, videoad_vt_second) {
+  constructor(image_url, banner_text, href_url, height, width, videoad_vt_second, video_btn_text) {
     this.banner_text = banner_text;
     this.image_url = image_url;
     this.href_url = href_url;
@@ -35,7 +36,7 @@ export class Jsontype {
     this.ATV_RK = '';
     this.ATV_MODE = '';
     this.ADAREA_HEIGHT = '';
-    this.ATV_VIDEO_DOMAIN = '';
     this.ATV_IMP_DOMAIN = '';
+    this.ATV_CLICK_DOMAIN = '';
   }
 }

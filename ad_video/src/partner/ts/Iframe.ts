@@ -25,7 +25,7 @@ export class Iframe {
     } else  {
       // 本番環境（現状は仮）
       const domain = 'https://h.accesstrade.net';
-      await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaMockServer);
+      await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaServer);
     }
 
     // 動画自動実行用library
@@ -51,7 +51,7 @@ export class Iframe {
         await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaMockServer);
       } else {
         const domain = 'https://h.accesstrade.net';
-        await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaNode);
+        await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaServer);
       }
     }
 
@@ -68,8 +68,7 @@ export class Iframe {
   async mkIframe(domain: string, scriptElement: HTMLScriptElement, rkValue: string, mk: (domain: string, scriptElement: HTMLScriptElement, rkValue: string) => Promise<Jsontype>) {
 
     const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
-    infoJson.ATV_IMP_DOMAIN = domain;
-    infoJson.ATV_VIDEO_DOMAIN = domain;
+
     const domainT = 'https://localhost:3000';
 
     // iframe生成
@@ -77,15 +76,10 @@ export class Iframe {
     const url: string = `${domainT}/partner/html/iframe/ad.html?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
     let iframeElement: HTMLIFrameElement = tag.mkIframeElement(url, infoJson.width, String(iframeHight));
     scriptElement.parentNode.insertBefore(iframeElement, scriptElement);
-
-    // TODO:消すよ
-    // window.location.replace(url);
-    // iframeElement.contentDocument.location.replace(`${domainT}/partner/html/iframe/ad.html`);
-    // iframeElement.contentDocument.location.replace(url);
   }
 
   /**
-   * 
+   * サーバからJson取得
    * @param domain 
    * @param scriptElement 
    * @param rkValue 
@@ -96,6 +90,8 @@ export class Iframe {
     // 追加要素
     infoJson.ATV_RK = rkValue;
     infoJson.ATV_MODE = '';
+    infoJson.ATV_IMP_DOMAIN = 'https://h.accesstrade.net/sp/vip.json';
+    infoJson.ATV_CLICK_DOMAIN = 'https://h.accesstrade.net/sp/vck.json';
     infoJson.ADAREA_HEIGHT = infoJson.videoad_vt_second !== '0'
         ? '0'
         : infoJson.height === '360'
@@ -108,7 +104,7 @@ export class Iframe {
   }
 
   /**
-   * 
+   * モックサーバからJson取得
    * @param domain 
    * @param scriptElement 
    * @param rkValue 
@@ -119,6 +115,8 @@ export class Iframe {
     // 追加要素
     infoJson.ATV_RK = rkValue;
     infoJson.ATV_MODE = '';
+    infoJson.ATV_IMP_DOMAIN = `${domain}/imp`;
+    infoJson.ATV_CLICK_DOMAIN = domain;
     infoJson.ADAREA_HEIGHT = infoJson.videoad_vt_second !== '0'
         ? '0'
         : infoJson.height === '360'
@@ -131,7 +129,7 @@ export class Iframe {
   }
 
   /**
-   * 
+   * サーバから生成のpreview用
    * @param scriptElement 
    * @param rkValue 
    */
@@ -157,12 +155,12 @@ export class Iframe {
   }
   
   /**
-   * 
+   * モックサーバから生成のpreview用
    * @param scriptElement 
    * @param rkValue 
    */
   async mkIframePreViaMockServer(domain: string, scriptElement: HTMLScriptElement, rkValue: string) {
-    let infoJson: Jsontype = await getJson2(domain, rkValue);
+    let infoJson: Jsontype = await getJson(domain, rkValue);
     console.log(infoJson);
 
     if (infoJson.videoad_vt_second !== '0') {
@@ -183,7 +181,7 @@ export class Iframe {
   }
 
   /**
-   * preview用
+   * domから生成のpreview用
    * @param scriptElement
    * @param rkValue
    * @param atvMode

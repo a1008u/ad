@@ -61,7 +61,7 @@ export namespace Filter {
     const svgFilePath: string = playMode === 'pause' 
       ? '../../svg/play-circle-solid.svg' 
       : '../../svg/pause-circle-solid.svg';
-      
+
     return axios
       .get(svgFilePath)
       .then(resdata => resdata.data)

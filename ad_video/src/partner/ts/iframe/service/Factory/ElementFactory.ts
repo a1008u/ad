@@ -5,6 +5,7 @@ import { EventViewThrough } from '../EventViewThrough';
 import { oschecker } from '../../../../../service/oschecker';
 import { Jsontype } from '../../../../../service/jsontype';
 import { tag } from '../../../../../service/tag';
+import axios from 'axios';
 
 export namespace ElementFactory {
 
@@ -59,6 +60,7 @@ export namespace ElementFactory {
     console.log(atvJson.ATV_MODE);
     if (atvJson.ATV_MODE !== '') {
       // プレビュー用として返す
+      $videoElement.setAttribute('atv_mode', atvJson.ATV_MODE);
       return $videoElement;
     }
 
@@ -114,20 +116,31 @@ export namespace ElementFactory {
 
     // 動画が表示されているか判定処理
     window.addEventListener('message', (event) => {
-      if (event.data === 'pause') {
-        videoElement.pause();
-      } else {
-        if(videoElement.getAttribute('__end') !== undefined && videoElement.getAttribute('__end') === 'true') {
-          // 何も処理しない
+        if (event.data === 'pause') {
+          videoElement.pause();
         } else {
-          let playMode: string = videoElement.getAttribute('playxxx');
-          if (playMode === 'pause') {
-            videoElement.pause();
+          if(videoElement.getAttribute('__end') !== undefined && videoElement.getAttribute('__end') === 'true') {
+            // 何も処理しない
           } else {
-            videoElement.play();
+            let playMode: string = videoElement.getAttribute('playxxx');
+            if (playMode === 'pause') {
+              videoElement.pause();
+            } else {
+              videoElement.play();
+              let imp: string = videoElement.getAttribute('imp');
+              let atvMode: string = videoElement.getAttribute('atv_mode');
+              if (!imp && !atvMode) {
+                videoElement.setAttribute('imp', 'done');
+                console.table(atvJson);
+                axios
+                  .get(`${atvJson.ATV_IMP_DOMAIN}?${atvJson.ATV_RK}`)
+                  .then(resdata => resdata.data)
+                  .catch(err => console.log(err));
+              }
+
+            }
           }
         }
-      }
     }, false);
   };
 }
