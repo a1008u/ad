@@ -1,10 +1,28 @@
 import { Iframe } from './Iframe';
 
+const mkfadeIn = () => {
+  const css = document.createElement('style');
+  css.media = 'screen';
+  css.type = 'text/css';
+  // フェードイン
+  const fadein = `@keyframes fadeIn{${['0% {opacity: 0}', '100% {opacity: 1.0}'].join(' ')}`;
+  // ルールをstyleタグに追加
+  const rules = document.createTextNode(fadein);
+  css.appendChild(rules);
+  // head内に作成
+  document.getElementsByTagName('head')[0].appendChild(css);
+};
+
 /**
  * メイン処理
  */
 ((window, _) => {
   [].forEach.call(document.getElementsByTagName('script'), scriptElement => {
+
+    // styleタグを作成
+    mkfadeIn();
+
+
     // スクリプトタグにrkが存在しない場合は、次の「data-atv-rk」を確認する
     const rkValue: string = scriptElement.getAttribute('data-atv-rk');
     const atvMode: string = scriptElement.getAttribute('data-atv-mode');

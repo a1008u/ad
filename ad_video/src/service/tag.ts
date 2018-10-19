@@ -65,10 +65,17 @@ export namespace tag {
     ifr.setAttribute('frameborder', '0');
     ifr.name='iframe';
     ifr.setAttribute("data-emergence", "hidden");
-    ifr.setAttribute('style', 'align-items: stretch; box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);');
+    ifr.setAttribute('style', 'align-items: stretch; box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1); animation: fadeIn 2s ease 0s 1 normal;');
     return ifr;
   };
 
+  /**
+   * リダイレクト時に利用
+   * @param src 
+   * @param width 
+   * @param height 
+   * @param display 
+   */
   export const mkIframeElementForTracking = (
     src: string
     , width: string
