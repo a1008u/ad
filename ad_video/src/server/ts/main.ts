@@ -33,7 +33,7 @@ app.get('/imp', (req: Express.Request, res: Express.Response) => {
 /**
  * 1回目のxhr用のAPI
  */
-app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
+app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
   let mkJson = (rk: string) => {
     switch (rk) {
       case '010011a1':
@@ -183,12 +183,12 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
       case '010011a5_pc':
         return new Jsontype(
           '../../mp4/ba5.mp4',
-          'ここは表示しません',
+          'FF15 - 新作 - ',
           'https://www.google.com',
           '360',
           '640',
-          '10',
-          'ここは表示しません');
+          '0',
+          'ボタン');
       case '010011a6_pc':
         return new Jsontype(
           '../../mp4/ba6.mp4',
@@ -255,7 +255,7 @@ app.get('/atvjson', (req: Express.Request, res: Express.Response) => {
     }
   };
 
-  const atvrk: string = req.query.atvrk;
+  const atvrk: string = req.query.rk;
   const jsontype: Jsontype = mkJson(atvrk);
   res.json(jsontype);
   res.end();

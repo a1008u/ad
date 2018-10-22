@@ -17,16 +17,8 @@ export class Iframe {
    */
   async mainExec(scriptElement: any, rkValue: string, window: Window, atvMock: string) {
 
-    if (atvMock) {
-      // モックサーバ
-      // const domain = 'http://10.10.15.30:3000';
-      const domain = 'https://localhost:3000';
-      await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaMockServer);
-    } else  {
-      // 本番環境（現状は仮）
-      const domain = 'https://h.accesstrade.net';
-      await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaServer);
-    }
+    const domain = (atvMock) ? 'https://localhost:3000' : 'https://h.accesstrade.net';
+    await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaServer);
 
     // 動画自動実行用library
     emergenceInit(window);
@@ -45,14 +37,8 @@ export class Iframe {
       const domain = '';
       await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaNode);
     } else {
-      if (atvMock) {
-        const domain = 'https://localhost:3000';
-        // const domain = 'http://10.10.15.30:3000';
-        await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaMockServer);
-      } else {
-        const domain = 'https://h.accesstrade.net';
-        await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaServer);
-      }
+      const domain = (atvMock) ? 'https://localhost:3000' : 'https://h.accesstrade.net';
+      await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaServer);
     }
 
     // 動画自動実行用library
@@ -85,38 +71,11 @@ export class Iframe {
    * @param rkValue 
    */
   async mkIframeViaServer(domain: string, scriptElement: HTMLScriptElement, rkValue: string) {
-    const infoJson: Jsontype = await getJson2(domain, rkValue);
-
-    // 追加要素
-    infoJson.ATV_RK = rkValue;
-    infoJson.ATV_MODE = '';
-    infoJson.ATV_IMP_DOMAIN = 'https://h.accesstrade.net/sp/vip.json';
-    infoJson.ATV_CLICK_DOMAIN = 'https://h.accesstrade.net/sp/vck.json';
-    infoJson.ADAREA_HEIGHT = infoJson.videoad_vt_second !== '0'
-        ? '0'
-        : infoJson.height === '360'
-          ? '100'
-          : '50';
-
-    return new Promise<Jsontype>((resolove, _) => {
-      resolove(infoJson);
-    });
-  }
-
-  /**
-   * モックサーバからJson取得
-   * @param domain 
-   * @param scriptElement 
-   * @param rkValue 
-   */
-  async mkIframeViaMockServer(domain: string, scriptElement: HTMLScriptElement, rkValue: string) {
     const infoJson: Jsontype = await getJson(domain, rkValue);
 
     // 追加要素
     infoJson.ATV_RK = rkValue;
     infoJson.ATV_MODE = '';
-    infoJson.ATV_IMP_DOMAIN = `${domain}/imp`;
-    infoJson.ATV_CLICK_DOMAIN = domain;
     infoJson.ADAREA_HEIGHT = infoJson.videoad_vt_second !== '0'
         ? '0'
         : infoJson.height === '360'
@@ -134,32 +93,6 @@ export class Iframe {
    * @param rkValue 
    */
   async mkIframePreViaServer(domain: string, scriptElement: HTMLScriptElement, rkValue: string) {
-    let infoJson: Jsontype = await getJson2(domain, rkValue);
-    console.log(infoJson);
-
-    if (infoJson.videoad_vt_second !== '0') {
-      // viewthrought
-      infoJson.ATV_MODE = infoJson.height === '360' ? 'previewPc' : 'previewSp';
-      infoJson.ADAREA_HEIGHT = '0';
-    } else {
-      // not viewthrought
-      infoJson.ATV_MODE = infoJson.height === '360' ? 'previewPcAdarea' : 'previewSpAdarea';
-      infoJson.ADAREA_HEIGHT = infoJson.height === '360' ? '100' : '50';
-    }
-
-    // rkの削除
-    infoJson.ATV_RK = '';
-    return new Promise<Jsontype>((resolove, _) => {
-      resolove(infoJson);
-    });
-  }
-  
-  /**
-   * モックサーバから生成のpreview用
-   * @param scriptElement 
-   * @param rkValue 
-   */
-  async mkIframePreViaMockServer(domain: string, scriptElement: HTMLScriptElement, rkValue: string) {
     let infoJson: Jsontype = await getJson(domain, rkValue);
     console.log(infoJson);
 
@@ -226,15 +159,11 @@ export class Iframe {
  */
 export async function getJson(domain: string, rkValue: string): Promise<Jsontype> {
   return axios
-    .get(`${domain}/atvjson?atvrk=${rkValue}`)
-    .then(resdata => resdata.data)
-    .catch(err => console.log(err));
-}
-
-export async function getJson2(domain: string, rkValue: string): Promise<Jsontype> {
-  return axios
     .get(`${domain}/sp/vad.json?rk=${rkValue}`)
-    .then(resdata => resdata.data)
+    .then(resdata => {
+      console.log(resdata);
+      return resdata.data
+    })
     .catch(err => console.log(err));
 }
 

@@ -22,7 +22,6 @@ const mkfadeIn = () => {
     // styleタグを作成
     mkfadeIn();
 
-
     // スクリプトタグにrkが存在しない場合は、次の「data-atv-rk」を確認する
     const rkValue: string = scriptElement.getAttribute('data-atv-rk');
     const atvMode: string = scriptElement.getAttribute('data-atv-mode');

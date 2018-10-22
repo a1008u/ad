@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export namespace Filter {
-  export let cleanUp = (videoElement: HTMLVideoElement, divElementFilter: HTMLDivElement) => {
+  let cleanUp = (videoElement: HTMLVideoElement, divElementFilter: HTMLDivElement) => {
     const mainDivElement: HTMLElement = videoElement.parentElement;
     mainDivElement.removeAttribute('atvMain');
     mainDivElement.removeChild(divElementFilter);
@@ -23,7 +23,6 @@ export namespace Filter {
   };
 
   export let deleteMethod = (videoElement, playMode, divElementFilter) => {
-    console.log('playModeは【 '+playMode+' 】');
     if (playMode === 'pause') {
       videoPlay(videoElement);
     } else {
@@ -32,6 +31,9 @@ export namespace Filter {
     deleteFilter(videoElement, divElementFilter);
   };
 
+  /**
+   * svgを取得する
+   */
   const mkObjElement = (svgData: any, videoTag: HTMLVideoElement, playMode: string) : HTMLObjectElement => {
     const objectElement: HTMLObjectElement = document.createElement('object');
     objectElement.setAttribute('id', '___obj');
@@ -41,14 +43,8 @@ export namespace Filter {
     objectElement.setAttribute('___text', mode);
     return objectElement;
   };
-  
-  const getFilter = (videoTag: HTMLVideoElement) : HTMLDivElement => {
-    const divElementFilter: HTMLDivElement = document.createElement('div');
-    divElementFilter.classList.add('__filter');
-    divElementFilter.setAttribute("style", `width:${String(videoTag.clientWidth)}px; height:${String(videoTag.clientHeight)}px; padding: ${String(videoTag.clientHeight / 4)}px; cursor:pointer; z-index:30; box-sizing:border-box;`);
-    divElementFilter.classList.add('___ani');
-    return divElementFilter;
-  };
+
+
 
   const getFilterNotAnimation = (videoTag: HTMLVideoElement) : HTMLDivElement => {
     const divElementFilter: HTMLDivElement = document.createElement('div');
@@ -57,6 +53,16 @@ export namespace Filter {
     return divElementFilter;
   };
 
+  const getFilter = (videoTag: HTMLVideoElement) : HTMLDivElement => {
+    const divElementFilter: HTMLDivElement = getFilterNotAnimation(videoTag);
+    divElementFilter.classList.add('___ani');
+    return divElementFilter;
+  };
+
+  /**
+   * 
+   * @param playMode 
+   */
   export async function getSvgObjElment(playMode: string) {
     const svgFilePath: string = playMode === 'pause' 
       ? '../../svg/play-circle-solid.svg' 
@@ -90,7 +96,7 @@ export namespace Filter {
   }
 
   /**
-   * 動画再生終了用フィルター生成
+   * 動画再生終了用フィルター生成(非ビュースルーで利用します)
    * @param videoTag 
    * @param playMode 
    */

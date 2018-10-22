@@ -49,6 +49,10 @@ const doJson = (domain: string) => {
         resdata => {
           // iframe作成
           window.location.replace(resdata.data.url);
+
+          // replacueダメかも。。。
+          
+
           // setCookieをする
         }, err => console.log(err)
       );

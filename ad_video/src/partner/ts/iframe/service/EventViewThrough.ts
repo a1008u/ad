@@ -22,7 +22,11 @@ export namespace EventViewThrough {
           if (count > limitTime) {
             window.clearInterval(cntEvt);
             // const url: string = `.${atvJson.HREF_URL}?rk=${videoTag.getAttribute('data-atv-video')}`;
-            const url: string = `../../../redirect/send_h_is/html/re_send_h_is.html?rk=${videoTag.getAttribute('data-atv-video')}`;
+
+            // クリックのやつ
+            // const url: string = `../../../redirect/send_h_is/html/re_send_h_is.html?rk=${videoTag.getAttribute('data-atv-video')}`;
+            const url: string = `${atvJson.ATV_CLICK_DOMAIN}/redirect/send_h_is/html/re_send_h_is.html?url=${encodeURIComponent(atvJson.href_url)}`;
+
             let iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
             videoTag.parentNode.insertBefore(iframeTag, videoTag);
 
@@ -69,26 +73,32 @@ export namespace EventViewThrough {
   }
 
   /**
+   * 
+   * @param ev 
+   */
+  const prepareFilter = (ev: any) => {
+    const $videoElement: HTMLVideoElement = ev.target;
+    let playMode: string = $videoElement.getAttribute('playxxx');
+    showFilter($videoElement, playMode);
+  };
+
+  /**
    * PCブラウザ用 イベントリスナー
    */
-  export const setEventViewThroughPC = (videoElement: HTMLVideoElement) => {
+  export const setClickEventPC = (videoElement: HTMLVideoElement) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'click');
     video$.subscribe(ev => {
-      const $videoElement: HTMLVideoElement = ev.target;
-      let playMode: string = $videoElement.getAttribute('playxxx');
-      showFilter($videoElement, playMode);
+      prepareFilter(ev);
     });
   };
 
   /**
    * スマホブラウザ用 イベントリスナー
    */
-  export const setEventViewThroughSmartPhone = (videoElement: HTMLVideoElement) => {
+  export const setTouchEventSmartPhone = (videoElement: HTMLVideoElement) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'touchstart');
     video$.subscribe(ev => {
-      const $videoElement: HTMLVideoElement = ev.target;
-      let playMode: string = $videoElement.getAttribute('playxxx');
-      showFilter($videoElement, playMode);
+      prepareFilter(ev);
     });
   };
 }

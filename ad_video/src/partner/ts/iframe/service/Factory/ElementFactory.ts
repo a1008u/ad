@@ -1,51 +1,12 @@
-import { osFontSize } from '../OsFontSize';
 import { EventNotViewThrough } from '../EventNotViewThrough';
-import { ViewThroughFactory } from './ViewThroughFactory';
+import { VideoFilterEventFactory } from './VideoFilterEventFactory';
 import { EventViewThrough } from '../EventViewThrough';
 import { oschecker } from '../../../../../service/oschecker';
 import { Jsontype } from '../../../../../service/jsontype';
 import { tag } from '../../../../../service/tag';
-import axios from 'axios';
+import { MassageEvent } from '../MessageEvent';
 
 export namespace ElementFactory {
-
-  const getAdAreaValue = (atvJson: Jsontype) => {
-    let leftSize: string;
-    let rightSize: string;
-    let hrefValue: string;
-    let target: string;
-    let btnPaddingUpDown: string;
-    let btnPaddingLeftRight: string;
-    if (atvJson.ATV_MODE === 'previewPcAdarea') {
-      [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = ['28px', '24px', '10px', '20px'];
-      hrefValue = '#!';
-      target = ``;
-    } else if (atvJson.ATV_MODE === 'previewSpAdarea') {
-      [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = ['16px', '12px', '5px', '10px'];
-      hrefValue = '#!';
-      target = ``;
-    } else {
-      [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = osFontSize.getSize[oschecker.isolate()]();
-      hrefValue = atvJson.href_url;
-      target = `target="_blank"`;
-    }
-    return { leftSize, hrefValue, rightSize, target, btnPaddingUpDown, btnPaddingLeftRight};
-  };
-
-  // AdAreaの作成
-  const mkAdArea = (atvJson: Jsontype): string => {
-    let { leftSize, hrefValue, rightSize, target, btnPaddingUpDown, btnPaddingLeftRight}: { leftSize: string; hrefValue: string; rightSize: string; target: string; btnPaddingUpDown: string; btnPaddingLeftRight: string;} = getAdAreaValue(atvJson);
-    return `<div class="__divTextElement" style="height:${atvJson.ADAREA_HEIGHT}px">
-              <div class="__divTextLeftElement" style="font-size:${leftSize}">
-                <span class="__atv_text">${atvJson.banner_text}</span>
-              </div>
-              <div class="__divTextRightElement">
-                <a class="__atv_text" href="${hrefValue}" ${target} /">
-                  <span class="__atv_button" ontouchstart="" style="font-size:${rightSize}; padding:${btnPaddingUpDown} ${btnPaddingLeftRight}">${atvJson.video_btn_text}</>
-                </a>
-              </div>
-            </div>`;
-  };
 
   /**
    * viewThrough有りでvideoElementを作成
@@ -83,7 +44,7 @@ export namespace ElementFactory {
     mainDivElement.classList.add('__mainDivShadow');
 
     // 広告エリアを作成
-    const adAreaDiv: string = mkAdArea(atvJson);
+    const adAreaDiv: string = EventNotViewThrough.mkAdArea(atvJson);
     mainDivElement.insertAdjacentHTML('beforeend', adAreaDiv);
     return $videoElement;
   };
@@ -112,35 +73,9 @@ export namespace ElementFactory {
     $mainDivElement.setAttribute("style", `width:${atvJson.width}px; z-index:30;`);
 
     let videoElement: HTMLVideoElement = mkVideoElement($mainDivElement, atvJson);
-    ViewThroughFactory.osEvent[oschecker.isolate()](videoElement);
+    VideoFilterEventFactory.osEvent[oschecker.isolate()](videoElement);
 
     // 動画が表示されているか判定処理
-    window.addEventListener('message', (event) => {
-        if (event.data === 'pause') {
-          videoElement.pause();
-        } else {
-          if(videoElement.getAttribute('__end') !== undefined && videoElement.getAttribute('__end') === 'true') {
-            // 何も処理しない
-          } else {
-            let playMode: string = videoElement.getAttribute('playxxx');
-            if (playMode === 'pause') {
-              videoElement.pause();
-            } else {
-              videoElement.play();
-              let imp: string = videoElement.getAttribute('imp');
-              let atvMode: string = videoElement.getAttribute('atv_mode');
-              if (!imp && !atvMode) {
-                videoElement.setAttribute('imp', 'done');
-                console.table(atvJson);
-                axios
-                  .get(`${atvJson.ATV_IMP_DOMAIN}?${atvJson.ATV_RK}`)
-                  .then(resdata => resdata.data)
-                  .catch(err => console.log(err));
-              }
-
-            }
-          }
-        }
-    }, false);
+    MassageEvent.register(videoElement, atvJson);
   };
 }
