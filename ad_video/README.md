@@ -81,3 +81,16 @@
     nodist バージョン指定
     node -v
     ```
+
+
+    // "build-dev": "npm-run-all clean build:* cpx:*",
+    // "build:partnerdev": "webpack --config ./webpack.config.partner_dev.js",
+    // "build:partneriframedev": "webpack --config ./webpack.config.partner_iframe_dev.js",
+    // "build-marchantdev": "webpack --config ./webpack.config.marchant_dev.js",
+    // "build:redirecthisdev": "webpack --config ./webpack.config.redirect_send_h_is_dev.js",
+    // "build:redirectmdev": "webpack --config ./webpack.config.redirect_send_m_dev.js",
+    // "build:serverdev": "webpack --config ./webpack.config.server_dev.js",
+
+### テスト環境
+https://localhost:3000/videoad/adscript/html/index_pc_mock.html
+https://localhost:3000/videoad/adscript/html/index_sp_mock.html
