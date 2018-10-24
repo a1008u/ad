@@ -35,9 +35,11 @@ app.get('/imp', (req: Express.Request, res: Express.Response) => {
  */
 app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
 
-  const videoframeurl: string = 'https//localhost:3000/videoad/atvad/html/iframe_atvad.html';
-  const entryyframeurl: string = 'https//localhost:3000/videoad/entry/html/iframe_entry.html';
-  const domain = 'https://localhost:3000';
+  const domain = 'https://10.10.15.40:3000';
+  const videoframeurl: string = `${domain}/videoad/atvad/html/iframe_atvad.html`;
+  const entryyframeurl: string = `${domain}/videoad/entry/html/iframe_entry.html`;
+  const impurl: string = `${domain}/imp`;
+  
 
   let mkJson = (rk: string) => {
     switch (rk) {
@@ -51,7 +53,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '10',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a2':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba2.mp4`,
@@ -62,7 +65,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '20',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a3':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba3.mp4`,
@@ -73,7 +77,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '5',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a4':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba4.mp4`,
@@ -84,7 +89,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '8',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a5':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba5.mp4`,
@@ -95,7 +101,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '8',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a6':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba6.mp4`,
@@ -106,7 +113,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '8',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a7':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba7.mp4`,
@@ -117,7 +125,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '8',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a8':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba8.mp4`,
@@ -128,7 +137,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '0',
           '全容を今すぐ確認',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a9':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba9.mp4`,
@@ -139,7 +149,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '0',
           'インストール',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a10':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba10.mp4`,
@@ -150,7 +161,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '0',
           '詳細はこちら',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a11':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba11.mp4`,
@@ -161,7 +173,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '0',
           '詳細はこちら',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a12':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba12.mp4`,
@@ -172,7 +185,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '0',
           'インストール',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a1_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba1.mp4`,
@@ -183,7 +197,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '10',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a2_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba2.mp4`,
@@ -194,7 +209,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '10',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a3_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba3.mp4`,
@@ -205,7 +221,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '10',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a4_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba5.mp4`,
@@ -216,7 +233,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '10',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a5_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba5.mp4`,
@@ -227,7 +245,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '0',
           'ボタン',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a6_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba6.mp4`,
@@ -238,7 +257,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '10',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a7_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba7.mp4`,
@@ -249,7 +269,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '8',
           'ここは表示しません',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a8_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba8.mp4`,
@@ -260,7 +281,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '0',
           '全容を今すぐ確認',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a9_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba9.mp4`,
@@ -271,7 +293,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '0',
           'インストール',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a10_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba10.mp4`,
@@ -282,7 +305,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '0',
           '詳細はこちら',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a11_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba11.mp4`,
@@ -293,7 +317,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '0',
           '詳細はこちら',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
       case '010011a12_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba12.mp4`,
@@ -304,7 +329,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '0',
           'インストール',
           videoframeurl,
-          entryyframeurl);
+          entryyframeurl,
+          impurl);
     }
   };
 
@@ -370,6 +396,19 @@ app.get('/getImage', (req: Express.Request, res: Express.Response) => {
     res.cookie('test', '/marchant/html/next.html', { maxAge: 60000 });
   }
 });
+
+app.get('/imp', (req: Express.Request, res: Express.Response) => {
+  const json = {'key': 'impOK'};
+  res.send(json);
+  res.end();
+});
+
+// app.get('/sercookie', (req: Express.Request, res: Express.Response) => {
+//   res.setHeader('Set-Cookie', 'time_access=' + Date.now() + ';');
+//   const json = {'key': 'HelloWorld1'};
+//   res.send(json);
+//   res.end();
+// });
 
 // app.listen(PORT, () => {
 //   console.log('atv++++++Example app listening on port 3000!');

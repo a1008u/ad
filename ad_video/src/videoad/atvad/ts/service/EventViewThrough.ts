@@ -24,7 +24,7 @@ export namespace EventViewThrough {
 
             // クリックのやつ
             // const url: string = `../../../redirect/send_h_is/html/re_send_h_is.html?rk=${videoTag.getAttribute('data-atv-video')}`;
-            const url: string = `${atvJson.entryframe_url}?url=${encodeURIComponent(atvJson.href_url)}`;
+            const url: string = `${atvJson.entryframe_url}?url=${encodeURIComponent(atvJson.)}`;
 
             let iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
             videoTag.parentNode.insertBefore(iframeTag, videoTag);

@@ -42,9 +42,8 @@ export namespace tag {
     const $videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
     $videoElement.setAttribute('src', atvJson.image_url);
     $videoElement.setAttribute('width', atvJson.width);
-    // $videoElement.setAttribute('height', atvJson.HEIGHT);
     $videoElement.setAttribute('loop', loop);
-    $videoElement.setAttribute('data-atv-video', atvJson.ATV_RK);
+    // $videoElement.setAttribute('data-atv-video', atvJson.ATV_RK);
     return $videoElement;
   };
 

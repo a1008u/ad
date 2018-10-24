@@ -1,5 +1,4 @@
 import { Jsontype } from '../../../service/jsontype';
-
 import axios from 'axios';
 
 export namespace MassageEvent {
@@ -22,7 +21,7 @@ export namespace MassageEvent {
               videoElement.setAttribute('imp', 'done');
               console.table(atvJson);
               axios
-                .get(`${atvJson.ATV_IMP_DOMAIN}?rk=${atvJson.ATV_RK}`)
+                .get(atvJson.impression_url)
                 .then(resdata => resdata.data)
                 .catch(err => console.log(err));
             }

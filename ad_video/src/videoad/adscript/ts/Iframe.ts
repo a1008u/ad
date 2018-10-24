@@ -6,6 +6,8 @@ import { tag } from '../../service/tag';
 
 export class Iframe {
 
+  localhost: string = 'https://10.10.15.40:3000';
+
   constructor() {
     console.log('creat');
   }
@@ -18,7 +20,7 @@ export class Iframe {
    */
   async mainExec(scriptElement: any, rkValue: string, window: Window, atvMock: string) {
 
-    const domain = (atvMock) ? 'https://localhost:3000' : 'https://h.accesstrade.net';
+    const domain = (atvMock) ? this.localhost : 'https://h.accesstrade.net';
     await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaServer);
 
     // 動画自動実行用library
@@ -35,10 +37,10 @@ export class Iframe {
 
     if (!rkValue) {
       // nodeの属性を利用するため、mock用の記載は不要
-      const domain = (atvMock) ? 'https://localhost:3000' : '';
+      const domain = (atvMock) ? this.localhost : '';
       await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaNode);
     } else {
-      const domain = (atvMock) ? 'https://localhost:3000' : 'https://h.accesstrade.net';
+      const domain = (atvMock) ? this.localhost : 'https://h.accesstrade.net';
       await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaServer);
     }
 
@@ -55,8 +57,8 @@ export class Iframe {
   async mkIframe(domain: string, scriptElement: HTMLScriptElement, rkValue: string, mk: (domain: string, scriptElement: HTMLScriptElement, rkValue: string) => Promise<Jsontype>) {
 
     const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
-    infoJson.videoframe_url = (domain === 'https://localhost:3000')
-      ? 'https://localhost:3000/videoad/atvad/html/iframe_atvad.html'
+    infoJson.videoframe_url = (domain === 'https://10.10.15.40:3000')
+      ? `${this.localhost}/videoad/atvad/html/iframe_atvad.html`
       : 'https://a.image.accesstrade.net/hai/videoad/atvad/html/iframe_atvad.html';
 
     // iframe生成
@@ -76,7 +78,7 @@ export class Iframe {
     const infoJson: Jsontype = await getJson(domain, rkValue);
 
     // 追加要素
-    infoJson.ATV_RK = rkValue;
+    // infoJson.ATV_RK = rkValue;
     infoJson.ATV_MODE = '';
     infoJson.ADAREA_HEIGHT = infoJson.videoad_vt_second !== '0'
         ? '0'
@@ -96,7 +98,7 @@ export class Iframe {
    */
   async mkIframePreViaServer(domain: string, scriptElement: HTMLScriptElement, rkValue: string) {
     let infoJson: Jsontype = await getJson(domain, rkValue);
-    console.log(infoJson);
+    infoJson.impression_url = '';
 
     if (infoJson.videoad_vt_second !== '0') {
       // viewthrought
@@ -109,7 +111,7 @@ export class Iframe {
     }
 
     // rkの削除
-    infoJson.ATV_RK = '';
+    // infoJson.ATV_RK = '';
     return new Promise<Jsontype>((resolove, _) => {
       resolove(infoJson);
     });
@@ -128,7 +130,7 @@ export class Iframe {
     const btnText: string = scriptElement.getAttribute('data-atv-btn-text');
     const height: string = scriptElement.getAttribute('data-atv-height');
     const width: string = scriptElement.getAttribute('data-atv-width');
-    let infoJson: Jsontype = await getPreviewJson(moveURL, height, width, bannerText, btnText, '', '');
+    let infoJson: Jsontype = await getPreviewJson(moveURL, height, width, bannerText, btnText, '', '' ,'');
     scriptElement.removeAttribute('data-atv-url');
     scriptElement.removeAttribute('data-atv-banner-text');
     scriptElement.removeAttribute('data-atv-btn-text');
@@ -147,7 +149,7 @@ export class Iframe {
     }
 
     // rkの削除
-    infoJson.ATV_RK = '';
+    // infoJson.ATV_RK = '';
     return new Promise<Jsontype>((resolove, _) => {
       resolove(infoJson);
     });
@@ -173,8 +175,8 @@ export async function getJson(domain: string, rkValue: string): Promise<Jsontype
  * rkが内容のpreview
  * @param moveURL 
  */
-export async function getPreviewJson(moveURL: string, height: string, width: string, bannerText: string, btnText: string, videoFrameUrl:string , entryFrameUrl:string): Promise<Jsontype> {
-  let json = new Jsontype(moveURL, bannerText, '', width, height, '0', btnText, videoFrameUrl, videoFrameUrl);
+export async function getPreviewJson(moveURL: string, height: string, width: string, bannerText: string, btnText: string, videoFrameUrl:string , entryFrameUrl:string, impression_url:string): Promise<Jsontype> {
+  let json = new Jsontype(moveURL, bannerText, '', width, height, '0', btnText, videoFrameUrl, videoFrameUrl, impression_url);
 
   return new Promise<Jsontype>((resolove, _) => {
     resolove(json);

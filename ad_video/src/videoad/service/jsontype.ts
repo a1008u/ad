@@ -20,14 +20,13 @@ export class Jsontype {
   rk: string;
   videoframe_url: string;
   entryframe_url: string;
-  ATV_RK: string;
+  impression_url: string;
   ATV_MODE: string;
   ADAREA_HEIGHT: string;
-  ATV_IMP_DOMAIN: string;
 
-  constructor(image_url, banner_text, href_url, 
-    height, width, videoad_vt_second, 
-    video_btn_text, videoframe_url, entryframe_url) {
+  constructor(image_url, banner_text, href_url,
+    height, width, videoad_vt_second, video_btn_text,
+    videoframe_url, entryframe_url, impression_url) {
     this.banner_text = banner_text;
     this.image_url = image_url;
     this.href_url = href_url;
@@ -38,9 +37,8 @@ export class Jsontype {
     this.rk = '';
     this.videoframe_url = videoframe_url;
     this.entryframe_url = entryframe_url;
-    this.ATV_RK = '';
+    this.impression_url = impression_url;
     this.ATV_MODE = '';
     this.ADAREA_HEIGHT = '';
-    this.ATV_IMP_DOMAIN = '';
   }
 }

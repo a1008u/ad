@@ -18,7 +18,7 @@ require('es6-promise').polyfill();
 
 async function exec() {
   let data = await getJson();
-  console.table(data);
+  // console.table(data);
   // const url: string = `../../send_m/html/fm.html?rk=${data.key}`;
   // let iframeElement: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
 
