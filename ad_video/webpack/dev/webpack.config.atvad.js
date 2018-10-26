@@ -1,11 +1,11 @@
 module.exports = {
 
     entry: {
-        "ts":'./src/videoad/adscript/ts/main.ts'
+        "ts":'./src/atvad/ts/main.ts'
     },
 
     output: {
-        filename: "./server/statics/videoad/adscript/atvadscript_min.js"
+        filename: "./server/statics/atvad/atvad_min.js"
     },
     mode: 'development'
     ,

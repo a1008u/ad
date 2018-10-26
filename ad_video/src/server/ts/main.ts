@@ -35,7 +35,7 @@ app.get('/imp', (req: Express.Request, res: Express.Response) => {
  */
 app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
 
-  const domain = 'https://10.10.15.40:3000';
+  const domain = 'https://10.10.15.65:3000';
   const videoframeurl: string = `${domain}/videoad/atvad/html/iframe_atvad.html`;
   const entryyframeurl: string = `${domain}/videoad/entry/html/iframe_entry.html`;
   const impurl: string = `${domain}/imp`;

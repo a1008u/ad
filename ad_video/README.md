@@ -2,10 +2,10 @@
   - 開発用
      ```$npm
     npm install // npm_moduleを取得していない場合
-    export PATH=$PATH:./node_modules/.bin 
+    export PATH=$PATH:./node_modules/.bin
     npm run build-dev // 開発環境用
     docker-compose up --build
-    
+
     // express
     npm run build-serverdev
     node dist/server/js/app.js
@@ -94,3 +94,26 @@
 ### テスト環境
 https://localhost:3000/videoad/adscript/html/index_pc_mock.html
 https://localhost:3000/videoad/adscript/html/index_sp_mock.html
+
+
+# docker
+docker inspect mysql_mysql-test_1
+docker run --rm --volumes-from mysql_mysql-test_1 -v $(pwd):/backup boombatower/docker-backup backup
+ls -l
+
+docker run --volumes-from mysql_mysql-test_1 -v $(pwd):/backup mysql_mysql-test_1 bash -c "tar xvf /backup.tar.xz"
+
+docker container prune
+
+docker -v $(pwd):/backup mysql_mysql-test_1 bash -c "cd tar xvf /backup.tar.xz"
+docker exec -it -v $(pwd):/backup 5c97a7948805 bash -c "ls -l"
+
+
+
+docker cp backup.tar.xz mysql_mysql-test_1:./backup.tar.xz
+docker exec -it mysql_mysql-test_1 bash -c "ls -l"
+docker exec -it mysql_mysql-test_1 bash -c "tar xvf ./backup.tar.xz"
+
+
+docker run --volumes-from mysql_db_data_1 -v $(pwd):/backup mysql bash -c "cd /backup && apt-get update && apt-get install xz-utils && tar xvf ./backup.tar.xz"
+

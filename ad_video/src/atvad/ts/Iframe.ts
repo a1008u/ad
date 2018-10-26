@@ -1,12 +1,13 @@
 import { emergenceInit } from './EmergenceFactory';
 
 import axios from 'axios';
-import { Jsontype } from '../../service/jsontype';
-import { tag } from '../../service/tag';
+import { Jsontype } from '../../videoad/service/jsontype';
+import { tag } from '../../videoad/service/tag';
+
 
 export class Iframe {
 
-  localhost: string = 'https://10.10.15.40:3000';
+  localhost: string = 'https://10.10.15.65:3000';
 
   constructor() {
     console.log('creat');
@@ -57,7 +58,7 @@ export class Iframe {
   async mkIframe(domain: string, scriptElement: HTMLScriptElement, rkValue: string, mk: (domain: string, scriptElement: HTMLScriptElement, rkValue: string) => Promise<Jsontype>) {
 
     const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
-    infoJson.videoframe_url = (domain === 'https://10.10.15.40:3000')
+    infoJson.videoframe_url = (domain === 'https://10.10.15.65:3000')
       ? `${this.localhost}/videoad/atvad/html/iframe_atvad.html`
       : 'https://a.image.accesstrade.net/hai/videoad/atvad/html/iframe_atvad.html';
 
