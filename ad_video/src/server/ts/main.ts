@@ -52,6 +52,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '10',
           'ここは表示しません',
+          '010011a1',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -64,6 +65,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '20',
           'ここは表示しません',
+          '010011a2',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -76,6 +78,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '5',
           'ここは表示しません',
+          '010011a3',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -88,6 +91,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '8',
           'ここは表示しません',
+          '010011a4',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -100,6 +104,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '8',
           'ここは表示しません',
+          '010011a5',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -112,6 +117,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '8',
           'ここは表示しません',
+          '010011a6',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -124,6 +130,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '8',
           'ここは表示しません',
+          '010011a7',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -136,6 +143,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '0',
           '全容を今すぐ確認',
+          '010011a8',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -148,6 +156,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '0',
           'インストール',
+          '010011a9',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -160,6 +169,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '0',
           '詳細はこちら',
+          '010011a10',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -172,6 +182,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '0',
           '詳細はこちら',
+          '010011a11',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -184,6 +195,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '320',
           '0',
           'インストール',
+          '010011a12',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -196,6 +208,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '640',
           '10',
           'ここは表示しません',
+          '010011a1_pc',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -208,6 +221,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '640',
           '10',
           'ここは表示しません',
+          '010011a2_pc',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -220,6 +234,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '640',
           '10',
           'ここは表示しません',
+          '010011a3_pc',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -232,6 +247,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '640',
           '10',
           'ここは表示しません',
+          '010011a4_pc',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -244,6 +260,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '640',
           '0',
           'ボタン',
+          '010011a5_pc',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -256,6 +273,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '640',
           '10',
           'ここは表示しません',
+          '010011a6_pc',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -268,6 +286,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '640',
           '8',
           'ここは表示しません',
+          '010011a7_pc',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -280,6 +299,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '640',
           '0',
           '全容を今すぐ確認',
+          '010011a8_pc',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -292,6 +312,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '640',
           '0',
           'インストール',
+          '010011a9_pc',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -301,9 +322,10 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           'FF零式　- OP特典　- ',
           'https://www.google.com',
           '360',
-        '640',
+          '640',
           '0',
           '詳細はこちら',
+          '010011a10_pc',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -316,6 +338,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '640',
           '0',
           '詳細はこちら',
+          '010011a11_pc',
           videoframeurl,
           entryyframeurl,
           impurl);
@@ -328,6 +351,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '640',
           '0',
           'インストール',
+          '010011a12_pc',
           videoframeurl,
           entryyframeurl,
           impurl);

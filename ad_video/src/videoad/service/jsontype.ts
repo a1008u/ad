@@ -25,7 +25,7 @@ export class Jsontype {
   ADAREA_HEIGHT: string;
 
   constructor(image_url, banner_text, href_url,
-    height, width, videoad_vt_second, video_btn_text,
+    height, width, videoad_vt_second, video_btn_text,rk,
     videoframe_url, entryframe_url, impression_url) {
     this.banner_text = banner_text;
     this.image_url = image_url;
@@ -34,7 +34,7 @@ export class Jsontype {
     this.videoad_vt_second = videoad_vt_second;
     this.width = width;
     this.height = height;
-    this.rk = '';
+    this.rk = rk;
     this.videoframe_url = videoframe_url;
     this.entryframe_url = entryframe_url;
     this.impression_url = impression_url;

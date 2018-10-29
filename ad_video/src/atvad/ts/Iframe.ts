@@ -177,7 +177,7 @@ export async function getJson(domain: string, rkValue: string): Promise<Jsontype
  * @param moveURL 
  */
 export async function getPreviewJson(moveURL: string, height: string, width: string, bannerText: string, btnText: string, videoFrameUrl:string , entryFrameUrl:string, impression_url:string): Promise<Jsontype> {
-  let json = new Jsontype(moveURL, bannerText, '', width, height, '0', btnText, videoFrameUrl, videoFrameUrl, impression_url);
+  let json = new Jsontype(moveURL, bannerText, '', width, height, '0', btnText, '',videoFrameUrl, videoFrameUrl, impression_url);
 
   return new Promise<Jsontype>((resolove, _) => {
     resolove(json);

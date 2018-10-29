@@ -35,6 +35,8 @@ async function getJson(): Promise<any> {
   let decodeUrlQuerry: string = decodeURIComponent(urlQuerry);
   let [key, url] = decodeUrlQuerry.split('=');
 
+  console.log(url)
+
   return axios
     .get(url)
     .then(resdata => resdata.data)

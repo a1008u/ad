@@ -19,7 +19,7 @@ export namespace MassageEvent {
             let atvMode: string = videoElement.getAttribute('atv_mode');
             if (!imp && !atvMode) {
               videoElement.setAttribute('imp', 'done');
-              console.table(atvJson);
+              console.table('imp用 ' + atvJson);
               axios
                 .get(atvJson.impression_url)
                 .then(resdata => resdata.data)
