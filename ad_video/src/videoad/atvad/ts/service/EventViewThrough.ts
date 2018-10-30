@@ -20,14 +20,8 @@ export namespace EventViewThrough {
           count += 250;
           if (count > limitTime) {
             window.clearInterval(cntEvt);
-            // const url: string = `.${atvJson.HREF_URL}?rk=${videoTag.getAttribute('data-atv-video')}`;
-
             // クリックのやつ
-            // const url: string = `../../../redirect/send_h_is/html/re_send_h_is.html?rk=${videoTag.getAttribute('data-atv-video')}`;
-
-            // TODO entryのxhr先が必要
-            const url: string = `${atvJson.entryframe_url}?rk=${encodeURIComponent(atvJson.rk)}`;
-
+            const url: string = `${atvJson.entryframe_url}?url=${encodeURIComponent(atvJson.href_url)}`;
             let iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
             videoTag.parentNode.insertBefore(iframeTag, videoTag);
 

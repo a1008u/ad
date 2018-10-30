@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import { jsontype, Jsontype } from '../../videoad/service/jsontype';
 
 import * as https from 'https';
+import { Jsoncookie } from '../../videoad/service/jsoncookie';
 
 // POSTパラメータをJSONで取得するにはbody-parserを使う。
 
@@ -34,8 +35,8 @@ app.get('/imp', (req: Express.Request, res: Express.Response) => {
  * 1回目のxhr用のAPI
  */
 app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
-
-  const domain = 'https://10.10.15.65:3000';
+  
+  const domain = 'https://10.10.15.77:3000';
   const videoframeurl: string = `${domain}/videoad/atvad/html/iframe_atvad.html`;
   const entryyframeurl: string = `${domain}/videoad/entry/html/iframe_entry.html`;
   const impurl: string = `${domain}/imp`;
@@ -47,7 +48,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba1.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click_part1?rk=010011a1`,
           '180',
           '320',
           '10',
@@ -388,14 +389,29 @@ app.get('/issp', (req: Express.Request, res: Express.Response) => {
   res.end();
 });
 
+// iframe用
 app.get('/click_part1', (req: Express.Request, res: Express.Response) => {
-  if (req.query.rk) {
-    res.redirect('/next.html?rk=' + req.query.rk);
-  } else {
-    res.redirect('/next.html');
-  }
+  const jsoncookie: Jsoncookie = new Jsoncookie(
+    "true",
+    "z4361737039", // n
+    "01005gtr000005", // rk
+    "", // rurlです 利用 iframe_url + url= rurl
+    "f3a42d90657264333bb4880f59055aed",
+    "https://is.accesstrade.net/cgi-bin/isatV2/iframe_cookie.html" // iframe_url
+  );
+  res.json(jsoncookie);
   res.end();
 });
+
+
+// app.get('/click_part1', (req: Express.Request, res: Express.Response) => {
+//   if (req.query.rk) {
+//     res.redirect('/next.html?rk=' + req.query.rk);
+//   } else {
+//     res.redirect('/next.html');
+//   }
+//   res.end();
+// });
 
 app.get('/click_part2', (req: Express.Request, res: Express.Response) => {
   console.log('/marchant/html/next.html?rk=' + req.query.rk);
