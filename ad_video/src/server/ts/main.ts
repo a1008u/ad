@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import { jsontype, Jsontype } from '../../videoad/service/jsontype';
 
 import * as https from 'https';
+import { Jsonentry } from '../../videoad/service/jsonentry';
 import { Jsoncookie } from '../../videoad/service/jsoncookie';
 
 // POSTパラメータをJSONで取得するにはbody-parserを使う。
@@ -18,6 +19,8 @@ app.get(ROOT, (req: Express.Request, res: Express.Response) => {
   res.send('Hello world.');
 });
 
+
+const domain = 'https://10.10.15.77:3000';
 
 /**
  * 0回目のxhr用のAPI imp用
@@ -35,12 +38,9 @@ app.get('/imp', (req: Express.Request, res: Express.Response) => {
  * 1回目のxhr用のAPI
  */
 app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
-  
-  const domain = 'https://10.10.15.77:3000';
   const videoframeurl: string = `${domain}/videoad/atvad/html/iframe_atvad.html`;
   const entryyframeurl: string = `${domain}/videoad/entry/html/iframe_entry.html`;
   const impurl: string = `${domain}/imp`;
-  
 
   let mkJson = (rk: string) => {
     switch (rk) {
@@ -48,7 +48,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba1.mp4`,
           'ここは表示しません',
-          `${domain}/click_part1?rk=010011a1`,
+          `${domain}/click?rk=010011a1`,
           '180',
           '320',
           '10',
@@ -368,97 +368,41 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
 /**
  * 2回目のxhr用のAPI
  */
-app.get('/rr', (req: Express.Request, res: Express.Response) => {
-  const rk: string = req.query.rk;
-  console.log('rkは[' + rk + ']');
+app.get('/click', (req: Express.Request, res: Express.Response) => {
+  const query: string = req.query.rk;
+  console.log('rkは[' + query + ']');
 
-  const json = {'key': 'HelloWorld1'};
-  res.json(json);
+  const jsoncookie: Jsonentry = new Jsonentry(
+    'true',
+    'z4361737039', // n
+    '01005gtr000005', // rk
+    `${domain}/cookie?rk=01005gtr000005`, // rurlです 利用 iframe_url + url= rurl
+    'f3a42d90657264333bb4880f59055aed',
+    `${domain}/videoad/cookie/html/iframe_cookie.html` // iframe_url
+  );
+  res.json(jsoncookie);
   res.end();
 });
 
 /**
  * 3回目のxhr用のAPI
  */
-app.get('/issp', (req: Express.Request, res: Express.Response) => {
+app.get('/cookie', (req: Express.Request, res: Express.Response) => {
   const query: string = req.query.rk;
   console.log('rkは[' + query + ']');
 
-  const json = {'key': 'HelloWorld2'};
-  res.json(json);
-  res.end();
-});
-
-// iframe用
-app.get('/click_part1', (req: Express.Request, res: Express.Response) => {
   const jsoncookie: Jsoncookie = new Jsoncookie(
-    "true",
-    "z4361737039", // n
-    "01005gtr000005", // rk
-    "", // rurlです 利用 iframe_url + url= rurl
-    "f3a42d90657264333bb4880f59055aed",
-    "https://is.accesstrade.net/cgi-bin/isatV2/iframe_cookie.html" // iframe_url
+    `${domain}/atvad/html/lp.html`, // rurlです 利用 iframe_url + url= rurl
+    'thanku0001'
   );
   res.json(jsoncookie);
   res.end();
 });
 
-
-// app.get('/click_part1', (req: Express.Request, res: Express.Response) => {
-//   if (req.query.rk) {
-//     res.redirect('/next.html?rk=' + req.query.rk);
-//   } else {
-//     res.redirect('/next.html');
-//   }
-//   res.end();
-// });
-
-app.get('/click_part2', (req: Express.Request, res: Express.Response) => {
-  console.log('/marchant/html/next.html?rk=' + req.query.rk);
-  if (req.query.rk) {
-    res.json({ url: '/marchant/html/next.html?rk=' + req.query.rk });
-  } else {
-    res.json({});
-  }
-  res.end();
-});
-
-app.get('/getImage', (req: Express.Request, res: Express.Response) => {
-  if (req.query.rk) {
-    res.cookie('test', '/marchant/html/next.html?rk=' + req.query.rk, {
-      maxAge: 60000,
-    });
-    fs.readFile('ts.jpg', (_, data) => {
-      res.set('Content-Type', 'image/jpeg');
-      res.send(data);
-    });
-  } else {
-    res.cookie('test', '/marchant/html/next.html', { maxAge: 60000 });
-  }
-});
-
-app.get('/imp', (req: Express.Request, res: Express.Response) => {
-  const json = {'key': 'impOK'};
-  res.send(json);
-  res.end();
-});
-
-// app.get('/sercookie', (req: Express.Request, res: Express.Response) => {
-//   res.setHeader('Set-Cookie', 'time_access=' + Date.now() + ';');
-//   const json = {'key': 'HelloWorld1'};
-//   res.send(json);
-//   res.end();
-// });
-
-// app.listen(PORT, () => {
-//   console.log('atv++++++Example app listening on port 3000!');
-// });
-
-const options = { 
+const options = {
   key : fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem'),
 };
-
 
 let server = https.createServer(options, app);
 

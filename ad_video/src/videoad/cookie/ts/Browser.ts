@@ -1,10 +1,12 @@
-interface Browser {
-  ie: (domain: string) => void;
-  edge: (domain: string) => void;
-  chrome: (domain: string) => void;
-  firefox: (domain: string) => void;
-  opera: (domain: string) => void;
-  safari: (domain: string) => void;
-  itp_safari: (domain: string) => void;
-  unknown: (domain: string) => void;
+import { Jsoncookie } from '../../service/jsoncookie';
+
+export interface Browser {
+  ie: (jsoncookie: Jsoncookie) => void;
+  edge: (jsoncookie: Jsoncookie) => void;
+  chrome: (jsoncookie: Jsoncookie) => void;
+  firefox: (jsoncookie: Jsoncookie) => void;
+  opera: (jsoncookie: Jsoncookie) => void;
+  safari: (jsoncookie: Jsoncookie) => void;
+  itp_safari: (jsoncookie: Jsoncookie) => void;
+  unknown: (jsoncookie: Jsoncookie) => void;
 }

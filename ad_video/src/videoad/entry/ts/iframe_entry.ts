@@ -1,30 +1,30 @@
 import axios from 'axios';
-import { Jsoncookie } from '../../service/jsoncookie';
+import { Jsonentry } from '../../service/jsonentry';
+import { tag } from '../../service/tag';
 
 // IEでPromiseを利用する為に利用
 // tslint:disable-next-line:no-var-requires
 require('es6-promise').polyfill();
 
 /**
- * hへアクセス
- * 1.hへのアクセス
- * 2.
- * 3.
+ * clickしたことを伝えるよ
+ * 今度は、トラッキングの本ちゃんへ
  */
 (() => {
-  console.log('=== send_is start === ');
+  console.log('=== entry start === ');
   exec();
-  console.log('=== send_is end === ');
 })();
 
 async function exec() {
-  let data: Jsoncookie = await getJson();
+  let data: Jsonentry = await getJson();
   console.table(data);
-  // const url: string = `../../send_m/html/fm.html?rk=${data.key}`;
-  // let iframeElement: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
+  const url: string = `${data.vh_frame_url}?url=${encodeURIComponent(data.rurl)}`;
+  console.log(url);
+  let iframeElement: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
 
-  // let divElement: HTMLElement = document.getElementById('atv_re_send_h_is');
-  // divElement.parentNode.insertBefore(iframeElement, divElement);
+  let divElement: HTMLElement = document.getElementById('atv_cookie_space');
+  divElement.parentNode.insertBefore(iframeElement, divElement);
+  console.log('===entry end === ');
 }
 
 /**
@@ -34,12 +34,10 @@ async function getJson(): Promise<any> {
   let urlQuerry: string = location.search.substring(1);
 
   let decodeUrlQuerry: string = decodeURIComponent(urlQuerry);
-  let [key, url] = decodeUrlQuerry.split('url=');
-
-  console.log(url);
+  let [urlKey, urlValue] = decodeUrlQuerry.split('url=');
 
   return axios
-    .get(url)
+    .get(urlValue)
     .then(resdata => resdata.data)
     .catch(err => console.log(err));
 }
