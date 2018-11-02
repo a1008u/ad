@@ -7,7 +7,7 @@ import { tag } from '../../videoad/service/tag';
 
 export class Iframe {
 
-  localhost: string = 'https://10.10.15.77:3000';
+  localhost: string = 'https://10.10.15.98:3000';
 
   constructor() {
     console.log('creat');
@@ -58,7 +58,7 @@ export class Iframe {
   async mkIframe(domain: string, scriptElement: HTMLScriptElement, rkValue: string, mk: (domain: string, scriptElement: HTMLScriptElement, rkValue: string) => Promise<Jsontype>) {
 
     const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
-    infoJson.videoframe_url = (domain === 'https://10.10.15.77:3000')
+    infoJson.videoframe_url = (domain === 'https://10.10.15.98:3000')
       ? `${this.localhost}/videoad/atvad/html/iframe_atvad.html`
       : 'https://a.image.accesstrade.net/hai/videoad/atvad/html/iframe_atvad.html';
 

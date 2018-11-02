@@ -92,8 +92,8 @@
     // "build:serverdev": "webpack --config ./webpack.config.server_dev.js",
 
 ### テスト環境
-https://localhost:3000/videoad/adscript/html/index_pc_mock.html
-https://localhost:3000/videoad/adscript/html/index_sp_mock.html
+https://localhost:3000/atvad/html/index_pc_mock.html
+https://localhost:3000/atvad/html/index_sp_mock.html
 
 
 # docker

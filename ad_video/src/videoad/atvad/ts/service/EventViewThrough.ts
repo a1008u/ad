@@ -2,6 +2,7 @@ import * as Rx from 'rxjs';
 import { Filter } from './Filter';
 import { tag } from '../../../service/tag';
 import { Jsontype } from '../../../service/jsontype';
+import { ImpService } from './ImpService';
 
 export namespace EventViewThrough {
 
@@ -46,15 +47,26 @@ export namespace EventViewThrough {
   async function showFilter($videoElement: HTMLVideoElement, playMode: string) {
 
     let mode = $videoElement.getAttribute('playxxx');
-    if(mode === "pause") {
+    if (mode === 'pause') {
       $videoElement.play();
       $videoElement.setAttribute('playxxx', 'play');
-    } else if(mode === "play")  {
+    } else if (mode === 'play') {
       $videoElement.pause();
       $videoElement.setAttribute('playxxx', 'pause');
     } else {
-      $videoElement.pause();
-      $videoElement.setAttribute('playxxx', 'pause');
+      let first = $videoElement.getAttribute('videostart');
+      console.log('first  ' + first);
+      if(first) {
+        $videoElement.play();
+        $videoElement.setAttribute('playxxx', 'play');
+        $videoElement.removeAttribute('videoStart');
+        playMode = 'pause';
+      } else {
+        $videoElement.pause();
+        $videoElement.setAttribute('playxxx', 'pause');
+        playMode = 'pause';
+      }
+      console.log('playMode  ' + playMode);
     }
 
     let $divElementFilter: HTMLDivElement = await Filter.execFil($videoElement, playMode);
@@ -71,29 +83,30 @@ export namespace EventViewThrough {
    * 
    * @param ev 
    */
-  const prepareFilter = (ev: any) => {
+  const prepareFilter = (ev: any, atvJson: Jsontype) => {
     const $videoElement: HTMLVideoElement = ev.target;
     let playMode: string = $videoElement.getAttribute('playxxx');
     showFilter($videoElement, playMode);
+    ImpService.execImp($videoElement, atvJson);
   };
 
   /**
    * PCブラウザ用 イベントリスナー
    */
-  export const setClickEventPC = (videoElement: HTMLVideoElement) => {
+  export const setClickEventPC = (videoElement: HTMLVideoElement, atvJson:Jsontype) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'click');
     video$.subscribe(ev => {
-      prepareFilter(ev);
+      prepareFilter(ev, atvJson);
     });
   };
 
   /**
    * スマホブラウザ用 イベントリスナー
    */
-  export const setTouchEventSmartPhone = (videoElement: HTMLVideoElement) => {
+  export const setTouchEventSmartPhone = (videoElement: HTMLVideoElement, atvJson:Jsontype) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'touchstart');
     video$.subscribe(ev => {
-      prepareFilter(ev);
+      prepareFilter(ev, atvJson);
     });
   };
 }

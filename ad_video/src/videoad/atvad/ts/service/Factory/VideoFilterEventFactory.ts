@@ -1,22 +1,24 @@
-import { EventViewThrough } from "../EventViewThrough";
+import { EventViewThrough } from '../EventViewThrough';
+import { Jsontype } from '../../../../service/jsontype';
+import { OS } from '../../../../interface/OS';
 
 export namespace VideoFilterEventFactory {
   export const osEvent: OS = {
-    ios: (videoTag: HTMLVideoElement) => {
+    ios: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
       console.log('smart phoneと判定');
-      EventViewThrough.setTouchEventSmartPhone(videoTag);
+      EventViewThrough.setTouchEventSmartPhone(videoTag, atvJson);
     },
-    android: (videoTag: HTMLVideoElement) => {
+    android: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
       console.log('smart phoneと判定');
-      EventViewThrough.setTouchEventSmartPhone(videoTag);
+      EventViewThrough.setTouchEventSmartPhone(videoTag, atvJson);
     },
-    windowsphone: (videoTag: HTMLVideoElement) => {
+    windowsphone: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
       console.log('smart phoneと判定');
-      EventViewThrough.setTouchEventSmartPhone(videoTag);
+      EventViewThrough.setTouchEventSmartPhone(videoTag, atvJson);
     },
-    pc: (videoTag: HTMLVideoElement) => {
+    pc: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
       console.log('pcと判定');
-      EventViewThrough.setClickEventPC(videoTag);
+      EventViewThrough.setClickEventPC(videoTag, atvJson);
     },
   };
 }

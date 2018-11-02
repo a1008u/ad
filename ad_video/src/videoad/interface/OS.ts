@@ -1,14 +1,15 @@
-interface OS {
-    ios: (videoElement: HTMLVideoElement) => void;
-    android: (videoElement: HTMLVideoElement) => void;
-    windowsphone:  (videoElement: HTMLVideoElement) => void;
-    pc:  (videoElement: HTMLVideoElement) => void;
+import { Jsontype } from '../service/jsontype';
+
+export interface OS {
+  ios: (videoElement: HTMLVideoElement, atvJson: Jsontype) => void;
+  android: (videoElement: HTMLVideoElement, atvJson: Jsontype) => void;
+  windowsphone: (videoElement: HTMLVideoElement, atvJson: Jsontype) => void;
+  pc: (videoElement: HTMLVideoElement, atvJson: Jsontype) => void;
 }
 
-
-interface OSFontsize {
-    ios: (divTextLeftElement, divTextRightElement) => void;
-    android: (vdivTextLeftElement, divTextRightElement) => void;
-    windowsphone:  (divTextLeftElement, divTextRightElement) => void;
-    pc:  (divTextLeftElement, divTextRightElement) => void;
+export interface OSFontsize {
+  ios: (divTextLeftElement, divTextRightElement) => void;
+  android: (vdivTextLeftElement, divTextRightElement) => void;
+  windowsphone: (divTextLeftElement, divTextRightElement) => void;
+  pc: (divTextLeftElement, divTextRightElement) => void;
 }

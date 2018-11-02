@@ -40,23 +40,23 @@ const doJson = (jsoncookie: Jsoncookie) => {
   console.log('IE以外だよ');
   console.log(location.search);
 
-  // location.search
-  //   .substring(1)
-  //   .split('&')
-  //   .filter(query => query.substring(0, 3) === 'rk=')
-  //   .forEach(query => {
-  //     const [rkKey, rkValue]: string[] = query.split('=');
-  //     Rx.from(axios.get(`${jsoncookie.rurl}?${rkKey}=${rkValue}`)).subscribe(
-  //       resdata => {
-  //         // iframe作成
-  //         window.location.replace(resdata.data.url);
+  location.search
+    .substring(1)
+    .split('&')
+    .filter(query => query.substring(0, 3) === 'rk=')
+    .forEach(query => {
+      const [rkKey, rkValue]: string[] = query.split('=');
+      Rx.from(axios.get(`${jsoncookie.rurl}?${rkKey}=${rkValue}`)).subscribe(
+        resdata => {
+          // iframe作成
+          window.location.replace(resdata.data.url);
 
-  //         // replacueダメかも。。。
+          // replacueダメかも。。。
 
-  //         // setCookieをする
-  //       }, err => console.log(err)
-  //     );
-  //   });
+          // setCookieをする
+        }, err => console.log(err)
+      );
+    });
 };
 
 // SDK用
@@ -91,10 +91,10 @@ const browsers: Browser = {
 
 async function exec() {
   // json取得
-  let urlQuerry: string = location.search.substring(1);
+  let urlQuerry: string = location.search;
   let decodeUrlQuerry: string = decodeURIComponent(urlQuerry);
-  let [urlKey, urlValue] = decodeUrlQuerry.split('url=');
-  console.log(urlValue);
+  let [urlKey, urlValue] = decodeUrlQuerry.split('?url=');
+  console.log('?url = '+urlValue);
 
   let jsoncookie: Jsoncookie = await getJson(urlValue);
   console.table(jsoncookie);

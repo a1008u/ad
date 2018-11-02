@@ -1,33 +1,27 @@
 import { Jsontype } from '../../../service/jsontype';
-import axios from 'axios';
+import { ImpService } from './ImpService';
 
 export namespace MassageEvent {
   export const register= (videoElement: HTMLVideoElement, atvJson: Jsontype) => {
     window.addEventListener('message', (event) => {
-      if (event.data === 'pause') {
-        videoElement.pause();
-      } else {
-        if (videoElement.getAttribute('__end') !== undefined && videoElement.getAttribute('__end') === 'true') {
-          // 何も処理しない
+        if (event.data === 'pause') {
+          videoElement.setAttribute('playxxx', 'pause');
+          videoElement.pause();
         } else {
-          let playMode: string = videoElement.getAttribute('playxxx');
-          if (playMode === 'pause') {
-            videoElement.pause();
+          if (videoElement.getAttribute('__end') !== undefined && videoElement.getAttribute('__end') === 'true') {
+            // 何も処理しない
           } else {
-            videoElement.play();
-            let imp: string = videoElement.getAttribute('imp');
-            let atvMode: string = videoElement.getAttribute('atv_mode');
-            if (!imp && !atvMode) {
-              videoElement.setAttribute('imp', 'done');
-              console.table('imp用 ' + atvJson);
-              axios
-                .get(atvJson.impression_url)
-                .then(resdata => resdata.data)
-                .catch(err => console.log(err));
+            let playMode: string = videoElement.getAttribute('playxxx');
+            if (playMode === 'pause') {
+              videoElement.setAttribute('playxxx', 'pause');
+              videoElement.pause();
+            } else {
+              videoElement.setAttribute('playxxx', 'play');
+              videoElement.play();
+              ImpService.execImp(videoElement, atvJson);
             }
           }
         }
-      }
-    }, false);
-  }
+      },  false);
+  };
 }

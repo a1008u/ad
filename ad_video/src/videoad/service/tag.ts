@@ -43,7 +43,7 @@ export namespace tag {
     $videoElement.setAttribute('src', atvJson.image_url);
     $videoElement.setAttribute('width', atvJson.width);
     $videoElement.setAttribute('loop', loop);
-    // $videoElement.setAttribute('data-atv-video', atvJson.ATV_RK);
+    $videoElement.setAttribute('videostart', 'start');
     return $videoElement;
   };
 

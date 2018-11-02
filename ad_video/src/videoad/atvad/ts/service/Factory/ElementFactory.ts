@@ -73,7 +73,7 @@ export namespace ElementFactory {
     $mainDivElement.setAttribute("style", `width:${atvJson.width}px; z-index:30;`);
 
     let videoElement: HTMLVideoElement = mkVideoElement($mainDivElement, atvJson);
-    VideoFilterEventFactory.osEvent[oschecker.isolate()](videoElement);
+    VideoFilterEventFactory.osEvent[oschecker.isolate()](videoElement, atvJson);
 
     // 動画が表示されているか判定処理
     MassageEvent.register(videoElement, atvJson);

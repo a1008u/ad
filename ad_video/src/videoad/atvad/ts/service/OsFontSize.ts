@@ -1,3 +1,5 @@
+import { OSFontsize } from '../../../interface/OS';
+
 export namespace osFontSize {
   export const getSize: OSFontsize = {
     ios: () => {return ['16px', '12px', '5px', '10px'];}

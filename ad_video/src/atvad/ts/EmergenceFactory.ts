@@ -17,7 +17,6 @@ export const emergenceInit = (window: Window) => {
     offsetLeft: 0,
     callback: (element: HTMLIFrameElement, state) => {
       // iframeのwindowオブジェクトを取得
-      // let ifrm = element.contentWindow;
       if (state === 'visible') {
         // 外部サイトにメッセージを投げる
         let ca = element.getAttribute('advE');
