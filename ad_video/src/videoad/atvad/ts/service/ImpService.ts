@@ -7,7 +7,7 @@ export namespace ImpService {
     let atvMode: string = videoElement.getAttribute('atv_mode');
     if (!imp && !atvMode) {
       videoElement.setAttribute('imp', 'done');
-      console.table(' ====== imp用 軌道 ======');
+      console.log(' ====== imp用 軌道 ======');
       axios
         .get(atvJson.impression_url)
         .then(resdata => resdata.data)

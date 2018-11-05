@@ -1,5 +1,6 @@
 import { Iframe } from './Iframe';
 require('es6-promise').polyfill();
+import 'babel-polyfill';
 
 const mkfadeIn = () => {
   const css = document.createElement('style');

@@ -17,7 +17,7 @@ require('es6-promise').polyfill();
 
 async function exec() {
   let data: Jsonentry = await getJson();
-  console.table(data);
+  console.log(data);
   const url: string = `${data.vh_frame_url}?url=${encodeURIComponent(data.rurl)}`;
   console.log(url);
   let iframeElement: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
@@ -35,6 +35,8 @@ async function getJson(): Promise<any> {
 
   let decodeUrlQuerry: string = decodeURIComponent(urlQuerry);
   let [urlKey, urlValue] = decodeUrlQuerry.split('url=');
+
+  console.log('urlValue ' + urlValue);
 
   return axios
     .get(urlValue)

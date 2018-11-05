@@ -20,7 +20,7 @@ app.get(ROOT, (req: Express.Request, res: Express.Response) => {
 });
 
 
-const domain = 'https://10.10.15.98:3000';
+const domain = 'https://10.10.15.12:3000';
 
 /**
  * 0回目のxhr用のAPI imp用
@@ -397,6 +397,43 @@ app.get('/cookie', (req: Express.Request, res: Express.Response) => {
   );
   res.json(jsoncookie);
   res.end();
+});
+
+// IE用
+app.get('/image', (req: Express.Request, res: Express.Response) => {
+  // if (req.query.rk) {
+  //   res.cookie('test', 'rurl=' + req.query.rk, {
+  //     maxAge: 60000,
+  //   });
+  //   fs.readFile('ts.jpg', (_, data) => {
+  //     res.set('Content-Type', 'image/jpeg');
+  //     res.send(data);
+  //   });
+  // } else {
+  //   res.cookie('test', 'rurl=', { maxAge: 60000 });
+  // }
+  console.log(' ===== test ====== ');
+  console.log(req.query.rurl);
+  
+  res.setHeader('Access-Control-Allow-Origin', '*');
+	// res.setHeader(
+	// 	'Access-Control-Allow-Methods',
+	// 	'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+	// );
+	// res.setHeader(
+	// 	'Access-Control-Allow-Headers',
+	// 	'X-Requested-With,content-type'
+  // );
+  
+  res.cookie('test', 'rurl=' + req.query.rurl, {
+    maxAge: 60000,
+  });
+  fs.readFile('ts.jpg', (_, data) => {
+    res.set('Content-Type', 'image/jpeg');
+    res.send(data);
+    res.end();
+  });
+  
 });
 
 const options = {

@@ -39,21 +39,22 @@ export namespace cookies {
   };
 
   // cookieの有効期限を90日として保持させる
-  // let setItem = (
-  //   sKey: string,
-  //   sValue: string,
-  //   deadline: number,
-  //   sPath: string,
-  //   sDomain: string,
-  //   bSecure: boolean
-  // ): void => {
-  //   if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
-  //     return;
-  //   }
-  //   let date: Date = new Date();
-  //   date.setDate(date.getDate() + deadline);
-  //   document.cookie = `${escape(sKey)}=${escape(sValue)}; path=${
-  //     sPath ? sPath : ''
-  //   }; expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`;
-  // };
+  export let setItem = (
+    sKey: string,
+    sValue: string,
+    deadline: number,
+    sPath: string,
+    sDomain: string,
+    bSecure: boolean
+  ): boolean => {
+    if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
+      return false;
+    }
+    let date: Date = new Date();
+    date.setDate(date.getDate() + deadline);
+    document.cookie = `${escape(sKey)}=${escape(sValue)};
+    path=${ sPath ? sPath : ''};
+    expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`;
+    return true;
+  };
 }

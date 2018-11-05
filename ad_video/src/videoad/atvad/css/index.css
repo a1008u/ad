@@ -142,11 +142,19 @@ body {
 /* ---------------------- */
 
 
+@keyframes anime {
+    0%  {  opacity:1;  }
+    25% {  opacity:0.75;  }
+    50% {  opacity:0.5;  }
+    75% {  opacity:0.25;  }
+    100% {  opacity:0;  }
+}
+
 .___ani {
     float:left;
     width:50px;
     height:40px;
-    animation-name: 'anime';
+    animation-name: anime;
     animation-duration: 1s;
     animation-timing-function: ease;
     animation-delay:0;
@@ -182,15 +190,9 @@ body {
     -ms-animation-direction:alternate;
 }
 
-@keyframes 'anime'
-@-moz-keyframes 'anime' {
-    0% {    opacity:1;  }
-    25% {  opacity:0.75;  }
-    50% {  opacity:0.5;  }
-    75% {  opacity:0.25;  }
-    100% {  opacity:0;  }
-}
 
+
+/*
 @-moz-keyframes 'anime' {
     0% {    opacity:1;  }
     25% {  opacity:0.75;  }
@@ -214,8 +216,9 @@ body {
     75% {  opacity:0.25;  }
     100% {  opacity:0;  }
 }
+ */
 
-@-ms-keyframes 'anime' {
+@-ms-keyframes anime {
     0% {    opacity:1;  }
     25% {  opacity:0.75;  }
     50% {  opacity:0.5;  }
@@ -236,10 +239,10 @@ body {
     100% {opacity: 1}
 }
 
-@-webkit-keyframes fadeIn {
+/* @-webkit-keyframes fadeIn {
     0% {opacity: 0}
     25% {  opacity:0.25;  }
     50% {  opacity:0.5;  }
     75% {  opacity:0.75;  }
     100% {opacity: 1}
-}
+} */

@@ -10,53 +10,42 @@ import { Browser } from './Browser';
 // tslint:disable-next-line:no-var-requires
 require('es6-promise').polyfill();
 
-const setEvent = (cookieKey: string = 'test'): void => {
-  window.addEventListener('load', () => {
-    let cookieValue = cookies.getCookie(cookieKey);
+// const setEvent = (cookieKey: string = 'test'): void => {
+//   window.addEventListener('load', () => {
+//     let cookieValue = cookies.getCookie(cookieKey);
 
-    if (cookieValue !== null) {
-      window.location.replace(cookieValue);
-    } else {
-      console.log(`cookieValueは${cookieValue}です。`);
-    }
-  });
-};
+//     if (cookieValue !== null) {
+//       window.location.replace(cookieValue);
+//     } else {
+//       console.log(`cookieValueは${cookieValue}です。`);
+//     }
+//   });
+// };
 
 // IMGタグ用 IE p -> h -> is -> Lp
-const doCookie = (jsoncookie: Jsoncookie) => {
+const execImgElement = (jsoncookie: Jsoncookie) => {
   console.log('IEだよ')
 
   // イベント追加
   // setEvent();
 
-  // imgを作成 + 設定
+  // imgを作成 + 設定 
   // const imgTag: HTMLImageElement = tag.mkImageTag(`${jsoncookie.rurl}`);
-  // const scripts = document.getElementsByTagName('script');
-  // scripts[0].parentNode.insertBefore(imgTag, scripts[0]);
+  const imgTag: HTMLImageElement = tag.mkImageTag(`${jsoncookie.imgurl}`);
+  const scripts = document.getElementsByTagName('script');
+  scripts[0].parentNode.insertBefore(imgTag, scripts[0]);
 };
 
 // Cookie用 chrome V3
-const doJson = (jsoncookie: Jsoncookie) => {
+const execCookie = (jsoncookie: Jsoncookie) => {
   console.log('IE以外だよ');
   console.log(location.search);
 
-  location.search
-    .substring(1)
-    .split('&')
-    .filter(query => query.substring(0, 3) === 'rk=')
-    .forEach(query => {
-      const [rkKey, rkValue]: string[] = query.split('=');
-      Rx.from(axios.get(`${jsoncookie.rurl}?${rkKey}=${rkValue}`)).subscribe(
-        resdata => {
-          // iframe作成
-          window.location.replace(resdata.data.url);
+  // V3をcookieに保存する
+  let result: boolean = cookies.setItem('v3', jsoncookie.v3, 0, './', '', true);
 
-          // replacueダメかも。。。
-
-          // setCookieをする
-        }, err => console.log(err)
-      );
-    });
+  // iframeで遷移する
+  window.location.replace(jsoncookie.rurl);
 };
 
 // SDK用
@@ -66,22 +55,22 @@ const doJson = (jsoncookie: Jsoncookie) => {
  */
 const browsers: Browser = {
   ie: (jsoncookie: Jsoncookie) => {
-    doCookie(jsoncookie);
+    execImgElement(jsoncookie);
   },
   edge: (jsoncookie: Jsoncookie) => {
-    doCookie(jsoncookie);
+    execImgElement(jsoncookie);
   },
   chrome: (jsoncookie: Jsoncookie) => {
-    doJson(jsoncookie);
+    execCookie(jsoncookie);
   },
   firefox: (jsoncookie: Jsoncookie) => {
-    doJson(jsoncookie);
+    execCookie(jsoncookie);
   },
   opera: (jsoncookie: Jsoncookie) => {
-    doJson(jsoncookie);
+    execCookie(jsoncookie);
   },
   safari: (jsoncookie: Jsoncookie) => {
-    doJson(jsoncookie);
+    execCookie(jsoncookie);
   },
   // tslint:disable-next-line:no-empty
   itp_safari: (jsoncookie: Jsoncookie) => {},
@@ -94,10 +83,10 @@ async function exec() {
   let urlQuerry: string = location.search;
   let decodeUrlQuerry: string = decodeURIComponent(urlQuerry);
   let [urlKey, urlValue] = decodeUrlQuerry.split('?url=');
-  console.log('?url = '+urlValue);
+  console.log('?url = ' + urlValue);
 
   let jsoncookie: Jsoncookie = await getJson(urlValue);
-  console.table(jsoncookie);
+  console.log(jsoncookie);
 
   // // 端末とOS別の対応
   browsers[browser.ck()](jsoncookie);
