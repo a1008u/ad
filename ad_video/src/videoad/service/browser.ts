@@ -18,6 +18,7 @@ export namespace browser {
    */
   export let ck = (): string => {
     const browser: string = (() => {
+      console.log('UA ' + Platform.name.toLowerCase())
       const browserName: string = Platform.name.toLowerCase();
       if (browserName === "ie") return browserName;
       else if (browserName === "edge") return browserName;
@@ -25,6 +26,7 @@ export namespace browser {
       else if (browserName === "firefox") return browserName;
       else if (browserName === "opera") return browserName;
       else if (browserName === "safari") return browserName;
+      else if (browserName === "android browser") return 'android_browser';
       else return "unknown";
     })();
 

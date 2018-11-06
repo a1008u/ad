@@ -51,10 +51,10 @@ export namespace cookies {
       return false;
     }
     let date: Date = new Date();
-    date.setDate(date.getDate() + deadline);
-    document.cookie = `${escape(sKey)}=${escape(sValue)};
-    path=${ sPath ? sPath : ''};
-    expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`;
+    date.setDate(date.getDate() + 365);
+    document.cookie = `${escape(sKey)}=${escape(sValue)}; path=${
+      sPath ? sPath : ''
+    }; expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`;
     return true;
   };
 }

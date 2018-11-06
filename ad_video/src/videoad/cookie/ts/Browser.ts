@@ -8,5 +8,6 @@ export interface Browser {
   opera: (jsoncookie: Jsoncookie) => void;
   safari: (jsoncookie: Jsoncookie) => void;
   itp_safari: (jsoncookie: Jsoncookie) => void;
+  android_browser: (jsoncookie: Jsoncookie) => void;
   unknown: (jsoncookie: Jsoncookie) => void;
 }

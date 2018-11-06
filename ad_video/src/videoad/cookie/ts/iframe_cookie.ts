@@ -10,45 +10,41 @@ import { Browser } from './Browser';
 // tslint:disable-next-line:no-var-requires
 require('es6-promise').polyfill();
 
-// const setEvent = (cookieKey: string = 'test'): void => {
-//   window.addEventListener('load', () => {
-//     let cookieValue = cookies.getCookie(cookieKey);
-
-//     if (cookieValue !== null) {
-//       window.location.replace(cookieValue);
-//     } else {
-//       console.log(`cookieValueは${cookieValue}です。`);
-//     }
-//   });
-// };
 
 // IMGタグ用 IE p -> h -> is -> Lp
 const execImgElement = (jsoncookie: Jsoncookie) => {
-  console.log('IEだよ')
+  console.log('IEだよ');
 
-  // イベント追加
-  // setEvent();
-
-  // imgを作成 + 設定 
-  // const imgTag: HTMLImageElement = tag.mkImageTag(`${jsoncookie.rurl}`);
+  // imgを作成 + 設定
   const imgTag: HTMLImageElement = tag.mkImageTag(`${jsoncookie.imgurl}`);
   const scripts = document.getElementsByTagName('script');
   scripts[0].parentNode.insertBefore(imgTag, scripts[0]);
 };
 
-// Cookie用 chrome V3
+// Cookie用 chrome V3 + SDK用
 const execCookie = (jsoncookie: Jsoncookie) => {
   console.log('IE以外だよ');
   console.log(location.search);
 
   // V3をcookieに保存する
-  let result: boolean = cookies.setItem('v3', jsoncookie.v3, 0, './', '', true);
+  if(jsoncookie.v3) {
+    let result: boolean = cookies.setItem('v3', jsoncookie.v3, 0,jsoncookie.path, '', true);
+    if (result) {
+      console.log('cookieの保存成功');
+    } else {
+      console.log('cookieの保存失敗');
+    }
+  } else {
+    console.log('cookieの保存失敗');
+  }
 
   // iframeで遷移する
-  window.location.replace(jsoncookie.rurl);
-};
+  // window.location.replace(jsoncookie.rurl);
 
-// SDK用
+  let iframeElement: HTMLIFrameElement = tag.mkIframeElementForTracking(jsoncookie.rurl, '0', '0', 'none');
+  let divElement: HTMLElement = document.getElementById('atv');
+  divElement.parentNode.insertBefore(iframeElement, divElement);
+};
 
 /**
  * ブラウザ別に処理を分ける
@@ -72,8 +68,12 @@ const browsers: Browser = {
   safari: (jsoncookie: Jsoncookie) => {
     execCookie(jsoncookie);
   },
-  // tslint:disable-next-line:no-empty
-  itp_safari: (jsoncookie: Jsoncookie) => {},
+  itp_safari: (jsoncookie: Jsoncookie) => {
+    execCookie(jsoncookie);
+  },
+  android_browser: (jsoncookie: Jsoncookie) => {
+    execCookie(jsoncookie);
+  },
   // tslint:disable-next-line:no-empty
   unknown: (jsoncookie: Jsoncookie) => {},
 };

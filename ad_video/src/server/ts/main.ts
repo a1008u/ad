@@ -20,7 +20,7 @@ app.get(ROOT, (req: Express.Request, res: Express.Response) => {
 });
 
 
-const domain = 'https://10.10.15.12:3000';
+const domain = 'https://10.10.15.89:3000';
 
 /**
  * 0回目のxhr用のAPI imp用
@@ -61,7 +61,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba2.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a2`,
           '180',
           '320',
           '20',
@@ -74,7 +74,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba3.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a3`,
           '180',
           '320',
           '5',
@@ -87,7 +87,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba4.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a4`,
           '180',
           '320',
           '8',
@@ -100,7 +100,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba5.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a5`,
           '180',
           '320',
           '8',
@@ -113,7 +113,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba6.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a6`,
           '180',
           '320',
           '8',
@@ -126,7 +126,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba7.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a7`,
           '180',
           '320',
           '8',
@@ -139,7 +139,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba8.mp4`,
           'MARVEL - INFINITY WAR -',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a8`,
           '180',
           '320',
           '0',
@@ -152,7 +152,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba9.mp4`,
           'FF零式　- OP特典　- ',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a9`,
           '180',
           '320',
           '0',
@@ -165,7 +165,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba10.mp4`,
           'FF零式　- OP特典　- ',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a10`,
           '180',
           '320',
           '0',
@@ -178,7 +178,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba11.mp4`,
           'KH2.8　- OP特典　- ',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a11`,
           '180',
           '320',
           '0',
@@ -191,7 +191,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba12.mp4`,
           'KH3　- 主題歌「誓い」　- ',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a12`,
           '180',
           '320',
           '0',
@@ -204,7 +204,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba1.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a1_pc`,
           '360',
           '640',
           '10',
@@ -217,7 +217,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba2.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a2_pc`,
           '360',
           '640',
           '10',
@@ -230,7 +230,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba3.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a3_pc`,
           '360',
           '640',
           '10',
@@ -243,7 +243,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba5.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a4_pc`,
           '360',
           '640',
           '10',
@@ -256,7 +256,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba5.mp4`,
           'FF15 - 新作 - ',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a5_pc`,
           '360',
           '640',
           '0',
@@ -269,7 +269,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba6.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a6_pc`,
           '360',
           '640',
           '10',
@@ -282,7 +282,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba7.mp4`,
           'ここは表示しません',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a7_pc`,
           '360',
           '640',
           '8',
@@ -295,7 +295,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba8.mp4`,
           'MARVEL - INFINITY WAR -',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a8_pc`,
           '360',
           '640',
           '0',
@@ -308,7 +308,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba9.mp4`,
           'FF零式　- OP特典　- ',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a9_pc`,
           '360',
           '640',
           '0',
@@ -321,7 +321,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba10.mp4`,
           'FF零式　- OP特典　- ',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a10_pc`,
           '360',
           '640',
           '0',
@@ -334,7 +334,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba11.mp4`,
           'KH2.8　- OP特典　- ',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a11_pc`,
           '360',
           '640',
           '0',
@@ -347,7 +347,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba12.mp4`,
           'KH3　- 主題歌「誓い」　- ',
-          'https://www.google.com',
+          `${domain}/click?rk=010011a12_pc`,
           '360',
           '640',
           '0',
@@ -393,7 +393,9 @@ app.get('/cookie', (req: Express.Request, res: Express.Response) => {
 
   const jsoncookie: Jsoncookie = new Jsoncookie(
     `${domain}/atvad/html/lp.html`, // rurlです 利用 iframe_url + url= rurl
-    'thanku0001'
+    'thanku0001',
+    `${domain}/ts.jpg`,
+    `/videoad/cookie`
   );
   res.json(jsoncookie);
   res.end();
@@ -401,30 +403,9 @@ app.get('/cookie', (req: Express.Request, res: Express.Response) => {
 
 // IE用
 app.get('/image', (req: Express.Request, res: Express.Response) => {
-  // if (req.query.rk) {
-  //   res.cookie('test', 'rurl=' + req.query.rk, {
-  //     maxAge: 60000,
-  //   });
-  //   fs.readFile('ts.jpg', (_, data) => {
-  //     res.set('Content-Type', 'image/jpeg');
-  //     res.send(data);
-  //   });
-  // } else {
-  //   res.cookie('test', 'rurl=', { maxAge: 60000 });
-  // }
-  console.log(' ===== test ====== ');
+  console.log(' ===== IE用 ====== ');
   console.log(req.query.rurl);
-  
   res.setHeader('Access-Control-Allow-Origin', '*');
-	// res.setHeader(
-	// 	'Access-Control-Allow-Methods',
-	// 	'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-	// );
-	// res.setHeader(
-	// 	'Access-Control-Allow-Headers',
-	// 	'X-Requested-With,content-type'
-  // );
-  
   res.cookie('test', 'rurl=' + req.query.rurl, {
     maxAge: 60000,
   });
