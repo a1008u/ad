@@ -74,6 +74,9 @@ const browsers: Browser = {
   android_browser: (jsoncookie: Jsoncookie) => {
     execCookie(jsoncookie);
   },
+  chrome_mobile: (jsoncookie: Jsoncookie) => {
+    execCookie(jsoncookie);
+  },
   // tslint:disable-next-line:no-empty
   unknown: (jsoncookie: Jsoncookie) => {},
 };

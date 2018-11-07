@@ -27,6 +27,7 @@ export namespace browser {
       else if (browserName === "opera") return browserName;
       else if (browserName === "safari") return browserName;
       else if (browserName === "android browser") return 'android_browser';
+      else if (browserName === "chrome mobile") return 'chrome_mobile';
       else return "unknown";
     })();
 

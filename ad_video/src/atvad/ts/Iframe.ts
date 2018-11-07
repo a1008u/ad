@@ -7,7 +7,7 @@ import { tag } from '../../videoad/service/tag';
 
 export class Iframe {
 
-  localhost: string = 'https://10.10.15.89:3000';
+  localhost: string = 'https://10.10.15.85:3000';
 
   constructor() {
     console.log('creat');
@@ -21,7 +21,7 @@ export class Iframe {
    */
   async mainExec(scriptElement: any, rkValue: string, window: Window, atvMock: string) {
 
-    const domain = (atvMock) ? this.localhost : 'https://h.accesstrade.net';
+    const domain = (atvMock) ? this.localhost : 'https://h.intra.accesstrade.net';
     await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaServer);
 
     // 動画自動実行用library
@@ -41,7 +41,7 @@ export class Iframe {
       const domain = (atvMock) ? this.localhost : '';
       await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaNode);
     } else {
-      const domain = (atvMock) ? this.localhost : 'https://h.accesstrade.net';
+      const domain = (atvMock) ? this.localhost : 'https://h.intra.accesstrade.net';
       await this.mkIframe(domain, scriptElement, rkValue, this.mkIframePreViaServer);
     }
 
@@ -58,7 +58,7 @@ export class Iframe {
   async mkIframe(domain: string, scriptElement: HTMLScriptElement, rkValue: string, mk: (domain: string, scriptElement: HTMLScriptElement, rkValue: string) => Promise<Jsontype>) {
 
     const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
-    infoJson.videoframe_url = (domain === 'https://10.10.15.89:3000')
+    infoJson.videoframe_url = (domain === 'https://10.10.15.85:3000')
       ? `${this.localhost}/videoad/atvad/html/iframe_atvad.html`
       : 'https://a.image.accesstrade.net/hai/videoad/atvad/html/iframe_atvad.html';
 
