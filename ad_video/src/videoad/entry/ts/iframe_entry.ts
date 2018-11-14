@@ -18,9 +18,16 @@ require('es6-promise').polyfill();
 async function exec() {
   let data: Jsonentry = await getJson();
   console.log(data);
-  const url: string = `${data.vh_frame_url}?url=${encodeURIComponent(data.rurl)}`;
+  const url: string = `${data.vh_frame_url}?url=${encodeURIComponent(
+    data.rurl
+  )}`;
   console.log(url);
-  let iframeElement: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
+  let iframeElement: HTMLIFrameElement = tag.mkIframeElementForTracking(
+    url,
+    '0',
+    '0',
+    'none'
+  );
 
   let divElement: HTMLElement = document.getElementById('atv_cookie_space');
   divElement.parentNode.insertBefore(iframeElement, divElement);

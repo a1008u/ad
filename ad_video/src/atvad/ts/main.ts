@@ -7,7 +7,10 @@ const mkfadeIn = () => {
   css.media = 'screen';
   css.type = 'text/css';
   // フェードイン
-  const fadein = `@keyframes fadeIn{${['0% {opacity: 0}', '100% {opacity: 1.0}'].join(' ')}`;
+  const fadein = `@keyframes fadeIn{${[
+    '0% {opacity: 0}',
+    '100% {opacity: 1.0}',
+  ].join(' ')}`;
   // ルールをstyleタグに追加
   const rules = document.createTextNode(fadein);
   css.appendChild(rules);
@@ -20,7 +23,6 @@ const mkfadeIn = () => {
  */
 ((window, _) => {
   [].forEach.call(document.getElementsByTagName('script'), scriptElement => {
-
     // styleタグを作成
     mkfadeIn();
 

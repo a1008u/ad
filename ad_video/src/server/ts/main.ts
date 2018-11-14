@@ -2,7 +2,7 @@ import app from './app';
 import * as Express from 'express';
 import * as path from 'path';
 import * as fs from 'fs';
-import { jsontype, Jsontype } from '../../videoad/service/jsontype';
+import { Jsontype } from '../../videoad/service/jsontype';
 
 import * as https from 'https';
 import { Jsonentry } from '../../videoad/service/jsonentry';
@@ -19,7 +19,6 @@ app.get(ROOT, (req: Express.Request, res: Express.Response) => {
   res.send('Hello world.');
 });
 
-
 const domain = 'https://10.10.15.85:3000';
 
 /**
@@ -29,7 +28,7 @@ app.get('/imp', (req: Express.Request, res: Express.Response) => {
   const query: string = req.query.rk;
   console.log('rkは[' + query + ']');
 
-  const json = {'key': 'okImp'};
+  const json = { key: 'okImp' };
   res.json(json);
   res.end();
 });
@@ -56,7 +55,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a1',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a2':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba2.mp4`,
@@ -69,7 +69,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a2',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a3':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba3.mp4`,
@@ -82,7 +83,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a3',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a4':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba4.mp4`,
@@ -95,7 +97,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a4',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a5':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba5.mp4`,
@@ -108,7 +111,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a5',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a6':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba6.mp4`,
@@ -121,7 +125,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a6',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a7':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba7.mp4`,
@@ -134,7 +139,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a7',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a8':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba8.mp4`,
@@ -147,7 +153,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a8',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a9':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba9.mp4`,
@@ -160,7 +167,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a9',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a10':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba10.mp4`,
@@ -173,7 +181,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a10',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a11':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba11.mp4`,
@@ -186,7 +195,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a11',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a12':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba12.mp4`,
@@ -199,7 +209,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a12',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a1_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba1.mp4`,
@@ -212,7 +223,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a1_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a2_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba2.mp4`,
@@ -225,7 +237,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a2_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a3_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba3.mp4`,
@@ -238,7 +251,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a3_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a4_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba5.mp4`,
@@ -251,7 +265,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a4_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a5_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba5.mp4`,
@@ -264,7 +279,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a5_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a6_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba6.mp4`,
@@ -277,7 +293,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a6_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a7_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba7.mp4`,
@@ -290,7 +307,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a7_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a8_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba8.mp4`,
@@ -303,7 +321,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a8_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a9_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba9.mp4`,
@@ -316,7 +335,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a9_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a10_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba10.mp4`,
@@ -329,7 +349,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a10_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a11_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba11.mp4`,
@@ -342,7 +363,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a11_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
       case '010011a12_pc':
         return new Jsontype(
           `${domain}/videoad/atvad/mp4/ba12.mp4`,
@@ -355,7 +377,8 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a12_pc',
           videoframeurl,
           entryyframeurl,
-          impurl);
+          impurl
+        );
     }
   };
 
@@ -414,11 +437,10 @@ app.get('/image', (req: Express.Request, res: Express.Response) => {
     res.send(data);
     res.end();
   });
-  
 });
 
 const options = {
-  key : fs.readFileSync('key.pem'),
+  key: fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem'),
 };
 
@@ -429,7 +451,7 @@ app.get('/', (req, res) => {
   res.writeHead(200);
   console.log(path.join(__dirname, 'statics'));
   console.log(req.baseUrl);
-  res.end("Hello World.");
+  res.end('Hello World.');
 });
 
 // イベント待機

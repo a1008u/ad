@@ -4,7 +4,6 @@ import { ElementFactory } from './service/Factory/ElementFactory';
 require('es6-promise').polyfill();
 
 ((window, _) => {
-
   // url取得のクエリチェック
   let query: string = location.search.substring(1);
   console.log(query);

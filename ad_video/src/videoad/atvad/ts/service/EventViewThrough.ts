@@ -5,11 +5,10 @@ import { Jsontype } from '../../../service/jsontype';
 import { ImpService } from './ImpService';
 
 export namespace EventViewThrough {
-
   /**
-   * 
-   * @param videoTag 
-   * @param atvJson 
+   *
+   * @param videoTag
+   * @param atvJson
    */
   export const setEventLoad = (videoTag: HTMLElement, atvJson: Jsontype) => {
     let count = 0;
@@ -22,14 +21,24 @@ export namespace EventViewThrough {
           if (count > limitTime) {
             window.clearInterval(cntEvt);
             // クリックのやつ
-            const url: string = `${atvJson.entryframe_url}?url=${encodeURIComponent(atvJson.href_url)}`;
-            let iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
+            const url: string = `${
+              atvJson.entryframe_url
+            }?url=${encodeURIComponent(atvJson.href_url)}`;
+            let iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(
+              url,
+              '0',
+              '0',
+              'none'
+            );
             videoTag.parentNode.insertBefore(iframeTag, videoTag);
 
             // 使用決定用に一旦表示（実際は削除します） -----------------------------------------
             const divElement: HTMLDivElement = document.createElement('div');
             divElement.textContent = 'viewthroughをしました';
-            videoTag.parentNode.parentNode.insertBefore(divElement, videoTag.parentElement);
+            videoTag.parentNode.parentNode.insertBefore(
+              divElement,
+              videoTag.parentElement
+            );
             // ----------------------------------------------------------------------------
           }
         }, 250);
@@ -45,7 +54,6 @@ export namespace EventViewThrough {
   };
 
   async function showFilter($videoElement: HTMLVideoElement, playMode: string) {
-
     let mode = $videoElement.getAttribute('playxxx');
     if (mode === 'pause') {
       $videoElement.play();
@@ -56,7 +64,7 @@ export namespace EventViewThrough {
     } else {
       let first = $videoElement.getAttribute('videostart');
       console.log('first  ' + first);
-      if(first) {
+      if (first) {
         $videoElement.play();
         $videoElement.setAttribute('playxxx', 'play');
         $videoElement.removeAttribute('videoStart');
@@ -69,19 +77,25 @@ export namespace EventViewThrough {
       console.log('playMode  ' + playMode);
     }
 
-    let $divElementFilter: HTMLDivElement = await Filter.execFil($videoElement, playMode);
+    let $divElementFilter: HTMLDivElement = await Filter.execFil(
+      $videoElement,
+      playMode
+    );
     const mainDivElement: HTMLElement = $videoElement.parentElement;
     mainDivElement.appendChild($divElementFilter);
 
-    const divFilter$: Rx.Observable<any> = Rx.fromEvent($divElementFilter, 'animationend');
+    const divFilter$: Rx.Observable<any> = Rx.fromEvent(
+      $divElementFilter,
+      'animationend'
+    );
     divFilter$.subscribe(ev => {
       Filter.deleteMethod($videoElement, playMode, ev.target);
     });
   }
 
   /**
-   * 
-   * @param ev 
+   *
+   * @param ev
    */
   const prepareFilter = (ev: any, atvJson: Jsontype) => {
     const $videoElement: HTMLVideoElement = ev.target;
@@ -93,7 +107,10 @@ export namespace EventViewThrough {
   /**
    * PCブラウザ用 イベントリスナー
    */
-  export const setClickEventPC = (videoElement: HTMLVideoElement, atvJson:Jsontype) => {
+  export const setClickEventPC = (
+    videoElement: HTMLVideoElement,
+    atvJson: Jsontype
+  ) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'click');
     video$.subscribe(ev => {
       prepareFilter(ev, atvJson);
@@ -103,7 +120,10 @@ export namespace EventViewThrough {
   /**
    * スマホブラウザ用 イベントリスナー
    */
-  export const setTouchEventSmartPhone = (videoElement: HTMLVideoElement, atvJson:Jsontype) => {
+  export const setTouchEventSmartPhone = (
+    videoElement: HTMLVideoElement,
+    atvJson: Jsontype
+  ) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'touchstart');
     video$.subscribe(ev => {
       prepareFilter(ev, atvJson);

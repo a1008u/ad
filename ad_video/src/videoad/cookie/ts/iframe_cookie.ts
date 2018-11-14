@@ -1,4 +1,3 @@
-import * as Rx from 'rxjs';
 import axios from 'axios';
 import { cookies } from './cookies';
 import { tag } from '../../service/tag';
@@ -9,7 +8,6 @@ import { Browser } from './Browser';
 // IEでPromiseを利用する為に利用
 // tslint:disable-next-line:no-var-requires
 require('es6-promise').polyfill();
-
 
 // IMGタグ用 IE p -> h -> is -> Lp
 const execImgElement = (jsoncookie: Jsoncookie) => {
@@ -27,8 +25,15 @@ const execCookie = (jsoncookie: Jsoncookie) => {
   console.log(location.search);
 
   // V3をcookieに保存する
-  if(jsoncookie.v3) {
-    let result: boolean = cookies.setItem('v3', jsoncookie.v3, 0,jsoncookie.path, '', true);
+  if (jsoncookie.v3) {
+    let result: boolean = cookies.setItem(
+      'v3',
+      jsoncookie.v3,
+      0,
+      jsoncookie.path,
+      '',
+      true
+    );
     if (result) {
       console.log('cookieの保存成功');
     } else {
@@ -41,7 +46,12 @@ const execCookie = (jsoncookie: Jsoncookie) => {
   // iframeで遷移する
   // window.location.replace(jsoncookie.rurl);
 
-  let iframeElement: HTMLIFrameElement = tag.mkIframeElementForTracking(jsoncookie.rurl, '0', '0', 'none');
+  let iframeElement: HTMLIFrameElement = tag.mkIframeElementForTracking(
+    jsoncookie.rurl,
+    '0',
+    '0',
+    'none'
+  );
   let divElement: HTMLElement = document.getElementById('atv');
   divElement.parentNode.insertBefore(iframeElement, divElement);
 };
@@ -108,11 +118,11 @@ async function getJson(urlValue: string): Promise<any> {
 
 /**
  * iframeでの役割
- * 
+ *
  */
 (() => {
   console.log(`document.hiddenの結果：：${document.hidden}`);
-  
+
   // isspへアクセス
   console.log('=== cookie start === ');
   exec();

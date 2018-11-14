@@ -7,14 +7,17 @@ import { tag } from '../../../../service/tag';
 import { MassageEvent } from '../MessageEvent';
 
 export namespace ElementFactory {
-
   /**
    * viewThrough有りでvideoElementを作成
-   * @param mainDivElement 
-   * @param atvJson 
-   * @param loop 
+   * @param mainDivElement
+   * @param atvJson
+   * @param loop
    */
-  const mkViewThroughVideoElement = (mainDivElement: HTMLDivElement, atvJson: Jsontype, loop: string) :HTMLVideoElement => {
+  const mkViewThroughVideoElement = (
+    mainDivElement: HTMLDivElement,
+    atvJson: Jsontype,
+    loop: string
+  ): HTMLVideoElement => {
     const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson, loop);
     mainDivElement.appendChild($videoElement);
 
@@ -31,12 +34,15 @@ export namespace ElementFactory {
 
   /**
    * viewThrough無しでvideoElementを作成
-   * @param mainDivElement 
-   * @param atvJson 
-   * @param loop 
+   * @param mainDivElement
+   * @param atvJson
+   * @param loop
    */
-  const mkNormalVideoElement = (mainDivElement: HTMLDivElement, atvJson: Jsontype, loop: string) :HTMLVideoElement => {
-
+  const mkNormalVideoElement = (
+    mainDivElement: HTMLDivElement,
+    atvJson: Jsontype,
+    loop: string
+  ): HTMLVideoElement => {
     const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson, loop);
     $videoElement.removeAttribute('loop');
     mainDivElement.appendChild($videoElement);
@@ -55,7 +61,10 @@ export namespace ElementFactory {
    * @param rk
    * @param mainDivElement
    */
-  const mkVideoElement = (mainDivElement: HTMLDivElement, atvJson: Jsontype): HTMLVideoElement => {
+  const mkVideoElement = (
+    mainDivElement: HTMLDivElement,
+    atvJson: Jsontype
+  ): HTMLVideoElement => {
     if (atvJson.videoad_vt_second !== '0') {
       return mkViewThroughVideoElement(mainDivElement, atvJson, 'true');
     } else {
@@ -64,15 +73,21 @@ export namespace ElementFactory {
   };
 
   /**
-   * 
+   *
    * @param atvJson
    */
   export const mkElement = (atvJson: Jsontype): void => {
     // 動画広告の枠（横の長さ）を指定
     const $mainDivElement: HTMLDivElement = document.querySelector('#atvMain');
-    $mainDivElement.setAttribute("style", `width:${atvJson.width}px; z-index:30;`);
+    $mainDivElement.setAttribute(
+      'style',
+      `width:${atvJson.width}px; z-index:30;`
+    );
 
-    let videoElement: HTMLVideoElement = mkVideoElement($mainDivElement, atvJson);
+    let videoElement: HTMLVideoElement = mkVideoElement(
+      $mainDivElement,
+      atvJson
+    );
     VideoFilterEventFactory.osEvent[oschecker.isolate()](videoElement, atvJson);
 
     // 動画が表示されているか判定処理
