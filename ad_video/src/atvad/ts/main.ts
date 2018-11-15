@@ -1,6 +1,7 @@
 import { Iframe } from './Iframe';
 require('es6-promise').polyfill();
 import 'babel-polyfill';
+import { IframePreview } from './IframePreview';
 
 const mkfadeIn = () => {
   const css = document.createElement('style');
@@ -36,12 +37,13 @@ const mkfadeIn = () => {
       scriptElement.removeAttribute('data-atv-mode');
       scriptElement.removeAttribute('data-atv-mock');
 
-      const iframe = new Iframe();
       if (atvMode) {
         // プレビュー用
-        iframe.mainExecPreview(scriptElement, rkValue, window, atvMock);
+        const iframePreview: IframePreview = new IframePreview();
+        iframePreview.mainExecPreview(scriptElement, rkValue, window, atvMock);
       } else if (rkValue) {
         // 非プレビュー用
+        const iframe = new Iframe();
         iframe.mainExec(scriptElement, rkValue, window, atvMock);
       }
     }

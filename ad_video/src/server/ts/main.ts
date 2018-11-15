@@ -439,12 +439,6 @@ app.get('/image', (req: Express.Request, res: Express.Response) => {
   });
 });
 
-const options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem'),
-};
-
-let server = https.createServer(options, app);
 
 // ルート設定
 app.get('/', (req, res) => {
@@ -454,5 +448,18 @@ app.get('/', (req, res) => {
   res.end('Hello World.');
 });
 
+/* 【証明書なしの設定】=============== */
+app.listen(PORT, () => {
+  console.log('atv++++++Example app listening on port 3000!');
+});
+
+/* 【証明書有りの設定】=============== */
+// const options = {
+//   key: fs.readFileSync('key.pem'),
+//   cert: fs.readFileSync('cert.pem'),
+// };
+
+// let server = https.createServer(options, app);
+
 // イベント待機
-server.listen(3000);
+// server.listen(3000);
