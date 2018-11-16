@@ -3,7 +3,7 @@ require('es6-promise').polyfill();
 import 'babel-polyfill';
 import { IframePreview } from './IframePreview';
 
-const mkfadeIn = () => {
+export const mkfadeIn = () => {
   const css = document.createElement('style');
   css.media = 'screen';
   css.type = 'text/css';
@@ -19,6 +19,28 @@ const mkfadeIn = () => {
   document.getElementsByTagName('head')[0].appendChild(css);
 };
 
+export const exec = (scriptElement: any, window: Window) => {
+  // スクリプトタグにrkが存在しない場合は、次の「data-atv-rk」を確認する
+  const rkValue: string = scriptElement.getAttribute('data-atv-rk');
+  const atvMode: string = scriptElement.getAttribute('data-atv-mode');
+  const atvMock: string = scriptElement.getAttribute('data-atv-mock');
+  if (rkValue || atvMode) {
+    scriptElement.removeAttribute('data-atv-rk');
+    scriptElement.removeAttribute('data-atv-mode');
+    scriptElement.removeAttribute('data-atv-mock');
+    const domain = atvMock ? 'http://localhost:3000' : 'https://h.accesstrade.net';
+    if (atvMode) {
+      // プレビュー用
+      const iframePreview: IframePreview = new IframePreview();
+      iframePreview.mainExecPreview(scriptElement, rkValue, window, domain);
+    } else if (rkValue) {
+      // 非プレビュー用
+      const iframe = new Iframe();
+      iframe.mainExec(scriptElement, rkValue, window, domain);
+    }
+  }
+};
+
 /**
  * メイン処理
  */
@@ -26,28 +48,6 @@ const mkfadeIn = () => {
   [].forEach.call(document.getElementsByTagName('script'), scriptElement => {
     // styleタグを作成
     mkfadeIn();
-
-    // スクリプトタグにrkが存在しない場合は、次の「data-atv-rk」を確認する
-    const rkValue: string = scriptElement.getAttribute('data-atv-rk');
-    const atvMode: string = scriptElement.getAttribute('data-atv-mode');
-    const atvMock: string = scriptElement.getAttribute('data-atv-mock');
-
-    if (rkValue || atvMode) {
-      scriptElement.removeAttribute('data-atv-rk');
-      scriptElement.removeAttribute('data-atv-mode');
-      scriptElement.removeAttribute('data-atv-mock');
-
-      const domain = atvMock ? 'http://10.10.15.85:3000': 'https://h.accesstrade.net';
-
-      if (atvMode) {
-        // プレビュー用
-        const iframePreview: IframePreview = new IframePreview();
-        iframePreview.mainExecPreview(scriptElement, rkValue, window, domain);
-      } else if (rkValue) {
-        // 非プレビュー用
-        const iframe = new Iframe();
-        iframe.mainExec(scriptElement, rkValue, window, domain);
-      }
-    }
+    exec(scriptElement, window);
   });
 })(window);

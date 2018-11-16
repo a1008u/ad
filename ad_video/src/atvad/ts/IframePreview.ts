@@ -5,7 +5,7 @@ import { tag } from '../../videoad/service/tag';
 import { AsyncTransmission } from './AsyncTransmission';
 
 export class IframePreview {
-  localhost: string = 'https://10.10.15.85:3000';
+  localhost: string = 'http://localhost:3000';
 
   constructor() {
     console.log('IframePreview');

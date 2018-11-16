@@ -5,7 +5,7 @@ import { tag } from '../../videoad/service/tag';
 import { AsyncTransmission } from './AsyncTransmission';
 
 export class Iframe {
-  localhost: string = 'https://10.10.15.85:3000';
+  localhost: string = 'http://localhost:3000';
 
   constructor() {
     console.log('Iframe');
@@ -75,7 +75,7 @@ export class Iframe {
   ): Promise<Jsontype> {
     const asyncTransmission: AsyncTransmission = new AsyncTransmission();
     const infoJson: Jsontype = await asyncTransmission.getJson(domain, rkValue);
-
+     
     // 追加要素
     // infoJson.ATV_RK = rkValue;
     infoJson.ATV_MODE = '';

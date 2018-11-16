@@ -13,6 +13,8 @@ export class AsyncTransmission {
    * @param rkValue
    */
   async getJson(domain: string, rkValue: string): Promise<Jsontype> {
+
+    console.log(`${domain}/sp/vad.json?rk=${rkValue}`)
     return axios
       .get(`${domain}/sp/vad.json?rk=${rkValue}`)
       .then(resdata => resdata.data)

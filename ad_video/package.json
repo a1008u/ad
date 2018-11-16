@@ -11,7 +11,7 @@
     "build:dev_iframe_entry": "webpack --config ./webpack/dev/webpack.config.iframe_entry.js",
     "build:dev_iframe_setcookie": "webpack --config ./webpack/dev/webpack.config.iframe_setcookie.js",
     "build:dev_server": "webpack --config ./webpack/dev/webpack.config.server_dev.js",
-    "server":"node dist/server/js/app.js",
+    "server": "node dist/server/js/app.js",
     "cpx:file": "cpx \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics",
     "copy:file": "copy \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics/videoad",
     "copyfiles:file": "copyfiles \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics/videoad out",
