@@ -12,7 +12,7 @@ export class IframePreview {
   }
 
   /**
-   *
+   * previewモード(api連携と非api連携)
    * @param scriptElement
    * @param rkValue
    * @param window
@@ -21,11 +21,10 @@ export class IframePreview {
     scriptElement: any,
     rkValue: string,
     window: Window,
-    atvMock: string
+    domain: string
   ) {
     if (!rkValue) {
       // nodeの属性を利用するため、mock用の記載は不要
-      const domain = atvMock ? this.localhost : '';
       await this.mkIframe(
         domain,
         scriptElement,
@@ -33,7 +32,6 @@ export class IframePreview {
         this.mkIframePreViaNode
       );
     } else {
-      const domain = atvMock ? this.localhost : 'https://h.accesstrade.net';
       await this.mkIframe(
         domain,
         scriptElement,
@@ -64,13 +62,12 @@ export class IframePreview {
   ) {
     const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
     infoJson.videoframe_url =
-      domain === 'https://10.10.15.85:3000'
+      domain === this.localhost
         ? `${this.localhost}/videoad/atvad/html/iframe_atvad.html`
         : 'https://a.image.accesstrade.net/hai/videoad/atvad/html/iframe_atvad.html';
 
     // iframe生成
-    let iframeHight: number =
-      Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
+    let iframeHight: number = Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
     const url: string = `${
       infoJson.videoframe_url
     }?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
@@ -125,15 +122,13 @@ export class IframePreview {
     scriptElement: HTMLScriptElement,
     rkValue: string
   ) {
-    let moveURL: string = scriptElement.getAttribute('data-atv-url');
-    const bannerText: string = scriptElement.getAttribute(
-      'data-atv-banner-text'
-    );
+    const moveURL: string = scriptElement.getAttribute('data-atv-url');
+    const bannerText: string = scriptElement.getAttribute('data-atv-banner-text');
     const btnText: string = scriptElement.getAttribute('data-atv-btn-text');
     const height: string = scriptElement.getAttribute('data-atv-height');
     const width: string = scriptElement.getAttribute('data-atv-width');
     const asyncTransmission: AsyncTransmission = new AsyncTransmission();
-    let infoJson: Jsontype = await asyncTransmission.getPreviewJson(
+    const infoJson: Jsontype = await asyncTransmission.getPreviewJson(
       moveURL,
       height,
       width,
@@ -168,4 +163,3 @@ export class IframePreview {
     });
   }
 }
-

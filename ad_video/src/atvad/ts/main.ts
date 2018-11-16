@@ -37,14 +37,16 @@ const mkfadeIn = () => {
       scriptElement.removeAttribute('data-atv-mode');
       scriptElement.removeAttribute('data-atv-mock');
 
+      const domain = atvMock ? 'http://10.10.15.85:3000': 'https://h.accesstrade.net';
+
       if (atvMode) {
         // プレビュー用
         const iframePreview: IframePreview = new IframePreview();
-        iframePreview.mainExecPreview(scriptElement, rkValue, window, atvMock);
+        iframePreview.mainExecPreview(scriptElement, rkValue, window, domain);
       } else if (rkValue) {
         // 非プレビュー用
         const iframe = new Iframe();
-        iframe.mainExec(scriptElement, rkValue, window, atvMock);
+        iframe.mainExec(scriptElement, rkValue, window, domain);
       }
     }
   });

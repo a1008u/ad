@@ -21,9 +21,8 @@ export class Iframe {
     scriptElement: any,
     rkValue: string,
     window: Window,
-    atvMock: string
+    domain: string
   ) {
-    const domain = atvMock ? this.localhost : 'https://h.accesstrade.net';
     await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaServer);
 
     // 動画自動実行用library
