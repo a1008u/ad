@@ -1,4 +1,4 @@
-import { jsontype, Jsontype } from "./jsontype";
+import { jsontype, Jsontype } from "./class/jsontype";
 
 export namespace tag {
   /**

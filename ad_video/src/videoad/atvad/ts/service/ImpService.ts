@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Jsontype } from '../../../service/jsontype';
+import { Jsontype } from '../../../service/class/jsontype';
 
 export namespace ImpService {
   export const execImp = (

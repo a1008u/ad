@@ -1,7 +1,7 @@
 import * as Rx from 'rxjs';
 import { Filter } from './Filter';
 import { tag } from '../../../service/tag';
-import { Jsontype } from '../../../service/jsontype';
+import { Jsontype } from '../../../service/class/jsontype';
 import { ImpService } from './ImpService';
 
 export namespace EventViewThrough {

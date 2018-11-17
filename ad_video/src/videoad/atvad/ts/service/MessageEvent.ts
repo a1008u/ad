@@ -1,4 +1,4 @@
-import { Jsontype } from '../../../service/jsontype';
+import { Jsontype } from '../../../service/class/jsontype';
 import { ImpService } from './ImpService';
 
 export namespace MassageEvent {

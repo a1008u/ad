@@ -1,4 +1,4 @@
-import { Jsontype} from '../../../src/videoad/service/jsontype';
+import { Jsontype} from '../../../src/videoad/service/class/jsontype';
 import { Iframe } from '../../../src/atvad/ts/Iframe';
 
 const iframe: Iframe = new Iframe();

@@ -1,4 +1,4 @@
-import { Jsontype } from '../service/jsontype';
+import { Jsontype } from '../service/class/jsontype';
 
 export interface OS {
   ios: (videoElement: HTMLVideoElement, atvJson: Jsontype) => void;

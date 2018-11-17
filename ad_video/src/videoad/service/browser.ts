@@ -1,7 +1,6 @@
 import * as Platform from 'platform';
 
 export namespace browser {
-
   /**
    * itp対応ブラウザとOSのバージョンを確認する
    *
@@ -16,19 +15,23 @@ export namespace browser {
    *
    * @returns {boolean}
    */
-  export let ck = (): string => {
+  export const ck = (): string => {
     const browser: string = (() => {
-      console.log('UA ' + Platform.name.toLowerCase())
-      const browserName: string = Platform.name.toLowerCase();
-      if (browserName === "ie") return browserName;
-      else if (browserName === "edge") return browserName;
-      else if (browserName === "chrome") return browserName;
-      else if (browserName === "firefox") return browserName;
-      else if (browserName === "opera") return browserName;
-      else if (browserName === "safari") return browserName;
-      else if (browserName === "android browser") return 'android_browser';
-      else if (browserName === "chrome mobile") return 'chrome_mobile';
-      else return "unknown";
+      if (Platform.name === null) {
+        return 'unknown';
+      } else {
+        console.log('UA ' + Platform.name.toLowerCase());
+        const browserName: string = Platform.name.toLowerCase();
+        if (browserName === "ie") return browserName;
+        else if (browserName === "edge") return browserName;
+        else if (browserName === "chrome") return browserName;
+        else if (browserName === "firefox") return browserName;
+        else if (browserName === "opera") return browserName;
+        else if (browserName === "safari") return browserName;
+        else if (browserName === "android browser") return 'android_browser';
+        else if (browserName === "chrome mobile") return 'chrome_mobile';
+        else return 'unknown';
+      }
     })();
 
     if (browser === 'safari') {

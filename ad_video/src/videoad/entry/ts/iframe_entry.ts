@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Jsonentry } from '../../service/jsonentry';
+import { Jsonentry } from '../../service/class/jsonentry';
 import { tag } from '../../service/tag';
 
 // IEでPromiseを利用する為に利用

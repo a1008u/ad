@@ -1,6 +1,6 @@
 import { emergenceInit } from './EmergenceFactory';
 
-import { Jsontype } from '../../videoad/service/jsontype';
+import { Jsontype } from '../../videoad/service/class/jsontype';
 import { tag } from '../../videoad/service/tag';
 import { AsyncTransmission } from './AsyncTransmission';
 

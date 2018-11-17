@@ -1,4 +1,4 @@
-import { Jsontype } from '../../../src/videoad/service/jsontype';
+import { Jsontype } from '../../../src/videoad/service/class/jsontype';
 import { AsyncTransmission } from '../../../src/atvad/ts/AsyncTransmission';
 
 const asyncTransmission: AsyncTransmission = new AsyncTransmission();

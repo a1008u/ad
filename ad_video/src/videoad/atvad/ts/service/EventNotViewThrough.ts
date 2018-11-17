@@ -2,7 +2,7 @@ import * as Rx from 'rxjs';
 import { Filter } from './Filter';
 import { osFontSize } from './OsFontSize';
 import { oschecker } from '../../../service/oschecker';
-import { Jsontype } from '../../../service/jsontype';
+import { Jsontype } from '../../../service/class/jsontype';
 
 export namespace EventNotViewThrough {
   const getAdAreaValue = (atvJson: Jsontype) => {

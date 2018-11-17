@@ -1,5 +1,5 @@
 import { EventViewThrough } from '../EventViewThrough';
-import { Jsontype } from '../../../../service/jsontype';
+import { Jsontype } from '../../../../service/class/jsontype';
 import { OS } from '../../../../interface/OS';
 
 export namespace VideoFilterEventFactory {

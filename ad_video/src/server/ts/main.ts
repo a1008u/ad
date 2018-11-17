@@ -2,10 +2,10 @@ import app from './app';
 import * as Express from 'express';
 import * as path from 'path';
 import * as fs from 'fs';
-import { Jsontype } from '../../videoad/service/jsontype';
+import { Jsontype } from '../../videoad/service/class/jsontype';
 
 import * as https from 'https';
-import { Jsonentry } from '../../videoad/service/jsonentry';
+import { Jsonentry } from '../../videoad/service/class/jsonentry';
 import { Jsoncookie } from '../../videoad/service/jsoncookie';
 
 // POSTパラメータをJSONで取得するにはbody-parserを使う。

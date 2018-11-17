@@ -1,5 +1,5 @@
 import '../css/index.css';
-import { Jsontype } from '../../service/jsontype';
+import { Jsontype } from '../../service/class/jsontype';
 import { ElementFactory } from './service/Factory/ElementFactory';
 require('es6-promise').polyfill();
 

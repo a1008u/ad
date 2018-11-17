@@ -2,7 +2,7 @@ import { EventNotViewThrough } from '../EventNotViewThrough';
 import { VideoFilterEventFactory } from './VideoFilterEventFactory';
 import { EventViewThrough } from '../EventViewThrough';
 import { oschecker } from '../../../../service/oschecker';
-import { Jsontype } from '../../../../service/jsontype';
+import { Jsontype } from '../../../../service/class/jsontype';
 import { tag } from '../../../../service/tag';
 import { MassageEvent } from '../MessageEvent';
 
