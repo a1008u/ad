@@ -6,7 +6,8 @@ import { Jsontype } from '../../videoad/service/class/jsontype';
 
 import * as https from 'https';
 import { Jsonentry } from '../../videoad/service/class/jsonentry';
-import { Jsoncookie } from '../../videoad/service/jsoncookie';
+import { Jsoncookie } from '../../videoad/service/class/jsoncookie';
+
 
 // POSTパラメータをJSONで取得するにはbody-parserを使う。
 
@@ -395,7 +396,7 @@ app.get('/click', (req: Express.Request, res: Express.Response) => {
   const query: string = req.query.rk;
   console.log('rkは[' + query + ']');
 
-  const jsoncookie: Jsonentry = new Jsonentry(
+  const jsonentry: Jsonentry = new Jsonentry(
     'true',
     'z4361737039', // n
     '01005gtr000005', // rk
@@ -403,7 +404,7 @@ app.get('/click', (req: Express.Request, res: Express.Response) => {
     'f3a42d90657264333bb4880f59055aed',
     `${domain}/videoad/cookie/html/iframe_cookie.html` // iframe_url
   );
-  res.json(jsoncookie);
+  res.json(jsonentry);
   res.end();
 });
 

@@ -18,7 +18,7 @@ describe('iframeで表示するvideoなどのデータ取得確認(preview用)',
   const width = '360';
   const bannerText = 'this is the test';
   const btnText = 'test button';
-  const videoFrameUrl = 'videoFrameUrl ';
+  const videoFrameUrl = 'videoFrameUrl';
   const entryFrameUrl = 'entryFrameUrl';
   const impressionUrl = 'impressionUrl';
 

@@ -1,7 +1,21 @@
 import { Jsontype } from '../../../service/class/jsontype';
 import { ImpService } from './ImpService';
+import { VideoAction } from './video/videoAction';
 
 export namespace MassageEvent {
+
+  // // pasue処理
+  // export const pauseAction = (videoElement: HTMLVideoElement) => {
+  //   videoElement.setAttribute('playxxx', 'pause');
+  //   videoElement.pause();
+  // };
+
+  // // play処理
+  // export const playAction = (videoElement: HTMLVideoElement) => {
+  //   videoElement.setAttribute('playxxx', 'play');
+  //   videoElement.play();
+  // };
+
   export const register = (
     videoElement: HTMLVideoElement,
     atvJson: Jsontype
@@ -10,8 +24,7 @@ export namespace MassageEvent {
       'message',
       event => {
         if (event.data === 'pause') {
-          videoElement.setAttribute('playxxx', 'pause');
-          videoElement.pause();
+          VideoAction.pauseAction(videoElement);
         } else {
           if (
             videoElement.getAttribute('__end') !== undefined &&
@@ -20,13 +33,11 @@ export namespace MassageEvent {
             // 何も処理しない
           } else {
             let playMode: string = videoElement.getAttribute('playxxx');
-            if (playMode === 'pause') {
-              videoElement.setAttribute('playxxx', 'pause');
-              videoElement.pause();
-            } else {
-              videoElement.setAttribute('playxxx', 'play');
-              videoElement.play();
+            if (playMode === 'pause' || playMode === null) {
+              VideoAction.playAction(videoElement);
               ImpService.execImp(videoElement, atvJson);
+            } else {
+              VideoAction.pauseAction(videoElement);
             }
           }
         }

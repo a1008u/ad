@@ -114,6 +114,8 @@
       "src/videoad/atvad/ts/*.{js,ts}",
       "src/videoad/atvad/ts/service/*.{js,ts}",
       "src/videoad/atvad/ts/service/Factory/*.{js,ts}",
+      "src/videoad/atvad/ts/service/video/*.{js,ts}",
+      "src/videoad/atvad/ts/service/Filter/*.{js,ts}",
       "src/videoad/cookie/ts/*.{js,ts}",
       "src/videoad/entry/ts/*.{js,ts}",
       "src/videoad/service/*.{js,ts}"

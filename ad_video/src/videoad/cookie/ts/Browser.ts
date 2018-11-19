@@ -1,4 +1,4 @@
-import { Jsoncookie } from '../../service/jsoncookie';
+import { Jsoncookie } from '../../service/class/jsoncookie';
 
 export interface Browser {
   ie: (jsoncookie: Jsoncookie) => void;

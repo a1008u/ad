@@ -1,8 +1,10 @@
 import * as Rx from 'rxjs';
-import { Filter } from './Filter';
+
 import { osFontSize } from './OsFontSize';
 import { oschecker } from '../../../service/oschecker';
 import { Jsontype } from '../../../service/class/jsontype';
+import { Filter } from './Filter/old/Filter';
+import { FilterEnd } from './Filter/FilterEnd';
 
 export namespace EventNotViewThrough {
   const getAdAreaValue = (atvJson: Jsontype) => {
@@ -95,8 +97,10 @@ export namespace EventNotViewThrough {
       videoElement.play();
     };
 
+    const filterEnd = new FilterEnd();
     videoElement.addEventListener('ended', () => {
-      Filter.execFilnotAnimation(videoElement, 'pause').then(
+      // Filter.execFilnotAnimation(videoElement, 'pause').then(
+      filterEnd.execFilnotAnimation(videoElement, 'pause').then(
         divElementFilter => {
           const mainDivElement: HTMLElement = videoElement.parentElement;
           mainDivElement.classList.add('__aparent');

@@ -85,6 +85,7 @@ export namespace Filter {
    *
    * @param playMode
    */
+  // tslint:disable-next-line:only-arrow-functions
   export async function getSvgObjElment(playMode: string) {
     const svgFilePath: string =
       playMode === 'pause'
@@ -97,6 +98,7 @@ export namespace Filter {
       .catch(err => console.log(err));
   }
 
+  // tslint:disable-next-line:only-arrow-functions
   async function mkFilterElement(
     videoTag: HTMLVideoElement,
     getFilter: (videoTag: HTMLVideoElement) => HTMLDivElement,

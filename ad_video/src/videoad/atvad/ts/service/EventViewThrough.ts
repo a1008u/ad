@@ -1,10 +1,12 @@
 import * as Rx from 'rxjs';
-import { Filter } from './Filter';
+import { Filter } from './Filter/old/Filter';
 import { tag } from '../../../service/tag';
 import { Jsontype } from '../../../service/class/jsontype';
 import { ImpService } from './ImpService';
+import { FilterPlayMode } from './Filter/FilterPlayMode';
 
 export namespace EventViewThrough {
+
   /**
    *
    * @param videoTag
@@ -53,6 +55,7 @@ export namespace EventViewThrough {
     });
   };
 
+  
   async function showFilter($videoElement: HTMLVideoElement, playMode: string) {
     let mode = $videoElement.getAttribute('playxxx');
     if (mode === 'pause') {
@@ -77,7 +80,13 @@ export namespace EventViewThrough {
       console.log('playMode  ' + playMode);
     }
 
-    let $divElementFilter: HTMLDivElement = await Filter.execFil(
+    const filterPlayMode: FilterPlayMode = new FilterPlayMode();
+    // let $divElementFilter: HTMLDivElement = await Filter.execFil(
+    //   $videoElement,
+    //   playMode
+    // );
+
+    let $divElementFilter: HTMLDivElement = await filterPlayMode.execFil(
       $videoElement,
       playMode
     );
@@ -89,7 +98,8 @@ export namespace EventViewThrough {
       'animationend'
     );
     divFilter$.subscribe(ev => {
-      Filter.deleteMethod($videoElement, playMode, ev.target);
+      // Filter.deleteMethod($videoElement, playMode, ev.target);
+      filterPlayMode.deleteMethod($videoElement, playMode, ev.target);
     });
   }
 

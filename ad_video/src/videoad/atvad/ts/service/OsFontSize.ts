@@ -1,4 +1,4 @@
-import { OSFontsize } from '../../../interface/OS';
+import { OSFontsize } from '../../../service/interface/OS';
 
 export namespace osFontSize {
   export const getSize: OSFontsize = {
