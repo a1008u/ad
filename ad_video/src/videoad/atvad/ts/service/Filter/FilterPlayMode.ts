@@ -19,6 +19,8 @@ export class FilterPlayMode extends Filter {
       this.getFilter,
       playMode
     );
+
+    // アニメーション効果用のクラス属性を付与
     divElementFilter.classList.add('___ani');
 
     const svgElement = divElementFilter.firstElementChild.firstElementChild;

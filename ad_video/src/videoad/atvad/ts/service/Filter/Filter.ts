@@ -14,7 +14,7 @@ export class Filter {
    * @param divElementFilter 
    */
   deleteMethod(videoElement, playMode, divElementFilter){
-    if (playMode === 'pause') {
+    if (playMode === 'play') {
       VideoAction.playAction(videoElement);
     } else {
       VideoAction.pauseAction(videoElement);
@@ -51,7 +51,7 @@ export class Filter {
   // tslint:disable-next-line:only-arrow-functions
   async getSvgObjElment(playMode: string) {
     const svgFilePath: string =
-      playMode === 'pause'
+      playMode === 'play'
         ? '../../atvad/svg/play-circle-solid.svg'
         : '../../atvad/svg/pause-circle-solid.svg';
 
@@ -78,8 +78,8 @@ export class Filter {
         videoTag.clientHeight / 2
       )}px; pointer-events: none;`
     );
-    const mode: string = playMode === 'pause' ? 'play' : 'pause';
-    objectElement.setAttribute('___text', mode);
+    // const mode: string = playMode === 'pause' ? 'play' : 'pause';
+    objectElement.setAttribute('___text', playMode);
     return objectElement;
   }
 

@@ -12,7 +12,7 @@ describe('deleteMethodの確認', () => {
     videoElement.parentNode.removeChild(videoElement);
   });
 
-  test('pause時の動作', async () => {
+  test('pauseの動作', async () => {
     // exe;
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
     const divElementFilter: HTMLDivElement = document.getElementById('__filter') as HTMLDivElement;
@@ -21,7 +21,7 @@ describe('deleteMethodの確認', () => {
 
     // ck
     const resultPlayMode: string = videoElement.getAttribute('playxxx');
-    expect(resultPlayMode).toEqual('play');
+    expect(resultPlayMode).toEqual('pause');
     const FilterState: string = videoElement.getAttribute('___filter');
     expect(FilterState).toEqual('off');
 
@@ -30,7 +30,7 @@ describe('deleteMethodの確認', () => {
 
   });
 
-  test('pause以外の動作', async () => {
+  test('playの動作', async () => {
     // exe;
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
     const divElementFilter: HTMLDivElement = document.getElementById('__filter') as HTMLDivElement;
@@ -39,7 +39,7 @@ describe('deleteMethodの確認', () => {
 
     // ck
     const resultPlayMode: string = videoElement.getAttribute('playxxx');
-    expect(resultPlayMode).toEqual('pause');
+    expect(resultPlayMode).toEqual('play');
     const FilterState: string = videoElement.getAttribute('___filter');
     expect(FilterState).toEqual('off');
 
@@ -85,7 +85,7 @@ describe('getSvgObjElmentの確認', () => {
     const pauseMark = await filter.getSvgObjElment('pause');
 
     // ck
-    expect(pauseMark.config.url).toEqual('../../atvad/svg/play-circle-solid.svg');
+    expect(pauseMark.config.url).toEqual('../../atvad/svg/pause-circle-solid.svg');
   });
 
   test('play用のマーク取得', async () => {
@@ -94,10 +94,9 @@ describe('getSvgObjElmentの確認', () => {
     const playMark = await filter.getSvgObjElment('play');
 
     // ck
-    expect(playMark.config.url).toEqual('../../atvad/svg/pause-circle-solid.svg');
+    expect(playMark.config.url).toEqual('../../atvad/svg/play-circle-solid.svg');
   });
 });
-
 
 describe('mkObjElementの確認', () => {
 
@@ -111,7 +110,7 @@ describe('mkObjElementの確認', () => {
     videoElement.parentNode.removeChild(videoElement);
   });
 
-  test('動画(pause時) => play用のマーク表示(マーク後動画は再生)', async () => {
+  test('動画(pause時) => pause用のマーク表示(マーク後動画停止)', async () => {
 
     const playSvg: any = document.getElementById('___play');
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
@@ -123,10 +122,10 @@ describe('mkObjElementの確認', () => {
     // ck
     expect(objElement.getAttribute('id')).toEqual('___obj');
     expect(objElement.getAttribute('style')).toEqual('width:0px; height:0px; pointer-events: none;');
-    expect(objElement.getAttribute('___text')).toEqual('play');
+    expect(objElement.getAttribute('___text')).toEqual('pause');
   });
 
-  test('動画(play時) => pause用のマーク表示(マーク後動画は停止))', async () => {
+  test('動画(play時) =>play用のマーク表示(マーク後動画再生))', async () => {
 
     const playSvg: any = document.getElementById('___play');
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
@@ -138,6 +137,49 @@ describe('mkObjElementの確認', () => {
     // ck
     expect(objElement.getAttribute('id')).toEqual('___obj');
     expect(objElement.getAttribute('style')).toEqual('width:0px; height:0px; pointer-events: none;');
-    expect(objElement.getAttribute('___text')).toEqual('pause');
+    expect(objElement.getAttribute('___text')).toEqual('play');
   });
 });
+
+describe('mkFilterElementの確認', () => {
+
+  beforeEach(() => {
+    document.body.innerHTML = '<video id="atvVideo" playsinline="playsinline" muted="" src="http://localhost:3000/videoad/atvad/mp4/ba1.mp4" loop="true"></video>';
+  });
+
+  afterEach(() => {
+    // exe
+    const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
+    videoElement.parentNode.removeChild(videoElement);
+  });
+
+  test('動画(play時)', async () => {
+
+    const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
+
+    // exe;
+    const filter: Filter = new Filter();
+    const divElementFilter : HTMLDivElement  = await filter.mkFilterElement(videoElement, filter.getFilter,'play')
+
+    // ck
+    console.log(divElementFilter);
+    expect(divElementFilter.getAttribute('class')).toEqual('__filter');
+    expect(divElementFilter.childElementCount).toEqual(1);
+    expect(divElementFilter.children[0].getAttribute('___text')).toEqual('play');
+  });
+
+  test('動画(play時)', async () => {
+
+    const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
+
+    // exe;
+    const filter: Filter = new Filter();
+    const divElementFilter : HTMLDivElement  = await filter.mkFilterElement(videoElement, filter.getFilter,'pause')
+
+    // ck
+    expect(divElementFilter.getAttribute('class')).toEqual('__filter');
+    expect(divElementFilter.childElementCount).toEqual(1);
+    expect(divElementFilter.children[0].getAttribute('___text')).toEqual('pause');
+  });
+
+})

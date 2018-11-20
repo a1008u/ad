@@ -4,6 +4,7 @@ import { tag } from '../../../service/tag';
 import { Jsontype } from '../../../service/class/jsontype';
 import { ImpService } from './ImpService';
 import { FilterPlayMode } from './Filter/FilterPlayMode';
+import { VideoAction } from './video/videoAction';
 
 export namespace EventViewThrough {
 
@@ -52,91 +53,6 @@ export namespace EventViewThrough {
       if (cntEvt) {
         window.clearInterval(cntEvt);
       }
-    });
-  };
-
-  
-  async function showFilter($videoElement: HTMLVideoElement, playMode: string) {
-    let mode = $videoElement.getAttribute('playxxx');
-    if (mode === 'pause') {
-      $videoElement.play();
-      $videoElement.setAttribute('playxxx', 'play');
-    } else if (mode === 'play') {
-      $videoElement.pause();
-      $videoElement.setAttribute('playxxx', 'pause');
-    } else {
-      let first = $videoElement.getAttribute('videostart');
-      console.log('first  ' + first);
-      if (first) {
-        $videoElement.play();
-        $videoElement.setAttribute('playxxx', 'play');
-        $videoElement.removeAttribute('videoStart');
-        playMode = 'pause';
-      } else {
-        $videoElement.pause();
-        $videoElement.setAttribute('playxxx', 'pause');
-        playMode = 'pause';
-      }
-      console.log('playMode  ' + playMode);
-    }
-
-    const filterPlayMode: FilterPlayMode = new FilterPlayMode();
-    // let $divElementFilter: HTMLDivElement = await Filter.execFil(
-    //   $videoElement,
-    //   playMode
-    // );
-
-    let $divElementFilter: HTMLDivElement = await filterPlayMode.execFil(
-      $videoElement,
-      playMode
-    );
-    const mainDivElement: HTMLElement = $videoElement.parentElement;
-    mainDivElement.appendChild($divElementFilter);
-
-    const divFilter$: Rx.Observable<any> = Rx.fromEvent(
-      $divElementFilter,
-      'animationend'
-    );
-    divFilter$.subscribe(ev => {
-      // Filter.deleteMethod($videoElement, playMode, ev.target);
-      filterPlayMode.deleteMethod($videoElement, playMode, ev.target);
-    });
-  }
-
-  /**
-   *
-   * @param ev
-   */
-  const prepareFilter = (ev: any, atvJson: Jsontype) => {
-    const $videoElement: HTMLVideoElement = ev.target;
-    let playMode: string = $videoElement.getAttribute('playxxx');
-    showFilter($videoElement, playMode);
-    ImpService.execImp($videoElement, atvJson);
-  };
-
-  /**
-   * PCブラウザ用 イベントリスナー
-   */
-  export const setClickEventPC = (
-    videoElement: HTMLVideoElement,
-    atvJson: Jsontype
-  ) => {
-    const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'click');
-    video$.subscribe(ev => {
-      prepareFilter(ev, atvJson);
-    });
-  };
-
-  /**
-   * スマホブラウザ用 イベントリスナー
-   */
-  export const setTouchEventSmartPhone = (
-    videoElement: HTMLVideoElement,
-    atvJson: Jsontype
-  ) => {
-    const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'touchstart');
-    video$.subscribe(ev => {
-      prepareFilter(ev, atvJson);
     });
   };
 }

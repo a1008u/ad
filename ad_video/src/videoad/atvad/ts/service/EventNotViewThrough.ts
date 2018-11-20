@@ -99,8 +99,7 @@ export namespace EventNotViewThrough {
 
     const filterEnd = new FilterEnd();
     videoElement.addEventListener('ended', () => {
-      // Filter.execFilnotAnimation(videoElement, 'pause').then(
-      filterEnd.execFilnotAnimation(videoElement, 'pause').then(
+      filterEnd.execFilnotAnimation(videoElement, 'play').then(
         divElementFilter => {
           const mainDivElement: HTMLElement = videoElement.parentElement;
           mainDivElement.classList.add('__aparent');
