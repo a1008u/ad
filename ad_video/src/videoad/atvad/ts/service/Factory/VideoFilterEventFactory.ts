@@ -32,7 +32,8 @@ export namespace VideoFilterEventFactory {
   ) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'click');
     video$.subscribe(ev => {
-      filterEvent.prepareFilter(ev, atvJson);
+      const $videoElement: HTMLVideoElement = ev.target;
+      filterEvent.prepareFilter($videoElement, atvJson);
     });
   };
 
@@ -45,7 +46,8 @@ export namespace VideoFilterEventFactory {
   ) => {
     const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'touchstart');
     video$.subscribe(ev => {
-      filterEvent.prepareFilter(ev, atvJson);
+      const $videoElement: HTMLVideoElement = ev.target;
+      filterEvent.prepareFilter($videoElement, atvJson);
     });
   };
 }

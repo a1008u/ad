@@ -38,7 +38,6 @@ describe('impアクセスの確認', () => {
       impressionUrl
     );
 
-
     // exe
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
     const resultData = await ImpService.execImp(videoElement, confirmJson);

@@ -1,7 +1,7 @@
-import { Jsontype } from "../../../../service/class/jsontype";
-import { VideoAction } from "../video/videoAction";
-import { FilterPlayMode } from "./FilterPlayMode";
-import { ImpService } from "../ImpService";
+import { Jsontype } from '../../../../service/class/jsontype';
+import { VideoAction } from '../video/videoAction';
+import { FilterPlayMode } from './FilterPlayMode';
+import { ImpService } from '../ImpService';
 import { Observable, fromEvent } from 'rxjs';
 // import * as Rx from 'rxjs';
 
@@ -13,10 +13,10 @@ export class FilterEvent {
 
   /**
    * main処理
-   * @param ev
+   * @param ev 
+   * @param atvJson 
    */
-  async prepareFilter(ev: any, atvJson: Jsontype) {
-    const $videoElement: HTMLVideoElement = ev.target;
+  async prepareFilter($videoElement: HTMLVideoElement, atvJson: Jsontype) {
     await this.videoStateChange($videoElement);
     await this.showFilter($videoElement);
     ImpService.execImp($videoElement, atvJson);
@@ -45,6 +45,7 @@ export class FilterEvent {
    * @param playMode
    */
   async showFilter($videoElement: HTMLVideoElement) {
+    // filter生成
     let playMode: string = $videoElement.getAttribute('playxxx');
     const filterPlayMode: FilterPlayMode = new FilterPlayMode();
     const $divElementFilter: HTMLDivElement = await filterPlayMode.execFil(
@@ -54,6 +55,7 @@ export class FilterEvent {
     const mainDivElement: HTMLElement = $videoElement.parentElement;
     mainDivElement.appendChild($divElementFilter);
 
+    // animationendイベントを生成
     const divFilter$: Observable<any> = fromEvent(
       $divElementFilter,
       'animationend'
