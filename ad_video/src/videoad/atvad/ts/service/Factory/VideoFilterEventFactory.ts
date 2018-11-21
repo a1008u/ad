@@ -1,28 +1,12 @@
 import { EventViewThrough } from '../EventViewThrough';
 import { Jsontype } from '../../../../service/class/jsontype';
 import { OS } from '../../../../service/interface/OS';
-import * as Rx from 'rxjs';
+import {Observable, fromEvent} from 'rxjs';
 import { FilterEvent } from '../Filter/FilterEvent';
 
 const filterEvent: FilterEvent = new FilterEvent();
 
 export namespace VideoFilterEventFactory {
-  
-  export const osEvent: OS = {
-    ios: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
-      setTouchEventSmartPhone(videoTag, atvJson);
-    },
-    android: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
-      setTouchEventSmartPhone(videoTag, atvJson);
-    },
-    windowsphone: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
-      setTouchEventSmartPhone(videoTag, atvJson);
-    },
-    pc: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
-      setClickEventPC(videoTag, atvJson);
-    },
-  };
-
   /**
    * PCブラウザ用 イベントリスナー
    */
@@ -30,7 +14,7 @@ export namespace VideoFilterEventFactory {
     videoElement: HTMLVideoElement,
     atvJson: Jsontype
   ) => {
-    const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'click');
+    const video$: Observable<any> = fromEvent(videoElement, 'click');
     video$.subscribe(ev => {
       const $videoElement: HTMLVideoElement = ev.target;
       filterEvent.prepareFilter($videoElement, atvJson);
@@ -44,10 +28,25 @@ export namespace VideoFilterEventFactory {
     videoElement: HTMLVideoElement,
     atvJson: Jsontype
   ) => {
-    const video$: Rx.Observable<any> = Rx.fromEvent(videoElement, 'touchstart');
+    const video$: Observable<any> = fromEvent(videoElement, 'touchstart');
     video$.subscribe(ev => {
       const $videoElement: HTMLVideoElement = ev.target;
       filterEvent.prepareFilter($videoElement, atvJson);
     });
+  };
+
+  export const osEvent: OS = {
+    ios: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
+      setTouchEventSmartPhone(videoTag, atvJson);
+    },
+    android: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
+      setTouchEventSmartPhone(videoTag, atvJson);
+    },
+    windowsphone: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
+      setTouchEventSmartPhone(videoTag, atvJson);
+    },
+    pc: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
+      setClickEventPC(videoTag, atvJson);
+    },
   };
 }

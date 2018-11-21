@@ -38,7 +38,7 @@ export namespace ElementFactory {
    * @param atvJson
    * @param loop
    */
-  const mkNormalVideoElement = (
+  const mkNotViewThroughVideoElement = (
     mainDivElement: HTMLDivElement,
     atvJson: Jsontype,
     loop: string
@@ -68,7 +68,7 @@ export namespace ElementFactory {
     if (atvJson.videoad_vt_second !== '0') {
       return mkViewThroughVideoElement(mainDivElement, atvJson, 'true');
     } else {
-      return mkNormalVideoElement(mainDivElement, atvJson, 'false');
+      return mkNotViewThroughVideoElement(mainDivElement, atvJson, 'false');
     }
   };
 

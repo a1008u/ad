@@ -5,7 +5,7 @@ export class FilterEnd extends Filter {
 
   constructor() {
     super();
-    console.log('FilterEnd')
+    console.log('FilterEnd');
   }
 
   /**
@@ -20,7 +20,7 @@ export class FilterEnd extends Filter {
       playMode
     );
 
-    const svgElement = divElementFilter.firstElementChild.firstElementChild;
+    const svgElement: Element = divElementFilter.firstElementChild.firstElementChild;
     svgElement.setAttribute(
       'style',
       `width:${String(videoTag.clientWidth / 2)}px; height:${String(

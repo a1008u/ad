@@ -1,9 +1,8 @@
-import * as Rx from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
 
 import { osFontSize } from './OsFontSize';
 import { oschecker } from '../../../service/oschecker';
 import { Jsontype } from '../../../service/class/jsontype';
-import { Filter } from './Filter/old/Filter';
 import { FilterEnd } from './Filter/FilterEnd';
 
 export namespace EventNotViewThrough {
@@ -15,23 +14,31 @@ export namespace EventNotViewThrough {
     let btnPaddingUpDown: string;
     let btnPaddingLeftRight: string;
     if (atvJson.ATV_MODE === 'previewPcAdarea') {
-      [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = [
-        '28px',
-        '24px',
-        '10px',
-        '20px',
-      ];
+      leftSize = '28px';
+      rightSize = '24px';
+      btnPaddingUpDown = '10px';
+      btnPaddingLeftRight = '20px';
       hrefValue = '#!';
       target = ``;
+      // [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = [
+      //   '28px',
+      //   '24px',
+      //   '10px',
+      //   '20px',
+      // ];
     } else if (atvJson.ATV_MODE === 'previewSpAdarea') {
-      [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = [
-        '16px',
-        '12px',
-        '5px',
-        '10px',
-      ];
+      leftSize = '16px';
+      rightSize = '12px';
+      btnPaddingUpDown = '5px';
+      btnPaddingLeftRight = '10px';
       hrefValue = '#!';
       target = ``;
+      // [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = [
+      //   '16px',
+      //   '12px',
+      //   '5px',
+      //   '10px',
+      // ];
     } else {
       [
         leftSize,
@@ -54,7 +61,7 @@ export namespace EventNotViewThrough {
 
   // AdAreaの作成
   export const mkAdArea = (atvJson: Jsontype): string => {
-    let {
+    const {
       leftSize,
       hrefValue,
       rightSize,
@@ -69,25 +76,21 @@ export namespace EventNotViewThrough {
       btnPaddingUpDown: string;
       btnPaddingLeftRight: string;
     } = getAdAreaValue(atvJson);
-    return `<div class="__divTextElement" style="height:${
-      atvJson.ADAREA_HEIGHT
-    }px">
-              <div class="__divTextLeftElement" style="font-size:${leftSize}">
-                <span class="__atv_text">${atvJson.banner_text}</span>
-              </div>
-              <div class="__divTextRightElement">
-                <a class="__atv_text" href="${hrefValue}" ${target} /">
-                  <span class="__atv_button" ontouchstart="" style="font-size:${rightSize}; padding:${btnPaddingUpDown} ${btnPaddingLeftRight}">${
-      atvJson.video_btn_text
-    }</>
-                </a>
-              </div>
-            </div>`;
+    return `<div class="__divTextElement" style="height:${atvJson.ADAREA_HEIGHT}px">
+      <div class="__divTextLeftElement" style="font-size:${leftSize}">
+        <span class="__atv_text">${atvJson.banner_text}</span>
+      </div>
+      <div class="__divTextRightElement">
+        <a class="__atv_text" href="${hrefValue}" ${target} /">
+          <span class="__atv_button" ontouchstart="" style="font-size:${rightSize}; padding:${btnPaddingUpDown} ${btnPaddingLeftRight}">${atvJson.video_btn_text}</>
+        </a>
+      </div>
+    </div>`;
   };
 
   /**
-   *
-   * @param videoTag
+   * 再生再開を行う
+   * @param videoElement
    */
   export const setEventLoad = (videoElement: HTMLVideoElement) => {
     const deleteFilter = (ev: any) => {
@@ -97,24 +100,28 @@ export namespace EventNotViewThrough {
       videoElement.play();
     };
 
+    const endFilter = (
+      videoElement: HTMLVideoElement,
+      $divElementFilter: HTMLDivElement
+    ) => {
+      const mainDivElement: HTMLElement = videoElement.parentElement;
+      mainDivElement.classList.add('__aparent');
+      mainDivElement.appendChild($divElementFilter);
+      videoElement.setAttribute('__end', 'true');
+    };
+
     const filterEnd = new FilterEnd();
     videoElement.addEventListener('ended', () => {
-      filterEnd.execFilnotAnimation(videoElement, 'play').then(
-        divElementFilter => {
-          const mainDivElement: HTMLElement = videoElement.parentElement;
-          mainDivElement.classList.add('__aparent');
-          mainDivElement.appendChild(divElementFilter);
-          videoElement.setAttribute('__end', 'true');
+      filterEnd
+        .execFilnotAnimation(videoElement, 'play')
+        .then(divElementFilter => {
+          // 動画再生終了フィルターの表示
+          endFilter(videoElement, divElementFilter);
 
-          const filter$: Rx.Observable<any> = Rx.fromEvent(
-            divElementFilter,
-            'click'
-          );
-          filter$.subscribe(ev => {
-            deleteFilter(ev);
-          });
-        }
-      );
+          // 動画停止後、再生ボタンをクリックしたタイミングで再生を行う
+          const filter$: Observable<any> = fromEvent(divElementFilter, 'click');
+          filter$.subscribe(ev => deleteFilter(ev));
+        });
     });
   };
 }
