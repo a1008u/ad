@@ -1,4 +1,3 @@
-import { EventViewThrough } from '../EventViewThrough';
 import { Jsontype } from '../../../../service/class/jsontype';
 import { OS } from '../../../../service/interface/OS';
 import {Observable, fromEvent} from 'rxjs';
@@ -7,28 +6,19 @@ import { FilterEvent } from '../Filter/FilterEvent';
 const filterEvent: FilterEvent = new FilterEvent();
 
 export namespace VideoFilterEventFactory {
-  /**
-   * PCブラウザ用 イベントリスナー
-   */
-  export const setClickEventPC = (
-    videoElement: HTMLVideoElement,
-    atvJson: Jsontype
-  ) => {
-    const video$: Observable<any> = fromEvent(videoElement, 'click');
-    video$.subscribe(ev => {
-      const $videoElement: HTMLVideoElement = ev.target;
-      filterEvent.prepareFilter($videoElement, atvJson);
-    });
-  };
 
   /**
-   * スマホブラウザ用 イベントリスナー
+   * クリックやタッチ時のイベント
+   * @param videoElement 
+   * @param atvJson 
+   * @param eventType 
    */
-  export const setTouchEventSmartPhone = (
+  export const setClickOrTouchEvent = (
     videoElement: HTMLVideoElement,
-    atvJson: Jsontype
+    atvJson: Jsontype,
+    eventType: string
   ) => {
-    const video$: Observable<any> = fromEvent(videoElement, 'touchstart');
+    const video$: Observable<any> = fromEvent(videoElement, eventType);
     video$.subscribe(ev => {
       const $videoElement: HTMLVideoElement = ev.target;
       filterEvent.prepareFilter($videoElement, atvJson);
@@ -37,16 +27,16 @@ export namespace VideoFilterEventFactory {
 
   export const osEvent: OS = {
     ios: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
-      setTouchEventSmartPhone(videoTag, atvJson);
+      setClickOrTouchEvent(videoTag, atvJson, 'touchstart');
     },
     android: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
-      setTouchEventSmartPhone(videoTag, atvJson);
+      setClickOrTouchEvent(videoTag, atvJson, 'touchstart');
     },
     windowsphone: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
-      setTouchEventSmartPhone(videoTag, atvJson);
+      setClickOrTouchEvent(videoTag, atvJson, 'touchstart');
     },
     pc: (videoTag: HTMLVideoElement, atvJson: Jsontype) => {
-      setClickEventPC(videoTag, atvJson);
+      setClickOrTouchEvent(videoTag, atvJson, 'click');
     },
   };
 }
