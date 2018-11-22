@@ -76,10 +76,10 @@ export namespace tag {
    * @param display 
    */
   export const mkIframeElementForTracking = (
-    src: string
-    , width: string
-    , height: string
-    , display: string
+    src: string,
+    width: string,
+    height: string,
+    display: string
   ): HTMLIFrameElement => {
     const ifr: HTMLIFrameElement = mkIframeElement(src, width, height);
     ifr.style.display = display;

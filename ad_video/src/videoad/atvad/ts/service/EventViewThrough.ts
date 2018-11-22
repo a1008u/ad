@@ -1,12 +1,30 @@
-import * as Rx from 'rxjs';
-import { Filter } from './Filter/old/Filter';
 import { tag } from '../../../service/tag';
 import { Jsontype } from '../../../service/class/jsontype';
-import { ImpService } from './ImpService';
-import { FilterPlayMode } from './Filter/FilterPlayMode';
-import { VideoAction } from './video/videoAction';
 
 export namespace EventViewThrough {
+  /**
+   * 
+   * @param cntEvt 
+   * @param atvJson 
+   * @param videoTag 
+   */
+  export const viewThroughAction = (
+    cntEvt: any,
+    atvJson: Jsontype,
+    videoTag: HTMLElement
+  ) => {
+    window.clearInterval(cntEvt);
+    // クリックのやつ
+    const url: string = `${atvJson.entryframe_url}?url=${encodeURIComponent(atvJson.href_url)}`;
+    let iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
+    videoTag.parentNode.insertBefore(iframeTag, videoTag);
+
+    // 使用決定用に一旦表示（実際は削除します） -----------------------------------------
+    const divElement: HTMLDivElement = document.createElement('div');
+    divElement.textContent = 'viewthroughをしました';
+    videoTag.parentNode.parentNode.insertBefore(divElement, videoTag.parentElement);
+    // ----------------------------------------------------------------------------
+  };
 
   /**
    *
@@ -22,27 +40,7 @@ export namespace EventViewThrough {
         cntEvt = window.setInterval(() => {
           count += 250;
           if (count > limitTime) {
-            window.clearInterval(cntEvt);
-            // クリックのやつ
-            const url: string = `${
-              atvJson.entryframe_url
-            }?url=${encodeURIComponent(atvJson.href_url)}`;
-            let iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(
-              url,
-              '0',
-              '0',
-              'none'
-            );
-            videoTag.parentNode.insertBefore(iframeTag, videoTag);
-
-            // 使用決定用に一旦表示（実際は削除します） -----------------------------------------
-            const divElement: HTMLDivElement = document.createElement('div');
-            divElement.textContent = 'viewthroughをしました';
-            videoTag.parentNode.parentNode.insertBefore(
-              divElement,
-              videoTag.parentElement
-            );
-            // ----------------------------------------------------------------------------
+            viewThroughAction(cntEvt, atvJson, videoTag);
           }
         }, 250);
       }

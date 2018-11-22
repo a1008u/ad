@@ -4,7 +4,7 @@ import { EventViewThrough } from '../EventViewThrough';
 import { oschecker } from '../../../../service/oschecker';
 import { Jsontype } from '../../../../service/class/jsontype';
 import { tag } from '../../../../service/tag';
-import { MassageEvent } from '../MessageEvent';
+import { MessageEvent } from '../MessageEvent';
 
 export namespace ElementFactory {
   /**
@@ -21,7 +21,6 @@ export namespace ElementFactory {
     const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson, loop);
     mainDivElement.appendChild($videoElement);
 
-    console.log(atvJson.ATV_MODE);
     if (atvJson.ATV_MODE !== '') {
       // プレビュー用として返す
       $videoElement.setAttribute('atv_mode', atvJson.ATV_MODE);
@@ -91,6 +90,6 @@ export namespace ElementFactory {
     VideoFilterEventFactory.osEvent[oschecker.isolate()](videoElement, atvJson);
 
     // 動画が表示されているか判定処理
-    MassageEvent.register(videoElement, atvJson);
+    MessageEvent.register(videoElement, atvJson);
   };
 }

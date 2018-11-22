@@ -20,12 +20,6 @@ export namespace EventNotViewThrough {
       btnPaddingLeftRight = '20px';
       hrefValue = '#!';
       target = ``;
-      // [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = [
-      //   '28px',
-      //   '24px',
-      //   '10px',
-      //   '20px',
-      // ];
     } else if (atvJson.ATV_MODE === 'previewSpAdarea') {
       leftSize = '16px';
       rightSize = '12px';
@@ -33,12 +27,6 @@ export namespace EventNotViewThrough {
       btnPaddingLeftRight = '10px';
       hrefValue = '#!';
       target = ``;
-      // [leftSize, rightSize, btnPaddingUpDown, btnPaddingLeftRight] = [
-      //   '16px',
-      //   '12px',
-      //   '5px',
-      //   '10px',
-      // ];
     } else {
       [
         leftSize,

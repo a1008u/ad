@@ -59,7 +59,6 @@ describe('Eventのチェック', () => {
   });
 });
 
-
 describe('iosのチェック', () => {
   const rkValue = '010011a1';
 
@@ -107,4 +106,3 @@ describe('iosのチェック', () => {
     expect(FilterEvent.prototype.prepareFilter).toHaveBeenCalled();
   });
 });
-
