@@ -55,7 +55,6 @@ describe('Eventのチェック', () => {
 
     VideoFilterEventFactory.osEvent['pc'](videoElement, confirmJson);
     expect(VideoFilterEventFactory.setClickOrTouchEvent).toHaveBeenCalled();
-
   });
 });
 

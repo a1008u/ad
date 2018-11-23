@@ -13,7 +13,7 @@ export namespace ElementFactory {
    * @param atvJson
    * @param loop
    */
-  const mkViewThroughVideoElement = (
+  export const mkViewThroughVideoElement = (
     mainDivElement: HTMLDivElement,
     atvJson: Jsontype,
     loop: string
