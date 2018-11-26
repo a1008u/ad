@@ -22,6 +22,19 @@ export class AsyncTransmission {
   }
 
   /**
+   * 2回目以降のxhr送信
+   */
+  async getJsonViaQuerry(): Promise<any> {
+    const urlQuerry: string = location.search.substring(1);
+    const decodeUrlQuerry: string = decodeURIComponent(urlQuerry);
+    const [_, urlValue] = decodeUrlQuerry.split('url=');
+    return axios
+      .get(urlValue)
+      .then(resdata => resdata.data)
+      .catch(err => console.log(err));
+  }
+
+  /**
    * rkが内容のpreview
    *
    * Jsontypeについて

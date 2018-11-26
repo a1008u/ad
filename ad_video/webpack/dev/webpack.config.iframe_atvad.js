@@ -1,7 +1,7 @@
 module.exports = {
 
     entry: {
-        "ts":`./src/videoad/atvad/ts/iframe_atvad.ts`
+        "ts":`./src/videoad/atvad/ts/iframeAtvad.ts`
     },
 
     output: {

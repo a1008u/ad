@@ -88,8 +88,13 @@
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
+    "moduleNameMapper":{
+      "\\.(css|less|sass|scss)$": "<rootDir>/src/videoad/atvad/css/index.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/src/videoad/atvad/svg/play-circle-solid.svg"
+    },
     "testEnvironment": "jsdom",
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testURL": "http://localhost:8080/test.html",
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -109,16 +114,7 @@
     },
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/*.{js,ts}",
-      "src/atvad/ts/*.{js,ts}",
-      "src/videoad/atvad/ts/*.{js,ts}",
-      "src/videoad/atvad/ts/service/*.{js,ts}",
-      "src/videoad/atvad/ts/service/Factory/*.{js,ts}",
-      "src/videoad/atvad/ts/service/video/*.{js,ts}",
-      "src/videoad/atvad/ts/service/Filter/*.{js,ts}",
-      "src/videoad/cookie/ts/*.{js,ts}",
-      "src/videoad/entry/ts/*.{js,ts}",
-      "src/videoad/service/*.{js,ts}"
+      "src/**/*.{js,ts}"
     ]
   }
 }

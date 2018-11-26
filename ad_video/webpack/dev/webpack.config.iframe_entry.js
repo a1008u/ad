@@ -1,7 +1,7 @@
 module.exports = {
 
     entry: {
-        "ts":'./src/videoad/entry/ts/iframe_entry.ts'
+        "ts":'./src/videoad/entry/ts/iframeEntry.ts'
     },
 
     output: {

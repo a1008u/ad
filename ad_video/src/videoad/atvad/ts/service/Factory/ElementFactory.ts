@@ -37,7 +37,7 @@ export namespace ElementFactory {
    * @param atvJson
    * @param loop
    */
-  const mkNotViewThroughVideoElement = (
+  export const mkNotViewThroughVideoElement = (
     mainDivElement: HTMLDivElement,
     atvJson: Jsontype,
     loop: string
@@ -46,47 +46,34 @@ export namespace ElementFactory {
     $videoElement.removeAttribute('loop');
     mainDivElement.appendChild($videoElement);
     EventNotViewThrough.setEventLoad($videoElement);
-    mainDivElement.classList.add('__mainDivShadow');
 
-    // 広告エリアを作成
-    const adAreaDiv: string = EventNotViewThrough.mkAdArea(atvJson);
-    mainDivElement.insertAdjacentHTML('beforeend', adAreaDiv);
+    mkAdArea(atvJson, mainDivElement);
     return $videoElement;
   };
 
   /**
-   * viewthrough有りか無しかで処理を分け、videoタグを生成
-   * @param atvJson
-   * @param rk
-   * @param mainDivElement
+   * AdArea（広告エリア）作成
+   * @param atvJson 
+   * @param mainDivElement 
    */
-  const mkVideoElement = (
-    mainDivElement: HTMLDivElement,
-    atvJson: Jsontype
-  ): HTMLVideoElement => {
-    if (atvJson.videoad_vt_second !== '0') {
-      return mkViewThroughVideoElement(mainDivElement, atvJson, 'true');
-    } else {
-      return mkNotViewThroughVideoElement(mainDivElement, atvJson, 'false');
-    }
+  export const mkAdArea = (atvJson: Jsontype, mainDivElement: HTMLDivElement) => {
+    const adAreaDiv: string = EventNotViewThrough.mkAdArea(atvJson);
+    mainDivElement.insertAdjacentHTML('beforeend', adAreaDiv);
   };
 
   /**
-   *
+   * videoElementの作成
    * @param atvJson
    */
   export const mkElement = (atvJson: Jsontype): void => {
     // 動画広告の枠（横の長さ）を指定
     const $mainDivElement: HTMLDivElement = document.querySelector('#atvMain');
-    $mainDivElement.setAttribute(
-      'style',
-      `width:${atvJson.width}px; z-index:30;`
-    );
+    $mainDivElement.setAttribute('style',`width:${atvJson.width}px; z-index:30;`);
 
-    let videoElement: HTMLVideoElement = mkVideoElement(
-      $mainDivElement,
-      atvJson
-    );
+    const videoElement: HTMLVideoElement =
+      atvJson.videoad_vt_second !== '0'
+        ? mkViewThroughVideoElement($mainDivElement, atvJson, 'true')
+        : mkNotViewThroughVideoElement($mainDivElement, atvJson, 'false');
     VideoFilterEventFactory.osEvent[oschecker.isolate()](videoElement, atvJson);
 
     // 動画が表示されているか判定処理
