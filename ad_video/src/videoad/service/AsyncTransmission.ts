@@ -1,4 +1,4 @@
-import { Jsontype } from '../../videoad/service/class/jsontype';
+import { Jsontype } from './class/jsontype';
 import axios from 'axios';
 
 export class AsyncTransmission {

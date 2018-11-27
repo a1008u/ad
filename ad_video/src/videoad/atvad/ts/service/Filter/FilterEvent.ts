@@ -3,7 +3,6 @@ import { VideoAction } from '../video/videoAction';
 import { FilterPlayMode } from './FilterPlayMode';
 import { ImpService } from '../ImpService';
 import { Observable, fromEvent } from 'rxjs';
-// import * as Rx from 'rxjs';
 
 export class FilterEvent {
 

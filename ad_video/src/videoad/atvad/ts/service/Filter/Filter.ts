@@ -78,7 +78,6 @@ export class Filter {
         videoTag.clientHeight / 2
       )}px; pointer-events: none;`
     );
-    // const mode: string = playMode === 'pause' ? 'play' : 'pause';
     objectElement.setAttribute('___text', playMode);
     return objectElement;
   }
@@ -95,7 +94,7 @@ export class Filter {
     playMode: string
   ) {
     const divElementFilter: HTMLDivElement = getFilter(videoTag);
-    const svgData = await this.getSvgObjElment(playMode);
+    const svgData: any = await this.getSvgObjElment(playMode);
     const objectElement: HTMLObjectElement = this.mkObjElement(
       svgData,
       videoTag,

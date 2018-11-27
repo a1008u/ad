@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Filter } from './Filter';
 
 export class FilterEnd extends Filter {

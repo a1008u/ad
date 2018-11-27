@@ -6,14 +6,12 @@ describe('mkViewThroughVideoElementのチェック', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '<div id="atvMain"><video id="atvVideo"></video></div>';
-    //jest.spyOn(VideoFilterEventFactory, 'setClickOrTouchEvent').mockImplementation();
   });
 
   afterEach(() => {
     // exe
     const $mainDivElement: HTMLDivElement = document.querySelector('#atvMain');
     $mainDivElement.parentNode.removeChild($mainDivElement);
-    //jest.spyOn(VideoFilterEventFactory, 'setClickOrTouchEvent').mockRestore();
   });
 
   test('viewthrough(非プレビュー)の正常確認', async () => {

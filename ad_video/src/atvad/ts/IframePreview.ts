@@ -2,7 +2,7 @@ import { emergenceInit } from './EmergenceFactory';
 
 import { Jsontype } from '../../videoad/service/class/jsontype';
 import { tag } from '../../videoad/service/tag';
-import { AsyncTransmission } from './AsyncTransmission';
+import { AsyncTransmission } from '../../videoad/service/AsyncTransmission';
 
 export class IframePreview {
   localhost: string = 'http://localhost:3000';

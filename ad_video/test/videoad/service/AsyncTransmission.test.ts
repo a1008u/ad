@@ -1,5 +1,5 @@
 import { Jsontype } from '../../../src/videoad/service/class/jsontype';
-import { AsyncTransmission } from '../../../src/atvad/ts/AsyncTransmission';
+import { AsyncTransmission } from '../../../src/videoad/service/AsyncTransmission';
 
 const asyncTransmission: AsyncTransmission = new AsyncTransmission();
 const domain: string = 'http://localhost:3000';

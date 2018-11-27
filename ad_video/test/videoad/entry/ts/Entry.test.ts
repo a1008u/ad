@@ -3,34 +3,6 @@ import { Jsonentry } from "../../../../src/videoad/service/class/jsonentry";
 
 const domain = 'http://localhost:3000';
 
-describe('Entryのチェック', () => {
-
-  beforeEach(() => {
-    window.history.pushState({}, 'Test Title', '/test.html?url=http%3A%2F%2Flocalhost%3A3000%2Fclick%3Frk%3D010011a4_pc');
-  });
-
-  afterEach(() => {
-    window.history.pushState({}, 'Test Title', '/test.html');
-  });
-
-  test('getJsonの正常確認', async () => {
-    const entry: Entry = new Entry();
-    const result: Jsonentry = await (entry as any).getJson();
-
-    const jsonentry: Jsonentry = new Jsonentry(
-      'true',
-      'z4361737039', // n
-      '01005gtr000005', // rk
-      `${domain}/cookie?rk=01005gtr000005`, // rurlです 利用 iframe_url + url= rurl
-      'f3a42d90657264333bb4880f59055aed',
-      `${domain}/videoad/cookie/html/iframe_cookie.html` // iframe_url
-    );
-
-    // ck
-    expect(result).not.toBeNull();
-    expect(result).toEqual(jsonentry);
-  });
-});
 
 describe('Entryのチェック', () => {
   beforeEach(() => {

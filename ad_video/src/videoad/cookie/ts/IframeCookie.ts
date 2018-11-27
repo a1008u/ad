@@ -1,10 +1,9 @@
 import { Jsoncookie } from "../../service/class/jsoncookie";
 import { cookies } from "./cookies";
-import { AsyncTransmission } from "../../../atvad/ts/AsyncTransmission";
+import { AsyncTransmission } from "../../service/AsyncTransmission";
 import { Browser } from "./Browser";
 import { tag } from "../../service/tag";
 import { browser } from "../../service/browser";
-import axios from 'axios';
 
 export class IframeCookie {
 
@@ -37,32 +36,8 @@ export class IframeCookie {
     const jsoncookie: Jsoncookie = await asyncTransmission.getJsonViaQuerry();
 
     // 端末とOS別の対応
+    console.log("  -         -----  " + browser.ck())
     browsers[browser.ck()](jsoncookie);
-  }
-
-  /**
-   * 2回目のxhr送信（アクセスログ設定 + isへ飛ばす際のJSON取得）
-   * @param urlValue
-   */
-  // async getJson(): Promise<any> {
-  //   const urlQuerry: string = location.search;
-  //   const decodeUrlQuerry: string = decodeURIComponent(urlQuerry);
-  //   const [_, urlValue] = decodeUrlQuerry.split('?url=');
-  //   console.log('?url = ' + urlValue);
-  //   return axios
-  //     .get(urlValue)
-  //     .then(resdata => resdata.data)
-  //     .catch(err => console.log(err));
-  // }
-
-  private async getJson(): Promise<any> {
-    const urlQuerry: string = location.search.substring(1);
-    const decodeUrlQuerry: string = decodeURIComponent(urlQuerry);
-    const [, urlValue] = decodeUrlQuerry.split('url=');
-    return axios
-      .get(urlValue)
-      .then(resdata => resdata.data)
-      .catch(err => console.log(err));
   }
 
   /**

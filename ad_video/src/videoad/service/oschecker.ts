@@ -1,5 +1,4 @@
 import * as Platform from 'platform';
-import 'babel-polyfill';
 
 export namespace oschecker {
   export const isolate = (): string => {

@@ -1,7 +1,7 @@
 import { Jsonentry } from '../../service/class/jsonentry';
 import { tag } from '../../service/tag';
 import axios from 'axios';
-import { AsyncTransmission } from '../../../atvad/ts/AsyncTransmission';
+import { AsyncTransmission } from '../../service/AsyncTransmission';
 
 export class Entry {
 
@@ -17,19 +17,6 @@ export class Entry {
     const jsonentry: Jsonentry = await asyncTransmission.getJsonViaQuerry();
     await this.mkCookieIframe(jsonentry);
   }
-
-  /**
-   * 2回目のxhr送信（アクセスログ設定 + isへ飛ばす際のJSON取得）
-   */
-  // private async getJson(): Promise<any> {
-  //   const urlQuerry: string = location.search.substring(1);
-  //   const decodeUrlQuerry: string = decodeURIComponent(urlQuerry);
-  //   const [_, urlValue] = decodeUrlQuerry.split('url=');
-  //   return axios
-  //     .get(urlValue)
-  //     .then(resdata => resdata.data)
-  //     .catch(err => console.log(err));
-  // }
 
   /**
    * iframe作成
