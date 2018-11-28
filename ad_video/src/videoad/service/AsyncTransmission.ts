@@ -1,5 +1,6 @@
 import { Jsontype } from './class/jsontype';
 import axios from 'axios';
+import 'ts-polyfill/lib/es2015-promise';
 
 export class AsyncTransmission {
 

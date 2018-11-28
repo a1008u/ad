@@ -5,7 +5,6 @@ import { tag } from '../../videoad/service/tag';
 import { AsyncTransmission } from '../../videoad/service/AsyncTransmission';
 
 export class Iframe {
-  localhost: string = 'http://localhost:3000';
 
   constructor() {
     console.log('Iframe');
@@ -46,10 +45,8 @@ export class Iframe {
     ) => Promise<Jsontype>
   ) {
     const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
-    infoJson.videoframe_url =
-      domain === this.localhost
-        ? `${this.localhost}/videoad/atvad/html/iframe_atvad.html`
-        : 'https://a.image.accesstrade.net/hai/videoad/atvad/html/iframe_atvad.html';
+    infoJson.videoframe_url =  `${domain}/videoad/atvad/html/iframe_atvad.html`
+
 
     // iframe生成
     const iframeHight: number = Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);

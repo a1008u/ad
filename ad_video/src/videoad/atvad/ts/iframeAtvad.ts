@@ -3,7 +3,7 @@ import { Jsontype } from '../../service/class/jsontype';
 import { ElementFactory } from './service/Factory/ElementFactory';
 
 // tslint:disable-next-line:no-var-requires
-// require('es6-promise').polyfill();
+require('es6-promise').polyfill();
 
 /**
  * videoAdのメイン処理

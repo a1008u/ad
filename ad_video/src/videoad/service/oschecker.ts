@@ -1,4 +1,6 @@
 import * as Platform from 'platform';
+import 'ts-polyfill/lib/es2017-string';
+import 'ts-polyfill/lib/es2015-core';
 
 export namespace oschecker {
   export const isolate = (): string => {

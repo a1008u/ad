@@ -1,7 +1,7 @@
 import { Iframe } from './Iframe';
 import { IframePreview } from './IframePreview';
 
-// require('es6-promise').polyfill();
+require('es6-promise').polyfill();
 // import 'babel-polyfill';
 
 export const mkfadeIn = () => {
@@ -29,7 +29,7 @@ export const exec = (scriptElement: any, window: Window) => {
     scriptElement.removeAttribute('data-atv-rk');
     scriptElement.removeAttribute('data-atv-mode');
     scriptElement.removeAttribute('data-atv-mock');
-    const domain = atvMock ? 'http://localhost:3000' : 'https://h.accesstrade.net';
+    const domain = atvMock ? 'http://10.10.15.89:3000' : 'https://a.image.accesstrade.net/hai';
     if (atvMode) {
       // プレビュー用
       const iframePreview: IframePreview = new IframePreview();

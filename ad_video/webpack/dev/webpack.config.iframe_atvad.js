@@ -1,7 +1,7 @@
 module.exports = {
 
     entry: {
-        "ts":['babel-polyfill',`./src/videoad/atvad/ts/iframeAtvad.ts`]
+        "ts":[`./src/videoad/atvad/ts/iframeAtvad.ts`]
     },
 
     output: {
