@@ -5,22 +5,6 @@ import 'ts-polyfill/lib/es2015-promise';
 // require('es6-promise').polyfill();
 // import 'babel-polyfill';
 
-export const mkfadeIn = () => {
-  const css = document.createElement('style');
-  css.media = 'screen';
-  css.type = 'text/css';
-  // フェードイン
-  const fadein = `@keyframes fadeIn{${[
-    '0% {opacity: 0}',
-    '100% {opacity: 1.0}',
-  ].join(' ')}`;
-  // ルールをstyleタグに追加
-  const rules = document.createTextNode(fadein);
-  css.appendChild(rules);
-  // head内に作成
-  document.getElementsByTagName('head')[0].appendChild(css);
-};
-
 export const exec = (scriptElement: any, window: Window) => {
   // スクリプトタグにrkが存在しない場合は、次の「data-atv-rk」を確認する
   const rkValue: string = scriptElement.getAttribute('data-atv-rk');
@@ -48,8 +32,6 @@ export const exec = (scriptElement: any, window: Window) => {
  */
 ((window, _) => {
   [].forEach.call(document.getElementsByTagName('script'), scriptElement => {
-    // styleタグを作成
-    mkfadeIn();
     exec(scriptElement, window);
   });
 })(window);

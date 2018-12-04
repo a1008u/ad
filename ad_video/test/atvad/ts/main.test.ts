@@ -1,5 +1,5 @@
 import { Jsontype } from '../../../src/videoad/service/class/jsontype';
-import { mkfadeIn, exec } from '../../../src/atvad/ts/main';
+//import { mkfadeIn, exec } from '../../../src/atvad/ts/main';
 
 const domain: string = 'http://localhost:3000';
 
@@ -26,20 +26,20 @@ const domain: string = 'http://localhost:3000';
 //   });
 // });
 
-describe('styleのチェック', () => {
-  const rkValue = '010011a1';
+// describe('styleのチェック', () => {
+//   const rkValue = '010011a1';
 
-  beforeEach(() => {
-    document.body.innerHTML = `<script async data-atv-mode="preview" data-atv-mock="true" data-atv-rk="010011a1" ></script>`;
-    jest.setTimeout(30000);
-  });
+//   beforeEach(() => {
+//     document.body.innerHTML = `<script async data-atv-mode="preview" data-atv-mock="true" data-atv-rk="010011a1" ></script>`;
+//     jest.setTimeout(30000);
+//   });
 
-  test('正常', async () => {
-    // exe
-    await mkfadeIn();
+//   test('正常', async () => {
+//     // exe
+//     await mkfadeIn();
 
-    // ck
-    const resultIframeElement = document.getElementsByTagName('style');
-    expect((resultIframeElement[0] as HTMLStyleElement).media).toEqual('screen');
-  });
-});
+//     // ck
+//     const resultIframeElement = document.getElementsByTagName('style');
+//     expect((resultIframeElement[0] as HTMLStyleElement).media).toEqual('screen');
+//   });
+// });
