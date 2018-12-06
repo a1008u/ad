@@ -41,7 +41,7 @@ describe('Entryのチェック', () => {
     expect($mainDivElement.querySelector('iframe').getAttribute('height')).toEqual('0');
     expect($mainDivElement.querySelector('iframe').getAttribute('iframeborder')).toEqual('0');
     expect($mainDivElement.querySelector('iframe').getAttribute('src')).toEqual(`http://localhost:3000/videoad/cookie/html/iframe_cookie.html?url=${encodeURIComponent(jsonentry.rurl)}`);
-    expect($mainDivElement.querySelector('iframe').getAttribute('style')).toEqual('align-items: stretch; box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1); display: none;');
+    expect($mainDivElement.querySelector('iframe').getAttribute('style')).toEqual('display: none;');
   });
 });
 
@@ -76,7 +76,7 @@ describe('execのチェック', () => {
     expect($mainDivElement.querySelector('iframe').getAttribute('height')).toEqual('0');
     expect($mainDivElement.querySelector('iframe').getAttribute('iframeborder')).toEqual('0');
     expect($mainDivElement.querySelector('iframe').getAttribute('src')).toEqual(`http://localhost:3000/videoad/cookie/html/iframe_cookie.html?url=${encodeURIComponent(jsonentry.rurl)}`);
-    expect($mainDivElement.querySelector('iframe').getAttribute('style')).toEqual('align-items: stretch; box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1); display: none;');
+    expect($mainDivElement.querySelector('iframe').getAttribute('style')).toEqual('display: none;');
   });
 });
 
