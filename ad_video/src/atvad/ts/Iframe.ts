@@ -20,9 +20,10 @@ export class Iframe {
     scriptElement: any,
     rkValue: string,
     window: Window,
-    domain: string
+    apiDomain: string,
+    htmlDomain: string
   ) {
-    await this.mkIframe(domain, scriptElement, rkValue, this.mkIframeViaServer);
+    await this.mkIframe(apiDomain, htmlDomain, scriptElement, rkValue, this.mkIframeViaServer);
 
     // 動画自動実行用library
     emergenceInit(window);
@@ -35,18 +36,19 @@ export class Iframe {
    * @param mk
    */
   private async mkIframe(
-    domain: string,
+    apiDomain: string,
+    htmlDomain: string,
     scriptElement: HTMLScriptElement,
     rkValue: string,
     mk: (
-      domain: string,
+      apiDomain: string,
       scriptElement: HTMLScriptElement,
       rkValue: string
     ) => Promise<Jsontype>
   ) {
-    const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
-    infoJson.videoframe_url =  `${domain}/videoad/atvad/html/iframe_atvad.html`
+    const infoJson: Jsontype = await mk(apiDomain, scriptElement, rkValue);
 
+    infoJson.videoframe_url = `${htmlDomain}/videoad/atvad/html/iframe_atvad.html`;
 
     // iframe生成
     const iframeHight: number = Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
@@ -66,13 +68,13 @@ export class Iframe {
    * @param rkValue
    */
   private async mkIframeViaServer(
-    domain: string,
+    apiDomain: string,
     scriptElement: HTMLScriptElement,
     rkValue: string
   ): Promise<Jsontype> {
     const asyncTransmission: AsyncTransmission = new AsyncTransmission();
-    const infoJson: Jsontype = await asyncTransmission.getJson(domain, rkValue);
-     
+    const infoJson: Jsontype = await asyncTransmission.getJson(apiDomain, rkValue);
+
     // 追加要素
     // infoJson.ATV_RK = rkValue;
     infoJson.ATV_MODE = '';

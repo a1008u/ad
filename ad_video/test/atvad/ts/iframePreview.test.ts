@@ -2,14 +2,15 @@ import { Jsontype} from '../../../src/videoad/service/class/jsontype';
 import { IframePreview } from '../../../src/atvad/ts/IframePreview';
 
 const iframepreview = new IframePreview();
-const domain: string = 'http://localhost:3000';
+const apiDomain: string = 'http://localhost:3000';
+const htmlDomain: string = 'http://localhost:3000';
 const scriptElement = '';
 const empty = '';
 
 describe('mkIframeViaServerのテスト', () => {
   test('正常_notviewthrough_sp', async () => {
     const rkValue = '010011a1';
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(domain, scriptElement, rkValue);
+    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(apiDomain, scriptElement, rkValue);
     expect(result.rk).toEqual(rkValue);
     expect(result.impression_url).toEqual(empty);
     expect(result.ATV_MODE).toEqual('previewSp');
@@ -18,7 +19,7 @@ describe('mkIframeViaServerのテスト', () => {
 
   test('正常_notviewthrough_pc', async () => {
     const rkValue = '010011a1_pc';
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(domain, scriptElement, rkValue);
+    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(apiDomain, scriptElement, rkValue);
     expect(result.rk).toEqual(rkValue);
     expect(result.impression_url).toEqual(empty);
     expect(result.ATV_MODE).toEqual('previewPc');
@@ -27,7 +28,7 @@ describe('mkIframeViaServerのテスト', () => {
 
   test('正常_viewthrough_pc', async () => {
     const rkValue = '010011a8_pc';
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(domain, scriptElement, rkValue);
+    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(apiDomain, scriptElement, rkValue);
     expect(result.rk).toEqual(rkValue);
     expect(result.impression_url).toEqual(empty);
     expect(result.ATV_MODE).toEqual('previewPcAdarea');
@@ -36,7 +37,7 @@ describe('mkIframeViaServerのテスト', () => {
 
   test('正常_viewthrough_sp', async () => {
     const rkValue = '010011a8';
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(domain, scriptElement, rkValue);
+    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(apiDomain, scriptElement, rkValue);
     expect(result.rk).toEqual(rkValue);
     expect(result.impression_url).toEqual(empty);
     expect(result.ATV_MODE).toEqual('previewSpAdarea');
@@ -67,7 +68,7 @@ describe('mkIframePreViaNodeのテスト1', () => {
   test('正常_notviewthrough_sp', async () => {
     const rkValue = '010011a1';
     const scriptElement = document.getElementById('test');
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaNode(domain, scriptElement, rkValue);
+    const result: Jsontype = await (iframepreview as any).mkIframePreViaNode(apiDomain, scriptElement, rkValue);
     expect(result.rk).toEqual(empty);
     expect(result.image_url).toEqual(dataAtvUrl);
     expect(result.banner_text).toEqual(dataAtvBannerText);
@@ -102,7 +103,7 @@ describe('mkIframePreViaNodeのテスト2', () => {
   test('正常_viewthrough_sp', async () => {
     const rkValue = '010011a8';
     const scriptElement = document.getElementById('test');
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaNode(domain, scriptElement, rkValue);
+    const result: Jsontype = await (iframepreview as any).mkIframePreViaNode(apiDomain, scriptElement, rkValue);
     expect(result.rk).toEqual(empty);
     expect(result.image_url).toEqual(dataAtvUrl);
     expect(result.banner_text).toEqual(dataAtvBannerText);
@@ -138,7 +139,7 @@ describe('mkIframePreViaNodeのテスト3', () => {
   test('正常_notviewthrough_pc', async () => {
     const rkValue = '010011a1_pc';
     const scriptElement = document.getElementById('test');
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaNode(domain, scriptElement, rkValue);
+    const result: Jsontype = await (iframepreview as any).mkIframePreViaNode(apiDomain, scriptElement, rkValue);
     expect(result.rk).toEqual(empty);
     expect(result.image_url).toEqual(dataAtvUrl);
     expect(result.banner_text).toEqual(dataAtvBannerText);
@@ -173,7 +174,7 @@ describe('mkIframePreViaNodeのテスト4', () => {
   test('正常_viewthrough_pc', async () => {
     const rkValue = '010011a8_pc';
     const scriptElement = document.getElementById('test');
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaNode(domain, scriptElement, rkValue);
+    const result: Jsontype = await (iframepreview as any).mkIframePreViaNode(apiDomain, scriptElement, rkValue);
     expect(result.rk).toEqual(empty);
     expect(result.image_url).toEqual(dataAtvUrl);
     expect(result.banner_text).toEqual(dataAtvBannerText);
@@ -212,7 +213,7 @@ describe('mkIframeのテスト', () => {
   test('正常_viewthrough_pc', async () => {
     const rkValue = '010011a1';
     const scriptElement = document.getElementById('test');
-    const result: Jsontype = await (iframepreview as any).mkIframe(domain, scriptElement, rkValue, (iframepreview as any).mkIframePreViaNode);
+    const result: Jsontype = await (iframepreview as any).mkIframe(apiDomain, htmlDomain, scriptElement, rkValue, (iframepreview as any).mkIframePreViaNode);
 
     const resultIframeElement = document.getElementsByName('iframe');
     expect((resultIframeElement[0] as HTMLIFrameElement).name).toEqual('iframe');
@@ -231,17 +232,6 @@ describe('mainExecPreviewのテスト', () => {
     jest.setTimeout(30000);
   });
 
-  // afterEach(()=>{
-  //   let element1 = document.getElementById('testnotviewthrough');
-  //   element1.parentNode.removeChild(element1);
-
-  //   let element2 = document.getElementById('testviewthrough');
-  //   element2.parentNode.removeChild(element2);
-
-  //   let iframeElement = document.getElementsByName('iframe');
-  //   iframeElement[0].parentNode.removeChild(iframeElement[0]);
-  // });
-
   test('正常_notviewthrough_pc', async () => {
 
     document.body.innerHTML = `<script async id="testnotviewthrough" src="../atvad_min.js" data-atv-mode="preview" data-atv-url=${dataAtvUrl} data-atv-banner-text="${dataAtvBannerText}" data-atv-btn-text="${dataAtvBtnText}" data-atv-height="${dataAtvHeight}" data-atv-width="${dataAtvWidth}"></script>`;
@@ -253,7 +243,7 @@ describe('mainExecPreviewのテスト', () => {
 
     const rkValue = null;
     const scriptElement = document.getElementById('testnotviewthrough');
-    await iframepreview.mainExecPreview(scriptElement, rkValue, window, domain);
+    await iframepreview.mainExecPreview(scriptElement, rkValue, window, apiDomain, htmlDomain);
 
     const resultIframeElement = document.getElementsByName('iframe');
     expect((resultIframeElement[0] as HTMLIFrameElement).name).toEqual('iframe');
@@ -273,7 +263,7 @@ describe('mainExecPreviewのテスト', () => {
 
     const rkValue = '010011a1';
     const scriptElement = document.getElementById('testviewthrough');
-    await iframepreview.mainExecPreview(scriptElement, rkValue, window, domain);
+    await iframepreview.mainExecPreview(scriptElement, rkValue, window, apiDomain, htmlDomain);
 
     const resultIframeElement = document.getElementsByName('iframe');
     expect((resultIframeElement[0] as HTMLIFrameElement).name).toEqual('iframe');

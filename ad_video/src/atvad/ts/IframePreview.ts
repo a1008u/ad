@@ -20,19 +20,22 @@ export class IframePreview {
     scriptElement: any,
     rkValue: string,
     window: Window,
-    domain: string
+    apiDomain: string,
+    htmlDomain: string
   ) {
     if (!rkValue) {
       // nodeの属性を利用するため、mock用の記載は不要
       await this.mkIframe(
-        domain,
+        apiDomain,
+        htmlDomain,
         scriptElement,
         rkValue,
         this.mkIframePreViaNode
       );
     } else {
       await this.mkIframe(
-        domain,
+        apiDomain,
+        htmlDomain,
         scriptElement,
         rkValue,
         this.mkIframePreViaServer
@@ -50,17 +53,19 @@ export class IframePreview {
    * @param mk
    */
   async mkIframe(
-    domain: string,
+    apiDomain: string,
+    htmlDomain: string,
     scriptElement: HTMLScriptElement,
     rkValue: string,
     mk: (
-      domain: string,
+      apiDomain: string,
       scriptElement: HTMLScriptElement,
       rkValue: string
     ) => Promise<Jsontype>
   ) {
-    const infoJson: Jsontype = await mk(domain, scriptElement, rkValue);
-    infoJson.videoframe_url = `${domain}/videoad/atvad/html/iframe_atvad.html`
+    const infoJson: Jsontype = await mk(apiDomain, scriptElement, rkValue);
+
+    infoJson.videoframe_url = `${htmlDomain}/videoad/atvad/html/iframe_atvad.html`;
 
     // iframe生成
     let iframeHight: number = Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
@@ -81,12 +86,12 @@ export class IframePreview {
    * @param rkValue
    */
   async mkIframePreViaServer(
-    domain: string,
+    apiDomain: string,
     scriptElement: HTMLScriptElement,
     rkValue: string
   ) {
     const asyncTransmission: AsyncTransmission = new AsyncTransmission();
-    let infoJson: Jsontype = await asyncTransmission.getJson(domain, rkValue);
+    let infoJson: Jsontype = await asyncTransmission.getJson(apiDomain, rkValue);
     infoJson.impression_url = '';
 
     if (infoJson.videoad_vt_second !== '0') {
@@ -114,7 +119,7 @@ export class IframePreview {
    * @param atvMode
    */
   async mkIframePreViaNode(
-    domain: string,
+    apiDomain: string,
     scriptElement: HTMLScriptElement,
     rkValue: string
   ) {
