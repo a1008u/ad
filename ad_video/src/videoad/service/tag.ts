@@ -65,6 +65,7 @@ export namespace tag {
     ifr.name = 'iframe';
     ifr.setAttribute("data-emergence", "hidden");
     // ifr.setAttribute('style', 'align-items: stretch; box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1); animation: fadeIn 2s ease 0s 1 normal;');
+    ifr.setAttribute('style', 'border: gray 1px solid;');
     return ifr;
   };
 

@@ -102,7 +102,7 @@ export class IframePreview {
       // not viewthrought
       infoJson.ATV_MODE =
         infoJson.height === '360' ? 'previewPcAdarea' : 'previewSpAdarea';
-      infoJson.ADAREA_HEIGHT = infoJson.height === '360' ? '100' : '50';
+      infoJson.ADAREA_HEIGHT = infoJson.height === '360' ? '80' : '50';
     }
 
     // rkの削除
@@ -154,7 +154,7 @@ export class IframePreview {
       // viewthrough無
       infoJson.ATV_MODE =
         infoJson.height === '360' ? 'previewPcAdarea' : 'previewSpAdarea';
-      infoJson.ADAREA_HEIGHT = infoJson.height === '360' ? '100' : '50';
+      infoJson.ADAREA_HEIGHT = infoJson.height === '360' ? '80' : '50';
     }
 
     // rkの削除

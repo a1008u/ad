@@ -26,34 +26,6 @@ body {
     transition: all 0.5s;
 }
 
-.___a2 {
-    display: table-cell;
-    vertical-align: middle;
-}
-.___a2:hover{
-    background-color: aqua;
-    color: crimson;
-}
-
-
-/* ---------------------- */
-
-.___a{
-    display: inline-block;
-    padding: 7px 20px;
-    border-radius: 25px;
-    text-decoration: none;
-    color: #FFF;
-    background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
-    background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
-    transition: .4s;
-}
-
-.___a:hover {
-    background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-    background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-}
-
 /* ---------------------- */
 
 .__link{
@@ -88,8 +60,9 @@ body {
 
 .__divTextElement {
     box-sizing: border-box;
-    padding: 10px;
-    font-family: 'Hiragino Kaku', 'Gothic Pro', 'Meiryo', 'Lucida','Grande', 'Verdana','MS PGothic','sans-serif'
+    padding: 10px 10px 10px 30px;
+    font-family: 'Hiragino Kaku', 'Gothic Pro', 'Meiryo', 'Lucida','Grande', 'Verdana','MS PGothic','sans-serif';
+    background: rgb(255, 255, 255)
 }
 
 .__divTextLeftElement
@@ -99,8 +72,16 @@ body {
     height: 100%;
     padding: 5px;
     float: left;
+    /* text-align: center; */
+}
+
+.__divTextLeftElement{
+    text-align: left;
+}
+.__divTextRightElement {
     text-align: center;
 }
+
 
 .__divTextLeftElement {
     width: 60%;
