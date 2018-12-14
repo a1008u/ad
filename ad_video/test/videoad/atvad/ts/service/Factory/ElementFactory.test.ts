@@ -105,8 +105,8 @@ describe('mkViewThroughVideoElementのチェック', () => {
     ElementFactory.mkAdArea(confirmJson, $mainDivElement);
 
     // ck
-    expect($mainDivElement.querySelector('.__divTextLeftElement').getAttribute('style')).toEqual('font-size:28px');
-    expect($mainDivElement.querySelector('.__atv_button').getAttribute('style')).toEqual('font-size:24px; padding:10px 20px');
+    expect($mainDivElement.querySelector('.__divTextLeftElement').getAttribute('style')).toEqual('font-size:22px');
+    expect($mainDivElement.querySelector('.__atv_button').getAttribute('style')).toEqual('font-size:20px; padding:10px 20px');
   });
 
   test('広告エリアの確認(pc)', async () => {
@@ -172,8 +172,8 @@ describe('mkViewThroughVideoElementのチェック', () => {
 
     // ck
     expect($videoElement.getAttribute('loop')).toBeNull();
-    expect($mainDivElement.querySelector('.__divTextLeftElement').getAttribute('style')).toEqual('font-size:28px');
-    expect($mainDivElement.querySelector('.__atv_button').getAttribute('style')).toEqual('font-size:24px; padding:10px 20px');
+    expect($mainDivElement.querySelector('.__divTextLeftElement').getAttribute('style')).toEqual('font-size:22px');
+    expect($mainDivElement.querySelector('.__atv_button').getAttribute('style')).toEqual('font-size:20px; padding:10px 20px');
   });
 
   test('非viewthrough(PCプレビュー)の正常確認', async () => {
@@ -206,8 +206,8 @@ describe('mkViewThroughVideoElementのチェック', () => {
 
     // ck
     expect($mainDivElement.getAttribute('style')).toEqual('width:360px; z-index:30;');
-    expect($mainDivElement.querySelector('.__divTextLeftElement').getAttribute('style')).toEqual('font-size:28px');
-    expect($mainDivElement.querySelector('.__atv_button').getAttribute('style')).toEqual('font-size:24px; padding:10px 20px');
+    expect($mainDivElement.querySelector('.__divTextLeftElement').getAttribute('style')).toEqual('font-size:22px');
+    expect($mainDivElement.querySelector('.__atv_button').getAttribute('style')).toEqual('font-size:20px; padding:10px 20px');
   });
 
   test('viewthrough(PC)の正常確認', async () => {

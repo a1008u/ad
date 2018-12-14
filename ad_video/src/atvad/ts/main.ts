@@ -31,6 +31,7 @@ export const exec = (scriptElement: HTMLScriptElement, window: Window) => {
  */
 ((window, _) => {
   [].forEach.call(document.getElementsByTagName('script'), scriptElement => {
+    
     exec(scriptElement, window);
   });
 })(window);

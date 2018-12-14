@@ -32,7 +32,7 @@ describe('Entryのチェック', () => {
      * <div id="main">
      *  <iframe data-emergence="hidden" height="0" iframeborder="0" name="iframe"
      *    src="http://localhost:3000/videoad/cookie/html/iframe_cookie.html?url=http%3A%2F%2Flocalhost%3A3000%2Fcookie%3Frk%3D01005gtr000005"
-     *    style="align-items: stretch; box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1); display: none;" width="0" />
+     *    style="border: 1px solid gray; display: none;" width="0" />
      *  <div id="atv_cookie_space" />
      * </div>
      */
@@ -41,7 +41,7 @@ describe('Entryのチェック', () => {
     expect($mainDivElement.querySelector('iframe').getAttribute('height')).toEqual('0');
     expect($mainDivElement.querySelector('iframe').getAttribute('iframeborder')).toEqual('0');
     expect($mainDivElement.querySelector('iframe').getAttribute('src')).toEqual(`http://localhost:3000/videoad/cookie/html/iframe_cookie.html?url=${encodeURIComponent(jsonentry.rurl)}`);
-    expect($mainDivElement.querySelector('iframe').getAttribute('style')).toEqual('display: none;');
+    expect($mainDivElement.querySelector('iframe').getAttribute('style')).toEqual('border: 1px solid gray; display: none;');
   });
 });
 
@@ -76,7 +76,7 @@ describe('execのチェック', () => {
     expect($mainDivElement.querySelector('iframe').getAttribute('height')).toEqual('0');
     expect($mainDivElement.querySelector('iframe').getAttribute('iframeborder')).toEqual('0');
     expect($mainDivElement.querySelector('iframe').getAttribute('src')).toEqual(`http://localhost:3000/videoad/cookie/html/iframe_cookie.html?url=${encodeURIComponent(jsonentry.rurl)}`);
-    expect($mainDivElement.querySelector('iframe').getAttribute('style')).toEqual('display: none;');
+    expect($mainDivElement.querySelector('iframe').getAttribute('style')).toEqual('border: 1px solid gray; display: none;');
   });
 });
 

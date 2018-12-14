@@ -32,7 +32,7 @@ describe('mkIframeViaServerのテスト', () => {
     expect(result.rk).toEqual(rkValue);
     expect(result.impression_url).toEqual(empty);
     expect(result.ATV_MODE).toEqual('previewPcAdarea');
-    expect(result.ADAREA_HEIGHT).toEqual('100');
+    expect(result.ADAREA_HEIGHT).toEqual('80');
   });
 
   test('正常_viewthrough_sp', async () => {
@@ -148,7 +148,7 @@ describe('mkIframePreViaNodeのテスト3', () => {
     expect(result.width).toEqual(dataAtvWidth);
 
     expect(result.ATV_MODE).toEqual('previewPcAdarea');
-    expect(result.ADAREA_HEIGHT).toEqual('100');
+    expect(result.ADAREA_HEIGHT).toEqual('80');
   });
 
 });

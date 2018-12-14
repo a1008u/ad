@@ -19,6 +19,7 @@ export class IframeCookie {
     const browsers: Browser = {
       ie: (jsoncookie: Jsoncookie) => this.execImgElement(jsoncookie),
       edge: (jsoncookie: Jsoncookie) => this.execImgElement(jsoncookie),
+      ie_mobile: (jsoncookie: Jsoncookie) => this.execImgElement(jsoncookie),
       chrome: (jsoncookie: Jsoncookie) => this.execCookie(jsoncookie),
       firefox: (jsoncookie: Jsoncookie) => this.execCookie(jsoncookie),
       opera: (jsoncookie: Jsoncookie) => this.execCookie(jsoncookie),

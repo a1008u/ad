@@ -33,12 +33,12 @@ describe('mkAdAreaの確認', () => {
 
     // ck
     const adAreaElement: string = `<div class=\"__divTextElement\" style=\"height:px\">
-      <div class=\"__divTextLeftElement\" style=\"font-size:28px\">
+      <div class=\"__divTextLeftElement\" style=\"font-size:22px\">
         <span class=\"__atv_text\">this is the test</span>
       </div>
       <div class=\"__divTextRightElement\">
         <a class=\"__atv_text\" href=\"#!\"  /\">
-          <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:24px; padding:10px 20px\">test button</>
+          <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:20px; padding:10px 20px\">test button</>
         </a>
       </div>
     </div>`;
@@ -119,12 +119,12 @@ describe('mkAdAreaの確認', () => {
 
     // ck
     const adAreaElement: string = `<div class=\"__divTextElement\" style=\"height:px\">
-      <div class=\"__divTextLeftElement\" style=\"font-size:28px\">
+      <div class=\"__divTextLeftElement\" style=\"font-size:22px\">
         <span class=\"__atv_text\">this is the test</span>
       </div>
       <div class=\"__divTextRightElement\">
         <a class=\"__atv_text\" href=\"test.html\" target="_blank" /\">
-          <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:24px; padding:10px 20px\">test button</>
+          <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:20px; padding:10px 20px\">test button</>
         </a>
       </div>
     </div>`;

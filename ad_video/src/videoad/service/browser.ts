@@ -30,6 +30,7 @@ export namespace browser {
         else if (browserName === "safari") return browserName;
         else if (browserName === "android browser") return 'android_browser';
         else if (browserName === "chrome mobile") return 'chrome_mobile';
+        else if (browserName === "ie mobile") return 'ie_mobile';
         else return 'unknown';
       }
     })();

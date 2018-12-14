@@ -3,6 +3,7 @@ import { Jsoncookie } from '../../service/class/jsoncookie';
 export interface Browser {
   ie: (jsoncookie: Jsoncookie) => void;
   edge: (jsoncookie: Jsoncookie) => void;
+  ie_mobile: (jsoncookie: Jsoncookie) => void;
   chrome: (jsoncookie: Jsoncookie) => void;
   firefox: (jsoncookie: Jsoncookie) => void;
   opera: (jsoncookie: Jsoncookie) => void;

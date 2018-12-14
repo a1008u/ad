@@ -14,8 +14,8 @@ export namespace EventNotViewThrough {
     let btnPaddingUpDown: string;
     let btnPaddingLeftRight: string;
     if (atvJson.ATV_MODE === 'previewPcAdarea') {
-      leftSize = '28px';
-      rightSize = '24px';
+      leftSize = '22px';
+      rightSize = '20px';
       btnPaddingUpDown = '10px';
       btnPaddingLeftRight = '20px';
       hrefValue = '#!';

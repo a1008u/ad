@@ -2,7 +2,7 @@ import { osFontSize } from '../../../../../src/videoad/atvad/ts/service/OsFontSi
 import { oschecker } from '../../../../../src/videoad/service/oschecker';
 
 const smartPhoneSize: string[] = ['16px', '12px', '5px', '10px'];
-const pcSize: string[] = ['28px', '24px', '10px', '20px'];
+const pcSize: string[] = ['22px', '20px', '10px', '20px'];
 
 describe('フォントサイズ判定', () => {
   test('正常(pcと判定)', async () => {

@@ -1,96 +1,30 @@
 ## 実行方法
   - 開発用
-     ```$npm
+    ```$npm
     npm install // npm_moduleを取得していない場合
     export PATH=$PATH:./node_modules/.bin
     npm run build-dev // 開発環境用
-    docker-compose up --build
-
-    // express
-    npm run build-serverdev
     node dist/server/js/app.js
-    ``` 
+    ```
+
   - 本番用
     ```$npm
     npm install // npm_moduleを取得していない場合
-    export PATH=$PATH:./node_modules/.bin 
-    npm run build-pro // 本番環境用
-    docker-compose up --build // もし動作を見たいのなら。。
-    ``` 
-
-## typescriptの始め方  
-
- - pakage.jsonの作成
-    ```
-    npm init;
-    ```
-
- - typescriptの登録
-    ```
-    npm i typescript --save
-    ```
- - その他のインストール
-    ```$npm
-    npm install --save-dev axios rxjs @rxjs/rx
-    npm install --save-dev es6-promise
-    npm install --save-dev webpack webpack-cli ts-loader
-    npm install --save-dev jasmin jasmine-core @types/jasmine
-    npm install --save-dev emergence.js
-    npm install --save-dev platform 
-    npm install --save-dev @types/platform 
-    
-    npm install --save-dev karma karma-cli karma-coverage karma-typescript karma-webpack karma-jasmine
-    npm install --save-dev karma-chrome-launcher  karma-edge-launcher karma-firefox-launcher karma-ie-launcher karma-safari-launcher
-    npm install --save-dev karma-sourcemap-loader
-    npm install --save-dev karma-jasmine-html-reporter karma-mocha-reporter karma-spec-reporter
-    npm install --save-dev tslint prettier tslint-plugin-prettier tslint-config-prettier tslint-config-standard
-    npm install --save-dev express webpack-node-externals
-    npm install --save-dev @types/express
-    npm install --save-dev body-parser morgan
-    npm install --save cors
-    npm install --save-dev @types/cors
-    npm i --save-dev npm-run-all rimraf cpx
-    npm i --save-dev style-loader css-loader
-    ```
- 
-- test用のコマンド
-    ```$npm
-    npm run test
-    ```
-- 環境変数を通す
-    ```$npm 
-    export PATH=$PATH:./node_modules/.bin 
-    ``` 
-## windowsでの実行方法
-  - ツールのインストール  
-    スタートを押して，コマンドプロンプトを右クリックし，管理者として実行をクリック
-    ```
-     @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-    ```
-  - gitのインストール(nodeバージョン管理ツール)
-    ```
-    choco install git
-    ```
-  - nodistのインストール(nodeバージョン管理ツール)
-    ```
-    choco install nodist
-    ```
-  - nodeのインストール
-    ```
-    nodist dist
-    nodist バージョン指定
-    node -v
+    export PATH=$PATH:./node_modules/.bin
+    npm run build-pro // 開発環境用
+    node dist/server/js/app.js
     ```
 
 ### テスト環境
-http://localhost:3000/atvad/html/index_pc_mock.html
-http://localhost:3000/atvad/html/index_sp_mock.html
+  - Mock用  
+  http://localhost:3000/atvad/html/index_pc_mock.html
+  http://localhost:3000/atvad/html/index_sp_mock.html
 
 ## ファイルサイズ
 
 ファイル名|proサイズ(kiB)|devサイズ(kiB)
 |:---|:---|:---|
-|atvad_min.js|45.8|171|
-|iframe_atvad_min.js|145|636|
-|iframe_entry_min.js|39.3|149|
-|iframe_cookie_min.js|55.3|197|
+|atvad_min.js|45.5|171|
+|iframe_atvad_min.js|144|635|
+|iframe_entry_min.js|39.2|149|
+|iframe_cookie_min.js|55.2|197|

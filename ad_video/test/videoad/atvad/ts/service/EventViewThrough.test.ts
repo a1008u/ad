@@ -53,6 +53,6 @@ describe('viewThroughActionのチェック', () => {
     expect(resultElement[0].getAttribute('width')).toEqual('0');
     expect(resultElement[0].getAttribute('height')).toEqual('0');
     expect(resultElement[0].getAttribute('src')).toEqual('entryFrameUrl?url=test');
-    expect(resultElement[0].getAttribute('style')).toEqual('display: none;');
+    expect(resultElement[0].getAttribute('style')).toEqual('border: 1px solid gray; display: none;');
   });
 });

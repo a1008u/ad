@@ -54,7 +54,6 @@ body {
     position: relative;
 }
 
-
 /* ---------------------- */
 /* divText */
 
@@ -172,33 +171,6 @@ body {
 }
 
 
-
-/*
-@-moz-keyframes 'anime' {
-    0% {    opacity:1;  }
-    25% {  opacity:0.75;  }
-    50% {  opacity:0.5;  }
-    75% {  opacity:0.25;  }
-    100% {  opacity:0;  }
-}
-
-@-webkit-keyframes 'anime' {
-    0% {    opacity:1;  }
-    25% {  opacity:0.75;  }
-    50% {  opacity:0.5;  }
-    75% {  opacity:0.25;  }
-    100% {  opacity:0;  }
-}
-
-@-o-keyframes 'anime' {
-    0% {    opacity:1;  }
-    25% {  opacity:0.75;  }
-    50% {  opacity:0.5;  }
-    75% {  opacity:0.25;  }
-    100% {  opacity:0;  }
-}
- */
-
 @-ms-keyframes anime {
     0% {    opacity:1;  }
     25% {  opacity:0.75;  }
@@ -219,11 +191,3 @@ body {
     75% {  opacity:0.75;  }
     100% {opacity: 1}
 }
-
-/* @-webkit-keyframes fadeIn {
-    0% {opacity: 0}
-    25% {  opacity:0.25;  }
-    50% {  opacity:0.5;  }
-    75% {  opacity:0.75;  }
-    100% {opacity: 1}
-} */

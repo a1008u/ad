@@ -5,6 +5,6 @@ export namespace osFontSize {
     ios: () => ['16px', '12px', '5px', '10px'],
     android: () => ['16px', '12px', '5px', '10px'],
     windowsphone: () => ['16px', '12px', '5px', '10px'],
-    pc: () => ['28px', '24px', '10px', '20px'],
+    pc: () => ['22px', '20px', '10px', '20px'],
   };
 }
