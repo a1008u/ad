@@ -20,6 +20,18 @@
   http://localhost:3000/atvad/html/index_pc_mock.html
   http://localhost:3000/atvad/html/index_sp_mock.html
 
+  - preview用  
+  http://localhost:3000/atvad/html/index_pc_preview.html
+  http://localhost:3000/atvad/html/index_sp_preview.html
+
+  - 本番アクセス用 *hostsを切り替えることでテストにアクセスしてね
+  http://localhost:3000/atvad/html/index_pc.html
+  http://localhost:3000/atvad/html/index_sp.html
+
+
+  http://10.10.15.46:3000/atvad/html/index_sp.html
+  http://10.10.15.46:3000/atvad/html/index_pc.html
+
 ## ファイルサイズ
 
 ファイル名|proサイズ(kiB)|devサイズ(kiB)

@@ -23,17 +23,32 @@ export class AsyncTransmission {
   }
 
   /**
-   * 2回目以降のxhr送信
+   * 2回目以降のxhr送信(v3なし)
    */
   async getJsonViaQuerry(): Promise<any> {
-    const urlQuerry: string = location.search.substring(1);
+    const urlQuerry: string = location.search;
     const decodeUrlQuerry: string = decodeURIComponent(urlQuerry);
-    const [_, urlValue] = decodeUrlQuerry.split('url=');
+    const [_, urlValue] = decodeUrlQuerry.split('?url=');
     return axios
       .get(urlValue)
       .then(resdata => resdata.data)
       .catch(err => console.log(err));
   }
+
+  /**
+   * 2回目以降のxhr送信(v3有)
+   */
+  async getJsonViaQuerryPlusV3(v3Value: string): Promise<any> {
+    console.log('v3はすでにあるよ')
+    const urlQuerry: string = location.search;
+    const decodeUrlQuerry: string = decodeURIComponent(urlQuerry);
+    const [_, urlValue] = decodeUrlQuerry.split('?url=');
+    return axios
+      .get(`${urlValue}&v3=${v3Value}`)
+      .then(resdata => resdata.data)
+      .catch(err => console.log(err));
+  }
+
 
   /**
    * rkが内容のpreview

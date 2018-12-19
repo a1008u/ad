@@ -32,12 +32,14 @@ export class IframeCookie {
     };
 
     // json取得
-    // let jsoncookie: Jsoncookie = await this.getJson();
     const asyncTransmission: AsyncTransmission = new AsyncTransmission();
-    const jsoncookie: Jsoncookie = await asyncTransmission.getJsonViaQuerry();
+    const v3Value: string = cookies.getCookie('v3');
+    const jsoncookie: Jsoncookie = v3Value
+      ? await asyncTransmission.getJsonViaQuerryPlusV3(v3Value)
+      : await asyncTransmission.getJsonViaQuerry();
 
     // 端末とOS別の対応
-    console.log("  -         -----  " + browser.ck())
+    console.log("  ------  " + browser.ck())
     browsers[browser.ck()](jsoncookie);
   }
 
@@ -51,7 +53,7 @@ export class IframeCookie {
     const imgTag: HTMLImageElement = tag.mkImageTag(`${jsoncookie.imgurl}`);
     const scripts = document.getElementsByTagName('script');
     scripts[0].parentNode.insertBefore(imgTag, scripts[0]);
-  };
+  }
 
   /**
    * Cookie用 chrome V3 + SDK用
