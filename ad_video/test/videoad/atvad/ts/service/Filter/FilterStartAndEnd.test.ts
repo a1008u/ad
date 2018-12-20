@@ -1,5 +1,6 @@
-import { FilterEnd } from '../../../../../../src/videoad/atvad/ts/service/Filter/FilterEnd';
+import { FilterStartAndEnd } from '../../../../../../src/videoad/atvad/ts/service/Filter/FilterStartAndEnd';
 import { Filter } from '../../../../../../src/videoad/atvad/ts/service/Filter/Filter';
+import { Jsontype } from '../../../../../../src/videoad/service/class/jsontype';
 
 describe('execFilnotAnimationの確認', () => {
 
@@ -33,11 +34,35 @@ describe('execFilnotAnimationの確認', () => {
   });
 
   test('正常確認', async () => {
-
+    const movieURL = 'testURL';
+    const height = '320';
+    const width = '180';
+    const bannerText = 'this is the test';
+    const btnText = 'test button';
+    const videoFrameUrl = 'http://localhost:3000/imp';
+    const entryFrameUrl = 'entryFrameUrl';
+    const impressionUrl = 'impressionUrl';
+    const confirmJson = new Jsontype(
+      movieURL,
+      bannerText,
+      '',
+      height,
+      width,
+      '0',
+      btnText,
+      '',
+      videoFrameUrl,
+      entryFrameUrl,
+      impressionUrl
+    );
     // exe;
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
-    const filterEnd: FilterEnd = new FilterEnd();
-    const divElementFilter = await filterEnd.execFilnotAnimation(videoElement, 'play');
+    const filterEnd: FilterStartAndEnd = new FilterStartAndEnd();
+    const divElementFilter = await filterEnd.execFilnotAnimation(
+      videoElement,
+      confirmJson,
+      'play'
+    );
 
     /**
      * ck

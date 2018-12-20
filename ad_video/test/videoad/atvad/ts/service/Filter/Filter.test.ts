@@ -1,4 +1,5 @@
 import { Filter } from "../../../../../../src/videoad/atvad/ts/service/Filter/Filter";
+import { Jsontype } from "../../../../../../src/videoad/service/class/jsontype";
 
 describe('deleteMethodの確認', () => {
 
@@ -63,9 +64,30 @@ describe('getFilterの確認', () => {
 
   test('filter用のdiv確認', async () => {
     // exe;
+    const movieURL = 'testURL';
+    const height = '320';
+    const width = '180';
+    const bannerText = 'this is the test';
+    const btnText = 'test button';
+    const videoFrameUrl = 'http://localhost:3000/imp';
+    const entryFrameUrl = 'entryFrameUrl';
+    const impressionUrl = 'impressionUrl';
+    const confirmJson = new Jsontype(
+      movieURL,
+      bannerText,
+      '',
+      height,
+      width,
+      '0',
+      btnText,
+      '',
+      videoFrameUrl,
+      entryFrameUrl,
+      impressionUrl
+    );
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
     const filter: Filter = new Filter();
-    const resultFilter = await filter.getFilter(videoElement);
+    const resultFilter = await filter.getFilter(confirmJson);
 
     // ck
     const classValue = resultFilter.getAttribute('class');
@@ -114,10 +136,31 @@ describe('mkObjElementの確認', () => {
 
     const playSvg: any = document.getElementById('___play');
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
+    const movieURL = 'testURL';
+    const height = '320';
+    const width = '180';
+    const bannerText = 'this is the test';
+    const btnText = 'test button';
+    const videoFrameUrl = 'http://localhost:3000/imp';
+    const entryFrameUrl = 'entryFrameUrl';
+    const impressionUrl = 'impressionUrl';
+    const confirmJson = new Jsontype(
+      movieURL,
+      bannerText,
+      '',
+      height,
+      width,
+      '0',
+      btnText,
+      '',
+      videoFrameUrl,
+      entryFrameUrl,
+      impressionUrl
+    );
 
     // exe;
     const filter: Filter = new Filter();
-    const objElement: HTMLObjectElement = await filter.mkObjElement(playSvg, videoElement, 'pause');
+    const objElement: HTMLObjectElement = await filter.mkObjElement(playSvg, confirmJson, 'pause');
 
     // ck
     expect(objElement.getAttribute('id')).toEqual('___obj');
@@ -129,10 +172,31 @@ describe('mkObjElementの確認', () => {
 
     const playSvg: any = document.getElementById('___play');
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
+    const movieURL = 'testURL';
+    const height = '320';
+    const width = '180';
+    const bannerText = 'this is the test';
+    const btnText = 'test button';
+    const videoFrameUrl = 'http://localhost:3000/imp';
+    const entryFrameUrl = 'entryFrameUrl';
+    const impressionUrl = 'impressionUrl';
+    const confirmJson = new Jsontype(
+      movieURL,
+      bannerText,
+      '',
+      height,
+      width,
+      '0',
+      btnText,
+      '',
+      videoFrameUrl,
+      entryFrameUrl,
+      impressionUrl
+    );
 
     // exe;
     const filter: Filter = new Filter();
-    const objElement: HTMLObjectElement = await filter.mkObjElement(playSvg, videoElement, 'play');
+    const objElement: HTMLObjectElement = await filter.mkObjElement(playSvg, confirmJson, 'play');
 
     // ck
     expect(objElement.getAttribute('id')).toEqual('___obj');
@@ -156,10 +220,31 @@ describe('mkFilterElementの確認', () => {
   test('動画(play時)', async () => {
 
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
+    const movieURL = 'testURL';
+    const height = '320';
+    const width = '180';
+    const bannerText = 'this is the test';
+    const btnText = 'test button';
+    const videoFrameUrl = 'http://localhost:3000/imp';
+    const entryFrameUrl = 'entryFrameUrl';
+    const impressionUrl = 'impressionUrl';
+    const confirmJson = new Jsontype(
+      movieURL,
+      bannerText,
+      '',
+      height,
+      width,
+      '0',
+      btnText,
+      '',
+      videoFrameUrl,
+      entryFrameUrl,
+      impressionUrl
+    );
 
     // exe;
     const filter: Filter = new Filter();
-    const divElementFilter : HTMLDivElement  = await filter.mkFilterElement(videoElement, filter.getFilter,'play')
+    const divElementFilter : HTMLDivElement  = await filter.mkFilterElement(videoElement, filter.getFilter,'play', confirmJson)
 
     // ck
     console.log(divElementFilter);
@@ -171,10 +256,31 @@ describe('mkFilterElementの確認', () => {
   test('動画(play時)', async () => {
 
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
+    const movieURL = 'testURL';
+    const height = '320';
+    const width = '180';
+    const bannerText = 'this is the test';
+    const btnText = 'test button';
+    const videoFrameUrl = 'http://localhost:3000/imp';
+    const entryFrameUrl = 'entryFrameUrl';
+    const impressionUrl = 'impressionUrl';
+    const confirmJson = new Jsontype(
+      movieURL,
+      bannerText,
+      '',
+      height,
+      width,
+      '0',
+      btnText,
+      '',
+      videoFrameUrl,
+      entryFrameUrl,
+      impressionUrl
+    );
 
     // exe;
     const filter: Filter = new Filter();
-    const divElementFilter : HTMLDivElement  = await filter.mkFilterElement(videoElement, filter.getFilter,'pause')
+    const divElementFilter : HTMLDivElement  = await filter.mkFilterElement(videoElement, filter.getFilter,'pause', confirmJson)
 
     // ck
     expect(divElementFilter.getAttribute('class')).toEqual('__filter');

@@ -1,10 +1,11 @@
 import { Filter } from './Filter';
+import { Jsontype } from '../../../../service/class/jsontype';
 
-export class FilterEnd extends Filter {
+export class FilterStartAndEnd extends Filter {
 
   constructor() {
     super();
-    console.log('FilterEnd');
+    console.log('FilterStartAndEnd');
   }
 
   /**
@@ -12,18 +13,23 @@ export class FilterEnd extends Filter {
    * @param videoTag
    * @param playMode
    */
-  async execFilnotAnimation(videoTag: HTMLVideoElement, playMode: string) {
+  async execFilnotAnimation(
+    videoTag: HTMLVideoElement,
+    atvJson: Jsontype,
+    playMode: string
+  ) {
     const divElementFilter: HTMLDivElement = await this.mkFilterElement(
       videoTag,
       this.getFilter,
-      playMode
+      playMode,
+      atvJson
     );
 
     const svgElement: Element = divElementFilter.firstElementChild.firstElementChild;
     svgElement.setAttribute(
       'style',
-      `width:${String(videoTag.clientWidth / 2)}px; height:${String(
-        videoTag.clientHeight / 2
+      `width:${String(Number(atvJson.width) / 2)}px; height:${String(
+        Number(atvJson.height) / 2
       )}px; pointer-events: none;`
     );
     return divElementFilter;

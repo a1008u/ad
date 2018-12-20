@@ -3,7 +3,8 @@ import { Observable, fromEvent } from 'rxjs';
 import { osFontSize } from './OsFontSize';
 import { oschecker } from '../../../service/oschecker';
 import { Jsontype } from '../../../service/class/jsontype';
-import { FilterEnd } from './Filter/FilterEnd';
+import { FilterStartAndEnd } from './Filter/FilterStartAndEnd';
+
 
 export namespace EventNotViewThrough {
   const getAdAreaValue = (atvJson: Jsontype) => {
@@ -13,20 +14,21 @@ export namespace EventNotViewThrough {
     let target: string;
     let btnPaddingUpDown: string;
     let btnPaddingLeftRight: string;
+    console.log(' --- ', atvJson.href_url)
     if (atvJson.ATV_MODE === 'previewPcAdarea') {
       leftSize = '22px';
       rightSize = '20px';
       btnPaddingUpDown = '10px';
       btnPaddingLeftRight = '20px';
-      hrefValue = '#!';
-      target = ``;
+      hrefValue = atvJson.href_url;
+      target = atvJson.href_url === '#!' ? `` : `target="_blank"`;
     } else if (atvJson.ATV_MODE === 'previewSpAdarea') {
       leftSize = '16px';
       rightSize = '12px';
       btnPaddingUpDown = '5px';
       btnPaddingLeftRight = '10px';
-      hrefValue = '#!';
-      target = ``;
+      hrefValue = atvJson.href_url;
+      target = atvJson.href_url === '#!' ? `` : `target="_blank"`;
     } else {
       [
         leftSize,
@@ -80,7 +82,7 @@ export namespace EventNotViewThrough {
    * 再生再開を行う
    * @param videoElement
    */
-  export const setEventLoad = (videoElement: HTMLVideoElement) => {
+  export const setEventLoad = (videoElement: HTMLVideoElement, atvJson: Jsontype) => {
     const deleteFilter = (ev: any) => {
       let targeFilterElement: HTMLElement = ev.target;
       targeFilterElement.parentElement.removeChild(targeFilterElement);
@@ -98,10 +100,10 @@ export namespace EventNotViewThrough {
       videoElement.setAttribute('__end', 'true');
     };
 
-    const filterEnd = new FilterEnd();
+    const filterEnd: FilterStartAndEnd = new FilterStartAndEnd();
     videoElement.addEventListener('ended', () => {
       filterEnd
-        .execFilnotAnimation(videoElement, 'play')
+        .execFilnotAnimation(videoElement, atvJson, 'play')
         .then(divElementFilter => {
           // 動画再生終了フィルターの表示
           endFilter(videoElement, divElementFilter);

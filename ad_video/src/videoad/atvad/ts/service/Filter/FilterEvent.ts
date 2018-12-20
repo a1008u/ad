@@ -17,7 +17,7 @@ export class FilterEvent {
    */
   async prepareFilter($videoElement: HTMLVideoElement, atvJson: Jsontype) {
     await this.videoStateChange($videoElement);
-    await this.showFilter($videoElement);
+    await this.showFilter($videoElement, atvJson);
     ImpService.execImp($videoElement, atvJson);
   };
 
@@ -43,12 +43,13 @@ export class FilterEvent {
    * @param $videoElement
    * @param playMode
    */
-  async showFilter($videoElement: HTMLVideoElement) {
+  async showFilter($videoElement: HTMLVideoElement, atvJson: Jsontype) {
     // filter生成
     let playMode: string = $videoElement.getAttribute('playxxx');
     const filterPlayMode: FilterPlayMode = new FilterPlayMode();
     const $divElementFilter: HTMLDivElement = await filterPlayMode.execFil(
       $videoElement,
+      atvJson,
       playMode
     );
     const mainDivElement: HTMLElement = $videoElement.parentElement;

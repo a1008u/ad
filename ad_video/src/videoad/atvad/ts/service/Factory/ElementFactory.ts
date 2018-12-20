@@ -5,6 +5,7 @@ import { oschecker } from '../../../../service/oschecker';
 import { Jsontype } from '../../../../service/class/jsontype';
 import { tag } from '../../../../service/tag';
 import { MessageEvent } from '../MessageEvent';
+import { Preview } from '../Preview/Preview';
 
 export namespace ElementFactory {
   /**
@@ -20,6 +21,7 @@ export namespace ElementFactory {
   ): HTMLVideoElement => {
     const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson, loop);
     mainDivElement.appendChild($videoElement);
+    
 
     if (atvJson.ATV_MODE !== '') {
       // プレビュー用として返す
@@ -45,7 +47,7 @@ export namespace ElementFactory {
     const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson, loop);
     $videoElement.removeAttribute('loop');
     mainDivElement.appendChild($videoElement);
-    EventNotViewThrough.setEventLoad($videoElement);
+    EventNotViewThrough.setEventLoad($videoElement, atvJson);
 
     mkAdArea(atvJson, mainDivElement);
     return $videoElement;
@@ -74,6 +76,13 @@ export namespace ElementFactory {
       atvJson.videoad_vt_second !== '0'
         ? mkViewThroughVideoElement($mainDivElement, atvJson, 'true')
         : mkNotViewThroughVideoElement($mainDivElement, atvJson, 'false');
+
+    // preview用の場合の処理
+    if (atvJson.ATV_MODE.includes('preview')) {
+      const preview: Preview = new Preview();
+      preview.exec(videoElement, atvJson);
+    }
+
     VideoFilterEventFactory.osEvent[oschecker.isolate()](videoElement, atvJson);
 
     // 動画が表示されているか判定処理

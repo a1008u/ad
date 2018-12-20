@@ -21,7 +21,7 @@ body {
     color: #FFF;
     text-decoration: none;
     text-align: center;
-    background: rgba(0,0,0, 0.5);
+    /* background: rgba(0,0,0, 0.5); */
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }

@@ -104,10 +104,32 @@ describe('showFilterの確認', () => {
       return tDom;
     })
 
+    const movieURL = 'testURL';
+    const height = '320';
+    const width = '180';
+    const bannerText = 'this is the test';
+    const btnText = 'test button';
+    const videoFrameUrl = 'http://localhost:3000/imp';
+    const entryFrameUrl = 'entryFrameUrl';
+    const impressionUrl = 'impressionUrl';
+    const confirmJson = new Jsontype(
+      movieURL,
+      bannerText,
+      '',
+      height,
+      width,
+      '0',
+      btnText,
+      '',
+      videoFrameUrl,
+      entryFrameUrl,
+      impressionUrl
+    );
+
     // exe;
     const videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
     const filterEvent: FilterEvent = new FilterEvent();
-    await filterEvent.showFilter(videoElement);
+    await filterEvent.showFilter(videoElement, confirmJson);
 
     // ck
     const resultDivElement: HTMLDivElement = document.getElementById('test') as HTMLDivElement;

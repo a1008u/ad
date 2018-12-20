@@ -1,5 +1,7 @@
 import { tag } from '../../../service/tag';
 import { Jsontype } from '../../../service/class/jsontype';
+import { FilterStartAndEnd } from './Filter/FilterStartAndEnd';
+import { fromEvent, Observable } from 'rxjs';
 
 export namespace EventViewThrough {
   /**
@@ -15,7 +17,7 @@ export namespace EventViewThrough {
   ) => {
     window.clearInterval(cntEvt);
     // クリックのやつ
-    const url: string = `${atvJson.entryframe_url}?url=${encodeURIComponent(atvJson.href_url)}`;
+    const url: string = `${atvJson.entryIframe_url}?url=${encodeURIComponent(atvJson.href_url)}`;
     let iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
     videoTag.parentNode.insertBefore(iframeTag, videoTag);
 

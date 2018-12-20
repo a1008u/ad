@@ -43,7 +43,7 @@ export class IframePreview {
     }
 
     // 動画自動実行用library
-    emergenceInit(window);
+    // emergenceInit(window);
   }
 
   /**
@@ -65,12 +65,12 @@ export class IframePreview {
   ) {
     const infoJson: Jsontype = await mk(apiDomain, scriptElement, rkValue);
 
-    infoJson.videoframe_url = `${htmlDomain}/videoad/atvad/html/iframe_atvad.html`;
+    infoJson.videoIframe_url = `${htmlDomain}/videoad/atvad/html/iframe_atvad.html`;
 
     // iframe生成
     let iframeHight: number = Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
     const url: string = `${
-      infoJson.videoframe_url
+      infoJson.videoIframe_url
     }?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
     let iframeElement: HTMLIFrameElement = tag.mkIframeElement(
       url,
@@ -94,15 +94,18 @@ export class IframePreview {
     let infoJson: Jsontype = await asyncTransmission.getJson(apiDomain, rkValue);
     infoJson.impression_url = '';
 
+    const btnUrl: string = scriptElement.getAttribute('data-atv-button-url');
+    scriptElement.removeAttribute('data-atv-button-url');
+
     if (infoJson.videoad_vt_second !== '0') {
       // viewthrought
       infoJson.ATV_MODE = infoJson.height === '360' ? 'previewPc' : 'previewSp';
       infoJson.ADAREA_HEIGHT = '0';
     } else {
       // not viewthrought
-      infoJson.ATV_MODE =
-        infoJson.height === '360' ? 'previewPcAdarea' : 'previewSpAdarea';
+      infoJson.ATV_MODE = infoJson.height === '360' ? 'previewPcAdarea' : 'previewSpAdarea';
       infoJson.ADAREA_HEIGHT = infoJson.height === '360' ? '80' : '50';
+      infoJson.href_url =  btnUrl ?  btnUrl : '#!';
     }
 
     // rkの削除
@@ -145,6 +148,9 @@ export class IframePreview {
     scriptElement.removeAttribute('data-atv-height');
     scriptElement.removeAttribute('data-atv-width');
 
+    const btnUrl: string = scriptElement.getAttribute('data-atv-button-url');
+    scriptElement.removeAttribute('data-atv-button-url');
+
     if (infoJson.banner_text === '' && infoJson.video_btn_text === '') {
       // viewthrough有
       infoJson.ATV_MODE = infoJson.height === '360' ? 'previewPc' : 'previewSp';
@@ -152,9 +158,9 @@ export class IframePreview {
       infoJson.videoad_vt_second = '1';
     } else {
       // viewthrough無
-      infoJson.ATV_MODE =
-        infoJson.height === '360' ? 'previewPcAdarea' : 'previewSpAdarea';
+      infoJson.ATV_MODE = infoJson.height === '360' ? 'previewPcAdarea' : 'previewSpAdarea';
       infoJson.ADAREA_HEIGHT = infoJson.height === '360' ? '80' : '50';
+      infoJson.href_url =  btnUrl ?  btnUrl : '#!';
     }
 
     // rkの削除

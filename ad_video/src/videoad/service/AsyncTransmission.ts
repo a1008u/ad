@@ -76,8 +76,8 @@ export class AsyncTransmission {
     width: string,
     bannerText: string,
     btnText: string,
-    videoFrameUrl: string,
-    entryFrameUrl: string,
+    videoIFrameUrl: string,
+    entryIFrameUrl: string,
     impressionUrl: string
   ): Promise<Jsontype> {
     let json = new Jsontype(
@@ -89,8 +89,8 @@ export class AsyncTransmission {
       '0',
       btnText,
       '',
-      videoFrameUrl,
-      entryFrameUrl,
+      videoIFrameUrl,
+      entryIFrameUrl,
       impressionUrl
     );
 

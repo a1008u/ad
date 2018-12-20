@@ -10,16 +10,16 @@ export interface jsontype {
 }
 
 export class Jsontype {
-  image_url: string;
-  banner_text: string;
+  readonly image_url: string;
+  readonly banner_text: string;
   href_url: string;
-  height: string;
-  width: string;
+  readonly height: string;
+  readonly width: string;
   videoad_vt_second: string;
-  video_btn_text: string;
-  rk: string;
-  videoframe_url: string;
-  entryframe_url: string;
+  readonly video_btn_text: string;
+  readonly rk: string;
+  videoIframe_url: string;
+  entryIframe_url: string;
   impression_url: string;
   ATV_MODE: string;
   ADAREA_HEIGHT: string;
@@ -35,8 +35,8 @@ export class Jsontype {
     this.width = width;
     this.height = height;
     this.rk = rk;
-    this.videoframe_url = videoframe_url;
-    this.entryframe_url = entryframe_url;
+    this.videoIframe_url = videoframe_url;
+    this.entryIframe_url = entryframe_url;
     this.impression_url = impression_url;
     this.ATV_MODE = '';
     this.ADAREA_HEIGHT = '';
