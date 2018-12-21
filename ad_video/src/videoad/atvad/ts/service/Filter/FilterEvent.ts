@@ -5,21 +5,16 @@ import { ImpService } from '../ImpService';
 import { Observable, fromEvent } from 'rxjs';
 
 export class FilterEvent {
-
-  constructor() {
-    console.log('FilterEvent');
-  }
-
   /**
    * main処理
-   * @param ev 
-   * @param atvJson 
+   * @param ev
+   * @param atvJson
    */
   async prepareFilter($videoElement: HTMLVideoElement, atvJson: Jsontype) {
     await this.videoStateChange($videoElement);
     await this.showFilter($videoElement, atvJson);
     ImpService.execImp($videoElement, atvJson);
-  };
+  }
 
   /**
    * 動画起動処理
@@ -36,7 +31,7 @@ export class FilterEvent {
       await VideoAction.playAction($videoElement);
       $videoElement.removeAttribute('videoStart');
     }
-  };
+  }
 
   /**
    * filter処理
@@ -50,7 +45,7 @@ export class FilterEvent {
     const $divElementFilter: HTMLDivElement = await filterPlayMode.execFil(
       $videoElement,
       atvJson,
-      playMode
+      playMode,
     );
     const mainDivElement: HTMLElement = $videoElement.parentElement;
     mainDivElement.appendChild($divElementFilter);
@@ -58,7 +53,7 @@ export class FilterEvent {
     // animationendイベントを生成
     const divFilter$: Observable<any> = fromEvent(
       $divElementFilter,
-      'animationend'
+      'animationend',
     );
     divFilter$.subscribe(ev => {
       filterPlayMode.deleteMethod($videoElement, playMode, ev.target);

@@ -5,11 +5,6 @@ import { tag } from '../../videoad/service/tag';
 import { AsyncTransmission } from '../../videoad/service/AsyncTransmission';
 
 export class Iframe {
-
-  constructor() {
-    console.log('Iframe');
-  }
-
   /**
    *
    * @param scriptElement
@@ -21,9 +16,15 @@ export class Iframe {
     rkValue: string,
     window: Window,
     apiDomain: string,
-    htmlDomain: string
+    htmlDomain: string,
   ) {
-    await this.mkIframe(apiDomain, htmlDomain, scriptElement, rkValue, this.mkIframeViaServer);
+    await this.mkIframe(
+      apiDomain,
+      htmlDomain,
+      scriptElement,
+      rkValue,
+      this.mkIframeViaServer,
+    );
 
     // 動画自動実行用library
     emergenceInit(window);
@@ -43,20 +44,23 @@ export class Iframe {
     mk: (
       apiDomain: string,
       scriptElement: HTMLScriptElement,
-      rkValue: string
-    ) => Promise<Jsontype>
+      rkValue: string,
+    ) => Promise<Jsontype>,
   ) {
     const infoJson: Jsontype = await mk(apiDomain, scriptElement, rkValue);
 
     infoJson.videoIframe_url = `${htmlDomain}/videoad/atvad/html/iframe_atvad.html`;
 
     // iframe生成
-    const iframeHight: number = Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
-    const url: string = `${infoJson.videoIframe_url}?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
+    const iframeHight: number =
+      Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
+    const url: string = `${
+      infoJson.videoIframe_url
+    }?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
     let iframeElement: HTMLIFrameElement = tag.mkIframeElement(
       url,
       infoJson.width,
-      String(iframeHight)
+      String(iframeHight),
     );
     scriptElement.parentNode.insertBefore(iframeElement, scriptElement);
   }
@@ -70,10 +74,13 @@ export class Iframe {
   private async mkIframeViaServer(
     apiDomain: string,
     scriptElement: HTMLScriptElement,
-    rkValue: string
+    rkValue: string,
   ): Promise<Jsontype> {
     const asyncTransmission: AsyncTransmission = new AsyncTransmission();
-    const infoJson: Jsontype = await asyncTransmission.getJson(apiDomain, rkValue);
+    const infoJson: Jsontype = await asyncTransmission.getJson(
+      apiDomain,
+      rkValue,
+    );
 
     // 追加要素
     // infoJson.ATV_RK = rkValue;

@@ -3,18 +3,13 @@ import { VideoAction } from '../video/videoAction';
 import { Jsontype } from '../../../../service/class/jsontype';
 
 export class Filter {
-
-  constructor() {
-    console.log('Filter')
-  }
-
   /**
    * filterの削除(main)
-   * @param videoElement 
-   * @param playMode 
-   * @param divElementFilter 
+   * @param videoElement
+   * @param playMode
+   * @param divElementFilter
    */
-  deleteMethod(videoElement, playMode, divElementFilter){
+  deleteMethod(videoElement, playMode, divElementFilter) {
     if (playMode === 'play') {
       VideoAction.playAction(videoElement);
     } else {
@@ -37,10 +32,10 @@ export class Filter {
     divElementFilter.setAttribute(
       'style',
       `width:${String(Number(atvJson.width))}px; height:${String(
-        Number(atvJson.height)
+        Number(atvJson.height),
       )}px; padding: ${String(
-        Number(atvJson.height) / 4
-      )}px; cursor:pointer; z-index:30; box-sizing:border-box;`
+        Number(atvJson.height) / 4,
+      )}px; cursor:pointer; z-index:30; box-sizing:border-box;`,
     );
     return divElementFilter;
   }
@@ -68,7 +63,7 @@ export class Filter {
   mkObjElement(
     svgData: any,
     atvJson: Jsontype,
-    playMode: string
+    playMode: string,
   ): HTMLObjectElement {
     const objectElement: HTMLObjectElement = document.createElement('object');
     objectElement.setAttribute('id', '___obj');
@@ -76,8 +71,8 @@ export class Filter {
     objectElement.setAttribute(
       'style',
       `width:${String(Number(atvJson.width) / 2)}px; height:${String(
-        Number(atvJson.height) / 2
-      )}px; pointer-events: none;`
+        Number(atvJson.height) / 2,
+      )}px; pointer-events: none;`,
     );
     objectElement.setAttribute('___text', playMode);
     return objectElement;
@@ -85,22 +80,22 @@ export class Filter {
 
   /**
    * filterの作成（main）
-   * @param videoTag 
-   * @param getFilter 
-   * @param playMode 
+   * @param videoTag
+   * @param getFilter
+   * @param playMode
    */
   async mkFilterElement(
     videoTag: HTMLVideoElement,
     getFilter: (atvJson: Jsontype) => HTMLDivElement,
     playMode: string,
-    atvJson: Jsontype
+    atvJson: Jsontype,
   ) {
     const divElementFilter: HTMLDivElement = getFilter(atvJson);
     const svgData: any = await this.getSvgObjElment(playMode);
     const objectElement: HTMLObjectElement = this.mkObjElement(
       svgData,
       atvJson,
-      playMode
+      playMode,
     );
     divElementFilter.appendChild(objectElement);
     return divElementFilter;

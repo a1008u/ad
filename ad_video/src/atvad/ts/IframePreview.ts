@@ -1,15 +1,8 @@
-import { emergenceInit } from './EmergenceFactory';
-
 import { Jsontype } from '../../videoad/service/class/jsontype';
 import { tag } from '../../videoad/service/tag';
 import { AsyncTransmission } from '../../videoad/service/AsyncTransmission';
 
 export class IframePreview {
-
-  constructor() {
-    console.log('IframePreview');
-  }
-
   /**
    * previewモード(api連携と非api連携)
    * @param scriptElement
@@ -19,9 +12,8 @@ export class IframePreview {
   async mainExecPreview(
     scriptElement: any,
     rkValue: string,
-    window: Window,
     apiDomain: string,
-    htmlDomain: string
+    htmlDomain: string,
   ) {
     if (!rkValue) {
       // nodeの属性を利用するため、mock用の記載は不要
@@ -30,7 +22,7 @@ export class IframePreview {
         htmlDomain,
         scriptElement,
         rkValue,
-        this.mkIframePreViaNode
+        this.mkIframePreViaNode,
       );
     } else {
       await this.mkIframe(
@@ -38,12 +30,11 @@ export class IframePreview {
         htmlDomain,
         scriptElement,
         rkValue,
-        this.mkIframePreViaServer
+        this.mkIframePreViaServer,
       );
     }
 
-    // 動画自動実行用library
-    // emergenceInit(window);
+    // 動画自動実行用libraryの起動はしない
   }
 
   /**
@@ -60,22 +51,23 @@ export class IframePreview {
     mk: (
       apiDomain: string,
       scriptElement: HTMLScriptElement,
-      rkValue: string
-    ) => Promise<Jsontype>
+      rkValue: string,
+    ) => Promise<Jsontype>,
   ) {
     const infoJson: Jsontype = await mk(apiDomain, scriptElement, rkValue);
 
     infoJson.videoIframe_url = `${htmlDomain}/videoad/atvad/html/iframe_atvad.html`;
 
     // iframe生成
-    let iframeHight: number = Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
+    let iframeHight: number =
+      Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
     const url: string = `${
       infoJson.videoIframe_url
     }?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
     let iframeElement: HTMLIFrameElement = tag.mkIframeElement(
       url,
       infoJson.width,
-      String(iframeHight)
+      String(iframeHight),
     );
     scriptElement.parentNode.insertBefore(iframeElement, scriptElement);
   }
@@ -88,10 +80,13 @@ export class IframePreview {
   async mkIframePreViaServer(
     apiDomain: string,
     scriptElement: HTMLScriptElement,
-    rkValue: string
+    rkValue: string,
   ) {
     const asyncTransmission: AsyncTransmission = new AsyncTransmission();
-    let infoJson: Jsontype = await asyncTransmission.getJson(apiDomain, rkValue);
+    let infoJson: Jsontype = await asyncTransmission.getJson(
+      apiDomain,
+      rkValue,
+    );
     infoJson.impression_url = '';
 
     const btnUrl: string = scriptElement.getAttribute('data-atv-button-url');
@@ -103,13 +98,14 @@ export class IframePreview {
       infoJson.ADAREA_HEIGHT = '0';
     } else {
       // not viewthrought
-      infoJson.ATV_MODE = infoJson.height === '360' ? 'previewPcAdarea' : 'previewSpAdarea';
+      infoJson.ATV_MODE =
+        infoJson.height === '360' ? 'previewPcAdarea' : 'previewSpAdarea';
       infoJson.ADAREA_HEIGHT = infoJson.height === '360' ? '80' : '50';
-      infoJson.href_url =  btnUrl ?  btnUrl : '#!';
+      infoJson.href_url = btnUrl ? btnUrl : 'javascript:void(0)';
+      infoJson.target = btnUrl ? `target="_blank"` : '';
+      infoJson.onClick = btnUrl ? 'onClick="hogeFunction();return false;"' : '';
     }
 
-    // rkの削除
-    // infoJson.ATV_RK = '';
     return new Promise<Jsontype>((resolove, _) => {
       resolove(infoJson);
     });
@@ -124,10 +120,12 @@ export class IframePreview {
   async mkIframePreViaNode(
     apiDomain: string,
     scriptElement: HTMLScriptElement,
-    rkValue: string
+    rkValue: string,
   ) {
     const moveURL: string = scriptElement.getAttribute('data-atv-url');
-    const bannerText: string = scriptElement.getAttribute('data-atv-banner-text');
+    const bannerText: string = scriptElement.getAttribute(
+      'data-atv-banner-text',
+    );
     const btnText: string = scriptElement.getAttribute('data-atv-btn-text');
     const height: string = scriptElement.getAttribute('data-atv-height');
     const width: string = scriptElement.getAttribute('data-atv-width');
@@ -140,7 +138,7 @@ export class IframePreview {
       btnText,
       '',
       '',
-      ''
+      '',
     );
     scriptElement.removeAttribute('data-atv-url');
     scriptElement.removeAttribute('data-atv-banner-text');
@@ -158,13 +156,14 @@ export class IframePreview {
       infoJson.videoad_vt_second = '1';
     } else {
       // viewthrough無
-      infoJson.ATV_MODE = infoJson.height === '360' ? 'previewPcAdarea' : 'previewSpAdarea';
+      infoJson.ATV_MODE =
+        infoJson.height === '360' ? 'previewPcAdarea' : 'previewSpAdarea';
       infoJson.ADAREA_HEIGHT = infoJson.height === '360' ? '80' : '50';
-      infoJson.href_url =  btnUrl ?  btnUrl : '#!';
+      infoJson.href_url = btnUrl ? btnUrl : 'javascript:void(0)';
+      infoJson.target = btnUrl ? `target="_blank"` : '';
+      infoJson.onClick = btnUrl ? 'onClick="hogeFunction();return false;"' : '';
     }
 
-    // rkの削除
-    // infoJson.ATV_RK = '';
     return new Promise<Jsontype>((resolove, _) => {
       resolove(infoJson);
     });

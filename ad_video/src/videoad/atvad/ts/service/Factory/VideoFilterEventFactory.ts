@@ -1,22 +1,21 @@
 import { Jsontype } from '../../../../service/class/jsontype';
 import { OS } from '../../../../service/interface/OS';
-import {Observable, fromEvent} from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
 import { FilterEvent } from '../Filter/FilterEvent';
 
 const filterEvent: FilterEvent = new FilterEvent();
 
 export namespace VideoFilterEventFactory {
-
   /**
    * クリックやタッチ時のイベント
-   * @param videoElement 
-   * @param atvJson 
-   * @param eventType 
+   * @param videoElement
+   * @param atvJson
+   * @param eventType
    */
   export const setClickOrTouchEvent = (
     videoElement: HTMLVideoElement,
     atvJson: Jsontype,
-    eventType: string
+    eventType: string,
   ) => {
     const video$: Observable<any> = fromEvent(videoElement, eventType);
     video$.subscribe(ev => {

@@ -9,8 +9,6 @@ import { Entry } from './entry';
  * 今度は、トラッキングの本ちゃんへ
  */
 (async () => {
-  console.log('=== entry start === ');
   const entry: Entry = new Entry();
   await entry.exec();
-  console.log('===entry end === ');
 })();

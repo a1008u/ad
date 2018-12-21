@@ -17,17 +17,23 @@
     ]}
   ,
   "jsdoc-format": true,
-  "no-var-requires": true,
-  "no-var-keyword": true,
   "only-arrow-functions": [ true ],
   "indent": [true, "spaces", 2],
   "arrow-return-shorthand": [ true, "multiline" ],
-  "max-line-length": [ true, 120 ],
+  "max-line-length": [ true, 140 ],
   "switch-final-break": [ true, "always" ],
   "new-parens": true,
+  "return-undefined": true,
+  "no-any": false,
+  "no-namespace": false,
+  "no-boolean-literal-compare": true,
+  "no-var-requires": true,
+  "no-var-keyword": true,
+  "no-consecutive-blank-lines": true,
+  "no-return-await": true,
   "prettier": [true, {
     "singleQuote": true,
-    "trailingComma": "es5",
+    "trailingComma": "all",
     "semi": true,
     "parser": "typescript"
   }]

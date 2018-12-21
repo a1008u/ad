@@ -2,23 +2,21 @@ import { Filter } from './Filter';
 import { Jsontype } from '../../../../service/class/jsontype';
 
 export class FilterPlayMode extends Filter {
-
-  constructor() {
-    super();
-    console.log('FilterPlayMode')
-  }
-
   /**
    * 動画再生時用フィルター生成
    * @param videoElement
    * @param playMode
    */
-  async execFil(videoElement: HTMLVideoElement, atvJson: Jsontype, playMode: string) {
+  async execFil(
+    videoElement: HTMLVideoElement,
+    atvJson: Jsontype,
+    playMode: string,
+  ) {
     const divElementFilter: HTMLDivElement = await this.mkFilterElement(
       videoElement,
       this.getFilter,
       playMode,
-      atvJson
+      atvJson,
     );
 
     // アニメーション効果用のクラス属性を付与
@@ -28,8 +26,8 @@ export class FilterPlayMode extends Filter {
     svgElement.setAttribute(
       'style',
       `width:${String(Number(atvJson.width) / 2)}px; height:${String(
-        Number(atvJson.height) / 2
-      )}px; pointer-events: none;`
+        Number(atvJson.height) / 2,
+      )}px; pointer-events: none;`,
     );
     return divElementFilter;
   }

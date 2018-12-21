@@ -23,6 +23,8 @@ export class Jsontype {
   impression_url: string;
   ATV_MODE: string;
   ADAREA_HEIGHT: string;
+  target: string;
+  onClick: string;
 
   constructor(image_url, banner_text, href_url,
     height, width, videoad_vt_second, video_btn_text,rk,
@@ -40,5 +42,7 @@ export class Jsontype {
     this.impression_url = impression_url;
     this.ATV_MODE = '';
     this.ADAREA_HEIGHT = '';
+    this.target = '';
+    this.onClick = '';
   }
 }

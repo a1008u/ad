@@ -20,7 +20,7 @@ export namespace iframeAtvad {
       ElementFactory.mkElement(json);
     }
   };
-};
+}
 
 /**
  * メイン処理

@@ -9,7 +9,7 @@ export namespace cookies {
    */
   export let hasItem = (sKey: string) =>
     new RegExp(
-      '(?:^|;\\s*)' + escape(sKey).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\='
+      '(?:^|;\\s*)' + escape(sKey).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=',
     ).test(document.cookie);
 
   let getItem = sKey => {
@@ -21,10 +21,10 @@ export namespace cookies {
         new RegExp(
           '(?:^|.*;\\s*)' +
             escape(sKey).replace(/[\-\.\+\*]/g, '\\$&') +
-            '\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*'
+            '\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*',
         ),
-        '$1'
-      )
+        '$1',
+      ),
     );
   };
 
@@ -45,15 +45,21 @@ export namespace cookies {
     deadline: number,
     sPath: string,
     sDomain: string,
-    bSecure: boolean
+    bSecure: boolean,
   ): boolean => {
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
       return false;
     }
     let date: Date = new Date();
     date.setDate(date.getDate() + 365);
-    console.log(`${escape(sKey)}=${escape(sValue)}; path=${sPath ? sPath : ''}; expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`)
-    document.cookie = `${escape(sKey)}=${escape(sValue)}; path=${sPath ? sPath : ''}; expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`;
+    // console.log(
+    //   `${escape(sKey)}=${escape(sValue)}; path=${
+    //     sPath ? sPath : ''
+    //   }; expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`,
+    // );
+    document.cookie = `${escape(sKey)}=${escape(sValue)}; path=${
+      sPath ? sPath : ''
+    }; expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`;
     return true;
   };
 }

@@ -1,14 +1,10 @@
-import { Jsontype } from "../../../../service/class/jsontype";
+import { Jsontype } from '../../../../service/class/jsontype';
 import { Observable, fromEvent } from 'rxjs';
-import { VideoAction } from "../video/videoAction";
-import { FilterStartAndEnd } from "../Filter/FilterStartAndEnd";
+import { VideoAction } from '../video/videoAction';
+import { FilterStartAndEnd } from '../Filter/FilterStartAndEnd';
 
 export class Preview {
-  constructor() {
-    console.log('preview')
-  }
-
-  async exec($videoElement: HTMLVideoElement, atvJson: Jsontype){
+  async exec($videoElement: HTMLVideoElement, atvJson: Jsontype) {
     // playMarkを表示
     const filterStart: FilterStartAndEnd = new FilterStartAndEnd();
     filterStart
@@ -27,15 +23,14 @@ export class Preview {
     let targeFilterElement: HTMLElement = ev.target;
     targeFilterElement.parentElement.removeChild(targeFilterElement);
     VideoAction.playAction($videoElement);
-  };
+  }
 
   private Filter(
     $videoElement: HTMLVideoElement,
-    $divElementFilter: HTMLDivElement
+    $divElementFilter: HTMLDivElement,
   ) {
     const mainDivElement: HTMLElement = $videoElement.parentElement;
     mainDivElement.classList.add('__aparent');
     mainDivElement.appendChild($divElementFilter);
-  };
-
+  }
 }

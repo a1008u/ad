@@ -1,7 +1,7 @@
 import { Jsontype } from '../../../src/videoad/service/class/jsontype';
-import { exec } from '../../../src/atvad/ts/main';
 import { IframePreview } from '../../../src/atvad/ts/IframePreview';
 import { Iframe } from '../../../src/atvad/ts/Iframe';
+import { Main } from '../../../src/atvad/ts/main';
 
 const domain: string = 'http://localhost:3000';
 
@@ -25,7 +25,8 @@ describe('非プレビュー用(プロダクション)(モック)', () => {
 
     // exe
     let scriptElement: HTMLElement = document.getElementById('mexec');
-    await exec(scriptElement as HTMLScriptElement, window);
+    const main: Main = new Main();
+    await main.exec(scriptElement as HTMLScriptElement, window);
     console.log(scriptElement.getAttribute('data-atv-rk'))
 
     // ck
@@ -55,7 +56,8 @@ describe('非プレビュー用(プロダクション)(非モック)', () => {
 
     // exe
     let scriptElement: HTMLElement = document.getElementById('mexec');
-    await exec(scriptElement as HTMLScriptElement, window);
+    const main: Main = new Main();
+    await main.exec(scriptElement as HTMLScriptElement, window);
     console.log(scriptElement.getAttribute('data-atv-rk'))
 
     // ck
@@ -85,7 +87,8 @@ describe('プレビュー用（モック）', () => {
 
     // exe
     let scriptElement: HTMLElement = document.getElementById('mexec');
-    await exec(scriptElement as HTMLScriptElement, window);
+    const main: Main = new Main();
+    await main.exec(scriptElement as HTMLScriptElement, window);
     console.log(scriptElement.getAttribute('data-atv-rk'))
 
     // ck
@@ -115,7 +118,8 @@ describe('プレビュー用（非モック）', () => {
 
     // exe
     let scriptElement: HTMLElement = document.getElementById('mexec');
-    await exec(scriptElement as HTMLScriptElement, window);
+    const main: Main = new Main();
+    await main.exec(scriptElement as HTMLScriptElement, window);
     console.log(scriptElement.getAttribute('data-atv-rk'))
 
     // ck

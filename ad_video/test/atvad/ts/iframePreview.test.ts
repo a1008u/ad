@@ -243,7 +243,7 @@ describe('mainExecPreviewのテスト', () => {
 
     const rkValue = null;
     const scriptElement = document.getElementById('testnotviewthrough');
-    await iframepreview.mainExecPreview(scriptElement, rkValue, window, apiDomain, htmlDomain);
+    await iframepreview.mainExecPreview(scriptElement, rkValue, apiDomain, htmlDomain);
 
     const resultIframeElement = document.getElementsByName('iframe');
     expect((resultIframeElement[0] as HTMLIFrameElement).name).toEqual('iframe');
@@ -263,7 +263,7 @@ describe('mainExecPreviewのテスト', () => {
 
     const rkValue = '010011a1';
     const scriptElement = document.getElementById('testviewthrough');
-    await iframepreview.mainExecPreview(scriptElement, rkValue, window, apiDomain, htmlDomain);
+    await iframepreview.mainExecPreview(scriptElement, rkValue, apiDomain, htmlDomain);
 
     const resultIframeElement = document.getElementsByName('iframe');
     expect((resultIframeElement[0] as HTMLIFrameElement).name).toEqual('iframe');

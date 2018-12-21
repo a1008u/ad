@@ -9,7 +9,7 @@ import { Jsontype } from '../../../service/class/jsontype';
 export namespace ImpService {
   export const execImp = (
     videoElement: HTMLVideoElement,
-    atvJson: Jsontype
+    atvJson: Jsontype,
   ) => {
     let imp: string = videoElement.getAttribute('imp');
     let atvMode: string = videoElement.getAttribute('atv_mode');

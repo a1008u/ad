@@ -1,12 +1,10 @@
 import { Jsonentry } from '../../service/class/jsonentry';
 import { tag } from '../../service/tag';
-import axios from 'axios';
 import { AsyncTransmission } from '../../service/AsyncTransmission';
 
 export class Entry {
-
   constructor() {
-    console.log(' Entry ---------- ')
+    console.log(' Entry ---------- ');
   }
 
   /**
@@ -23,8 +21,15 @@ export class Entry {
    * @param jsonentry
    */
   private async mkCookieIframe(jsonentry: Jsonentry) {
-    const url: string = `${jsonentry.vh_frame_url}?url=${encodeURIComponent(jsonentry.rurl)}`;
-    const iframeElement: HTMLIFrameElement = tag.mkIframeElementForTracking(url, '0', '0', 'none');
+    const url: string = `${jsonentry.vh_frame_url}?url=${encodeURIComponent(
+      jsonentry.rurl,
+    )}`;
+    const iframeElement: HTMLIFrameElement = tag.mkIframeElementForTracking(
+      url,
+      '0',
+      '0',
+      'none',
+    );
     const divElement: HTMLElement = document.getElementById('atv_cookie_space');
     divElement.parentNode.insertBefore(iframeElement, divElement);
   }

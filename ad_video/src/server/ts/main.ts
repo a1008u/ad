@@ -4,10 +4,8 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { Jsontype } from '../../videoad/service/class/jsontype';
 
-import * as https from 'https';
 import { Jsonentry } from '../../videoad/service/class/jsonentry';
 import { Jsoncookie } from '../../videoad/service/class/jsoncookie';
-
 
 // POSTパラメータをJSONで取得するにはbody-parserを使う。
 
@@ -56,7 +54,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a1',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a2':
         return new Jsontype(
@@ -70,7 +68,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a2',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a3':
         return new Jsontype(
@@ -84,7 +82,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a3',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a4':
         return new Jsontype(
@@ -98,7 +96,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a4',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a5':
         return new Jsontype(
@@ -112,7 +110,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a5',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a6':
         return new Jsontype(
@@ -126,7 +124,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a6',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a7':
         return new Jsontype(
@@ -140,7 +138,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a7',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a8':
         return new Jsontype(
@@ -154,7 +152,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a8',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a9':
         return new Jsontype(
@@ -168,7 +166,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a9',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a10':
         return new Jsontype(
@@ -182,7 +180,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a10',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a11':
         return new Jsontype(
@@ -196,7 +194,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a11',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a12':
         return new Jsontype(
@@ -210,7 +208,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a12',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a1_pc':
         return new Jsontype(
@@ -224,7 +222,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a1_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a2_pc':
         return new Jsontype(
@@ -238,7 +236,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a2_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a3_pc':
         return new Jsontype(
@@ -252,7 +250,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a3_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a4_pc':
         return new Jsontype(
@@ -266,7 +264,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a4_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a5_pc':
         return new Jsontype(
@@ -280,7 +278,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a5_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a6_pc':
         return new Jsontype(
@@ -294,7 +292,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a6_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a7_pc':
         return new Jsontype(
@@ -308,7 +306,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a7_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a8_pc':
         return new Jsontype(
@@ -322,7 +320,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a8_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a9_pc':
         return new Jsontype(
@@ -336,7 +334,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a9_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a10_pc':
         return new Jsontype(
@@ -350,7 +348,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a10_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a11_pc':
         return new Jsontype(
@@ -364,7 +362,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a11_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
       case '010011a12_pc':
         return new Jsontype(
@@ -378,7 +376,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
           '010011a12_pc',
           videoframeurl,
           entryyframeurl,
-          impurl
+          impurl,
         );
     }
   };
@@ -402,7 +400,7 @@ app.get('/click', (req: Express.Request, res: Express.Response) => {
     '01005gtr000005', // rk
     `${domain}/cookie?rk=01005gtr000005`, // rurlです 利用 iframe_url + url= rurl
     'f3a42d90657264333bb4880f59055aed',
-    `${domain}/videoad/cookie/html/iframe_cookie.html` // iframe_url
+    `${domain}/videoad/cookie/html/iframe_cookie.html`, // iframe_url
   );
   res.json(jsonentry);
   res.end();
@@ -419,7 +417,7 @@ app.get('/cookie', (req: Express.Request, res: Express.Response) => {
     `${domain}/atvad/html/lp.html`, // rurlです 利用 iframe_url + url= rurl
     'thanku0001',
     `${domain}/ts.jpg`,
-    `/videoad/cookie`
+    `/videoad/cookie`,
   );
   res.json(jsoncookie);
   res.end();
@@ -439,7 +437,6 @@ app.get('/image', (req: Express.Request, res: Express.Response) => {
     res.end();
   });
 });
-
 
 // ルート設定
 app.get('/', (req, res) => {
