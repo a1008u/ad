@@ -13,9 +13,10 @@ export namespace EventViewThrough {
     atvJson: Jsontype,
     videoTag: HTMLElement,
   ) => {
+    console.log('atvJson.entryIframe_url --- ' + atvJson.entryframe_url);
     window.clearInterval(cntEvt);
     // クリックのやつ
-    const url: string = `${atvJson.entryIframe_url}?url=${encodeURIComponent(
+    const url: string = `${atvJson.entryframe_url}?url=${encodeURIComponent(
       atvJson.href_url,
     )}`;
     let iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(
@@ -37,20 +38,21 @@ export namespace EventViewThrough {
   };
 
   /**
-   *
+   * viewthrough用の処理
+   *  動画を見たら、250msごとにカウントを上げ、viewthroughの設定時刻を超えたらviewthroughの処理を起動する。
    * @param videoTag
    * @param atvJson
    */
   export const setEventLoad = (videoTag: HTMLElement, atvJson: Jsontype) => {
     let count = 0;
-    let cntEvt;
+    let countEvt;
     let limitTime: number = Number(atvJson.videoad_vt_second) * 1000;
     videoTag.addEventListener('play', () => {
       if (count < limitTime) {
-        cntEvt = window.setInterval(() => {
+        countEvt = window.setInterval(() => {
           count += 250;
           if (count > limitTime) {
-            viewThroughAction(cntEvt, atvJson, videoTag);
+            viewThroughAction(countEvt, atvJson, videoTag);
           }
         }, 250);
       }
@@ -58,8 +60,8 @@ export namespace EventViewThrough {
 
     // 要検討：viewthrough(pauseの場合は、繰り返し動作を止める)
     videoTag.addEventListener('pause', () => {
-      if (cntEvt) {
-        window.clearInterval(cntEvt);
+      if (countEvt) {
+        window.clearInterval(countEvt);
       }
     });
   };

@@ -18,8 +18,8 @@ export class Jsontype {
   videoad_vt_second: string;
   readonly video_btn_text: string;
   readonly rk: string;
-  videoIframe_url: string;
-  entryIframe_url: string;
+  videoframe_url: string;
+  entryframe_url: string;
   impression_url: string;
   ATV_MODE: string;
   ADAREA_HEIGHT: string;
@@ -37,8 +37,8 @@ export class Jsontype {
     this.width = width;
     this.height = height;
     this.rk = rk;
-    this.videoIframe_url = videoframe_url;
-    this.entryIframe_url = entryframe_url;
+    this.videoframe_url = videoframe_url;
+    this.entryframe_url = entryframe_url;
     this.impression_url = impression_url;
     this.ATV_MODE = '';
     this.ADAREA_HEIGHT = '';

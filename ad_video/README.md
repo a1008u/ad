@@ -30,8 +30,8 @@
   http://localhost:3000/atvad/html/index_sp.html
 
 
-  http://10.10.15.46:3000/atvad/html/index_sp.html
-  http://10.10.15.46:3000/atvad/html/index_pc.html
+  http://10.10.15.90:3000/atvad/html/index_sp.html
+  http://10.10.15.90:3000/atvad/html/index_pc.html
 
 ## ファイルサイズ
 

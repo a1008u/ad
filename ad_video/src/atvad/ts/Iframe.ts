@@ -49,13 +49,13 @@ export class Iframe {
   ) {
     const infoJson: Jsontype = await mk(apiDomain, scriptElement, rkValue);
 
-    infoJson.videoIframe_url = `${htmlDomain}/videoad/atvad/html/iframe_atvad.html`;
+    infoJson.videoframe_url = `${htmlDomain}/videoad/atvad/html/iframe_atvad.html`;
 
     // iframe生成
     const iframeHight: number =
       Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
     const url: string = `${
-      infoJson.videoIframe_url
+      infoJson.videoframe_url
     }?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
     let iframeElement: HTMLIFrameElement = tag.mkIframeElement(
       url,

@@ -40,8 +40,8 @@ describe('mkViewThroughVideoElementのチェック', () => {
     );
     const $mainDivElement: HTMLDivElement = document.querySelector('#atvMain');
 
-    const $videoElement = ElementFactory.mkViewThroughVideoElement($mainDivElement,confirmJson,'true')
-    expect($videoElement.getAttribute('loop')).toEqual('true');
+    const $videoElement = ElementFactory.mkViewThroughVideoElement($mainDivElement,confirmJson)
+    expect($videoElement.getAttribute('loop')).toEqual('loop');
   });
 
   test('viewthrough(プレビュー)の正常確認', async () => {
@@ -72,8 +72,8 @@ describe('mkViewThroughVideoElementのチェック', () => {
     const $mainDivElement: HTMLDivElement = document.querySelector('#atvMain');
 
     // ck <video id="atvVideo" loop="false" src="testURL" videostart="start" width="180" atv_mode="preview"/>
-    const $videoElement = ElementFactory.mkViewThroughVideoElement($mainDivElement,confirmJson,'false')
-    expect($videoElement.getAttribute('loop')).toEqual('false');
+    const $videoElement = ElementFactory.mkViewThroughVideoElement($mainDivElement,confirmJson)
+    expect($videoElement.getAttribute('loop')).toEqual('loop');
     expect($videoElement.getAttribute('atv_mode')).toEqual('preview');
   });
   
@@ -168,7 +168,7 @@ describe('mkViewThroughVideoElementのチェック', () => {
     );
     confirmJson.ATV_MODE = 'previewPcAdarea';
     const $mainDivElement: HTMLDivElement = document.querySelector('#atvMain');
-    const $videoElement = ElementFactory.mkNotViewThroughVideoElement($mainDivElement,confirmJson,'true')
+    const $videoElement = ElementFactory.mkNotViewThroughVideoElement($mainDivElement,confirmJson)
 
     // ck
     expect($videoElement.getAttribute('loop')).toBeNull();

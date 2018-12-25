@@ -38,11 +38,11 @@ export namespace tag {
     return videoTag;
   };
 
-  export const mkVideoElement = (atvJson: Jsontype, loop: string) => {
+  export const mkVideoElement = (atvJson: Jsontype) => {
     const $videoElement: HTMLVideoElement = document.getElementById('atvVideo') as HTMLVideoElement;
     $videoElement.setAttribute('src', atvJson.image_url);
     $videoElement.setAttribute('width', atvJson.width);
-    $videoElement.setAttribute('loop', loop);
+    $videoElement.setAttribute('loop', 'loop');
     $videoElement.setAttribute('videostart', 'start');
     return $videoElement;
   };

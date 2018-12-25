@@ -16,39 +16,18 @@ export namespace ElementFactory {
    */
   export const mkViewThroughVideoElement = (
     mainDivElement: HTMLDivElement,
-    atvJson: Jsontype,
-    loop: string,
+    atvJson: Jsontype
   ): HTMLVideoElement => {
-    const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson, loop);
+    const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson);
     mainDivElement.appendChild($videoElement);
 
+    // プレビュー用として返す
     if (atvJson.ATV_MODE !== '') {
-      // プレビュー用として返す
       $videoElement.setAttribute('atv_mode', atvJson.ATV_MODE);
       return $videoElement;
     }
 
     EventViewThrough.setEventLoad($videoElement, atvJson);
-    return $videoElement;
-  };
-
-  /**
-   * viewThrough無しでvideoElementを作成
-   * @param mainDivElement
-   * @param atvJson
-   * @param loop
-   */
-  export const mkNotViewThroughVideoElement = (
-    mainDivElement: HTMLDivElement,
-    atvJson: Jsontype,
-    loop: string,
-  ): HTMLVideoElement => {
-    const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson, loop);
-    $videoElement.removeAttribute('loop');
-    mainDivElement.appendChild($videoElement);
-    EventNotViewThrough.setEventLoad($videoElement, atvJson);
-
-    mkAdArea(atvJson, mainDivElement);
     return $videoElement;
   };
 
@@ -66,6 +45,25 @@ export namespace ElementFactory {
   };
 
   /**
+   * viewThrough無しでvideoElementを作成
+   * @param mainDivElement
+   * @param atvJson
+   * @param loop
+   */
+  export const mkNotViewThroughVideoElement = (
+    mainDivElement: HTMLDivElement,
+    atvJson: Jsontype
+  ): HTMLVideoElement => {
+    const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson);
+    $videoElement.removeAttribute('loop');
+    mainDivElement.appendChild($videoElement);
+
+    EventNotViewThrough.setEventLoad($videoElement, atvJson);
+    mkAdArea(atvJson, mainDivElement);
+    return $videoElement;
+  };
+
+  /**
    * videoElementの作成
    * @param atvJson
    */
@@ -77,10 +75,11 @@ export namespace ElementFactory {
       `width:${atvJson.width}px; z-index:30;`,
     );
 
+    // videoの生成
     const videoElement: HTMLVideoElement =
       atvJson.videoad_vt_second !== '0'
-        ? mkViewThroughVideoElement($mainDivElement, atvJson, 'true')
-        : mkNotViewThroughVideoElement($mainDivElement, atvJson, 'false');
+        ? mkViewThroughVideoElement($mainDivElement, atvJson)
+        : mkNotViewThroughVideoElement($mainDivElement, atvJson);
 
     // preview用の場合の処理
     if (atvJson.ATV_MODE.includes('preview')) {

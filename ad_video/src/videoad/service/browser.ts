@@ -23,7 +23,7 @@ export namespace browser {
         console.log('UA ' + Platform.name.toLowerCase());
         const browserName: string = Platform.name.toLowerCase();
         if (browserName === "ie") return browserName;
-        else if (browserName === "edge") return browserName;
+        else if (browserName.includes("edge")) return "edge";
         else if (browserName === "chrome") return browserName;
         else if (browserName === "firefox") return browserName;
         else if (browserName === "opera") return browserName;

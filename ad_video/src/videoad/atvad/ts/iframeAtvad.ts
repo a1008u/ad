@@ -2,8 +2,6 @@ import '../css/index.css';
 import { Jsontype } from '../../service/class/jsontype';
 import { ElementFactory } from './service/Factory/ElementFactory';
 
-// // tslint:disable-next-line:no-var-requires
-// require('es6-promise').polyfill();
 import 'ts-polyfill/lib/es2015-promise';
 
 /**
