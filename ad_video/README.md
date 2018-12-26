@@ -26,12 +26,28 @@
   http://localhost:3000/atvad/html/index_sp_preview.html
 
   - 本番アクセス用 *hostsを切り替えることでテストにアクセスしてね
-  http://localhost:3000/atvad/html/index_pc.html
-  http://localhost:3000/atvad/html/index_sp.html
+  http://localhost:3000/atvad/html/index_pc_viewthrow_not.html
+  http://localhost:3000/atvad/html/index_pc_viewthrow.html
 
+  http://localhost:3000/atvad/html/index_sp_viewthrow_android.html
+  http://localhost:3000/atvad/html/index_sp_viewthrow_ios.html
+  http://localhost:3000/atvad/html/index_sp_viewthrow_not_android.html
+  http://localhost:3000/atvad/html/index_sp_viewthrow_not.html
+  http://localhost:3000/atvad/html/index_sp_viewthrow.html
+  http://localhost:3000/atvad/html/index_sp_viewthrow.html
+  http://localhost:3000/atvad/html/index_sp._viewthrough_not_ios.html
 
-  http://10.10.15.90:3000/atvad/html/index_sp.html
-  http://10.10.15.90:3000/atvad/html/index_pc.html
+  - 本番アクセス用(ipアドレス有) *hostsを切り替えることでテストにアクセスしてね
+  http://10.10.15.61:3000/atvad/html/index_pc_viewthrow_not.html
+  http://10.10.15.61:3000/atvad/html/index_pc_viewthrow.html
+
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow_android.html
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow_ios.html
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow_not_android.html
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow_not.html
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow.html
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow.html
+  http://10.10.15.61:3000/atvad/html/index_sp._viewthrough_not_ios.html
 
 ## ファイルサイズ
 
