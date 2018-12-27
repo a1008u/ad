@@ -2,10 +2,10 @@ import app from './app';
 import * as Express from 'express';
 import * as path from 'path';
 import * as fs from 'fs';
-import { Jsontype } from '../../videoad/service/class/jsontype';
+import { Jsontype } from '../../vat/service/class/jsontype';
 
-import { Jsonentry } from '../../videoad/service/class/jsonentry';
-import { Jsoncookie } from '../../videoad/service/class/jsoncookie';
+import { Jsonentry } from '../../vat/service/class/jsonentry';
+import { Jsoncookie } from '../../vat/service/class/jsoncookie';
 
 // POSTパラメータをJSONで取得するにはbody-parserを使う。
 
@@ -36,15 +36,15 @@ app.get('/imp', (req: Express.Request, res: Express.Response) => {
  * 1回目のxhr用のAPI
  */
 app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
-  const videoframeurl: string = `${domain}/videoad/atvad/html/iframe_atvad.html`;
-  const entryyframeurl: string = `${domain}/videoad/entry/html/iframe_entry.html`;
+  const videoframeurl: string = `${domain}/vat/atvad/html/iframe_atvad.html`;
+  const entryyframeurl: string = `${domain}/vat/entry/html/iframe_entry.html`;
   const impurl: string = `${domain}/imp`;
 
   let mkJson = (rk: string) => {
     switch (rk) {
       case '010011a1':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba1.mp4`,
+          `${domain}/vat/atvad/mp4/ba1.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a1`,
           '180',
@@ -58,7 +58,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a2':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba2.mp4`,
+          `${domain}/vat/atvad/mp4/ba2.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a2`,
           '180',
@@ -72,7 +72,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a3':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba3.mp4`,
+          `${domain}/vat/atvad/mp4/ba3.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a3`,
           '180',
@@ -86,7 +86,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a4':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba4.mp4`,
+          `${domain}/vat/atvad/mp4/ba4.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a4`,
           '180',
@@ -100,7 +100,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a5':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba5.mp4`,
+          `${domain}/vat/atvad/mp4/ba5.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a5`,
           '180',
@@ -114,7 +114,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a6':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba6.mp4`,
+          `${domain}/vat/atvad/mp4/ba6.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a6`,
           '180',
@@ -128,7 +128,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a7':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba7.mp4`,
+          `${domain}/vat/atvad/mp4/ba7.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a7`,
           '180',
@@ -142,7 +142,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a8':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba8.mp4`,
+          `${domain}/vat/atvad/mp4/ba8.mp4`,
           'MARVEL - INFINITY WAR -',
           `${domain}/click?rk=010011a8`,
           '180',
@@ -156,7 +156,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a9':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba9.mp4`,
+          `${domain}/vat/atvad/mp4/ba9.mp4`,
           'FF零式　- OP特典　- ',
           `${domain}/click?rk=010011a9`,
           '180',
@@ -170,7 +170,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a10':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba10.mp4`,
+          `${domain}/vat/atvad/mp4/ba10.mp4`,
           'FF零式　- OP特典　- ',
           `${domain}/click?rk=010011a10`,
           '180',
@@ -184,7 +184,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a11':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba11.mp4`,
+          `${domain}/vat/atvad/mp4/ba11.mp4`,
           'KH2.8　- OP特典　- ',
           `${domain}/click?rk=010011a11`,
           '180',
@@ -198,7 +198,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a12':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba12.mp4`,
+          `${domain}/vat/atvad/mp4/ba12.mp4`,
           'KH3　- 主題歌「誓い」　- ',
           `${domain}/click?rk=010011a12`,
           '180',
@@ -212,7 +212,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a1_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba1.mp4`,
+          `${domain}/vat/atvad/mp4/ba1.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a1_pc`,
           '360',
@@ -226,7 +226,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a2_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba2.mp4`,
+          `${domain}/vat/atvad/mp4/ba2.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a2_pc`,
           '360',
@@ -240,7 +240,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a3_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba3.mp4`,
+          `${domain}/vat/atvad/mp4/ba3.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a3_pc`,
           '360',
@@ -254,7 +254,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a4_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba5.mp4`,
+          `${domain}/vat/atvad/mp4/ba5.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a4_pc`,
           '360',
@@ -268,7 +268,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a5_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba5.mp4`,
+          `${domain}/vat/atvad/mp4/ba5.mp4`,
           'FF15 - 新作 - ',
           `${domain}/click?rk=010011a5_pc`,
           '360',
@@ -282,7 +282,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a6_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba6.mp4`,
+          `${domain}/vat/atvad/mp4/ba6.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a6_pc`,
           '360',
@@ -296,7 +296,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a7_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba7.mp4`,
+          `${domain}/vat/atvad/mp4/ba7.mp4`,
           'ここは表示しません',
           `${domain}/click?rk=010011a7_pc`,
           '360',
@@ -310,7 +310,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a8_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba8.mp4`,
+          `${domain}/vat/atvad/mp4/ba8.mp4`,
           'MARVEL - INFINITY WAR -',
           `${domain}/click?rk=010011a8_pc`,
           '360',
@@ -324,7 +324,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a9_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba9.mp4`,
+          `${domain}/vat/atvad/mp4/ba9.mp4`,
           'FF零式　- OP特典　- ',
           `${domain}/click?rk=010011a9_pc`,
           '360',
@@ -338,7 +338,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a10_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba10.mp4`,
+          `${domain}/vat/atvad/mp4/ba10.mp4`,
           'FF零式　- OP特典　- ',
           `${domain}/click?rk=010011a10_pc`,
           '360',
@@ -352,7 +352,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a11_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba11.mp4`,
+          `${domain}/vat/atvad/mp4/ba11.mp4`,
           'KH2.8　- OP特典　- ',
           `${domain}/click?rk=010011a11_pc`,
           '360',
@@ -366,7 +366,7 @@ app.get('/sp/vad.json', (req: Express.Request, res: Express.Response) => {
         );
       case '010011a12_pc':
         return new Jsontype(
-          `${domain}/videoad/atvad/mp4/ba12.mp4`,
+          `${domain}/vat/atvad/mp4/ba12.mp4`,
           'KH3　- 主題歌「誓い」　- ',
           `${domain}/click?rk=010011a12_pc`,
           '360',
@@ -400,7 +400,7 @@ app.get('/click', (req: Express.Request, res: Express.Response) => {
     '01005gtr000005', // rk
     `${domain}/cookie?rk=01005gtr000005`, // rurlです 利用 iframe_url + url= rurl
     'f3a42d90657264333bb4880f59055aed',
-    `${domain}/videoad/cookie/html/iframe_cookie.html`, // iframe_url
+    `${domain}/vat/cookie/html/iframe_cookie.html`, // iframe_url
   );
   res.json(jsonentry);
   res.end();
@@ -417,7 +417,7 @@ app.get('/cookie', (req: Express.Request, res: Express.Response) => {
     `${domain}/atvad/html/lp.html`, // rurlです 利用 iframe_url + url= rurl
     'thanku0001',
     `${domain}/ts.jpg`,
-    `/videoad/cookie`,
+    `/vat/cookie`,
   );
   res.json(jsoncookie);
   res.end();

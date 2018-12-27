@@ -1,11 +1,11 @@
 module.exports = {
 
     entry: {
-        "ts":[`./src/videoad/atvad/ts/iframeAtvad.ts`]
+        "ts":[`./src/vat/atvad/ts/iframeAtvad.ts`]
     },
 
     output: {
-        filename: "./server/statics/videoad/atvad/js/iframe_atvad_min.js"
+        filename: "./server/statics/vat/atvad/js/iframe_atvad_min.js"
     },
     mode: 'development'
     ,

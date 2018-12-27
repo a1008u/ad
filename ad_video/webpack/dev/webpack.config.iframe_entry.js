@@ -1,11 +1,11 @@
 module.exports = {
 
     entry: {
-        "ts":'./src/videoad/entry/ts/iframeEntry.ts'
+        "ts":'./src/vat/entry/ts/iframeEntry.ts'
     },
 
     output: {
-        filename: "./server/statics/videoad/entry/js/iframe_entry_min.js"
+        filename: "./server/statics/vat/entry/js/iframe_entry_min.js"
     },
     mode: 'development'
     ,

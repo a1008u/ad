@@ -1,6 +1,6 @@
-import { Jsontype } from '../../videoad/service/class/jsontype';
-import { tag } from '../../videoad/service/tag';
-import { AsyncTransmission } from '../../videoad/service/AsyncTransmission';
+import { Jsontype } from '../../vat/service/class/jsontype';
+import { tag } from '../../vat/service/tag';
+import { AsyncTransmission } from '../../vat/service/AsyncTransmission';
 
 export class IframePreview {
   /**
@@ -56,7 +56,7 @@ export class IframePreview {
   ) {
     const infoJson: Jsontype = await mk(apiDomain, scriptElement, rkValue);
 
-    infoJson.videoframe_url = `${htmlDomain}/videoad/atvad/html/iframe_atvad.html`;
+    infoJson.videoframe_url = `${htmlDomain}/vat/atvad/html/iframe_atvad.html`;
 
     // iframe生成
     let iframeHight: number =

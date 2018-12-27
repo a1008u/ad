@@ -1,4 +1,4 @@
-import { Jsontype } from '../../../src/videoad/service/class/jsontype';
+import { Jsontype } from '../../../src/vat/service/class/jsontype';
 import { IframePreview } from '../../../src/atvad/ts/IframePreview';
 import { Iframe } from '../../../src/atvad/ts/Iframe';
 import { Main } from '../../../src/atvad/ts/main';

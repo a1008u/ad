@@ -53,7 +53,7 @@
 
 ファイル名|proサイズ(kiB)|devサイズ(kiB)
 |:---|:---|:---|
-|atvad_min.js|45.5|171|
-|iframe_atvad_min.js|144|635|
-|iframe_entry_min.js|39.2|149|
-|iframe_cookie_min.js|55.2|197|
+|atvad_min.js|47.8|171|
+|iframe_atvad_min.js|145|635|
+|iframe_entry_min.js|39.5|149|
+|iframe_cookie_min.js|55.7|197|
