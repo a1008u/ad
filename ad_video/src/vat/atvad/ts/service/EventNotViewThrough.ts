@@ -22,8 +22,6 @@ export namespace EventNotViewThrough {
       hrefValue = atvJson.href_url;
       target = atvJson.target;
       onClick = atvJson.onClick;
-      // target = atvJson.href_url === '#!' ? `` : `target="_blank"`;
-      // onClick = 'onClick="hogeFunction();return false;"';
     } else if (atvJson.ATV_MODE === 'previewSpAdarea') {
       leftSize = '16px';
       rightSize = '12px';
@@ -32,8 +30,6 @@ export namespace EventNotViewThrough {
       hrefValue = atvJson.href_url;
       target = atvJson.href_url === '#!' ? `` : `target="_blank"`;
       onClick = 'onClick="hogeFunction();return false;"';
-      // target = atvJson.href_url === '#!' ? `` : `target="_blank"`;
-      // onClick = 'onClick="hogeFunction();return false;"';
     } else {
       [
         leftSize,

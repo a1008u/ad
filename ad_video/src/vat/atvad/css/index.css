@@ -8,6 +8,7 @@ body {
     /* position: relative;
     display: block; */
     font-size: 0;
+    position:relative
 }
 
 .__filter
@@ -61,7 +62,11 @@ body {
     box-sizing: border-box;
     padding: 10px 10px 10px 30px;
     font-family: 'Hiragino Kaku', 'Gothic Pro', 'Meiryo', 'Lucida','Grande', 'Verdana','MS PGothic','sans-serif';
-    background: rgb(255, 255, 255)
+    background: rgb(255, 255, 255);
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .__divTextLeftElement
