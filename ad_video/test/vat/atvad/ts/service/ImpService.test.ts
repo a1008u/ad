@@ -4,7 +4,7 @@ import { Jsontype } from '../../../../../src/vat/service/class/jsontype';
 describe('impアクセスの確認', () => {
 
   beforeEach(() => {
-    document.body.innerHTML = '<video id="atvVideo" playsinline="playsinline" style="cursor:pointer;" muted="" src="http://localhost:3000/videoad/atvad/mp4/ba1.mp4" loop="true" ___filter="off" width="640"></video>';
+    document.body.innerHTML = '<video id="atvVideo" playsinline="playsinline" style="cursor:pointer;" muted="" src="http://localhost:3000/vat/atvad/mp4/ba1.mp4" loop="true" ___filter="off" width="640"></video>';
   });
 
   afterEach(() => {

@@ -7,43 +7,43 @@ const htmlDomain: string = 'http://localhost:3000';
 const scriptElement = '';
 const empty = '';
 
-describe('mkIframeViaServerのテスト', () => {
-  test('正常_notviewthrough_sp', async () => {
-    const rkValue = '010011a1';
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(apiDomain, scriptElement, rkValue);
-    expect(result.rk).toEqual(rkValue);
-    expect(result.impression_url).toEqual(empty);
-    expect(result.ATV_MODE).toEqual('previewSp');
-    expect(result.ADAREA_HEIGHT).toEqual('0');
-  });
+// describe('mkIframeViaServerのテスト', () => {
+//   test('正常_notviewthrough_sp', async () => {
+//     const rkValue = '010011a1';
+//     const result: Jsontype = await iframepreview.mkIframePreViaServer(apiDomain, scriptElement, rkValue);
+//     expect(result.rk).toEqual(rkValue);
+//     expect(result.impression_url).toEqual(empty);
+//     expect(result.ATV_MODE).toEqual('previewSp');
+//     expect(result.ADAREA_HEIGHT).toEqual('0');
+//   });
 
-  test('正常_notviewthrough_pc', async () => {
-    const rkValue = '010011a1_pc';
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(apiDomain, scriptElement, rkValue);
-    expect(result.rk).toEqual(rkValue);
-    expect(result.impression_url).toEqual(empty);
-    expect(result.ATV_MODE).toEqual('previewPc');
-    expect(result.ADAREA_HEIGHT).toEqual('0');
-  });
+//   test('正常_notviewthrough_pc', async () => {
+//     const rkValue = '010011a1_pc';
+//     const result: Jsontype = await iframepreview.mkIframePreViaServer(apiDomain, scriptElement, rkValue);
+//     expect(result.rk).toEqual(rkValue);
+//     expect(result.impression_url).toEqual(empty);
+//     expect(result.ATV_MODE).toEqual('previewPc');
+//     expect(result.ADAREA_HEIGHT).toEqual('0');
+//   });
 
-  test('正常_viewthrough_pc', async () => {
-    const rkValue = '010011a8_pc';
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(apiDomain, scriptElement, rkValue);
-    expect(result.rk).toEqual(rkValue);
-    expect(result.impression_url).toEqual(empty);
-    expect(result.ATV_MODE).toEqual('previewPcAdarea');
-    expect(result.ADAREA_HEIGHT).toEqual('80');
-  });
+//   test('正常_viewthrough_pc', async () => {
+//     const rkValue = '010011a8_pc';
+//     const result: Jsontype = await iframepreview.mkIframePreViaServer(apiDomain, scriptElement, rkValue);
+//     expect(result.rk).toEqual(rkValue);
+//     expect(result.impression_url).toEqual(empty);
+//     expect(result.ATV_MODE).toEqual('previewPcAdarea');
+//     expect(result.ADAREA_HEIGHT).toEqual('80');
+//   });
 
-  test('正常_viewthrough_sp', async () => {
-    const rkValue = '010011a8';
-    const result: Jsontype = await (iframepreview as any).mkIframePreViaServer(apiDomain, scriptElement, rkValue);
-    expect(result.rk).toEqual(rkValue);
-    expect(result.impression_url).toEqual(empty);
-    expect(result.ATV_MODE).toEqual('previewSpAdarea');
-    expect(result.ADAREA_HEIGHT).toEqual('50');
-  });
-});
+//   test('正常_viewthrough_sp', async () => {
+//     const rkValue = '010011a8';
+//     const result: Jsontype = await iframepreview.mkIframePreViaServer(apiDomain, scriptElement, rkValue);
+//     expect(result.rk).toEqual(rkValue);
+//     expect(result.impression_url).toEqual(empty);
+//     expect(result.ATV_MODE).toEqual('previewSpAdarea');
+//     expect(result.ADAREA_HEIGHT).toEqual('50');
+//   });
+// });
 
 // --------------------------------------------
 

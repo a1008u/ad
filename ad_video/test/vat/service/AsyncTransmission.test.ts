@@ -16,7 +16,7 @@ describe('iframeで表示するvideoなどのデータ取得確認', () => {
 describe('2回目以降のxhr送信(v3なし)の確認', () => {
 
   beforeEach(() => {
-    window.history.pushState({}, 'Test Title', '/test.html?url=http%3A//localhost%3A3000/click%26url%3Dtest');
+    window.history.pushState({}, 'Test Title', '/test.html?url=http%3A//localhost%3A3000/click');
   });
   test('正常', async () => {
     const rkValue = '01005gtr000005'
@@ -28,15 +28,14 @@ describe('2回目以降のxhr送信(v3なし)の確認', () => {
 describe('2回目以降のxhr送信(v3有)の確認', () => {
 
   beforeEach(() => {
-    window.history.pushState({}, 'Test Title', '/test.html?url=http%3A//localhost%3A3000/click%26url%3Dtest');
+    window.history.pushState({}, 'Test Title', '/test.html?url=http%3A//localhost%3A3000/click?test=test');
   });
   test('正常', async () => {
-    const v3 = ''
-    const rkValue = '01005gtr000005'
+    const v3 = '1';
+    const rkValue = '01005gtr000005';
     const result: Jsonentry = await asyncTransmission.getJsonViaQuerryPlusV3(v3)
-    console.log('result : ',result)
+    console.log('result : ', result);
     expect(result.rk).toEqual(rkValue);
-    expect(result.v3ex).toEqual(rkValue);
   });
 });
 

@@ -4,7 +4,7 @@ import { Jsontype } from "../../../../../../src/vat/service/class/jsontype";
 describe('deleteMethodの確認', () => {
 
   beforeEach(() => {
-    document.body.innerHTML = '<div id="atvMain" class="atvMain __aparent" style="width:640px; z-index:30;"><video id="atvVideo" playsinline="playsinline" style="cursor:pointer;" muted="" src="http://localhost:3000/videoad/atvad/mp4/ba1.mp4" loop="true" width="640"></video><div id="__filter" class="__filter" style="width:640px; height:360px; padding: 90px; cursor:pointer; z-index:30; box-sizing:border-box;"><object id="___obj" style="width:320px; height:180px; pointer-events: none;" ___text="play"><svg id="___play" aria-hidden="true" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:320px; height:180px; pointer-events: none;"><path fill="White" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></object></div></div>';
+    document.body.innerHTML = '<div id="atvMain" class="atvMain __aparent" style="width:640px; z-index:30;"><video id="atvVideo" playsinline="playsinline" style="cursor:pointer;" muted="" src="http://localhost:3000/vat/atvad/mp4/ba1.mp4" loop="true" width="640"></video><div id="__filter" class="__filter" style="width:640px; height:360px; padding: 90px; cursor:pointer; z-index:30; box-sizing:border-box;"><object id="___obj" style="width:320px; height:180px; pointer-events: none;" ___text="play"><svg id="___play" aria-hidden="true" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:320px; height:180px; pointer-events: none;"><path fill="White" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></object></div></div>';
   });
 
   afterEach(() => {
@@ -53,7 +53,7 @@ describe('deleteMethodの確認', () => {
 describe('getFilterの確認', () => {
 
   beforeEach(() => {
-    document.body.innerHTML = '<video id="atvVideo" playsinline="playsinline" muted="" src="http://localhost:3000/videoad/atvad/mp4/ba1.mp4" loop="true"></video>';
+    document.body.innerHTML = '<video id="atvVideo" playsinline="playsinline" muted="" src="http://localhost:3000/vat/atvad/mp4/ba1.mp4" loop="true"></video>';
   });
 
   afterEach(() => {
@@ -123,7 +123,7 @@ describe('getSvgObjElmentの確認', () => {
 describe('mkObjElementの確認', () => {
 
   beforeEach(() => {
-    document.body.innerHTML = '<div id="atvMain" class="atvMain __aparent" style="width:640px; z-index:30;"><video id="atvVideo" playsinline="playsinline" style="cursor:pointer;" muted="" src="http://localhost:3000/videoad/atvad/mp4/ba1.mp4" loop="true" width="640"></video><div id="__filter" class="__filter" style="width:640px; height:360px; padding: 90px; cursor:pointer; z-index:30; box-sizing:border-box;"><object id="___obj" style="width:320px; height:180px; pointer-events: none;" ___text="play"><svg id="___play" aria-hidden="true" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:320px; height:180px; pointer-events: none;"><path fill="White" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></object></div></div>';
+    document.body.innerHTML = '<div id="atvMain" class="atvMain __aparent" style="width:640px; z-index:30;"><video id="atvVideo" playsinline="playsinline" style="cursor:pointer;" muted="" src="http://localhost:3000/vat/atvad/mp4/ba1.mp4" loop="true" width="640"></video><div id="__filter" class="__filter" style="width:640px; height:360px; padding: 90px; cursor:pointer; z-index:30; box-sizing:border-box;"><object id="___obj" style="width:320px; height:180px; pointer-events: none;" ___text="play"><svg id="___play" aria-hidden="true" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:320px; height:180px; pointer-events: none;"><path fill="White" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></object></div></div>';
   });
 
   afterEach(() => {
@@ -208,7 +208,7 @@ describe('mkObjElementの確認', () => {
 describe('mkFilterElementの確認', () => {
 
   beforeEach(() => {
-    document.body.innerHTML = '<video id="atvVideo" playsinline="playsinline" muted="" src="http://localhost:3000/videoad/atvad/mp4/ba1.mp4" loop="true"></video>';
+    document.body.innerHTML = '<video id="atvVideo" playsinline="playsinline" muted="" src="http://localhost:3000/vat/atvad/mp4/ba1.mp4" loop="true"></video>';
   });
 
   afterEach(() => {

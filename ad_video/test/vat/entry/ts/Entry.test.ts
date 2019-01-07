@@ -3,7 +3,6 @@ import { Jsonentry } from "../../../../src/vat/service/class/jsonentry";
 
 const domain = 'http://localhost:3000';
 
-
 describe('Entryのチェック', () => {
   beforeEach(() => {
     document.body.innerHTML = '<div id="main"><div id="atv_cookie_space"></div></div>';

@@ -19,8 +19,8 @@
     "build:pro_server": "webpack --config ./webpack/pro/webpack.config.server_dev.js",
     "server": "node dist/server/js/app.js",
     "cpx:file": "cpx \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics",
-    "copy:file": "copy \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics/videoad",
-    "copyfiles:file": "copyfiles \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics/videoad out",
+    "copy:file": "copy \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics/vat",
+    "copyfiles:file": "copyfiles \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics/vat",
     "test": "jest --no-cache",
     "test:watch": "jest --watch",
     "test:coverage": "npm run test -- --coverage --no-cache",
@@ -38,7 +38,7 @@
     "array-includes": "^3.0.3",
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.3",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "ts-polyfill": "^3.0.1",
     "typescript": "^3.2.2"
   },
@@ -79,8 +79,8 @@
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "moduleNameMapper": {
-      "\\.(css|less|sass|scss)$": "<rootDir>/src/videoad/atvad/css/index.js",
-      "\\.(gif|ttf|eot|svg)$": "<rootDir>/src/videoad/atvad/svg/play-circle-solid.svg"
+      "\\.(css|less|sass|scss)$": "<rootDir>/src/vat/atvad/css/index.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/src/vat/atvad/svg/play-circle-solid.svg"
     },
     "testEnvironment": "jsdom",
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
@@ -94,7 +94,8 @@
       "/node_modules/",
       "/test/",
       "/src/server/",
-      "/src/videoad/cookie/ts/cookies.ts"
+      "/src/vat/cookie/ts/cookies.ts",
+      "/src/vat/atvad/css"
     ],
     "coverageThreshold": {
       "global": {
