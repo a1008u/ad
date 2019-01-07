@@ -95,7 +95,7 @@ describe('getFilterの確認', () => {
 
     // width:0px; height:0px; padding: 0px; cursor:pointer; z-index:30; box-sizing:border-box;
     const styleValue = resultFilter.getAttribute('style');
-    expect(styleValue).toEqual('width:0px; height:0px; padding: 0px; cursor:pointer; z-index:30; box-sizing:border-box;');
+    expect(styleValue).toEqual('width:180px; height:320px; padding: 80px; cursor:pointer; z-index:30; box-sizing:border-box;');
   });
 });
 
@@ -164,7 +164,7 @@ describe('mkObjElementの確認', () => {
 
     // ck
     expect(objElement.getAttribute('id')).toEqual('___obj');
-    expect(objElement.getAttribute('style')).toEqual('width:0px; height:0px; pointer-events: none;');
+    expect(objElement.getAttribute('style')).toEqual('width:90px; height:160px; pointer-events: none;');
     expect(objElement.getAttribute('___text')).toEqual('pause');
   });
 
@@ -200,7 +200,7 @@ describe('mkObjElementの確認', () => {
 
     // ck
     expect(objElement.getAttribute('id')).toEqual('___obj');
-    expect(objElement.getAttribute('style')).toEqual('width:0px; height:0px; pointer-events: none;');
+    expect(objElement.getAttribute('style')).toEqual('width:90px; height:160px; pointer-events: none;');
     expect(objElement.getAttribute('___text')).toEqual('play');
   });
 });

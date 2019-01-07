@@ -3,18 +3,12 @@ import axios from 'axios';
 import 'ts-polyfill/lib/es2015-promise';
 
 export class AsyncTransmission {
-
-  constructor() {
-    console.log('AsyncTransmission');
-  }
-
   /**
    * 1回目のxhr送信（動画広告表示用のJSON取得）
    * @param domain
    * @param rkValue
    */
   async getJson(domain: string, rkValue: string): Promise<Jsontype> {
-
     console.log(`${domain}/sp/vad.json?rk=${rkValue}`)
     return axios
       .get(`${domain}/sp/vad.json?rk=${rkValue}`)

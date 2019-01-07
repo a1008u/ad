@@ -205,7 +205,7 @@ describe('mkViewThroughVideoElementのチェック', () => {
     ElementFactory.mkElement(confirmJson);
 
     // ck
-    expect($mainDivElement.getAttribute('style')).toEqual('width:360px; z-index:30;');
+    expect($mainDivElement.getAttribute('style')).toEqual('width:360px; height:640px; z-index:30;');
     expect($mainDivElement.querySelector('.__divTextLeftElement').getAttribute('style')).toEqual('font-size:22px');
     expect($mainDivElement.querySelector('.__atv_button').getAttribute('style')).toEqual('font-size:20px; padding:10px 20px');
   });
@@ -238,7 +238,7 @@ describe('mkViewThroughVideoElementのチェック', () => {
     ElementFactory.mkElement(confirmJson);
 
     // ck
-    expect($mainDivElement.getAttribute('style')).toEqual('width:360px; z-index:30;');
+    expect($mainDivElement.getAttribute('style')).toEqual('width:360px; height:640px; z-index:30;');
     expect($mainDivElement.querySelector('.__divTextLeftElement')).toBeNull();
     expect($mainDivElement.querySelector('.__atv_button')).toBeNull();
   });

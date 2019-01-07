@@ -33,15 +33,15 @@ describe('mkAdAreaの確認', () => {
 
     // ck
     const adAreaElement: string = `<div class=\"__divTextElement\" style=\"height:px\">
-      <div class=\"__divTextLeftElement\" style=\"font-size:22px\">
-        <span class=\"__atv_text\">this is the test</span>
-      </div>
-      <div class=\"__divTextRightElement\">
-        <a class=\"__atv_text\" href=\"#!\"  /\">
-          <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:20px; padding:10px 20px\">test button</>
-        </a>
-      </div>
-    </div>`;
+    <div class=\"__divTextLeftElement\" style=\"font-size:22px\">
+      <span class=\"__atv_text\">this is the test</span>
+    </div>
+    <div class=\"__divTextRightElement\">
+      <a class=\"__atv_text\" href=\"\"   /\">
+        <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:20px; padding:10px 20px\">test button</>
+      </a>
+    </div>
+  </div>`;
     expect(resultAdAreaElement).not.toBeNull();
     expect(resultAdAreaElement).toEqual(adAreaElement);
   });
@@ -76,15 +76,15 @@ describe('mkAdAreaの確認', () => {
 
     // ck
     const adAreaElement: string = `<div class=\"__divTextElement\" style=\"height:px\">
-      <div class=\"__divTextLeftElement\" style=\"font-size:16px\">
-        <span class=\"__atv_text\">this is the test</span>
-      </div>
-      <div class=\"__divTextRightElement\">
-        <a class=\"__atv_text\" href=\"#!\"  /\">
-          <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:12px; padding:5px 10px\">test button</>
-        </a>
-      </div>
-    </div>`;
+    <div class=\"__divTextLeftElement\" style=\"font-size:16px\">
+      <span class=\"__atv_text\">this is the test</span>
+    </div>
+    <div class=\"__divTextRightElement\">
+      <a class=\"__atv_text\" href=\"\" target=\"_blank\" onClick=\"hogeFunction();return false;\" /\">
+        <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:12px; padding:5px 10px\">test button</>
+      </a>
+    </div>
+  </div>`;
     expect(resultAdAreaElement).not.toBeNull();
     expect(resultAdAreaElement).toEqual(adAreaElement);
   });
@@ -119,15 +119,15 @@ describe('mkAdAreaの確認', () => {
 
     // ck
     const adAreaElement: string = `<div class=\"__divTextElement\" style=\"height:px\">
-      <div class=\"__divTextLeftElement\" style=\"font-size:22px\">
-        <span class=\"__atv_text\">this is the test</span>
-      </div>
-      <div class=\"__divTextRightElement\">
-        <a class=\"__atv_text\" href=\"test.html\" target="_blank" /\">
-          <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:20px; padding:10px 20px\">test button</>
-        </a>
-      </div>
-    </div>`;
+    <div class=\"__divTextLeftElement\" style=\"font-size:22px\">
+      <span class=\"__atv_text\">this is the test</span>
+    </div>
+    <div class=\"__divTextRightElement\">
+      <a class=\"__atv_text\" href=\"test.html\" target=\"_blank\"  /\">
+        <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:20px; padding:10px 20px\">test button</>
+      </a>
+    </div>
+  </div>`;
     expect(resultAdAreaElement).not.toBeNull();
     expect(resultAdAreaElement).toEqual(adAreaElement);
   });
@@ -175,15 +175,15 @@ describe('mkAdAreaの確認②', () => {
 
     // ck
     const adAreaElement: string = `<div class=\"__divTextElement\" style=\"height:px\">
-      <div class=\"__divTextLeftElement\" style=\"font-size:16px\">
-        <span class=\"__atv_text\">this is the test</span>
-      </div>
-      <div class=\"__divTextRightElement\">
-        <a class=\"__atv_text\" href=\"testsp.html\" target="_blank" /\">
-          <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:12px; padding:5px 10px\">test button</>
-        </a>
-      </div>
-    </div>`;
+    <div class=\"__divTextLeftElement\" style=\"font-size:16px\">
+      <span class=\"__atv_text\">this is the test</span>
+    </div>
+    <div class=\"__divTextRightElement\">
+      <a class=\"__atv_text\" href=\"testsp.html\" target=\"_blank\"  /\">
+        <span class=\"__atv_button\" ontouchstart=\"\" style=\"font-size:12px; padding:5px 10px\">test button</>
+      </a>
+    </div>
+  </div>`;
     expect(resultAdAreaElement).not.toBeNull();
     expect(resultAdAreaElement).toEqual(adAreaElement);
   });

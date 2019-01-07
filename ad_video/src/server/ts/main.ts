@@ -394,12 +394,14 @@ app.get('/click', (req: Express.Request, res: Express.Response) => {
   const query: string = req.query.rk;
   console.log('rkは[' + query + ']');
 
+  const v3: string = (req.query.v3) ? 'f3a42d90657264333bb4880f59055aed' : 'test';
+
   const jsonentry: Jsonentry = new Jsonentry(
     'true',
     'z4361737039', // n
     '01005gtr000005', // rk
     `${domain}/cookie?rk=01005gtr000005`, // rurlです 利用 iframe_url + url= rurl
-    'f3a42d90657264333bb4880f59055aed',
+    v3,
     `${domain}/vat/cookie/html/iframe_cookie.html`, // iframe_url
   );
   res.json(jsonentry);

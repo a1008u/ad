@@ -72,7 +72,7 @@ describe('execFilnotAnimationの確認', () => {
      *  </div>
      * </div>
      */
-    expect(divElementFilter.firstElementChild.firstElementChild.getAttribute('style')).toEqual('width:0px; height:0px; pointer-events: none;');
+    expect(divElementFilter.firstElementChild.firstElementChild.getAttribute('style')).toEqual('width:90px; height:160px; pointer-events: none;');
   });
 });
 

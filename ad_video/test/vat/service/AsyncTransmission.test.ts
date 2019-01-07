@@ -1,5 +1,6 @@
 import { Jsontype } from '../../../src/vat/service/class/jsontype';
 import { AsyncTransmission } from '../../../src/vat/service/AsyncTransmission';
+import { Jsonentry } from '../../../src/vat/service/class/jsonentry';
 
 const asyncTransmission: AsyncTransmission = new AsyncTransmission();
 const domain: string = 'http://localhost:3000';
@@ -9,6 +10,33 @@ describe('iframeで表示するvideoなどのデータ取得確認', () => {
   test('正常', async () => {
     const result: Jsontype = await asyncTransmission.getJson(domain, rkValue);
     expect(result.rk).toEqual(rkValue);
+  });
+});
+
+describe('2回目以降のxhr送信(v3なし)の確認', () => {
+
+  beforeEach(() => {
+    window.history.pushState({}, 'Test Title', '/test.html?url=http%3A//localhost%3A3000/click%26url%3Dtest');
+  });
+  test('正常', async () => {
+    const rkValue = '01005gtr000005'
+    const result: Jsonentry = await asyncTransmission.getJsonViaQuerry();
+    expect(result.rk).toEqual(rkValue);
+  });
+});
+
+describe('2回目以降のxhr送信(v3有)の確認', () => {
+
+  beforeEach(() => {
+    window.history.pushState({}, 'Test Title', '/test.html?url=http%3A//localhost%3A3000/click%26url%3Dtest');
+  });
+  test('正常', async () => {
+    const v3 = ''
+    const rkValue = '01005gtr000005'
+    const result: Jsonentry = await asyncTransmission.getJsonViaQuerryPlusV3(v3)
+    console.log('result : ',result)
+    expect(result.rk).toEqual(rkValue);
+    expect(result.v3ex).toEqual(rkValue);
   });
 });
 

@@ -247,7 +247,7 @@ describe('mainExecPreviewのテスト', () => {
 
     const resultIframeElement = document.getElementsByName('iframe');
     expect((resultIframeElement[0] as HTMLIFrameElement).name).toEqual('iframe');
-    expect(spy).toHaveBeenCalled();
+    expect(spy).not.toHaveBeenCalled();
 
     scriptElement.parentNode.removeChild(scriptElement);
     resultIframeElement[0].parentNode.removeChild(resultIframeElement[0]);
@@ -267,7 +267,7 @@ describe('mainExecPreviewのテスト', () => {
 
     const resultIframeElement = document.getElementsByName('iframe');
     expect((resultIframeElement[0] as HTMLIFrameElement).name).toEqual('iframe');
-    expect(spy).toHaveBeenCalled();
+    expect(spy).not.toHaveBeenCalled();
 
     scriptElement.parentNode.removeChild(scriptElement);
     resultIframeElement[0].parentNode.removeChild(resultIframeElement[0]);
