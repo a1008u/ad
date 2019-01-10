@@ -16,7 +16,7 @@ export namespace ElementFactory {
    */
   export const mkViewThroughVideoElement = (
     mainDivElement: HTMLDivElement,
-    atvJson: Jsontype
+    atvJson: Jsontype,
   ): HTMLVideoElement => {
     const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson);
     mainDivElement.appendChild($videoElement);
@@ -52,7 +52,7 @@ export namespace ElementFactory {
    */
   export const mkNotViewThroughVideoElement = (
     mainDivElement: HTMLDivElement,
-    atvJson: Jsontype
+    atvJson: Jsontype,
   ): HTMLVideoElement => {
     const $videoElement: HTMLVideoElement = tag.mkVideoElement(atvJson);
     $videoElement.removeAttribute('loop');
@@ -70,7 +70,9 @@ export namespace ElementFactory {
   export const mkElement = (atvJson: Jsontype): void => {
     // 動画広告の枠（横の長さ）を指定
     const $mainDivElement: HTMLDivElement = document.querySelector('#atvMain');
-    let height: string = String(Number(atvJson.height) + Number(atvJson.ADAREA_HEIGHT))
+    let height: string = String(
+      Number(atvJson.height) + Number(atvJson.ADAREA_HEIGHT),
+    );
     $mainDivElement.setAttribute(
       'style',
       `width:${atvJson.width}px; height:${height}px; z-index:30;`,
