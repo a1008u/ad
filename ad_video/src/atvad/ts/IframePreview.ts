@@ -1,6 +1,8 @@
 import { Jsontype } from '../../vat/service/class/jsontype';
 import { tag } from '../../vat/service/tag';
 import { AsyncTransmission } from '../../vat/service/AsyncTransmission';
+import { oschecker } from '../../vat/service/oschecker';
+import { browser } from '../../vat/service/browser';
 
 export class IframePreview {
   /**
@@ -69,7 +71,13 @@ export class IframePreview {
       infoJson.width,
       String(iframeHight),
     );
-    scriptElement.parentNode.insertBefore(iframeElement, scriptElement);
+    const targetAndroid: boolean = oschecker.isolate() === 'android' ? true : false;
+    const targetFirefox: boolean = browser.ck().includes('firefox') ? true : false;
+    // androidかつFirefoxは動画を表示させない
+    if( oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0') {
+    } else {
+      scriptElement.parentNode.insertBefore(iframeElement, scriptElement);
+    }
   }
 
   /**
