@@ -16,10 +16,10 @@ export class Main {
       scriptElement.removeAttribute('data-atv-mode');
       scriptElement.removeAttribute('data-atv-mock');
       const apiDomain: string = atvMock
-        ? 'http://10.10.15.47:3000'
+        ? 'http://localhost:3000'
         : 'https://h.accesstrade.net';
       const htmlDomain: string = atvMock
-        ? 'http://10.10.15.47:3000'
+        ? 'http://localhost:3000'
         : 'https://a.image.accesstrade.net/hai';
       if (atvMode) {
         // プレビュー用

@@ -65,11 +65,8 @@ export class Iframe {
       String(iframeHight),
     );
 
-    const targetAndroid: boolean = oschecker.isolate() === 'android' ? true : false;
-    const targetFirefox: boolean = browser.ck().includes('firefox') ? true : false;
     // androidかつFirefoxは動画を表示させない
-    if( oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0') {
-    } else {
+    if( !(oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0')) {
       scriptElement.parentNode.insertBefore(iframeElement, scriptElement);
     }
   }

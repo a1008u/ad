@@ -57,25 +57,17 @@ export class IframePreview {
     ) => Promise<Jsontype>,
   ) {
     const infoJson: Jsontype = await mk(apiDomain, scriptElement, rkValue);
-
-    infoJson.videoframe_url = `${htmlDomain}/vat/atvad/html/iframe_atvad.html`;
-
-    // iframe生成
-    let iframeHight: number =
-      Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
-    const url: string = `${
-      infoJson.videoframe_url
-    }?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
-    let iframeElement: HTMLIFrameElement = tag.mkIframeElement(
-      url,
-      infoJson.width,
-      String(iframeHight),
-    );
-    const targetAndroid: boolean = oschecker.isolate() === 'android' ? true : false;
-    const targetFirefox: boolean = browser.ck().includes('firefox') ? true : false;
     // androidかつFirefoxは動画を表示させない
     if( oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0') {
+      const divTag: HTMLDivElement = document.createElement('div');
+      divTag.textContent = 'お使いの端末のブラウザでは表示することができません。';
+      scriptElement.parentNode.insertBefore(divTag, scriptElement);
     } else {
+      // iframe生成
+      infoJson.videoframe_url = `${htmlDomain}/vat/atvad/html/iframe_atvad.html`;
+      const iframeHight: number = Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
+      const url: string = `${infoJson.videoframe_url}?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
+      const iframeElement: HTMLIFrameElement = tag.mkIframeElement(url,infoJson.width,String(iframeHight),);
       scriptElement.parentNode.insertBefore(iframeElement, scriptElement);
     }
   }
