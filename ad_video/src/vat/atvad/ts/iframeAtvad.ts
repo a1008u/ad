@@ -2,6 +2,7 @@ import { Jsontype } from '../../service/class/jsontype';
 import { ElementFactory } from './service/Factory/ElementFactory';
 
 import 'ts-polyfill/lib/es2015-promise';
+// import 'ts-polyfill';
 
 /**
  * videoAdのメイン処理

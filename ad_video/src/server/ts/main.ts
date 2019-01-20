@@ -18,7 +18,7 @@ app.get(ROOT, (req: Express.Request, res: Express.Response) => {
   res.send('Hello world.');
 });
 
-const domain = 'http://localhost:3000';
+const domain = 'http://192.168.1.6:3000';
 
 /**
  * 0回目のxhr用のAPI imp用

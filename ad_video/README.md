@@ -57,3 +57,18 @@
 |iframe_atvad_min.js|145|635|
 |iframe_entry_min.js|39.5|149|
 |iframe_cookie_min.js|55.7|197|
+
+
+// IE10対策
+プレビュー時と動画再生完了後に表示しているplayマークを省略することで解決はできる。
+残すことはできない。（addEventLisnerが聞かないため。。。）
+
+// IE9対策
+プレビュー時と動画再生完了後に表示しているplayマークを省略すること。
+動画再生中の動画停止や再生のマークも非表示にする。
+残すことはできない。（addEventLisnerが聞かないため。。。）
+
+下記CDNを利用数必要もある。（IE9には未実装のため）
+``` html
+<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"></script>
+```
