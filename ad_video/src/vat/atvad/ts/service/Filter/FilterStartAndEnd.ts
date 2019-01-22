@@ -23,15 +23,6 @@ export class FilterStartAndEnd extends Filter {
       atvJson,
     );
 
-    // const svgElement: Element =
-    //   divElementFilter.firstElementChild.firstElementChild;
-    // svgElement.setAttribute(
-    //   'style',
-    //   `width:${String(Number(atvJson.width) / 2)}px; height:${String(
-    //     Number(atvJson.height) / 2,
-    //   )}px; pointer-events: none;`,
-    // );
-
     divElementFilter.firstElementChild.firstElementChild.setAttribute(
       'style',
       `width:${String(Number(atvJson.width) / 2)}px; height:${String(

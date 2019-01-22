@@ -70,7 +70,7 @@ export namespace ElementFactory {
   export const mkElement = (atvJson: Jsontype): void => {
     // 動画広告の枠（横の長さ）を指定
     const $mainDivElement: HTMLDivElement = document.querySelector('#atvMain');
-    let height: string = String(
+    const height: string = String(
       Number(atvJson.height) + Number(atvJson.ADAREA_HEIGHT),
     );
     $mainDivElement.setAttribute(

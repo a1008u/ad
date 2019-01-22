@@ -23,7 +23,7 @@ export class Filter {
   }
 
   /**
-   * filterの作成（スタイル）
+   * filterの作成（スタイルを追加）
    * @param videoTag
    */
   getFilter(atvJson: Jsontype): HTMLDivElement {

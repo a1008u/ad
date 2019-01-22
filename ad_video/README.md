@@ -19,7 +19,8 @@
   - Mock用
   http://localhost:3000/atvad/html/index_pc_mock_notPreview.html  
   http://localhost:3000/atvad/html/index_pc_mock_preview.html  
-  http://localhost:3000/atvad/html/index_sp_mock.html  
+  http://localhost:3000/atvad/html/index_sp_mock_notPreview.html  
+  http://localhost:3000/atvad/html/index_sp_mock_preview.html  
 
   - preview用
   http://localhost:3000/atvad/html/index_pc_preview.html  

@@ -58,8 +58,7 @@ export class IframePreview {
   ) {
     const infoJson: Jsontype = await mk(apiDomain, scriptElement, rkValue);
     // androidかつFirefoxは動画を表示させない
-    if((oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0')
-    || (oschecker.isolate() === 'pc' && browser.ck().includes('ie') && browser.isNotIe11())) {
+    if (oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0') {
       const divTag: HTMLDivElement = document.createElement('div');
       divTag.textContent = 'お使いの端末のブラウザでは表示することができません。';
       scriptElement.parentNode.insertBefore(divTag, scriptElement);
@@ -104,7 +103,6 @@ export class IframePreview {
       infoJson.ADAREA_HEIGHT = infoJson.height === '360' ? '80' : '50';
       infoJson.href_url = btnUrl ? btnUrl : 'javascript:void(0)';
       infoJson.target = btnUrl ? `target="_blank"` : '';
-      infoJson.onClick = btnUrl ? 'onClick="hogeFunction();return false;"' : '';
     }
 
     return new Promise<Jsontype>((resolove, _) => {
@@ -162,7 +160,6 @@ export class IframePreview {
       infoJson.ADAREA_HEIGHT = infoJson.height === '360' ? '80' : '50';
       infoJson.href_url = btnUrl ? btnUrl : 'javascript:void(0)';
       infoJson.target = btnUrl ? `target="_blank"` : '';
-      infoJson.onClick = btnUrl ? 'onClick="hogeFunction();return false;"' : '';
     }
 
     return new Promise<Jsontype>((resolove, _) => {

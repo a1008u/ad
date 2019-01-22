@@ -46,7 +46,7 @@ export namespace EventViewThrough {
   export const setEventLoad = (videoTag: HTMLElement, atvJson: Jsontype) => {
     let count = 0;
     let countEvt;
-    let limitTime: number = Number(atvJson.videoad_vt_second) * 1000;
+    const limitTime: number = Number(atvJson.videoad_vt_second) * 1000;
     videoTag.addEventListener('play', () => {
       if (count < limitTime) {
         countEvt = window.setInterval(() => {

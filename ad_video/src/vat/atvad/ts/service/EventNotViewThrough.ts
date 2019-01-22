@@ -1,87 +1,26 @@
 import { Observable, fromEvent } from 'rxjs';
 
-import { osFontSize } from './OsFontSize';
-import { oschecker } from '../../../service/oschecker';
 import { Jsontype } from '../../../service/class/jsontype';
 import { FilterStartAndEnd } from './Filter/FilterStartAndEnd';
 
 export namespace EventNotViewThrough {
-  const getAdAreaValue = (atvJson: Jsontype) => {
-    let leftSize: string;
-    let rightSize: string;
-    let hrefValue: string;
-    let target: string;
-    let btnPaddingUpDown: string;
-    let btnPaddingLeftRight: string;
-    let onClick: string;
-    if (atvJson.ATV_MODE === 'previewPcAdarea') {
-      leftSize = '22px';
-      rightSize = '20px';
-      btnPaddingUpDown = '10px';
-      btnPaddingLeftRight = '20px';
-      hrefValue = atvJson.href_url;
-      target = atvJson.target;
-      onClick = atvJson.onClick;
-    } else if (atvJson.ATV_MODE === 'previewSpAdarea') {
-      leftSize = '16px';
-      rightSize = '12px';
-      btnPaddingUpDown = '5px';
-      btnPaddingLeftRight = '10px';
-      hrefValue = atvJson.href_url;
-      target = atvJson.href_url === '#!' ? `` : `target="_blank"`;
-      onClick = 'onClick="hogeFunction();return false;"';
-    } else {
-      [
-        leftSize,
-        rightSize,
-        btnPaddingUpDown,
-        btnPaddingLeftRight,
-      ] = osFontSize.getSize[oschecker.isolate()]();
-      hrefValue = atvJson.href_url;
-      target = `target="_blank"`;
-      onClick = '';
-    }
-    return {
-      leftSize,
-      hrefValue,
-      rightSize,
-      target,
-      btnPaddingUpDown,
-      btnPaddingLeftRight,
-      onClick,
-    };
-  };
-
   // AdAreaの作成
   export const mkAdArea = (atvJson: Jsontype): string => {
-    const {
-      leftSize,
-      hrefValue,
-      rightSize,
-      target,
-      btnPaddingUpDown,
-      btnPaddingLeftRight,
-      onClick,
-    }: {
-      leftSize: string;
-      hrefValue: string;
-      rightSize: string;
-      target: string;
-      btnPaddingUpDown: string;
-      btnPaddingLeftRight: string;
-      onClick: string;
-    } = getAdAreaValue(atvJson);
-    return `<div class="__divTextElement" style="height:${
-      atvJson.ADAREA_HEIGHT
-    }px">
+    const leftSize: string = atvJson.height === '360' ? '22px' : '16px';
+    const hrefValue: string = atvJson.href_url;
+    const rightSize: string = atvJson.height === '360' ? '20px' : '11px';;
+    const target: string = atvJson.ATV_MODE === 'previewPcAdarea' || atvJson.ATV_MODE === 'previewSpAdarea'? atvJson.target: `target="_blank"`;
+    const btnPaddingUpDown: string = atvJson.height === '360' ? '10px' : '5px';
+    const btnPaddingLeftRight: string = atvJson.height === '360' ? '20px' : '10px';
+    return `<div class="__divTextElement" style="height:${atvJson.ADAREA_HEIGHT}px">
       <div class="__divTextLeftElement" style="font-size:${leftSize}">
         <span class="__atv_text">${atvJson.banner_text}</span>
       </div>
       <div class="__divTextRightElement">
-        <a class="__atv_text" href="${hrefValue}" ${target} ${onClick} /">
-          <span class="__atv_button" ontouchstart="" style="font-size:${rightSize}; padding:${btnPaddingUpDown} ${btnPaddingLeftRight}">${
-      atvJson.video_btn_text
-    }</>
+        <a class="__atv_text" href="${hrefValue}" ${target}>
+          <span class="__atv_button" ontouchstart="" style="font-size:${rightSize}; padding:${btnPaddingUpDown} ${btnPaddingLeftRight}">
+            ${atvJson.video_btn_text}
+          </span>
         </a>
       </div>
     </div>`;
@@ -96,7 +35,7 @@ export namespace EventNotViewThrough {
     atvJson: Jsontype,
   ) => {
     const deleteFilter = (ev: any) => {
-      let targeFilterElement: HTMLElement = ev.target;
+      const targeFilterElement: HTMLElement = ev.target;
       targeFilterElement.parentElement.removeChild(targeFilterElement);
       videoElement.removeAttribute('__end');
       videoElement.play();

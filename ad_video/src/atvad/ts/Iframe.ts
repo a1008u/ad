@@ -54,8 +54,7 @@ export class Iframe {
     infoJson.videoframe_url = `${htmlDomain}/vat/atvad/html/iframe_atvad.html`;
 
     // androidかつFirefoxは動画を表示させない
-    if( (oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0')
-    || (oschecker.isolate() === 'pc' && browser.ck().includes('ie') && browser.isNotIe11())) {
+    if (oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0') {
       // 本番での利用のため何も表示しない
     } else {
       // iframe生成
