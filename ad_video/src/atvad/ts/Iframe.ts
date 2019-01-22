@@ -53,20 +53,22 @@ export class Iframe {
 
     infoJson.videoframe_url = `${htmlDomain}/vat/atvad/html/iframe_atvad.html`;
 
-    // iframe生成
-    const iframeHight: number =
-      Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
-    const url: string = `${
-      infoJson.videoframe_url
-    }?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
-    let iframeElement: HTMLIFrameElement = tag.mkIframeElement(
-      url,
-      infoJson.width,
-      String(iframeHight),
-    );
-
     // androidかつFirefoxは動画を表示させない
-    if( !(oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0')) {
+    if( (oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0')
+    || (oschecker.isolate() === 'pc' && browser.ck().includes('ie') && browser.isNotIe11())) {
+      // 本番での利用のため何も表示しない
+    } else {
+      // iframe生成
+      const iframeHight: number =
+        Number(infoJson.height) + Number(infoJson.ADAREA_HEIGHT);
+      const url: string = `${
+        infoJson.videoframe_url
+      }?atvJson=${encodeURIComponent(JSON.stringify(infoJson))}`;
+      const iframeElement: HTMLIFrameElement = tag.mkIframeElement(
+        url,
+        infoJson.width,
+        String(iframeHight),
+      );
       scriptElement.parentNode.insertBefore(iframeElement, scriptElement);
     }
   }
@@ -95,8 +97,8 @@ export class Iframe {
       infoJson.videoad_vt_second !== '0'
         ? '0'
         : infoJson.height === '360'
-          ? '100'
-          : '50';
+        ? '100'
+        : '50';
 
     return new Promise<Jsontype>((resolove, _) => {
       resolove(infoJson);

@@ -50,4 +50,9 @@ export namespace browser {
     }
     return browser;
   };
+
+  /**
+   * IEのバージョンが11でないことの確認
+   */
+  export const isNotIe11 = (): boolean => Platform.version !== '11.0' ? true : false;
 }

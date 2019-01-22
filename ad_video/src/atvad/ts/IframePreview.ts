@@ -58,7 +58,8 @@ export class IframePreview {
   ) {
     const infoJson: Jsontype = await mk(apiDomain, scriptElement, rkValue);
     // androidかつFirefoxは動画を表示させない
-    if( oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0') {
+    if((oschecker.isolate() === 'android' && browser.ck().includes('firefox') && infoJson.videoad_vt_second !== '0')
+    || (oschecker.isolate() === 'pc' && browser.ck().includes('ie') && browser.isNotIe11())) {
       const divTag: HTMLDivElement = document.createElement('div');
       divTag.textContent = 'お使いの端末のブラウザでは表示することができません。';
       scriptElement.parentNode.insertBefore(divTag, scriptElement);
