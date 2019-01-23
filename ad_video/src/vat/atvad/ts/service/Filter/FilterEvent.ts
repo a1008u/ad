@@ -21,7 +21,7 @@ export class FilterEvent {
    * @param $videoElement
    */
   async videoStateChange($videoElement: HTMLVideoElement) {
-    let playMode: string = $videoElement.getAttribute('playxxx');
+    const playMode: string = $videoElement.getAttribute('playxxx');
     if (playMode === 'pause') {
       await VideoAction.playAction($videoElement);
     } else if (playMode === 'play') {
@@ -40,7 +40,7 @@ export class FilterEvent {
    */
   async showFilter($videoElement: HTMLVideoElement, atvJson: Jsontype) {
     // filter生成
-    let playMode: string = $videoElement.getAttribute('playxxx');
+    const playMode: string = $videoElement.getAttribute('playxxx');
     const filterPlayMode: FilterPlayMode = new FilterPlayMode();
     const $divElementFilter: HTMLDivElement = await filterPlayMode.execFil(
       $videoElement,

@@ -6,10 +6,3 @@ export interface OS {
   windowsphone: (videoElement: HTMLVideoElement, atvJson: Jsontype) => void;
   pc: (videoElement: HTMLVideoElement, atvJson: Jsontype) => void;
 }
-
-export interface OSFontsize {
-  ios: (divTextLeftElement, divTextRightElement) => void;
-  android: (vdivTextLeftElement, divTextRightElement) => void;
-  windowsphone: (divTextLeftElement, divTextRightElement) => void;
-  pc: (divTextLeftElement, divTextRightElement) => void;
-}

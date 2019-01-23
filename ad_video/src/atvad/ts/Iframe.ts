@@ -90,7 +90,6 @@ export class Iframe {
     );
 
     // 追加要素
-    // infoJson.ATV_RK = rkValue;
     infoJson.ATV_MODE = '';
     infoJson.ADAREA_HEIGHT =
       infoJson.videoad_vt_second !== '0'

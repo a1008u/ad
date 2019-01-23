@@ -15,7 +15,6 @@ export class Filter {
     } else {
       VideoAction.pauseAction(videoElement);
     }
-    // this.deleteFilter(videoElement, divElementFilter);
     const mainDivElement: HTMLElement = videoElement.parentElement;
     mainDivElement.removeAttribute('atvMain');
     mainDivElement.removeChild(divElementFilter);

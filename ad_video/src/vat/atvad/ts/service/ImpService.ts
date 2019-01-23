@@ -11,8 +11,8 @@ export namespace ImpService {
     videoElement: HTMLVideoElement,
     atvJson: Jsontype,
   ) => {
-    let imp: string = videoElement.getAttribute('imp');
-    let atvMode: string = videoElement.getAttribute('atv_mode');
+    const imp: string = videoElement.getAttribute('imp');
+    const atvMode: string = videoElement.getAttribute('atv_mode');
     if (!imp && !atvMode) {
       videoElement.setAttribute('imp', 'done');
       axios
