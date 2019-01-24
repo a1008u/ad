@@ -52,11 +52,6 @@ export namespace cookies {
     }
     let date: Date = new Date();
     date.setDate(date.getDate() + 365);
-    // console.log(
-    //   `${escape(sKey)}=${escape(sValue)}; path=${
-    //     sPath ? sPath : ''
-    //   }; expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`,
-    // );
     document.cookie = `${escape(sKey)}=${escape(sValue)}; path=${
       sPath ? sPath : ''
     }; expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`;
