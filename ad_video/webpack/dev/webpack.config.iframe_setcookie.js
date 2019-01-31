@@ -1,11 +1,11 @@
 module.exports = {
 
     entry: {
-        "ts":'./src/videoad/cookie/ts/iframe_cookie.ts'
+        "ts":'./src/vat/cookie/ts/iframe_cookie.ts'
     },
 
     output: {
-        filename: "./server/statics/videoad/cookie/js/iframe_cookie_min.js"
+        filename: "./server/statics/vat/cookie/js/iframe_cookie_min.js"
     },
     mode: 'development'
     ,

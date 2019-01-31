@@ -4,18 +4,28 @@
   "description": "how to mk ad with video",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist",
     "build-dev": "npm-run-all clean build:dev_* cpx:*",
+    "build-pro": "npm-run-all clean build:pro_* cpx:*",
+    "clean": "rimraf dist",
     "build:dev_atvad": "webpack --config ./webpack/dev/webpack.config.atvad.js",
     "build:dev_iframe_atvad": "webpack --config ./webpack/dev/webpack.config.iframe_atvad.js",
     "build:dev_iframe_entry": "webpack --config ./webpack/dev/webpack.config.iframe_entry.js",
     "build:dev_iframe_setcookie": "webpack --config ./webpack/dev/webpack.config.iframe_setcookie.js",
     "build:dev_server": "webpack --config ./webpack/dev/webpack.config.server_dev.js",
+    "build:pro_atvad": "webpack --config ./webpack/pro/webpack.config.atvad.js",
+    "build:pro_iframe_atvad": "webpack --config ./webpack/pro/webpack.config.iframe_atvad.js",
+    "build:pro_iframe_entry": "webpack --config ./webpack/pro/webpack.config.iframe_entry.js",
+    "build:pro_iframe_setcookie": "webpack --config ./webpack/pro/webpack.config.iframe_setcookie.js",
+    "build:pro_server": "webpack --config ./webpack/pro/webpack.config.server_dev.js",
+    "server": "node dist/server/js/app.js",
     "cpx:file": "cpx \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics",
-    "copy:file": "copy \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics/videoad",
-    "copyfiles:file": "copyfiles \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics/videoad out",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "tslint -c tslint.json --exclude **/*.d.ts --exclude ./node_modules --project . --fix ./src/**/ts/*.ts --fix ./src/**/ts/**/*.ts --fix ./src/ts/*/*.ts --fix ./src/server/ts/*.ts"
+    "copy:file": "copy \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics/vat",
+    "copyfiles:file": "copyfiles \"./src/**/**/*.{html,css,mp4,svg}\" ./dist/server/statics/vat",
+    "test": "jest --no-cache",
+    "test:watch": "jest --watch",
+    "test:coverage": "npm run test -- --coverage --no-cache",
+    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
+    "lint": "tslint -c tslint.json --exclude **/*.d.ts --exclude ./node_modules --exclude ./src/server/ts/main.ts --project . --fix ./src/**/ts/*.ts --fix ./src/**/ts/**/*.ts --fix ./src/ts/*/*.ts "
   },
   "keywords": [
     "ad",
@@ -25,16 +35,18 @@
   "author": "au",
   "license": "ISC",
   "dependencies": {
+    "array-includes": "^3.0.3",
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.3",
-    "morgan": "^1.9.0",
-    "typescript": "^3.0.1"
+    "morgan": "^1.9.1",
+    "ts-polyfill": "^3.0.1",
+    "typescript": "^3.2.2"
   },
   "devDependencies": {
     "@rxjs/rx": "^4.1.0",
     "@types/cors": "^2.8.4",
     "@types/express": "^4.16.0",
-    "@types/jasmine": "^2.8.8",
+    "@types/jest": "^23.3.9",
     "@types/platform": "^1.3.1",
     "axios": "^0.18.0",
     "copy": "^0.3.2",
@@ -45,29 +57,14 @@
     "emergence.js": "^1.1.2",
     "es6-promise": "^4.2.4",
     "express": "^4.16.3",
-    "jasmin": "0.0.2",
-    "jasmine-core": "^3.1.0",
-    "karma": "^2.0.5",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-cli": "^1.0.1",
-    "karma-coverage": "^1.1.2",
-    "karma-edge-launcher": "^0.4.2",
-    "karma-firefox-launcher": "^1.1.0",
-    "karma-ie-launcher": "^1.0.0",
-    "karma-jasmine": "^1.1.2",
-    "karma-jasmine-html-reporter": "^1.2.0",
-    "karma-mocha-reporter": "^2.2.5",
-    "karma-safari-launcher": "^1.0.0",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-spec-reporter": "0.0.32",
-    "karma-typescript": "^3.0.13",
-    "karma-webpack": "^3.0.0",
+    "jest": "^23.6.0",
     "npm-run-all": "^4.1.3",
     "platform": "^1.3.5",
     "prettier": "^1.13.7",
     "rimraf": "^2.6.2",
     "rxjs": "^6.2.2",
     "style-loader": "^0.23.1",
+    "ts-jest": "^23.10.4",
     "ts-loader": "^4.4.2",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.14.0",
@@ -76,5 +73,41 @@
     "webpack": "^4.16.3",
     "webpack-cli": "^3.1.0",
     "webpack-node-externals": "^1.7.2"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/src/vat/atvad/css/index.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/src/vat/atvad/svg/play-circle-solid.svg"
+    },
+    "testEnvironment": "jsdom",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testURL": "http://localhost:8080/test.html",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/",
+      "/src/server/",
+      "/src/vat/cookie/ts/cookies.ts",
+      "/src/vat/atvad/css"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 80,
+        "lines": 80,
+        "statements": 78
+      }
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,ts}"
+    ]
   }
 }

@@ -19,25 +19,24 @@ export const emergenceInit = (window: Window) => {
       // iframeのwindowオブジェクトを取得
       if (state === 'visible') {
         // 外部サイトにメッセージを投げる
-        let ca = element.getAttribute('advE');
+        const ca = element.getAttribute('advE');
         if (!ca) {
-          console.log("kidou");
           element.setAttribute('advE', 'true');
-          element.contentWindow.postMessage("playOrPause", '*');
+          element.contentWindow.postMessage('playOrPause', '*');
         }
       } else if (state === 'reset') {
         // element.pause();
-        let ca = element.getAttribute('advE');
+        const ca = element.getAttribute('advE');
         if (ca) {
           element.removeAttribute('advE');
-          element.contentWindow.postMessage("pause", '*');
+          element.contentWindow.postMessage('pause', '*');
         }
       } else if (state === 'noreset') {
         // element.pause();
-        let ca = element.getAttribute('advE');
+        const ca = element.getAttribute('advE');
         if (ca) {
           element.removeAttribute('advE');
-          element.contentWindow.postMessage("pause", '*');
+          element.contentWindow.postMessage('pause', '*');
         }
       }
     },

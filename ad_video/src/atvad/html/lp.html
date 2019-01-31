@@ -4,10 +4,40 @@
     <meta charset="UTF-8">
     <title>lpページ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 </head>
 <body>
 
-    <h2>lpページ</h2>
+    <h2 id="te">lpページ</h2>
 
+    <script>
+
+        function getParams(query) {
+            var params = query.split('&');
+            var obj = {};
+            for(var kv in params) {
+                var [key, value] = params[kv].split('=');
+                obj['tag'] = value;
+            }
+            return value;
+        }
+
+        var value = getParams(location.search.substring(1));
+        var hostname = location.hostname;
+        console.log(value, hostname)
+        document.cookie = `atvrk=${value};expires=Sun, 17 Dec 2019 01:27:14 GMT`
+
+        var divElement= document.createElement('h2');
+        divElement.textContent = `atvrkは「${value}」`;
+        document.getElementById('te')
+                .parentNode
+                .parentNode
+                .insertBefore(
+                    divElement,
+                    document
+                        .getElementById('te')
+                        .parentElement,
+                );
+     </script>
 </body>
 </html>

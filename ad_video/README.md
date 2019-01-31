@@ -1,119 +1,75 @@
 ## 実行方法
   - 開発用
-     ```$npm
+    ```$npm
     npm install // npm_moduleを取得していない場合
     export PATH=$PATH:./node_modules/.bin
     npm run build-dev // 開発環境用
-    docker-compose up --build
-
-    // express
-    npm run build-serverdev
     node dist/server/js/app.js
-    ``` 
+    ```
+
   - 本番用
     ```$npm
     npm install // npm_moduleを取得していない場合
-    export PATH=$PATH:./node_modules/.bin 
-    npm run build-pro // 本番環境用
-    docker-compose up --build　// もし動作を見たいのなら。。
-    ``` 
-
-## typescriptの始め方  
-
- - pakage.jsonの作成
+    export PATH=$PATH:./node_modules/.bin
+    npm run build-pro // 開発環境用
+    node dist/server/js/app.js
     ```
-    npm init;
-    ```
-
- - typescriptの登録
-    ```
-    npm i typescript --save
-    ```
- - その他のインストール
-    ```$npm
-    npm install --save-dev axios rxjs @rxjs/rx
-    npm install --save-dev es6-promise
-    npm install --save-dev webpack webpack-cli ts-loader
-    npm install --save-dev jasmin jasmine-core @types/jasmine
-    npm install --save-dev emergence.js
-    npm install --save-dev platform 
-    npm install --save-dev @types/platform 
-    
-    npm install --save-dev karma karma-cli karma-coverage karma-typescript karma-webpack karma-jasmine
-    npm install --save-dev karma-chrome-launcher  karma-edge-launcher karma-firefox-launcher karma-ie-launcher karma-safari-launcher
-    npm install --save-dev karma-sourcemap-loader
-    npm install --save-dev karma-jasmine-html-reporter karma-mocha-reporter karma-spec-reporter
-    npm install --save-dev tslint prettier tslint-plugin-prettier tslint-config-prettier tslint-config-standard
-    npm install --save-dev express webpack-node-externals
-    npm install --save-dev @types/express
-    npm install --save-dev body-parser morgan
-    npm install --save cors
-    npm install --save-dev @types/cors
-    npm i --save-dev npm-run-all rimraf cpx
-    npm i --save-dev style-loader css-loader
-    ```
- 
-- test用のコマンド
-    ```$npm
-    npm run test
-    ```
-- 環境変数を通す
-    ```$npm 
-    export PATH=$PATH:./node_modules/.bin 
-    ``` 
-## windowsでの実行方法
-  - ツールのインストール  
-    スタートを押して，コマンドプロンプトを右クリックし，管理者として実行をクリック
-    ```
-     @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-    ```
-  - gitのインストール(nodeバージョン管理ツール)
-    ```
-    choco install git
-    ```
-  - nodistのインストール(nodeバージョン管理ツール)
-    ```
-    choco install nodist
-    ```
-  - nodeのインストール
-    ```
-    nodist dist
-    nodist バージョン指定
-    node -v
-    ```
-
-
-    // "build-dev": "npm-run-all clean build:* cpx:*",
-    // "build:partnerdev": "webpack --config ./webpack.config.partner_dev.js",
-    // "build:partneriframedev": "webpack --config ./webpack.config.partner_iframe_dev.js",
-    // "build-marchantdev": "webpack --config ./webpack.config.marchant_dev.js",
-    // "build:redirecthisdev": "webpack --config ./webpack.config.redirect_send_h_is_dev.js",
-    // "build:redirectmdev": "webpack --config ./webpack.config.redirect_send_m_dev.js",
-    // "build:serverdev": "webpack --config ./webpack.config.server_dev.js",
 
 ### テスト環境
-https://localhost:3000/atvad/html/index_pc_mock.html
-https://localhost:3000/atvad/html/index_sp_mock.html
+  - Mock用
+  http://localhost:3000/atvad/html/index_pc_mock_notPreview.html  
+  http://localhost:3000/atvad/html/index_pc_mock_preview.html  
+  http://localhost:3000/atvad/html/index_sp_mock_notPreview.html  
+  http://localhost:3000/atvad/html/index_sp_mock_preview.html  
+
+  - preview用
+  http://localhost:3000/atvad/html/index_pc_preview.html  
+  http://localhost:3000/atvad/html/index_sp_preview.html  
+
+  - 本番アクセス用 *hostsを切り替えることでテストにアクセスしてね
+  http://localhost:3000/atvad/html/index_pc_viewthrow_not.html  
+  http://localhost:3000/atvad/html/index_pc_viewthrow.html  
+
+  http://localhost:3000/atvad/html/index_sp_viewthrow_android.html  
+  http://localhost:3000/atvad/html/index_sp_viewthrow_ios.html  
+  http://localhost:3000/atvad/html/index_sp_viewthrow_not_android.html  
+  http://localhost:3000/atvad/html/index_sp_viewthrow_not.html  
+  http://localhost:3000/atvad/html/index_sp_viewthrow.html  
+  http://localhost:3000/atvad/html/index_sp_viewthrow.html  
+  http://localhost:3000/atvad/html/index_sp._viewthrough_not_ios.html  
+
+  - 本番アクセス用(ipアドレス有) *hostsを切り替えることでテストにアクセスしてね
+  http://10.10.15.61:3000/atvad/html/index_pc_viewthrow_not.html  
+  http://10.10.15.61:3000/atvad/html/index_pc_viewthrow.html  
+
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow_android.html  
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow_ios.html  
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow_not_android.html  
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow_not.html  
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow.html  
+  http://10.10.15.61:3000/atvad/html/index_sp_viewthrow.html  
+  http://10.10.15.61:3000/atvad/html/index_sp._viewthrough_not_ios.html  
+
+## ファイルサイズ
+
+ファイル名|proサイズ(kiB)|devサイズ(kiB)
+|:---|:---|:---|
+|atvad_min.js|47.8|171|
+|iframe_atvad_min.js|145|635|
+|iframe_entry_min.js|39.5|149|
+|iframe_cookie_min.js|55.7|197|
 
 
-# docker
-docker inspect mysql_mysql-test_1
-docker run --rm --volumes-from mysql_mysql-test_1 -v $(pwd):/backup boombatower/docker-backup backup
-ls -l
+// IE10対策
+プレビュー時と動画再生完了後に表示しているplayマークを省略することで解決はできる。
+残すことはできない。（addEventLisnerが聞かないため。。。）
 
-docker run --volumes-from mysql_mysql-test_1 -v $(pwd):/backup mysql_mysql-test_1 bash -c "tar xvf /backup.tar.xz"
+// IE9対策
+プレビュー時と動画再生完了後に表示しているplayマークを省略すること。
+動画再生中の動画停止や再生のマークも非表示にする。
+残すことはできない。（addEventLisnerが聞かないため。。。）
 
-docker container prune
-
-docker -v $(pwd):/backup mysql_mysql-test_1 bash -c "cd tar xvf /backup.tar.xz"
-docker exec -it -v $(pwd):/backup 5c97a7948805 bash -c "ls -l"
-
-
-
-docker cp backup.tar.xz mysql_mysql-test_1:./backup.tar.xz
-docker exec -it mysql_mysql-test_1 bash -c "ls -l"
-docker exec -it mysql_mysql-test_1 bash -c "tar xvf ./backup.tar.xz"
-
-
-docker run --volumes-from mysql_db_data_1 -v $(pwd):/backup mysql bash -c "cd /backup && apt-get update && apt-get install xz-utils && tar xvf ./backup.tar.xz"
-
+下記CDNを利用数必要もある。（IE9には未実装のため）
+``` html
+<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"></script>
+```

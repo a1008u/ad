@@ -8,7 +8,7 @@
         "name": "Launch Chrome against localhost, with sourcemaps", 
         "type": "chrome",
         "request": "launch",
-        "url": "https://localhost:3000/atvad/html/index_pc_mock.html", 
+        "url": "http://localhost:3000/atvad/html/index_pc_mock.html", 
         "sourceMaps": true, 
         "webRoot": "${workspaceRoot}", 
         "diagnosticLogging": true, 

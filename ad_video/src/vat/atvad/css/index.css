@@ -1,0 +1,198 @@
+body {
+    overflow: hidden;
+    margin: 0;
+    background-color: transparent;
+}
+
+.atvMain {
+    /* position: relative;
+    display: block; */
+    font-size: 0;
+    position:relative
+}
+
+.__filter
+,.__button{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    color: #FFF;
+    text-decoration: none;
+    text-align: center;
+    /* background: rgba(0,0,0, 0.5); */
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+/* ---------------------- */
+
+.__link{
+    display: table;
+    /*height: 50%;*/
+    width: 50%;
+    margin:0 auto;
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.__play{
+    /*display: table;*/
+    height: 50%;
+    width: 100%;
+    padding: 5%;
+}
+
+.__a2{
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+}
+
+.___videostop{
+    position: relative;
+}
+
+/* ---------------------- */
+/* divText */
+
+.__divTextElement {
+    box-sizing: border-box;
+    padding: 10px 10px 10px 30px;
+    font-family: 'Hiragino Kaku', 'Gothic Pro', 'Meiryo', 'Lucida','Grande', 'Verdana','MS PGothic','sans-serif';
+    background: rgb(255, 255, 255);
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.__divTextLeftElement
+, .__divTextRightElement {
+    position: relative;
+    box-sizing:border-box;
+    height: 100%;
+    padding: 5px;
+    float: left;
+    /* text-align: center; */
+}
+
+.__divTextLeftElement{
+    text-align: left;
+}
+.__divTextRightElement {
+    text-align: center;
+}
+
+
+.__divTextLeftElement {
+    width: 60%;
+}
+.__divTextRightElement {
+    width: 40%;
+}
+
+.__atv_text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    tap-highlight-color: rgba(0,0,0,0);
+}
+
+.__atv_button {
+    display: inline-block;
+    margin: 0 auto;
+    /* padding: 7px 10px; sp 5px 10px  pc 10px 20px */
+    border: solid 2px rgba(169, 169, 169, 1);
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    transition: .4s;
+    cursor: pointer;
+
+}
+.__atv_button:hover {
+    background: rgba(169, 169, 169, 0.4);
+}
+
+.__atv_button:active {
+    background: rgba(169, 169, 169, 0.4);
+}
+/* ---------------------- */
+
+
+@keyframes anime {
+    0%  {  opacity:1;  }
+    25% {  opacity:0.75;  }
+    50% {  opacity:0.5;  }
+    75% {  opacity:0.25;  }
+    100% {  opacity:0;  }
+}
+
+.___ani {
+    float:left;
+    width:50px;
+    height:40px;
+    animation-name: anime;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-delay:0;
+    animation-iteration-count: 1;
+    animation-direction:alternate;
+
+    -moz-animation-name: 'anime';
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: ease;
+    -moz-animation-delay:0;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-direction:alternate;
+
+    -webkit-animation-name: 'anime';
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-delay:0;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction:alternate;
+
+    -o-animation-name: 'anime';
+    -o-animation-duration: 1s;
+    -o-animation-timing-function: ease;
+    -o-animation-delay:0;
+    -o-animation-iteration-count: 1;
+    -o-animation-direction:alternate;
+
+    -ms-animation-name: 'anime';
+    -ms-animation-duration: 1s;
+    -ms-animation-timing-function: ease;
+    -ms-animation-delay:0;
+    -ms-animation-iteration-count: 1;
+    -ms-animation-direction:alternate;
+}
+
+
+@-ms-keyframes anime {
+    0% {    opacity:1;  }
+    25% {  opacity:0.75;  }
+    50% {  opacity:0.5;  }
+    75% {  opacity:0.25;  }
+    100% {  opacity:0;  }
+}
+
+body {
+    animation: fadeIn 2s ease 0s 1 normal;
+    -webkit-animation: fadeIn 2s ease 0s 1 normal;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0}
+    25% {  opacity:0.25;  }
+    50% {  opacity:0.5;  }
+    75% {  opacity:0.75;  }
+    100% {opacity: 1}
+}
