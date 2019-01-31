@@ -74,7 +74,9 @@ describe('execのチェック', () => {
     const $mainDivElement: HTMLDivElement = document.querySelector('#main');
     expect($mainDivElement.querySelector('iframe').getAttribute('height')).toEqual('0');
     expect($mainDivElement.querySelector('iframe').getAttribute('iframeborder')).toEqual('0');
-    expect($mainDivElement.querySelector('iframe').getAttribute('src')).toEqual(`http://localhost:3000/vat/cookie/html/iframe_cookie.html?url=${encodeURIComponent(jsonentry.rurl)}`);
+    const [d, param] = $mainDivElement.querySelector('iframe').getAttribute('src').split('?')
+    expect(d).toContain(`/vat/cookie/html/iframe_cookie.html`);
+    expect(param).toContain(`cookie%3Frk%3D01005gtr000005`);
     expect($mainDivElement.querySelector('iframe').getAttribute('style')).toEqual('border: 1px solid gray; display: none;');
   });
 });

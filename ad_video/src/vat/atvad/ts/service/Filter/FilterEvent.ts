@@ -23,12 +23,12 @@ export class FilterEvent {
   async videoStateChange($videoElement: HTMLVideoElement) {
     const playMode: string = $videoElement.getAttribute('playxxx');
     if (playMode === 'pause') {
-      await VideoAction.playAction($videoElement);
+      VideoAction.playAction($videoElement);
     } else if (playMode === 'play') {
       VideoAction.pauseAction($videoElement);
     } else {
       // 初回稼働
-      await VideoAction.playAction($videoElement);
+      VideoAction.playAction($videoElement);
       $videoElement.removeAttribute('videoStart');
     }
   }

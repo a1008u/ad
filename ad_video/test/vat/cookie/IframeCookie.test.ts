@@ -30,7 +30,7 @@ async function ckCookie() {
   expect($iframeElement.getAttribute('height')).toEqual('0');
   expect($iframeElement.style.display).toEqual('none');
   expect($iframeElement.getAttribute('iframeborder')).toEqual('0');
-  expect($iframeElement.getAttribute('src')).toEqual(jsoncookie.rurl);
+  expect($iframeElement.getAttribute('src')).toContain('/atvad/html/lp.html');
 }
 
 async function ckCookieViaBrowser(targetBrowser: string) {
@@ -50,7 +50,7 @@ async function ckImg() {
   expect($imgElement.getAttribute('alt')).toEqual('test');
   expect($imgElement.getAttribute('height')).toEqual('0');
   expect($imgElement.getAttribute('width')).toEqual('0');
-  expect($imgElement.getAttribute('src')).toEqual(jsoncookie.imgurl);
+  expect($imgElement.getAttribute('src')).toContain('/ts.jpg');
 }
 
 // tslint:disable-next-line:only-arrow-functions

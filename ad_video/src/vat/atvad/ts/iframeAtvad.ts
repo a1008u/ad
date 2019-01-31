@@ -21,6 +21,6 @@ export namespace iframeAtvad {
 }
 
 /**
- * メイン処理
+ * メイン処理（即時実行）
  */
 ((window, _) => iframeAtvad.mkVideoAd())(window);

@@ -16,6 +16,7 @@
       "trace"
     ]}
   ,
+  "no-floating-promises": false,
   "jsdoc-format": true,
   "only-arrow-functions": [ true ],
   "indent": [true, "spaces", 2],

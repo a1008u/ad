@@ -3,10 +3,6 @@ import { tag } from '../../service/tag';
 import { AsyncTransmission } from '../../service/AsyncTransmission';
 
 export class Entry {
-  constructor() {
-    console.log(' Entry ---------- ');
-  }
-
   /**
    * メイン処理
    */

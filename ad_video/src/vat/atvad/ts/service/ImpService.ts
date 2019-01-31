@@ -18,7 +18,7 @@ export namespace ImpService {
       axios
         .get(atvJson.impression_url)
         .then(resdata => resdata.data)
-        .catch(err => console.log(err));
+        .catch(err => err);
     }
   };
 }

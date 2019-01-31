@@ -3,7 +3,7 @@ import { Jsontype } from '../../../service/class/jsontype';
 
 export namespace EventViewThrough {
   /**
-   *
+   * ビュースルー時に起動（entryのiframeを作成し、domに追加）
    * @param cntEvt
    * @param atvJson
    * @param videoTag
@@ -13,13 +13,12 @@ export namespace EventViewThrough {
     atvJson: Jsontype,
     videoTag: HTMLElement,
   ) => {
-    console.log('atvJson.entryIframe_url --- ' + atvJson.entryframe_url);
     window.clearInterval(cntEvt);
     // クリックのやつ
     const url: string = `${atvJson.entryframe_url}?url=${encodeURIComponent(
       atvJson.href_url,
     )}`;
-    let iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(
+    const iframeTag: HTMLIFrameElement = tag.mkIframeElementForTracking(
       url,
       '0',
       '0',

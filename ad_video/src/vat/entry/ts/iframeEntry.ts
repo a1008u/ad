@@ -4,6 +4,8 @@ import { Entry } from './entry';
 // tslint:disable-next-line:no-var-requires
 // require('es6-promise').polyfill();
 
+import 'ts-polyfill/lib/es2015-promise';
+
 /**
  * clickしたことを伝えるよ
  * 今度は、トラッキングの本ちゃんへ

@@ -3,6 +3,15 @@ import { ImpService } from './ImpService';
 import { VideoAction } from './video/videoAction';
 
 export namespace MessageEvent {
+  /**
+   * 以下3つの処理のどれかを行う
+   *  1.messageイベントの値が「pause」 -> 動画停止
+   *  2.動画が終了していないかつ現在動画停止 -> 動画再生
+   *  3.動画が終了していないかつ現在動画再生 -> 動画停止
+   * @param eventStatus
+   * @param videoElement
+   * @param atvJson
+   */
   export const ckAndExeAction = (
     eventStatus: string,
     videoElement: HTMLVideoElement,
@@ -28,6 +37,12 @@ export namespace MessageEvent {
     }
   };
 
+  /**
+   * messageを利用して、iframeへイベントを伝える
+   * ※iframeへイベントを伝えるためにmessageを利用。
+   * @param videoElement
+   * @param atvJson
+   */
   export const register = (
     videoElement: HTMLVideoElement,
     atvJson: Jsontype,

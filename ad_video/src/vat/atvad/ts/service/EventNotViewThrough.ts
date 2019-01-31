@@ -8,11 +8,18 @@ export namespace EventNotViewThrough {
   export const mkAdArea = (atvJson: Jsontype): string => {
     const leftSize: string = atvJson.height === '360' ? '22px' : '16px';
     const hrefValue: string = atvJson.href_url;
-    const rightSize: string = atvJson.height === '360' ? '20px' : '11px';;
-    const target: string = atvJson.ATV_MODE === 'previewPcAdarea' || atvJson.ATV_MODE === 'previewSpAdarea'? atvJson.target: `target="_blank"`;
+    const rightSize: string = atvJson.height === '360' ? '20px' : '11px';
+    const target: string =
+      atvJson.ATV_MODE === 'previewPcAdarea' ||
+      atvJson.ATV_MODE === 'previewSpAdarea'
+        ? atvJson.target
+        : `target="_blank"`;
     const btnPaddingUpDown: string = atvJson.height === '360' ? '10px' : '5px';
-    const btnPaddingLeftRight: string = atvJson.height === '360' ? '20px' : '10px';
-    return `<div class="__divTextElement" style="height:${atvJson.ADAREA_HEIGHT}px">
+    const btnPaddingLeftRight: string =
+      atvJson.height === '360' ? '20px' : '10px';
+    return `<div class="__divTextElement" style="height:${
+      atvJson.ADAREA_HEIGHT
+    }px">
       <div class="__divTextLeftElement" style="font-size:${leftSize}">
         <span class="__atv_text">${atvJson.banner_text}</span>
       </div>

@@ -33,8 +33,6 @@ describe('mkAdAreaの確認', () => {
 
     // ck
     expect(resultAdAreaElement).not.toBeNull();
-    expect(resultAdAreaElement).toContain('font-size:22px');
-    expect(resultAdAreaElement).toContain('font-size:20px; padding:10px 20px');
   });
 
   test('preview SP版', async () => {
@@ -67,8 +65,6 @@ describe('mkAdAreaの確認', () => {
 
     // ck
     expect(resultAdAreaElement).not.toBeNull();
-    expect(resultAdAreaElement).toContain('font-size:16px');
-    expect(resultAdAreaElement).toContain('font-size:12px; padding:5px 10px');
   });
 
   test('preview以外 PC版', async () => {
@@ -101,8 +97,6 @@ describe('mkAdAreaの確認', () => {
 
     // ck
     expect(resultAdAreaElement).not.toBeNull();
-    expect(resultAdAreaElement).toContain('font-size:22px');
-    expect(resultAdAreaElement).toContain('font-size:20px; padding:10px 20px');
   });
 });
 
@@ -148,7 +142,5 @@ describe('mkAdAreaの確認②', () => {
 
     // ck
     expect(resultAdAreaElement).not.toBeNull();
-    expect(resultAdAreaElement).toContain('font-size:16px');
-    expect(resultAdAreaElement).toContain('font-size:12px; padding:5px 10px');
   });
 });

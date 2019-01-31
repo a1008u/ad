@@ -2,8 +2,6 @@ import { Iframe } from './Iframe';
 import { IframePreview } from './IframePreview';
 
 import 'ts-polyfill/lib/es2015-promise';
-import { oschecker } from '../../vat/service/oschecker';
-import { browser } from '../../vat/service/browser';
 
 export class Main {
   async exec(scriptElement: HTMLScriptElement, window: Window) {
@@ -16,10 +14,10 @@ export class Main {
       scriptElement.removeAttribute('data-atv-mode');
       scriptElement.removeAttribute('data-atv-mock');
       const apiDomain: string = atvMock
-        ? 'http://10.10.15.50:3000'
+        ? 'http://10.10.15.96:3000'
         : 'https://h.accesstrade.net';
       const htmlDomain: string = atvMock
-        ? 'http://10.10.15.50:3000'
+        ? 'http://10.10.15.96:3000'
         : 'https://a.image.accesstrade.net/hai';
       if (atvMode) {
         // プレビュー用
